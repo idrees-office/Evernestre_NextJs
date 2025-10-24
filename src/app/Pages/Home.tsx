@@ -1,10 +1,8 @@
-"use client";
-
 import React from 'react';
-import HeroSlider from './Components/HeroSlider';
-import PropertySearchBar from './Components/PropertySearchBar';
+import HeroSlider from '../Components/HeroSlider';
+import PropertySearchBar from '../Components/PropertySearchBar';
 
-export default function App() {
+export default function Home() {
   return (
     <div className="min-h-screen bg-[#faf8f6]">
       <div className="relative">
@@ -14,4 +12,3 @@ export default function App() {
     </div>
   );
 }
-
