@@ -74,31 +74,6 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-
-          {/* Newsletter */}
-          <div className="border-t border-white/10 pt-12 mb-12">
-            <div className="max-w-2xl mx-auto text-center">
-              <h4 className="text-2xl font-light mb-4">Stay Updated</h4>
-              <p className="text-white/60 mb-6 font-light">
-                Subscribe to receive exclusive property listings and market insights
-              </p>
-              <div className="flex gap-3">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="flex-1 px-6 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/40 focus:outline-none focus:border-[#d0845b] transition-all duration-300 font-light"
-                />
-                <button className="px-8 py-4 bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 font-light tracking-wider">
-                  Subscribe
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div className="border-t border-white/10 pt-8 text-center text-white/50 font-light text-sm">
-            <p>&copy; {new Date().getFullYear()} Premium Realty. All rights reserved.</p>
-          </div>
         </div>
       </footer>
 

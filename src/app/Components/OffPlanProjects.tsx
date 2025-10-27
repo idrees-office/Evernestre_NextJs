@@ -113,12 +113,8 @@ export default function OffPlanProjects() {
 
   return (
     <section className="bg-[#ffffff] py-8 md:py-8 lg:py-8">
-     
-    
-
 
      <div className="container mx-auto max-w-8xl px-6 md:px-10">
-        {/* Header row */}
         <div className="mb-8 md:mb-8 flex items-start justify-between gap-6">
           <div>
             <h2 className="text-[32px] md:text-[32px] lg:text-[38px] font-normal tracking-tight text-[#8b5d3b]">
@@ -129,8 +125,6 @@ export default function OffPlanProjects() {
               New Era Of Investment Excellence.
             </p>
           </div>
-
-          {/* Currency chips */}
           <div className="flex shrink-0 items-center gap-2">
             {CURRENCIES.map((c) => {
               const active = c === currency;
@@ -152,8 +146,6 @@ export default function OffPlanProjects() {
             })}
           </div>
         </div>
-
-        {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7">
           {CITIES.map((city) => (
             <Link
@@ -162,7 +154,6 @@ export default function OffPlanProjects() {
               className="group block"
             >
               <div className="relative overflow-hidden rounded-sm bg-[#eae7e4] shadow-[0_14px_40px_rgba(0,0,0,0.08)] ring-1 ring-black/5">
-                {/* Image */}
                 <img
                   src={city.image}
                   alt={city.name}
@@ -183,7 +174,6 @@ export default function OffPlanProjects() {
         <div className="mt-12" />
       </div>
 
-
       <div className="container mx-auto max-w-8xl px-6 md:px-8">
         <div className="mb-6 flex flex-col gap-4 md:mb-8 md:flex-row md:items-center md:justify-between">
             <div>
@@ -194,13 +184,8 @@ export default function OffPlanProjects() {
                 Explore the UAE&apos;s latest Off-Plan projects by top developers, representing a new era of investment excellence.
             </p>
             </div>
-
             <div className="flex items-center gap-2">
-            
-            <Link
-                href="/off-plan-projects"
-                className="ml-2 inline-flex h-9 items-center rounded-full border border-[#c9a882] px-4 text-sm text-[#8b5d3b] hover:bg-[#c9a882]/10"
-            >
+            <Link href="/off-plan-projects" className="ml-2 inline-flex h-9 items-center rounded-full border border-[#c9a882] px-4 text-sm text-[#8b5d3b] hover:bg-[#c9a882]/10">
                 Explore All Projects
             </Link>
             </div>
