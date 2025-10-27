@@ -2,15 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Check, Search, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-type DropdownName =
-  | 'buyRent'
-  | 'status'
-  | 'propertyType'
-  | 'minArea'
-  | 'maxArea'
-  | 'minBedroom'
-  | 'maxBedroom'
-  | 'maxPrice';
+type DropdownName = | 'buyRent' | 'status' | 'propertyType' | 'minArea' | 'maxArea' | 'minBedroom' | 'maxBedroom' | 'maxPrice';
 
 interface FiltersState {
   buyRent: string;
@@ -26,6 +18,7 @@ interface FiltersState {
 
 export default function PropertySearchBar() {
   const [activeDropdown, setActiveDropdown] = useState<DropdownName | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
   const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const dropdownOptions = {
@@ -52,6 +45,12 @@ export default function PropertySearchBar() {
   });
 
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+    
     const handleClickOutside = (event: MouseEvent) => {
       if (!activeDropdown) return;
       const refEl = dropdownRefs.current[activeDropdown];
@@ -62,12 +61,13 @@ export default function PropertySearchBar() {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [activeDropdown]);
+  }, [activeDropdown, isMounted]);
 
   const toggleDropdown = (name: DropdownName) => {
+    if (!isMounted) return;
     setActiveDropdown((prev) => (prev === name ? null : name));
   };
-
+  
   function handleFilterChange<K extends keyof FiltersState>(
     filterName: K,
     value: FiltersState[K]
@@ -119,7 +119,7 @@ export default function PropertySearchBar() {
         </button>
 
         <AnimatePresence>
-          {activeDropdown === name && (
+          {isMounted && activeDropdown === name && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -151,6 +151,73 @@ export default function PropertySearchBar() {
     );
   };
 
+  // Don't render animations on server
+  if (!isMounted) {
+    return (
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[68%] z-[90]">
+        <div className="bg-white/95 backdrop-blur-2xl shadow-2xl rounded-sm border-white/40 overflow-hidden">
+          <div className="p-4 md:p-4">
+            {/* Static version without animations for server */}
+            <div className="flex flex-col lg:flex-row gap-4 mb-2">
+              <div className="w-full lg:w-44">
+                <div className="w-full px-5 py-2 bg-white/95 border border-white/20 rounded-sm text-left flex items-center justify-between">
+                  <span className={`text-sm font-light tracking-wide ${filters.buyRent ? 'text-[#1a1a1a]' : 'text-[#1a1a1a]/50'}`}>
+                    {filters.buyRent || 'Buy / Rent'}
+                  </span>
+                  <ChevronDown className="h-4 w-4 text-[#1a1a1a]/40" />
+                </div>
+              </div>
+
+              <div className="w-full lg:w-44">
+                <div className="w-full px-5 py-2 bg-white/95 border border-white/20 rounded-sm text-left flex items-center justify-between">
+                  <span className={`text-sm font-light tracking-wide ${filters.status ? 'text-[#1a1a1a]' : 'text-[#1a1a1a]/50'}`}>
+                    {filters.status || 'Status'}
+                  </span>
+                  <ChevronDown className="h-4 w-4 text-[#1a1a1a]/40" />
+                </div>
+              </div>
+
+              <div className="flex-1 relative">
+                <MapPin className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-[#1a1a1a]/30" />
+                <input
+                  type="text"
+                  placeholder="Enter location or project name"
+                  value={filters.location}
+                  readOnly
+                  className="w-full pl-14 pr-5 py-2 bg-white/95 border border-white/20 rounded-sm text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 placeholder:font-light tracking-wide"
+                />
+              </div>
+
+              <button className="w-full lg:w-auto px-10 py-2 bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white rounded-sm flex items-center justify-center gap-3 font-light tracking-wider">
+                <Search className="h-5 w-5" />
+                <span>Search Properties</span>
+              </button>
+            </div>
+
+            {/* Advanced Filters - Static */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+              {[
+                { placeholder: 'Property Type', value: filters.propertyType },
+                { placeholder: 'Min Area', value: filters.minArea },
+                { placeholder: 'Max Area', value: filters.maxArea },
+                { placeholder: 'Min Bedroom', value: filters.minBedroom },
+                { placeholder: 'Max Bedroom', value: filters.maxBedroom },
+                { placeholder: 'Max Price', value: filters.maxPrice },
+              ].map((item, index) => (
+                <div key={index} className="w-full px-5 py-2 bg-white/95 border border-white/20 rounded-sm text-left flex items-center justify-between">
+                  <span className={`text-sm font-light tracking-wide ${item.value ? 'text-[#1a1a1a]' : 'text-[#1a1a1a]/50'}`}>
+                    {item.value || item.placeholder}
+                  </span>
+                  <ChevronDown className="h-4 w-4 text-[#1a1a1a]/40" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -158,7 +225,6 @@ export default function PropertySearchBar() {
       transition={{ duration: 0.8, delay: 0.6 }}
       className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[68%] z-[90]"
     >
-        {/* absolute bottom-8 left-1/2 -translate-x-1/2 w-[85%] max-w-7xl z-[90] */}
       <div className="bg-white/95 backdrop-blur-2xl shadow-2xl rounded-sm border-white/40 overflow-hidden">
         <div className="p-4 md:p-4">
           {/* Main Search Row */}

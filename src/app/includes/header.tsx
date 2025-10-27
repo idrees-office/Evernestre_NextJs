@@ -26,7 +26,7 @@ export default function Header() {
     { label: 'Areas',       url: '#',                   dropdown: ['Downtown', 'Waterfront', 'Suburban'] },
     { label: 'Developers',  url: '#',                   dropdown: ['Top Developers', 'Boutique Developers', 'International'] },
     { label: 'Services',    url: '#',                   dropdown: ['Property Management', 'Investment Consulting', 'Legal Services'] },
-    { label: 'About',       url: '#',                   dropdown: ['Our Story', 'Team', 'Testimonials'] },
+    { label: 'About',       url: createPageUrl('About'),                   dropdown: ['Our Story', 'Team', 'Testimonials'] },
   ] as const;
 
   return (

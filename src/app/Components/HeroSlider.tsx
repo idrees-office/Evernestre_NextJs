@@ -23,6 +23,11 @@ export default function HeroSlider() {
   ];
 
   const [current, setCurrent] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+
+   useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const nextSlide = () =>
     setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -30,26 +35,27 @@ export default function HeroSlider() {
     setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
 
   useEffect(() => {
+     if (!isMounted) return;
     const timer = setInterval(nextSlide, 7000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isMounted]);
 
   return (
     <div className="relative w-full h-[70vh] md:h-[78vh] lg:h-[82vh] overflow-hidden bg-[#1a1a1a]">
       {/* Slide */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         <motion.div
-          key={current}
+           key={isMounted ? current : 0}
           initial={{ opacity: 0, scale: 1.06 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.98 }}
           transition={{ duration: 1.0, ease: [0.43, 0.13, 0.23, 0.96] }}
-          className="absolute inset-0 absolute inset-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a]/80 via-[#1a1a1a]/45 to-transparent z-10" />
           <img
-            src={slides[current].image}
-            alt={slides[current].title}
+             src={slides[isMounted ? current : 0].image}
+             alt={slides[isMounted ? current : 0].title}
             className="w-full h-full object-cover"
             draggable={false}
           />
