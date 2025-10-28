@@ -81,7 +81,7 @@ const PROJECTS: Project[] = [
     bathrooms: 3,
     areaSqft: 720,
   },
-  
+
   {
     slug: 'danube-bayz-102-222230128',
     title: 'Danube BAYZ 102 At Business Bay',
@@ -94,7 +94,6 @@ const PROJECTS: Project[] = [
     bathrooms: 3,
     areaSqft: 720,
   },
-
   {
     slug: 'danube-bayz-102-222433',
     title: 'Danube BAYZ 102 At Business Bay',
