@@ -33,7 +33,7 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    slug: 'danube-bayz-102-business-bay',
+    slug: 'danube-bayz-102-business-bay1',
     title: 'Danube BAYZ 102 At Business Bay',
     community: 'Luxury Family Residences II',
     city: 'Business Bay, Dubai',
@@ -45,7 +45,7 @@ const PROJECTS: Project[] = [
     areaSqft: 720,
   },
   {
-    slug: 'danube-bayz-102-2',
+    slug: 'danube-bayz-102-21',
     title: 'Danube BAYZ 102 At Business Bay',
     community: 'Luxury Family Residences II',
     city: 'Business Bay, Dubai',
@@ -81,6 +81,60 @@ const PROJECTS: Project[] = [
     bathrooms: 3,
     areaSqft: 720,
   },
+  
+  {
+    slug: 'danube-bayz-102-222230128',
+    title: 'Danube BAYZ 102 At Business Bay',
+    community: 'Luxury Family Residences II',
+    city: 'Business Bay, Dubai',
+    image: '/assets/home/Abu-Dhabi.webp',
+    priceAED: 150000,
+    type: 'Villa',
+    bedrooms: 4,
+    bathrooms: 3,
+    areaSqft: 720,
+  },
+
+  {
+    slug: 'danube-bayz-102-222433',
+    title: 'Danube BAYZ 102 At Business Bay',
+    community: 'Luxury Family Residences II',
+    city: 'Business Bay, Dubai',
+    image: '/assets/home/Abu-Dhabi.webp',
+    priceAED: 150000,
+    type: 'Villa',
+    bedrooms: 4,
+    bathrooms: 3,
+    areaSqft: 720,
+  },
+
+  {
+    slug: 'danube-bayz-102-22232',
+    title: 'Danube BAYZ 102 At Business Bay',
+    community: 'Luxury Family Residences II',
+    city: 'Business Bay, Dubai',
+    image: '/assets/home/Abu-Dhabi.webp',
+    priceAED: 150000,
+    type: 'Villa',
+    bedrooms: 4,
+    bathrooms: 3,
+    areaSqft: 720,
+  },
+
+
+  {
+    slug: 'danube-bayz-102-211',
+    title: 'Danube BAYZ 102 At Business Bay',
+    community: 'Luxury Family Residences II',
+    city: 'Business Bay, Dubai',
+    image: '/assets/home/Abu-Dhabi.webp',
+    priceAED: 150000,
+    type: 'Villa',
+    bedrooms: 4,
+    bathrooms: 3,
+    areaSqft: 720,
+  },
+
 ];
 
 const FX: Record<Currency, number> = {

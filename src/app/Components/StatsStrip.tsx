@@ -13,7 +13,7 @@ const BACKGROUND_IMG = '/assets/home/counter-image.webp';
 
 const STATS: Stat[] = [
   { value: 500, label: 'Successful Deals', suffix: '+', abbrK: false },
-  { value: 550, label: 'Satisfied Clients', suffix: '+', abbrK: false },
+  { value: 550, label: 'Satisfied Clients1', suffix: '+', abbrK: false },
   { value: 2000, label: 'Satisfied Clients', abbrK: true },
   { value: 30, label: 'Top Developer Partnership', suffix: '+', abbrK: false },
 ];

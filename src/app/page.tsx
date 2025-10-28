@@ -7,6 +7,8 @@ import OffPlanProjects from './Components/OffPlanProjects';
 import HighlightedAreas from './Components/HighlightedAreas';
 import WhyEvernest from './Components/WhyEvernest';
 import StatsStrip from './Components/StatsStrip';
+import NewsSection from './Components/NewsSection';
+import TrustedRealEstateSection from './Components/ClientFeedBack';
 
 export default function App() {
   return (
@@ -16,9 +18,12 @@ export default function App() {
         <PropertySearchBar />
       </div>
       <OffPlanProjects />
+      <HighlightedAreas />
       <WhyEvernest />
       <StatsStrip />
-      <HighlightedAreas />
+      <NewsSection />
+      <TrustedRealEstateSection/>
+
     </div>
   );
 }

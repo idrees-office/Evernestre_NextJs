@@ -44,11 +44,11 @@ export default function WhyEvernest() {
         </div>
         <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
           {FEATURES.map(({ title, desc, icon: Icon }) => (
-            <div key={title} className="group rounded-[22px] bg-white border border-[#c9a882]/40 shadow-[0_10px_30px_rgba(0,0,0,0.06)] px-8 py-9 text-center transition-all hover:shadow-[0_16px_44px_rgba(0,0,0,0.10)] hover:-translate-y-0.5">
+            <div key={title} className="group rounded-[9px] bg-white border border-[#c9a882]/40 shadow-[0_10px_30px_rgba(0,0,0,0.06)] px-8 py-9 text-center transition-all hover:shadow-[0_16px_44px_rgba(0,0,0,0.10)] hover:-translate-y-0.5">
               <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[#f7e9e1] ring-1 ring-[#d0845b]/30">
                 <Icon className="h-7 w-7 text-[#c2754e]" aria-hidden="true" />
               </div>
-              <h3 className="text-[#c2754e] tracking-wide font-semibold uppercase"> {title} </h3>
+              <h3 className="text-[#c2754e] tracking-wide font-normal uppercase"> {title} </h3>
               <p className="mt-2 text-sm leading-relaxed text-[#1a1a1a]/75"> {desc} </p>
               <div className="pointer-events-none absolute inset-0 rounded-[22px] opacity-0 ring-1 ring-white/50 transition-opacity group-hover:opacity-100" />
             </div>
