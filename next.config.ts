@@ -9,7 +9,7 @@ import type { NextConfig } from "next";
 
 const nextConfig = {
   images: {
-    domains: ['test_backend.leadshub.ae', 'i.pravatar.cc'],
+    domains: ['test_backend.leadshub.ae', 'i.pravatar.cc', 'evernest.ae'],
     // or using remotePatterns for more control (recommended in newer Next.js versions)
     remotePatterns: [
       {
@@ -21,6 +21,13 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'i.pravatar.cc',
+        port: '',
+        pathname: '/**',
+      },
+
+      {
+        protocol: 'https',
+        hostname: 'i.evernest.ae',
         port: '',
         pathname: '/**',
       },

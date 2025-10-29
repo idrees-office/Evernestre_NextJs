@@ -83,12 +83,8 @@ export default function TestimonialSlider() {
             </p>
           </div>
         </div>
-        {/* Slider */}
         <div className="relative">
-          {/* Navigation Buttons */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all hover:scale-110 border border-[#c9a882]/40"
+          <button onClick={prevSlide} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all hover:scale-110 border border-[#c9a882]/40"
             aria-label="Previous slide"
           >
             <ChevronLeft className="h-5 w-5 text-[#c2754e]" />

@@ -21,12 +21,14 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { label: 'Home',        url: createPageUrl('Home'), dropdown: ['Main Home', 'Modern Home', 'Classic Home'] },
-    { label: 'Off-Plan',    url: '#',                   dropdown: ['New Projects', 'Upcoming Launches', 'Pre-Construction'] },
-    { label: 'Areas',       url: '#',                   dropdown: ['Downtown', 'Waterfront', 'Suburban'] },
-    { label: 'Developers',  url: '#',                   dropdown: ['Top Developers', 'Boutique Developers', 'International'] },
-    { label: 'Services',    url: '#',                   dropdown: ['Property Management', 'Investment Consulting', 'Legal Services'] },
-    { label: 'About',       url: createPageUrl('About'),                   dropdown: ['Our Story', 'Team', 'Testimonials'] },
+    { label: 'Home',         url: createPageUrl('Home'), dropdown: ['Main Home',] },
+    { label: 'Off-Plan',     url: createPageUrl('Projects'),   dropdown: ['All Projects'] },
+    { label: 'Areas',        url: '#',                   dropdown: ['Area Guide'] },
+    { label: 'Developers',   url: '#',                   dropdown: ['All Developer',] },
+    { label: 'Services',     url: '#',                   dropdown: ['Property Management', 'Investment Consulting', 'Legal Services'] },
+    { label: 'About Us',     url: createPageUrl('About'),                   dropdown: ['Our Team', 'Career'] },
+    { label: 'News & Blogs', url: '#',                   dropdown: ['News & Blogs', 'Blogs'] },
+
   ] as const;
 
   return (
@@ -55,10 +57,7 @@ export default function Header() {
             <Link href={createPageUrl('Home')} className="flex items-center group">
               <div className="text-4xl md:text-[24px] font-light tracking-tight">
                 <span className="text-[color:var(--brand)]">Evernest</span>
-                <span
-                  className={`ml-2 transition-colors duration-300
-                    ${isScrolled ? 'text-[color:var(--charcoal)]' : 'text-[color:var(--charcoal)]'}
-                  `}
+                <span className={`ml-2 transition-colors duration-300 ${isScrolled ? 'text-[color:var(--charcoal)]' : 'text-[color:var(--charcoal)]'}`}
                 >
                   Real Estate
                 </span>
@@ -66,7 +65,8 @@ export default function Header() {
             </Link>
 
             {/* Desktop nav */}
-            <div className="hidden lg:flex items-center gap-1">
+            {/* gap-1 */}
+            <div className="hidden lg:flex items-center">
               {navItems.map((item) => (
                 <div
                   key={item.label}
@@ -76,24 +76,33 @@ export default function Header() {
                 >
                   <Link
                     href={item.url}
-                    className={`px-5 py-3 text-[15px] font-light tracking-wide rounded-lg transition-all duration-300
-                      flex items-center gap-1
-                      text-[color:var(--charcoal)]/85 hover:text-[color:var(--brand)]
-                      hover:bg-[color:var(--brand)]/8
-                      ${pathname === item.url ? 'text-[color:var(--brand)]' : ''}
-                    `}
+                    // className={`px-4 py-3 text-[15px] font-light tracking-wide rounded-lg transition-all duration-300
+                    //   flex items-center gap-1
+                    //   text-[color:var(--charcoal)]/85 hover:text-[color:var(--brand)]
+                    //   hover:bg-[color:var(--brand)]/8
+                    //   ${pathname === item.url ? 'text-[color:var(--brand)]' : ''}
+                    // `}
+
+                    className={`relative px-4 py-3 text-[15px] font-light tracking-wide transition-all duration-300
+                    flex items-center
+                    text-[color:var(--charcoal)]/85 hover:text-[color:var(--brand)]
+                    after:absolute after:left-1/2 after:bottom-0 after:h-[1.5px] after:w-0 
+                    after:bg-[color:var(--brand)] after:transition-all after:duration-300 
+                    after:-translate-x-1/2 hover:after:w-4/5
+                    ${pathname === item.url ? 'text-[color:var(--brand)] after:w-4/5' : ''}
+                  `}
                   >
                     {item.label}
-                    {!!item.dropdown?.length && (
+                    {/* {!!item.dropdown?.length && (
                       <ChevronDown
                         className={`h-3.5 w-3.5 transition-transform duration-300
                           ${activeDropdown === item.label ? 'rotate-180' : ''}
                         `}
                       />
-                    )}
+                    )} */}
                   </Link>
 
-                  {/* Dropdown */}
+                 
                   {!!item.dropdown?.length && (
                     <AnimatePresence>
                       {activeDropdown === item.label && (
@@ -107,9 +116,10 @@ export default function Header() {
                           {item.dropdown.map((drop) => (
                             <a
                               key={drop}
-                              href="#"
+                               href={createPageUrl(drop)}
                               className="block px-3 py-2 text-sm text-[#1a1a1a]/75 hover:text-[color:var(--brand)]
                               hover:bg-[color:var(--cream)] transition-all duration-200 border-b border-black/5 last:border-0 font-light"
+                              onClick={() => setActiveDropdown(null)}
                             >
                               {drop}
                             </a>

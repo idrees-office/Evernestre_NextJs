@@ -4,7 +4,6 @@
 export const ROUTES = {
   // Top-level
   Home: '/',
-  'Off-Plan': '/off-plan',
   Areas: '/areas',
   Developers: '/developers',
   Services: '/services',
@@ -12,16 +11,14 @@ export const ROUTES = {
   Properties: '/properties',
   Careers: '/careers',
   Blog: '/blog',
-
+  Projects: '/projects',
+  "All Projects" : '/projects',
+  
   // Home variants
   'Main Home': '/',
   'Modern Home': '/modern',
   'Classic Home': '/classic',
 
-  // Off-Plan subpages
-  'New Projects': '/off-plan/new-projects',
-  'Upcoming Launches': '/off-plan/upcoming-launches',
-  'Pre-Construction': '/off-plan/pre-construction',
 
   // Areas
   Downtown: '/areas/downtown',

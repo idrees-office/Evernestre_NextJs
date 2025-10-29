@@ -57,9 +57,7 @@ export default function HighlightedAreas() {
       <div className="container mx-auto max-w-8xl px-6 md:px-10">
         <div className="mb-6 md:mb-8 flex items-start justify-between gap-4">
           <div>
-            <h2 className="text-[32px] md:text-[34px] lg:text-[38px] font-normal tracking-tight text-[#8b5d3b]">
-              Highlighted Areas
-            </h2>
+            <h2 className="text-[32px] md:text-[34px] lg:text-[38px] font-normal tracking-tight text-[#8b5d3b]"> Highlighted Areas </h2>
             <p className="text-[#1a1a1a]/70 text-sm">
               Explore The UAE&apos;s Latest Off-Plan Projects By Top Developers, Representing A New Era Of Investment Excellence.
             </p>

@@ -1,9 +1,7 @@
-// components/NewsSection.tsx
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightIcon } from "lucide-react";
 
-// Props
 export type NewsPost = {
   id: string | number;
   title: string;
@@ -113,7 +111,6 @@ export default function NewsSection({
   );
 }
 
-/* --- Default static data (you can remove) --- */
 const defaultPosts: NewsPost[] = [
   {
     id: 1,
