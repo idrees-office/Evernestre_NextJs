@@ -76,7 +76,7 @@ export default function TestimonialSlider() {
          <div className="mb-6 md:mb-8 flex items-start justify-between gap-4">
           <div>
             <h2 className="text-[32px] md:text-[34px] lg:text-[38px] font-normal tracking-tight text-[#8b5d3b]">
-              Latest News
+              Client Feedback
             </h2>
             <p className="text-[#1a1a1a]/70 text-sm">
               See what our valued clients say about their experience with our top property consultants.
@@ -134,7 +134,7 @@ export default function TestimonialSlider() {
                           />
                         </div>
                         <div>
-                          <h3 className="text-[#c2754e] font-normal uppercase text-base leading-tight">
+                          <h3 className="text-[#c2754e] font-normal text-base leading-tight">
                             {t.name}
                           </h3>
                           <p className="text-sm text-[#1a1a1a]/70">{t.role}</p>

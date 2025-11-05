@@ -4,7 +4,7 @@
 export const ROUTES = {
   // Top-level
   Home: '/',
-  Areas: '/areas',
+  AreaGuide: '/area-guide',
   Developers: '/developers',
   Services: '/services',
   About: '/about',
@@ -18,6 +18,7 @@ export const ROUTES = {
   'Main Home': '/',
   'Modern Home': '/modern',
   'Classic Home': '/classic',
+  "Area Guide": '/area-guide',
 
 
   // Areas

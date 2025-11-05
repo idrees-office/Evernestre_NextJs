@@ -10,6 +10,7 @@ import StatsStrip from './Components/StatsStrip';
 import NewsSection from './Components/NewsSection';
 import TrustedRealEstateSection from './Components/ClientFeedBack';
 import RegisterCtaSection from './Components/RegisterCtaSection';
+import SocialLinksSection from './Components/SocialLinksSection';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
       <NewsSection />
       <TrustedRealEstateSection/>
       <RegisterCtaSection />
+      <SocialLinksSection />
 
     </div>
   );

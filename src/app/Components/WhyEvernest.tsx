@@ -11,19 +11,19 @@ type Feature = {
 
 const FEATURES: Feature[] = [
   {
-    title: 'PROPERTY SECTIONS',
+    title: 'Property Sections',
     desc:
       'Our experienced team offers invaluable insights throughout your real estate journey.',
     icon: Home,
   },
   {
-    title: 'LOCAL KNOWLEDGE',
+    title: 'Local Knowledge',
     desc:
       'Build brand awareness on the top social media networks with hyper-local expertise.',
     icon: Headphones,
   },
   {
-    title: 'WE VALUE YOUR TIME',
+    title: 'We Value Your Time',
     desc:
       'Get professionally-written content that attracts qualified clients quickly.',
     icon: Coins,
@@ -48,7 +48,7 @@ export default function WhyEvernest() {
               <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[#f7e9e1] ring-1 ring-[#d0845b]/30">
                 <Icon className="h-7 w-7 text-[#c2754e]" aria-hidden="true" />
               </div>
-              <h3 className="text-[#c2754e] tracking-wide font-normal uppercase"> {title} </h3>
+              <h3 className="text-[#c2754e] tracking-wide font-normal"> {title} </h3>
               <p className="mt-2 text-sm leading-relaxed text-[#1a1a1a]/75"> {desc} </p>
               <div className="pointer-events-none absolute inset-0 rounded-[22px] opacity-0 ring-1 ring-white/50 transition-opacity group-hover:opacity-100" />
             </div>
