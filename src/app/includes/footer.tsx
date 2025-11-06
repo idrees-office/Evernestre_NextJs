@@ -71,16 +71,16 @@ export default function Footer() {
               <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white border border-slate-200">
                 <Phone className="h-4 w-4" style={{ color: accent }} />
               </span>
-              <a href="tel:+971500000000" className="hover:underline">
-                +971 50 000 0000
+              <a href="tel:+971527469500" className="hover:underline">
+                +971 52 746 9500
               </a>
             </div>
             <div className="flex items-center gap-3">
               <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white border border-slate-200">
                 <Mail className="h-4 w-4" style={{ color: accent }} />
               </span>
-              <a href="mailto:info@eliteproperties.ae" className="hover:underline">
-                info@eliteproperties.ae
+              <a href="mailto:info@evernestre.ae" className="hover:underline text-white">
+                info@evernestre.ae
               </a>
             </div>
             <div className="flex items-start gap-3">
