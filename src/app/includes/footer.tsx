@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import {
   Phone,
   Mail,
@@ -11,135 +12,171 @@ import {
 } from "lucide-react";
 
 export default function Footer() {
-  // tweak these two to match your brand vibe
-  const accent = "#fff"; // Evernest-ish deep chestnut
-  const bg = "#cf916fff";      // warm neutral (not white, not dark)
-
-  const links = [
-    { label: "Projects", href: "#" },
-    { label: "Buy", href: "#" },
-    { label: "Rent", href: "#" },
-    { label: "Property Management", href: "#" },
-  ];
+  const gradient =
+    "linear-gradient(135deg, #8b4c1d 0%, #c68043 30%, #eab676 60%, #ffdfb3 100%)";
 
   return (
-    <footer className="font-normal text-slate-700" style={{ backgroundColor: bg }}>
-      <div className="container mx-auto max-w-7xl px-6 md:px-8 py-10">
-        {/* Top: Brand + short blurb */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center"
-              style={{ backgroundColor: accent }}
-              aria-hidden
-            >
-              <Building className="h-6 w-6 text-white" />
-            </div>
-            <span className="text-base tracking-wide text-slate-900">
-              ELITE PROPERTIES
-            </span>
-          </div>
+    <footer className="relative overflow-hidden text-white">
+      {/* Background Gradient + Glow */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background: gradient,
+          filter: "brightness(1.05)",
+        }}
+      ></div>
 
-          {/* Compact nav pills */}
-          <nav className="flex flex-wrap gap-2">
-            {links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                className="px-3 py-1.5 text-sm rounded-full border border-slate-200 hover:bg-white/60 hover:border-slate-300 transition"
-              >
-                {l.label}
-              </a>
-            ))}
-          </nav>
+      {/* Animated shimmer overlay */}
+      <motion.div
+        className="absolute inset-0 z-0 opacity-[0.15] bg-[url('https://www.transparenttextures.com/patterns/gold-scale.png')]"
+        animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+        transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+      ></motion.div>
+
+      <div className="relative z-10">
+        {/* Top Brand Bar */}
+        <div className="bg-white/10 backdrop-blur-md shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+          <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-3"
+            >
+              <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+                <Building className="h-7 w-7 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold tracking-wider drop-shadow-md">
+                ELITE PROPERTIES
+              </h2>
+            </motion.div>
+
+            <nav className="flex flex-wrap justify-center gap-4 text-sm font-medium">
+              {["Projects", "Buy", "Rent", "Management"].map((item) => (
+                <motion.a
+                  whileHover={{
+                    scale: 1.1,
+                    textShadow: "0 0 10px rgba(255,255,255,0.8)",
+                  }}
+                  key={item}
+                  href="#"
+                  className="hover:underline hover:text-[#fff4da]"
+                >
+                  {item}
+                </motion.a>
+              ))}
+            </nav>
+          </div>
         </div>
 
-        {/* Divider */}
-        <div className="h-px my-8" style={{ background: "rgba(0,0,0,0.06)" }} />
+        {/* Middle Section */}
+        <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* About */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 text-[#fff4da]">
+              About Us
+            </h3>
+            <p className="text-sm leading-relaxed text-white/90">
+              Discover Dubai’s most prestigious developments, handpicked for
+              luxury, architecture, and exclusivity. Your key to exceptional
+              real estate begins here.
+            </p>
+          </div>
 
-        {/* Middle: compact 3-col layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* About (short) */}
-          <p className="text-sm leading-relaxed">
-            Luxury properties, off-plan investments, and dependable management
-            across the UAE—delivered with clarity and care.
-          </p>
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 text-[#fff4da]">
+              Quick Links
+            </h3>
+            <ul className="space-y-2 text-sm">
+              {["About", "Careers", "FAQs", "Contact"].map((link) => (
+                <motion.li
+                  key={link}
+                  whileHover={{
+                    x: 6,
+                    color: "#fff4da",
+                    textShadow: "0 0 8px rgba(255,255,255,0.8)",
+                  }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                >
+                  <a href="#" className="transition-all duration-200">
+                    {link}
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
 
-          {/* Contact (very concise) */}
-          <div className="space-y-3 text-sm">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white border border-slate-200">
-                <Phone className="h-4 w-4" style={{ color: accent }} />
-              </span>
-              <a href="tel:+971527469500" className="hover:underline">
-                +971 52 746 9500
-              </a>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white border border-slate-200">
-                <Mail className="h-4 w-4" style={{ color: accent }} />
-              </span>
-              <a href="mailto:info@evernestre.ae" className="hover:underline text-white">
-                info@evernestre.ae
-              </a>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white border border-slate-200 mt-0.5">
-                <MapPin className="h-4 w-4" style={{ color: accent }} />
-              </span>
-              <span>
-                Business Bay, Dubai <br /> United Arab Emirates
-              </span>
+          {/* Contact */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 text-[#fff4da]">
+              Contact
+            </h3>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-3">
+                <Phone className="h-4 w-4 text-[#fff4da]" />
+                <span>+971 52 746 9500</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-[#fff4da]" />
+                <span>info@evernestre.ae</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <MapPin className="h-4 w-4 text-[#fff4da]" />
+                <span>
+                  Business Bay, Dubai <br /> United Arab Emirates
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* Newsletter (ultra minimal) */}
-          <form
-            className="text-sm"
-            onSubmit={(e) => {
-              e.preventDefault();
-              // handle submit here
-            }}
-          >
-            <label htmlFor="newsletter" className="block mb-2 text-slate-600">
+          {/* Newsletter */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 text-[#fff4da]">
               Newsletter
-            </label>
-            <div className="flex">
+            </h3>
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="flex bg-white/15 rounded-lg overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+            >
               <input
-                id="newsletter"
                 type="email"
-                placeholder="Your email"
-                className="flex-1 px-3 py-2 rounded-l-md border border-slate-200 bg-white text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[rgba(145,76,57,0.18)]"
+                placeholder="Enter your email"
+                className="flex-1 px-3 py-2 text-sm bg-transparent placeholder-white/70 text-white focus:outline-none"
               />
-              <button
-                aria-label="Subscribe"
-                className="px-3 py-2 rounded-r-md border border-l-0 border-slate-200 hover:bg-white transition"
+              <motion.button
+                whileHover={{
+                  scale: 1.1,
+                  boxShadow: "0 0 25px rgba(255,255,255,0.5)",
+                }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="px-3 py-2 bg-white/25 hover:bg-white/40 text-white"
               >
                 <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-          </form>
+              </motion.button>
+            </form>
+          </div>
         </div>
 
-        {/* Divider */}
-        <div className="h-px my-8" style={{ background: "rgba(0,0,0,0.06)" }} />
+        {/* Bottom Bar */}
+        <div className="border-t border-white/25 py-6 text-center text-sm text-white/80">
+          <div className="flex flex-col md:flex-row justify-center md:justify-between items-center max-w-7xl mx-auto px-6 gap-3">
+            <p>
+              © {new Date().getFullYear()} Elite Properties. All rights
+              reserved.
+            </p>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="text-sm text-slate-600">
-            © {new Date().getFullYear()} Elite Properties. All rights reserved.
-          </div>
+            <div className="flex gap-5">
+              {["Privacy", "Terms", "Cookies"].map((t) => (
+                <a key={t} href="#" className="hover:text-[#fff4da]">
+                  {t}
+                </a>
+              ))}
+            </div>
 
-          <div className="flex flex-wrap gap-5 text-sm text-slate-600">
-            <a href="#" className="hover:underline">Privacy</a>
-            <a href="#" className="hover:underline">Terms</a>
-            <a href="#" className="hover:underline">Cookies</a>
-            <a href="#" className="hover:underline">Sitemap</a>
-          </div>
-
-          <div className="flex items-center gap-2 text-sm text-slate-600">
-            <Shield className="h-4 w-4" style={{ color: accent }} />
-            <span>RERA: #123456</span>
+            <div className="flex items-center gap-2">
+              <Shield className="h-4 w-4 text-[#fff4da]" />
+              <span>RERA: #123456</span>
+            </div>
           </div>
         </div>
       </div>

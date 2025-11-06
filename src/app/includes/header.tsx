@@ -21,11 +21,11 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { label: 'Home',         url: createPageUrl('Home'),       dropdown: ['Main Home',] },
-    { label: 'Off-Plan',     url: createPageUrl('Projects'),   dropdown: ['All Projects'] },
+    { label: 'Home',         url: createPageUrl('Home'),        dropdown: ['Main Home',] },
+    { label: 'Off-Plan',     url: createPageUrl('Projects'),    dropdown: ['All Projects'] },
     { label: 'Areas',        url: createPageUrl('AreaGuide'),   dropdown: ['Area Guide'] },
-    { label: 'Developers',   url: '#',                   dropdown: ['All Developer',] },
-    { label: 'Services',     url: '#',                   dropdown: ['Property Management', 'Investment Consulting', 'Legal Services'] },
+    { label: 'Developers',   url: createPageUrl('Developers'),  dropdown: ['All Developer',] },
+    { label: 'Services',     url: '#',                          dropdown: ['Property Management', 'Investment Consulting', 'Legal Services'] },
     { label: 'About Us',     url: createPageUrl('About'),                   dropdown: ['Our Team', 'Career'] },
     { label: 'News & Blogs', url: '#',                   dropdown: ['News & Blogs', 'Blogs'] },
 
