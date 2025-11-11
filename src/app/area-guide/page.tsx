@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Header from '../includes/header';
-import Link from 'next/link';
-import RegisterCtaSection from '../Components/RegisterCtaSection';
-import SocialLinksSection from '../Components/SocialLinksSection';
-import NewsSection from '../Components/NewsSection';
-import OffPlanProjects from '../Components/OffPlanProjects';
+import React from "react";
+import Header from "../includes/header";
+import Link from "next/link";
+import RegisterCtaSection from "../Components/RegisterCtaSection";
+import SocialLinksSection from "../Components/SocialLinksSection";
+import NewsSection from "../Components/NewsSection";
+import OffPlanProjects from "../Components/OffPlanProjects";
 
 type Area = {
   name: string;
@@ -19,8 +19,7 @@ const AREAS: Area[] = [
   {
     name: "Business Bay",
     slug: "business-bay",
-    image:
-      "https://test_backend.leadshub.ae/media/6806/Business-Bay.webp",
+    image: "https://test_backend.leadshub.ae/media/6806/Business-Bay.webp",
     price: "AED 950,000",
   },
   {
@@ -111,8 +110,9 @@ export default function AreaGuidePage() {
               Explore Top Communities
             </h2>
             <p className="text-[#1a1a1a]/70 text-sm max-w-2xl mx-auto">
-              Discover Dubai’s most desirable neighborhoods — from luxury waterfront living 
-              to family-friendly suburbs, each area offers its own charm and investment potential.
+              Discover Dubai’s most desirable neighborhoods — from luxury
+              waterfront living to family-friendly suburbs, each area offers its
+              own charm and investment potential.
             </p>
           </div>
 
@@ -124,7 +124,6 @@ export default function AreaGuidePage() {
                 className="group block"
               >
                 <div className="relative overflow-hidden rounded-md bg-[#eae7e4] shadow-[0_14px_40px_rgba(0,0,0,0.08)] ring-1 ring-black/5">
-                  
                   {/* Price Badge */}
                   <div className="absolute top-4 right-4 bg-[color:var(--brand)] text-white text-xs font-normal px-2 py-1 rounded-sm shadow-md z-10 tracking-wide group-hover:shadow-lg transition-all duration-300">
                     From {area.price}
@@ -148,9 +147,9 @@ export default function AreaGuidePage() {
           </div>
         </div>
       </section>
-      <SocialLinksSection/>
-     <RegisterCtaSection/>
-     <OffPlanProjects/>
+      <SocialLinksSection />
+      <RegisterCtaSection />
+      <OffPlanProjects />
     </>
   );
 }

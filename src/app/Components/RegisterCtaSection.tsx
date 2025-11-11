@@ -46,7 +46,7 @@ export default function RegisterCtaSection() {
       viewport={{ once: true }}
       className="bg-[#f6ecdf] py-14 md:py-20 overflow-hidden"
     >
-      <div className="container mx-auto max-w-7xl px-6 md:px-10">
+      <div className="container mx-auto max-w-8xl px-6 md:px-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -54,7 +54,7 @@ export default function RegisterCtaSection() {
           transition={{ duration: 0.8 }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-[#8b5d3b] mb-3 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-normal text-[#8b5d3b] mb-3 tracking-tight">
             Register & Stay Updated on New Projects.
           </h2>
           <p className="text-gray-700 text-base leading-relaxed">
@@ -63,7 +63,7 @@ export default function RegisterCtaSection() {
         </motion.div>
 
         {/* Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden bg-white shadow-[0_10px_35px_rgba(139,93,59,0.25)] ring-1 ring-[#c97a52]/20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden bg-white ring-1 ring-[#c97a52]/20">
           {/* Left: Image with motion */}
           <motion.div
             initial={{ x: -100, opacity: 0 }}
@@ -144,7 +144,7 @@ export default function RegisterCtaSection() {
                 transition={{ type: "spring", stiffness: 200 }}
                 type="submit"
                 disabled={loading}
-                className="relative overflow-hidden bg-gradient-to-r from-[#c97a52] via-[#b06c48] to-[#8b5d3b] bg-[length:200%_auto] animate-shimmer inline-flex h-12 w-full items-center justify-center rounded-md text-[15px] font-semibold text-white shadow-md transition-all duration-200"
+                className="relative overflow-hidden bg-gradient-to-r from-[#c97a52] via-[#b06c48] to-[#8b5d3b] bg-[length:200%_auto] animate-shimmer inline-flex h-12 w-full items-center justify-center rounded-md text-[15px] font-semibold text-white transition-all duration-200"
               >
                 {loading ? (
                   "Submitting..."

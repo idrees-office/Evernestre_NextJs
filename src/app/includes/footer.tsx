@@ -1,185 +1,506 @@
+// "use client";
+
+// import React from "react";
+// import Link from "next/link";
+// import { motion } from "framer-motion";
+// import {
+//   Phone,
+//   Mail,
+//   MapPin,
+//   Building,
+//   Shield,
+//   ArrowRight,
+//   Facebook,
+//   Twitter,
+//   Instagram,
+//   Linkedin,
+// } from "lucide-react";
+// export default function RefinedFooter() {
+//   const year = new Date().getFullYear();
+
+//   const nav: { label: string; href: string }[] = [
+//     { label: "Projects", href: "/projects" },
+//     { label: "Buy", href: "/buy" },
+//     { label: "Rent", href: "/rent" },
+//     { label: "Management", href: "/management" },
+//     { label: "About", href: "/about" },
+//     { label: "Contact", href: "/contact" },
+//   ];
+
+//   const quick: { label: string; href: string }[] = [
+//     { label: "Careers", href: "/careers" },
+//     { label: "FAQs", href: "/faqs" },
+//     { label: "Blog", href: "/blog" },
+//     { label: "Testimonials", href: "/testimonials" },
+//     { label: "Developers", href: "/developer-guide" },
+//   ];
+
+//   const socials = [
+//     { Icon: Facebook, href: "#", label: "Facebook" },
+//     { Icon: Twitter, href: "#", label: "Twitter" },
+//     { Icon: Instagram, href: "#", label: "Instagram" },
+//     { Icon: Linkedin, href: "#", label: "LinkedIn" },
+//   ];
+
+//   return (
+//     <footer className="relative overflow-hidden border-t border-[#f0e4d9] bg-[#fffaf5] text-[#3c2f26]">
+//       {/* Decorative gradient ribbon at top */}
+//       <div
+//         className="h-0.5 w-full"
+//         style={{
+//           background:
+//             "linear-gradient(90deg, #8b5d3b 0%, #b06c48 45%, #d4a373 65%, #f6d8a4 100%)",
+//         }}
+//       />
+
+//       {/* Subtle glow accents */}
+//       <div
+//         className="pointer-events-none absolute -top-24 right-[-10%] h-64 w-64 rounded-full blur-3xl opacity-20"
+//         style={{
+//           background: "radial-gradient(closest-side, #d4a373, transparent)",
+//         }}
+//       />
+//       <div
+//         className="pointer-events-none absolute -bottom-24 left-[-10%] h-72 w-72 rounded-full blur-3xl opacity-20"
+//         style={{
+//           background: "radial-gradient(closest-side, #8b5d3b, transparent)",
+//         }}
+//       />
+
+//       {/* Brand + Primary Nav (dark) */}
+
+//       {/* Main content on cream */}
+//       <div className="relative z-10">
+//         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-12 sm:grid-cols-2 lg:grid-cols-5">
+//           {/* About */}
+//           <div className="lg:col-span-2">
+//             <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
+//               <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
+//               Evenest Rea Estate
+//             </h3>
+//             <p className="text-sm leading-relaxed text-[#3c2f26]/90">
+//               Discover Dubai’s most prestigious developments—handpicked for
+//               luxury, innovation, and world‑class design. Your key to
+//               exceptional real estate begins here.
+//             </p>
+
+//             <div className="mt-5 flex gap-3">
+//               {socials.map(({ Icon, href, label }) => (
+//                 <motion.a
+//                   key={label}
+//                   href={href}
+//                   aria-label={label}
+//                   whileHover={{ y: -2, scale: 1.05 }}
+//                   className="flex h-9 w-9 items-center justify-center rounded-full border border-[#d4a373]/60 bg-white/70 shadow-[0_6px_20px_rgba(139,93,59,0.10)] backdrop-blur hover:bg-white"
+//                 >
+//                   <Icon className="h-[18px] w-[18px] text-[#8b5d3b]" />
+//                   <span className="sr-only">{label}</span>
+//                 </motion.a>
+//               ))}
+//             </div>
+//           </div>
+
+//           {/* Quick Links */}
+//           <div>
+//             <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
+//               <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
+//               Quick Links
+//             </h3>
+//             <ul className="space-y-2 text-sm">
+//               {quick.map((q) => (
+//                 <li key={q.label} className="group">
+//                   <Link
+//                     href={q.href}
+//                     className="inline-flex items-center text-[#3c2f26]/90 transition-colors hover:text-[#8b5d3b]"
+//                   >
+//                     <ArrowRight className="mr-2 h-[14px] w-[14px] text-[#b06c48] transition-transform group-hover:translate-x-0.5" />
+//                     {q.label}
+//                   </Link>
+//                 </li>
+//               ))}
+//             </ul>
+//           </div>
+
+//           {/* Contact */}
+//           <div>
+//             <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
+//               <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
+//               Contact
+//             </h3>
+//             <div className="space-y-3 text-sm">
+//               <div className="flex items-center gap-3">
+//                 <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
+//                   <Phone className="h-4 w-4 text-[#8b5d3b]" />
+//                 </div>
+//                 <a
+//                   href="tel:+971527469500"
+//                   className="select-all hover:text-[#8b5d3b]"
+//                 >
+//                   +971 52 746 9500
+//                 </a>
+//               </div>
+//               <div className="flex items-center gap-3">
+//                 <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
+//                   <Mail className="h-4 w-4 text-[#8b5d3b]" />
+//                 </div>
+//                 <a
+//                   href="mailto:info@evernestre.ae"
+//                   className="select-all hover:text-[#8b5d3b]"
+//                 >
+//                   info@evernestre.ae
+//                 </a>
+//               </div>
+//               <div className="flex items-start gap-3">
+//                 <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
+//                   <MapPin className="h-4 w-4 text-[#8b5d3b]" />
+//                 </div>
+//                 <address className="not-italic">
+//                   Business Bay, Dubai
+//                   <br /> United Arab Emirates
+//                 </address>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Newsletter */}
+//           <div>
+//             <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
+//               <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
+//               Newsletter
+//             </h3>
+//             <p className="mb-3 text-sm text-[#3c2f26]/80">
+//               Subscribe to get updates on new properties and exclusive offers.
+//             </p>
+//             <form
+//               onSubmit={(e) => e.preventDefault()}
+//               className="flex flex-col gap-3"
+//             >
+//               <input
+//                 type="email"
+//                 required
+//                 placeholder="Enter your email"
+//                 className="rounded-lg border border-[#f0e4d9] bg-white px-3 py-2 text-sm text-[#3c2f26] placeholder-[#8b5d3b]/60 shadow-[0_2px_12px_rgba(139,93,59,0.08)] outline-none transition focus:border-transparent focus:ring-2 focus:ring-[#d4a373]"
+//               />
+//               <motion.button
+//                 whileHover={{ scale: 1.02 }}
+//                 whileTap={{ scale: 0.98 }}
+//                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#8b5d3b] via-[#b06c48] to-[#d4a373] px-2 py-2 font-normal text-white shadow-[0_10px_25px_rgba(139,93,59,0.25)] transition hover:brightness-105"
+//               >
+//                 Subscribe <ArrowRight className="h-4 w-4" />
+//               </motion.button>
+//             </form>
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* CTA strip (optional) */}
+//       {/* <div className="relative z-10 border-t border-[#f0e4d9] bg-[#fffaf5]">
+//         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-4 md:flex-row">
+//           <p className="text-sm text-[#3c2f26]/80">
+//             Looking for something specific? Talk to our advisor.
+//           </p>
+//           <div className="flex gap-3">
+//             <a
+//               href="/contact"
+//               className="rounded-lg border border-[#f0e4d9] bg-white px-4 py-2 text-sm text-[#3c2f26] transition hover:border-[#d4a373] hover:text-[#8b5d3b]"
+//             >
+//               Contact Us
+//             </a>
+//             <a
+//               href="tel:+971527469500"
+//               className="rounded-lg bg-[#8b5d3b] px-4 py-2 text-sm text-white transition hover:brightness-110"
+//             >
+//               Call Now
+//             </a>
+//           </div>
+//         </div>
+//       </div> */}
+
+//       {/* Bottom bar (dark) */}
+//       <div className="relative z-10 bg-[#123456]">
+//         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 md:flex-row">
+//           <p className="text-center text-sm text-white/90">
+//             © {year} Elite Properties. All rights reserved.
+//           </p>
+//           <div className="flex items-center gap-2 text-sm text-white/90">
+//             <Shield className="h-4 w-4 text-white" />
+//             <span>RERA Certified: #123456</span>
+//           </div>
+//           <div className="flex gap-5 text-sm">
+//             {["Privacy", "Terms", "Cookies"].map((t) => (
+//               <Link
+//                 key={t}
+//                 href={`/${t.toLowerCase()}`}
+//                 className="text-white/80 transition-colors hover:text-white"
+//               >
+//                 {t}
+//               </Link>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Tiny shimmer rule at very bottom */}
+//       <div className="h-[2px] w-full overflow-hidden">
+//         <div className="h-[2px] w-[200%] animate-[shine_4s_linear_infinite] bg-gradient-to-r from-transparent via-[#d4a373] to-transparent" />
+//       </div>
+
+//       <style jsx>{`
+//         @keyframes shine {
+//           0% {
+//             transform: translateX(-50%);
+//           }
+//           100% {
+//             transform: translateX(0%);
+//           }
+//         }
+//       `}</style>
+//     </footer>
+//   );
+// }
+
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Phone,
   Mail,
   MapPin,
-  Building,
   Shield,
   ArrowRight,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
 } from "lucide-react";
 
-export default function Footer() {
-  const gradient =
-    "linear-gradient(135deg, #8b4c1d 0%, #c68043 30%, #eab676 60%, #ffdfb3 100%)";
+export default function RefinedFooter() {
+  const year = new Date().getFullYear();
+
+  const quick = [
+    { label: "Careers", href: "/careers" },
+    { label: "FAQs", href: "/faqs" },
+    { label: "Blog", href: "/blog" },
+    { label: "Testimonials", href: "/testimonials" },
+    { label: "Developers", href: "/developer-guide" },
+  ];
+
+  const socials = [
+    {
+      Icon: Facebook,
+      href: "#",
+      label: "Facebook",
+      color: "#1877F2",
+    },
+    {
+      Icon: Twitter,
+      href: "#",
+      label: "Twitter",
+      color: "#1DA1F2",
+    },
+    {
+      Icon: Instagram,
+      href: "#",
+      label: "Instagram",
+      color: "linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4)",
+    },
+    {
+      Icon: Linkedin,
+      href: "#",
+      label: "LinkedIn",
+      color: "#0A66C2",
+    },
+  ];
 
   return (
-    <footer className="relative overflow-hidden text-white">
-      {/* Background Gradient + Glow */}
+    <footer className="relative overflow-hidden border-t border-[#f0e4d9] bg-[#fffaf5] text-[#3c2f26]">
+      {/* Decorative top line */}
       <div
-        className="absolute inset-0 z-0"
+        className="h-0.5 w-full"
         style={{
-          background: gradient,
-          filter: "brightness(1.05)",
+          background:
+            "linear-gradient(90deg, #8b5d3b 0%, #b06c48 45%, #d4a373 65%, #f6d8a4 100%)",
         }}
-      ></div>
+      />
 
-      {/* Animated shimmer overlay */}
-      <motion.div
-        className="absolute inset-0 z-0 opacity-[0.15] bg-[url('https://www.transparenttextures.com/patterns/gold-scale.png')]"
-        animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
-        transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-      ></motion.div>
+      {/* Soft glow accents */}
+      <div
+        className="pointer-events-none absolute -top-24 right-[-10%] h-64 w-64 rounded-full blur-3xl opacity-20"
+        style={{
+          background: "radial-gradient(closest-side, #d4a373, transparent)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute -bottom-24 left-[-10%] h-72 w-72 rounded-full blur-3xl opacity-20"
+        style={{
+          background: "radial-gradient(closest-side, #8b5d3b, transparent)",
+        }}
+      />
 
       <div className="relative z-10">
-        {/* Top Brand Bar */}
-        <div className="bg-white/10 backdrop-blur-md shadow-[0_0_40px_rgba(255,255,255,0.2)]">
-          <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-3"
-            >
-              <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.3)]">
-                <Building className="h-7 w-7 text-white" />
-              </div>
-              <h2 className="text-2xl font-bold tracking-wider drop-shadow-md">
-                ELITE PROPERTIES
-              </h2>
-            </motion.div>
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-12 sm:grid-cols-2 lg:grid-cols-5">
+          {/* About */}
+          <div className="lg:col-span-2">
+            <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
+              <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
+              Evernest Real Estate
+            </h3>
+            <p className="text-sm leading-relaxed text-[#3c2f26]/90">
+              Discover Dubai’s most prestigious developments—handpicked for
+              luxury, innovation, and world-class design. Your key to
+              exceptional real estate begins here.
+            </p>
 
-            <nav className="flex flex-wrap justify-center gap-4 text-sm font-medium">
-              {["Projects", "Buy", "Rent", "Management"].map((item) => (
+            <div className="mt-5 flex gap-3">
+              {socials.map(({ Icon, href, label, color }) => (
                 <motion.a
-                  whileHover={{
-                    scale: 1.1,
-                    textShadow: "0 0 10px rgba(255,255,255,0.8)",
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  whileHover={{ scale: 1.08 }}
+                  className="flex h-9 w-9 items-center justify-center rounded-full text-white shadow-md transition-all duration-300 hover:brightness-110"
+                  style={{
+                    background: label === "Instagram" ? color : undefined,
+                    backgroundColor: label !== "Instagram" ? color : undefined,
                   }}
-                  key={item}
-                  href="#"
-                  className="hover:underline hover:text-[#fff4da]"
                 >
-                  {item}
+                  <Icon className="h-[18px] w-[18px]" />
+                  <span className="sr-only">{label}</span>
                 </motion.a>
               ))}
-            </nav>
-          </div>
-        </div>
-
-        {/* Middle Section */}
-        <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* About */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4 text-[#fff4da]">
-              About Us
-            </h3>
-            <p className="text-sm leading-relaxed text-white/90">
-              Discover Dubai’s most prestigious developments, handpicked for
-              luxury, architecture, and exclusivity. Your key to exceptional
-              real estate begins here.
-            </p>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-[#fff4da]">
+            <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
+              <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
               Quick Links
             </h3>
             <ul className="space-y-2 text-sm">
-              {["About", "Careers", "FAQs", "Contact"].map((link) => (
-                <motion.li
-                  key={link}
-                  whileHover={{
-                    x: 6,
-                    color: "#fff4da",
-                    textShadow: "0 0 8px rgba(255,255,255,0.8)",
-                  }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                >
-                  <a href="#" className="transition-all duration-200">
-                    {link}
-                  </a>
-                </motion.li>
+              {quick.map((q) => (
+                <li key={q.label} className="group">
+                  <Link
+                    href={q.href}
+                    className="inline-flex items-center text-[#3c2f26]/90 transition-colors hover:text-[#8b5d3b]"
+                  >
+                    <ArrowRight className="mr-2 h-[14px] w-[14px] text-[#b06c48] transition-transform group-hover:translate-x-0.5" />
+                    {q.label}
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>
-
-          {/* Contact */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-[#fff4da]">
+            <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
+              <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
               Contact
             </h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-[#fff4da]" />
-                <span>+971 52 746 9500</span>
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
+                  <Phone className="h-4 w-4 text-[#8b5d3b]" />
+                </div>
+                <a
+                  href="tel:+971527469500"
+                  className="select-all hover:text-[#8b5d3b]"
+                >
+                  +971 52 746 9500
+                </a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-[#fff4da]" />
-                <span>info@evernestre.ae</span>
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
+                  <Mail className="h-4 w-4 text-[#8b5d3b]" />
+                </div>
+                <a
+                  href="mailto:info@evernestre.ae"
+                  className="select-all hover:text-[#8b5d3b]"
+                >
+                  info@evernestre.ae
+                </a>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 text-[#fff4da]" />
-                <span>
-                  Business Bay, Dubai <br /> United Arab Emirates
-                </span>
+                <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
+                  <MapPin className="h-4 w-4 text-[#8b5d3b]" />
+                </div>
+                <address className="not-italic">
+                  Business Bay, Dubai
+                  <br /> United Arab Emirates
+                </address>
               </div>
             </div>
           </div>
-
-          {/* Newsletter */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-[#fff4da]">
+            <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
+              <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
               Newsletter
             </h3>
+            <p className="mb-3 text-sm text-[#3c2f26]/80">
+              Subscribe to get updates on new properties and exclusive offers.
+            </p>
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="flex bg-white/15 rounded-lg overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+              className="flex flex-col gap-3"
             >
               <input
                 type="email"
+                required
                 placeholder="Enter your email"
-                className="flex-1 px-3 py-2 text-sm bg-transparent placeholder-white/70 text-white focus:outline-none"
+                className="rounded-sm border border-[#f0e4d9] bg-white px-3 py-2 text-sm text-[#3c2f26] placeholder-[#8b5d3b]/60 shadow-[0_2px_12px_rgba(139,93,59,0.08)] outline-none transition focus:border-transparent focus:ring-2 focus:ring-[#d4a373]"
               />
               <motion.button
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: "0 0 25px rgba(255,255,255,0.5)",
-                }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 200 }}
-                className="px-3 py-2 bg-white/25 hover:bg-white/40 text-white"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-[#8b5d3b] via-[#b06c48] to-[#d4a373] px-2 py-2 font-normal text-white shadow-[0_10px_25px_rgba(139,93,59,0.25)] transition hover:brightness-105"
               >
-                <ArrowRight className="h-4 w-4" />
+                Subscribe <ArrowRight className="h-4 w-4" />
               </motion.button>
             </form>
           </div>
         </div>
+      </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-white/25 py-6 text-center text-sm text-white/80">
-          <div className="flex flex-col md:flex-row justify-center md:justify-between items-center max-w-7xl mx-auto px-6 gap-3">
-            <p>
-              © {new Date().getFullYear()} Elite Properties. All rights
-              reserved.
-            </p>
-
-            <div className="flex gap-5">
-              {["Privacy", "Terms", "Cookies"].map((t) => (
-                <a key={t} href="#" className="hover:text-[#fff4da]">
-                  {t}
-                </a>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-2">
-              <Shield className="h-4 w-4 text-[#fff4da]" />
-              <span>RERA: #123456</span>
-            </div>
+      {/* Bottom bar */}
+      <div className="relative z-10 bg-[#123456]">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 md:flex-row">
+          <p className="text-center text-sm text-white/90">
+            © {year} Elite Properties. All rights reserved.
+          </p>
+          <div className="flex items-center gap-2 text-sm text-white/90">
+            <Shield className="h-4 w-4 text-white" />
+            <span>RERA Certified: #123456</span>
+          </div>
+          <div className="flex gap-5 text-sm">
+            {["Privacy", "Terms", "Cookies"].map((t) => (
+              <Link
+                key={t}
+                href={`/${t.toLowerCase()}`}
+                className="text-white/80 transition-colors hover:text-white"
+              >
+                {t}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
+
+      {/* Animated shimmer line */}
+      <div className="h-[2px] w-full overflow-hidden">
+        <div className="h-[2px] w-[200%] animate-[shine_4s_linear_infinite] bg-gradient-to-r from-transparent via-[#d4a373] to-transparent" />
+      </div>
+
+      <style jsx>{`
+        @keyframes shine {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0%);
+          }
+        }
+      `}</style>
     </footer>
   );
 }
