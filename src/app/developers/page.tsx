@@ -188,6 +188,7 @@ import Link from "next/link";
 import RegisterCtaSection from "../Components/RegisterCtaSection";
 import SocialLinksSection from "../Components/SocialLinksSection";
 import { motion } from "framer-motion";
+import OffPlanProjects from "../Components/OffPlanProjects";
 
 type DEVELOPER = {
   name: string;
@@ -373,6 +374,10 @@ export default function DeveloperPage() {
 
       <SocialLinksSection />
       <RegisterCtaSection />
+      <OffPlanProjects />
+
+      {/* <SocialLinksSection /> */}
+      {/* <RegisterCtaSection /> */}
     </>
   );
 }

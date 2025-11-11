@@ -11,7 +11,12 @@ export default function RegisterCtaSection() {
   const [lastName, setLastName] = useState("");
   const [phoneRaw, setPhoneRaw] = useState("");
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<{ first?: string; last?: string; phone?: string; ok?: string }>({});
+  const [errors, setErrors] = useState<{
+    first?: string;
+    last?: string;
+    phone?: string;
+    ok?: string;
+  }>({});
 
   const phoneE164 = useMemo(() => toUaeE164(phoneRaw), [phoneRaw]);
 
@@ -58,7 +63,8 @@ export default function RegisterCtaSection() {
             Register & Stay Updated on New Projects.
           </h2>
           <p className="text-gray-700 text-base leading-relaxed">
-            Join thousands of investors discovering Dubai’s finest off-plan developments and exclusive opportunities.
+            Join thousands of investors discovering Dubai’s finest off-plan
+            developments and exclusive opportunities.
           </p>
         </motion.div>
 
@@ -88,11 +94,24 @@ export default function RegisterCtaSection() {
             transition={{ duration: 0.9, ease: "easeOut" }}
             className="p-8 md:p-12 flex flex-col justify-center"
           >
-            <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto space-y-6">
+            <form
+              onSubmit={handleSubmit}
+              className="w-full max-w-md mx-auto space-y-6"
+            >
               {/* Inputs */}
               {[
-                { label: "First Name *", value: firstName, setter: setFirstName, err: errors.first },
-                { label: "Last Name *", value: lastName, setter: setLastName, err: errors.last },
+                {
+                  label: "First Name *",
+                  value: firstName,
+                  setter: setFirstName,
+                  err: errors.first,
+                },
+                {
+                  label: "Last Name *",
+                  value: lastName,
+                  setter: setLastName,
+                  err: errors.last,
+                },
               ].map(({ label, value, setter, err }, i) => (
                 <motion.div
                   key={i}
@@ -130,7 +149,9 @@ export default function RegisterCtaSection() {
                     className="flex-1 px-4 py-3 text-[15px] focus:outline-none"
                   />
                 </div>
-                {errors.phone && <p className="text-sm text-red-500 mt-1">{errors.phone}</p>}
+                {errors.phone && (
+                  <p className="text-sm text-red-500 mt-1">{errors.phone}</p>
+                )}
               </motion.div>
 
               {/* Button */}
@@ -185,7 +206,10 @@ export default function RegisterCtaSection() {
                 className="text-xs text-gray-500 text-center"
               >
                 By submitting this form, you agree to our{" "}
-                <Link href="/privacy-policy" className="underline hover:text-[#c97a52]">
+                <Link
+                  href="/privacy-policy"
+                  className="underline hover:text-[#c97a52]"
+                >
                   Privacy Policy
                 </Link>
                 .

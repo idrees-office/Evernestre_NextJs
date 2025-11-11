@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { createPageUrl } from '../utils/url';
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { createPageUrl } from "../utils/url";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,19 +16,42 @@ export default function Header() {
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 12);
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const navItems = [
-    { label: 'Home',         url: createPageUrl('Home'),        dropdown: ['Main Home',] },
-    { label: 'Off-Plan',     url: createPageUrl('Projects'),    dropdown: ['All Projects'] },
-    { label: 'Areas',        url: createPageUrl('AreaGuide'),   dropdown: ['Area Guide'] },
-    { label: 'Developers',   url: createPageUrl('Developers'),  dropdown: ['All Developer',] },
-    { label: 'Services',     url: '#',                          dropdown: ['Property Management', 'Investment Consulting', 'Legal Services'] },
-    { label: 'About Us',     url: createPageUrl('About'),                   dropdown: ['Our Team', 'Career'] },
-    { label: 'News & Blogs', url: '#',                   dropdown: ['News & Blogs', 'Blogs'] },
-
+    { label: "Home", url: createPageUrl("Home"), dropdown: ["Main Home"] },
+    {
+      label: "Off-Plan",
+      url: createPageUrl("Projects"),
+      dropdown: ["All Projects"],
+    },
+    {
+      label: "Areas",
+      url: createPageUrl("AreaGuide"),
+      dropdown: ["Area Guide"],
+    },
+    {
+      label: "Developers",
+      url: createPageUrl("Developers"),
+      dropdown: ["All Developer"],
+    },
+    {
+      label: "Services",
+      url: "#",
+      dropdown: [
+        "Property Management",
+        "Investment Consulting",
+        "Legal Services",
+      ],
+    },
+    {
+      label: "About Us",
+      url: createPageUrl("About"),
+      dropdown: ["Our Team", "Career"],
+    },
+    { label: "News & Blogs", url: "#", dropdown: ["News & Blogs", "Blogs"] },
   ] as const;
 
   return (
@@ -46,18 +69,27 @@ export default function Header() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500
-          ${isScrolled
-            ? 'bg-white/90 backdrop-blur-2xl border-b border-[color:var(--brand)]/10 shadow-[0_6px_30px_-12px_rgba(0,0,0,0.25)]'
-            : 'bg-transparent'
+          ${
+            isScrolled
+              ? "bg-white/90 backdrop-blur-2xl border-b border-[color:var(--brand)]/10 shadow-[0_6px_30px_-12px_rgba(0,0,0,0.25)]"
+              : "bg-transparent"
           }`}
       >
         <div className="container mx-auto px-6 md:px-12">
           <nav className="flex items-center justify-between h-24">
             {/* Logo */}
-            <Link href={createPageUrl('Home')} className="flex items-center group">
+            <Link
+              href={createPageUrl("Home")}
+              className="flex items-center group"
+            >
               <div className="text-4xl md:text-[24px] font-light tracking-tight">
                 <span className="text-[color:var(--brand)]">Evernest</span>
-                <span className={`ml-2 transition-colors duration-300 ${isScrolled ? 'text-[color:var(--charcoal)]' : 'text-[color:var(--charcoal)]'}`}
+                <span
+                  className={`ml-2 transition-colors duration-300 ${
+                    isScrolled
+                      ? "text-[color:var(--charcoal)]"
+                      : "text-[color:var(--charcoal)]"
+                  }`}
                 >
                   Real Estate
                 </span>
@@ -89,7 +121,11 @@ export default function Header() {
                     after:absolute after:left-1/2 after:bottom-0 after:h-[1.5px] after:w-0 
                     after:bg-[color:var(--brand)] after:transition-all after:duration-300 
                     after:-translate-x-1/2 hover:after:w-4/5
-                    ${pathname === item.url ? 'text-[color:var(--brand)] after:w-4/5' : ''}
+                    ${
+                      pathname === item.url
+                        ? "text-[color:var(--brand)] after:w-4/5"
+                        : ""
+                    }
                   `}
                   >
                     {item.label}
@@ -102,7 +138,6 @@ export default function Header() {
                     )} */}
                   </Link>
 
-                 
                   {!!item.dropdown?.length && (
                     <AnimatePresence>
                       {activeDropdown === item.label && (
@@ -116,7 +151,7 @@ export default function Header() {
                           {item.dropdown.map((drop) => (
                             <a
                               key={drop}
-                               href={createPageUrl(drop)}
+                              href={createPageUrl(drop)}
                               className="block px-3 py-2 text-sm text-[#1a1a1a]/75 hover:text-[color:var(--brand)]
                               hover:bg-[color:var(--cream)] transition-all duration-200 border-b border-black/5 last:border-0 font-light"
                               onClick={() => setActiveDropdown(null)}
@@ -159,7 +194,7 @@ export default function Header() {
           {isMobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden bg-white border-t border-black/10"
             >

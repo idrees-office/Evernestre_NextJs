@@ -3,43 +3,43 @@
 // Central route map (extend as needed)
 export const ROUTES = {
   // Top-level
-  Home: '/',
-  AreaGuide: '/area-guide',
-  Developers: '/developers',
-  Services: '/services',
-  About: '/about',
-  Properties: '/properties',
-  Careers: '/careers',
-  Blog: '/blog',
-  Projects: '/projects',
-  "All Projects" : '/projects',
-  
-  // Home variants
-  'Main Home': '/',
-  'Modern Home': '/modern',
-  'Classic Home': '/classic',
-  "Area Guide": '/area-guide',
+  Home: "/",
+  AreaGuide: "/area-guide",
+  Developers: "/developers",
+  Services: "/services",
+  About: "/about",
+  Properties: "/properties",
+  Careers: "/careers",
+  Blog: "/blog",
+  Projects: "/projects",
+  "All Projects": "/projects",
 
+  // Home variants
+  "Main Home": "/",
+  "Modern Home": "/modern",
+  "Classic Home": "/classic",
+  "Area Guide": "/area-guide",
+  "Our Team": "/team",
 
   // Areas
-  Downtown: '/areas/downtown',
-  Waterfront: '/areas/waterfront',
-  Suburban: '/areas/suburban',
+  Downtown: "/areas/downtown",
+  Waterfront: "/areas/waterfront",
+  Suburban: "/areas/suburban",
 
   // Developers
-  'Top Developers': '/developers/top',
-  'Boutique Developers': '/developers/boutique',
-  International: '/developers/international',
+  "Top Developers": "/developers/top",
+  "Boutique Developers": "/developers/boutique",
+  International: "/developers/international",
 
   // Services
-  'Property Management': '/services/property-management',
-  'Investment Consulting': '/services/investment-consulting',
-  'Legal Services': '/services/legal-services',
+  "Property Management": "/services/property-management",
+  "Investment Consulting": "/services/investment-consulting",
+  "Legal Services": "/services/legal-services",
 
   // About
-  'Our Story': '/about#story',
-  Team: '/about/team',
-  Testimonials: '/about/testimonials',
+  "Our Story": "/about#story",
+  Team: "/about/team",
+  Testimonials: "/about/testimonials",
 
   // Example param route (uncomment if you need it)
   // 'Property Details': '/properties/:id',
@@ -51,9 +51,9 @@ export type RouteKey = keyof typeof ROUTES;
 export function slugify(input: string): string {
   return input
     .toLowerCase()
-    .replace(/&/g, 'and')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 /**
@@ -66,7 +66,10 @@ export function createPageUrl(
   params?: Record<string, string | number>,
   query?: Record<string, string | number | boolean>
 ): string {
-  const base = (name as RouteKey) in ROUTES ? ROUTES[name as RouteKey] : `/${slugify(String(name))}`;
+  const base =
+    (name as RouteKey) in ROUTES
+      ? ROUTES[name as RouteKey]
+      : `/${slugify(String(name))}`;
 
   // Replace :params in the path if provided
   let path = base;
