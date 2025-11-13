@@ -6,12 +6,14 @@ import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPageUrl } from "../utils/url";
+import ContactModal from "../Components/ContactModal";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 12);
@@ -78,7 +80,35 @@ export default function Header() {
         <div className="container mx-auto px-6 md:px-12">
           <nav className="flex items-center justify-between h-24">
             {/* Logo */}
+
+            {/* Logo */}
             <Link
+              href={createPageUrl("Home")}
+              className="flex items-center gap-2 group"
+            >
+              {/* Small Logo Image */}
+              <img
+                src="/assets/EN-logo.png"
+                alt="Evernest Logo"
+                className="h-8 object-contain"
+              />
+
+              {/* Text */}
+              {/* <div className="text-4xl md:text-[24px] font-light tracking-tight">
+                <span className="text-[color:var(--brand)]">Evernest</span>
+                <span
+                  className={`ml-2 transition-colors duration-300 ${
+                    isScrolled
+                      ? "text-[color:var(--charcoal)]"
+                      : "text-[color:var(--charcoal)]"
+                  }`}
+                >
+                  Real Estate
+                </span>
+              </div> */}
+            </Link>
+
+            {/* <Link
               href={createPageUrl("Home")}
               className="flex items-center group"
             >
@@ -94,10 +124,7 @@ export default function Header() {
                   Real Estate
                 </span>
               </div>
-            </Link>
-
-            {/* Desktop nav */}
-            {/* gap-1 */}
+            </Link> */}
             <div className="hidden lg:flex items-center">
               {navItems.map((item) => (
                 <div
@@ -169,7 +196,10 @@ export default function Header() {
 
             {/* CTA */}
             <div className="hidden lg:block">
-              <button className="text-white cursor-pointer px-5 py-2 bg-gradient-to-r from-[color:var(--brand)] to-[#c97a52] text-white rounded-sm text-sm font-light tracking-wider transition-all duration-300 hover:shadow-lg hover:scale-[1.03]">
+              <button
+                onClick={() => setIsContactOpen(true)}
+                className="text-white cursor-pointer px-5 py-2 bg-gradient-to-r from-[color:var(--brand)] to-[#c97a52] text-white rounded-sm text-sm font-light tracking-wider transition-all duration-300 hover:shadow-lg hover:scale-[1.03]"
+              >
                 Contact Us
               </button>
             </div>
@@ -218,6 +248,10 @@ export default function Header() {
           )}
         </AnimatePresence>
       </motion.header>
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+      />
     </>
   );
 }

@@ -2,8 +2,8 @@
 
 import React from "react";
 import Header from "../includes/header";
-import Link from "next/link";
-import RegisterCtaSection from "../Components/RegisterCtaSection";
+// import Link from "next/link";
+// import RegisterCtaSection from "../Components/RegisterCtaSection";
 import SocialLinksSection from "../Components/SocialLinksSection";
 
 const TEAM_MEMBERS = [
@@ -42,25 +42,21 @@ const VALUES = [
     title: "Trust & Transparency",
     description:
       "We believe in honest communication and building long-term relationships based on trust.",
-    icon: "🤝",
   },
   {
     title: "Expert Guidance",
     description:
       "Deep market knowledge to help you make informed real estate decisions.",
-    icon: "🎯",
   },
   {
     title: "Client First",
     description:
       "Your goals and aspirations are at the center of everything we do.",
-    icon: "⭐",
   },
   {
     title: "Innovation",
     description:
       "Leveraging technology to provide seamless real estate experiences.",
-    icon: "💡",
   },
 ];
 
@@ -70,17 +66,15 @@ export default function AboutUsPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-[#f6ecdf] py-16">
+      <section className="bg-[#f6ecdf] py-10">
         <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-normal text-gray-900 mb-6">
-            About Our Real Estate Journey
+          <h1 className="text-2xl md:text-3xl font-normal text-gray-900 mb-4">
+            Evernest Real Estate Journey
           </h1>
-          <div className="mx-auto h-[3px] w-24 bg-[color:var(--brand)] rounded mb-8"></div>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
             For over a decade, we have been helping clients navigate Dubai's
             dynamic real estate market. Our commitment to excellence and deep
-            local expertise has made us a trusted partner for investors and
-            homeowners alike.
+            local expertise.
           </p>
         </div>
       </section>
@@ -89,6 +83,13 @@ export default function AboutUsPage() {
       <section className="bg-white py-16">
         <div className="container mx-auto px-6 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <img
+                src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Our office and team"
+                className="rounded-lg shadow-2xl"
+              />
+            </div>
             <div>
               <h2 className="text-[32px] md:text-[36px] font-normal tracking-tight text-[#8b5d3b] mb-6">
                 Our Story
@@ -113,111 +114,102 @@ export default function AboutUsPage() {
                 </p>
               </div>
             </div>
-            <div className="relative">
-              <img
-                src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Our office and team"
-                className="rounded-lg shadow-2xl"
-              />
-            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        className="relative bg-cover bg-center bg-no-repeat py-32 text-left"
+        style={{
+          backgroundImage:
+            "url('https://evernest.ae/assets/img/aboutpage/Vision.jpg')",
+        }}
+      >
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="max-w-3xl">
+            <h2 className="text-[42px] md:text-[48px] font-serif text-black mb-6 tracking-wide [text-shadow:_2px_2px_4px_rgba(255,255,255,0.8)]">
+              VISION
+            </h2>
+            <p className="text-black text-lg md:text-[18px] leading-relaxed [text-shadow:_1px_1px_2px_rgba(255,255,255,0.8)] font-medium">
+              At{" "}
+              <span className="font-semibold text-[#8b5d3b] [text-shadow:_1px_1px_2px_rgba(255,255,255,0.8)]">
+                Evernest Real Estate
+              </span>
+              , our vision is to consistently provide exceptional experiences
+              and deliver outstanding results for our customers in Dubai's
+              competitive real estate market.
+            </p>
+            <p className="text-black text-lg md:text-[18px] leading-relaxed mt-4 [text-shadow:_1px_1px_2px_rgba(255,255,255,0.8)] font-medium">
+              We are committed to maintaining the highest standards of service
+              quality and ensuring customer satisfaction through integrity,
+              professionalism, and innovation.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="bg-[#f9f7f4] py-16">
+      <section className="bg-[#faf8f6] py-16">
         <div className="container mx-auto px-6 md:px-10">
           <div className="text-center mb-12">
-            <h2 className="text-[32px] md:text-[36px] font-normal tracking-tight text-[#8b5d3b] mb-4">
-              Our Values
+            <h2 className="text-[36px] md:text-[40px] font-normal text-[#7c4a2f] mb-4">
+              Our Main Values
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              The principles that guide every decision we make and every client
-              we serve
+            <div className="h-[3px] w-20 bg-[#c18a5a] mx-auto rounded-full mb-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed text-[16px]">
+              The foundation of our success lies in these guiding principles —
+              shaping every interaction and decision we make.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {VALUES.map((value, index) => (
-              <div key={index} className="text-center group">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                  {value.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {value.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="bg-white py-16">
-        <div className="container mx-auto px-6 md:px-10">
-          <div className="text-center mb-12">
-            <h2 className="text-[32px] md:text-[36px] font-normal tracking-tight text-[#8b5d3b] mb-4">
-              Meet Our Team
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Experienced professionals dedicated to finding your perfect
-              property in Dubai
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {TEAM_MEMBERS.map((member, index) => (
-              <div key={index} className="text-center group">
-                <div className="relative overflow-hidden rounded-lg mb-4">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-[color:var(--brand)] font-medium mb-2">
-                  {member.role}
-                </p>
-                <p className="text-gray-600 text-sm">{member.experience}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="bg-[#8b5d3b] py-16 text-white">
-        <div className="container mx-auto px-6 md:px-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">10K+</div>
-              <div className="text-sm opacity-90">Properties Sold</div>
+            {/* Card 1 */}
+            <div className="bg-white rounded-2xl border border-[#f0e6dd] shadow-sm p-8 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <h3 className="text-xl font-medium text-[#c18a5a] mb-3">
+                Professionalism
+              </h3>
+              <p className="text-gray-700 leading-relaxed text-[15px]">
+                We uphold the highest professional standards, delivering
+                exceptional service with precision, integrity, and expertise.
+              </p>
             </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">15+</div>
-              <div className="text-sm opacity-90">Years Experience</div>
+
+            {/* Card 2 */}
+            <div className="bg-white rounded-2xl border border-[#f0e6dd] shadow-sm p-8 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <h3 className="text-xl font-medium text-[#c18a5a] mb-3">
+                Innovation
+              </h3>
+              <p className="text-gray-700 leading-relaxed text-[15px]">
+                We embrace creativity and technology to redefine expectations
+                and deliver smarter, seamless real estate experiences.
+              </p>
             </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">50+</div>
-              <div className="text-sm opacity-90">Communities Served</div>
+
+            {/* Card 3 */}
+            <div className="bg-white rounded-2xl border border-[#f0e6dd] shadow-sm p-8 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <h3 className="text-xl font-medium text-[#c18a5a] mb-3">
+                Integrity
+              </h3>
+              <p className="text-gray-700 leading-relaxed text-[15px]">
+                Integrity is our foundation — guiding every action with honesty,
+                transparency, and accountability.
+              </p>
             </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">98%</div>
-              <div className="text-sm opacity-90">Client Satisfaction</div>
+
+            {/* Card 4 */}
+            <div className="bg-white rounded-2xl border border-[#f0e6dd] shadow-sm p-8 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <h3 className="text-xl font-medium text-[#c18a5a] mb-3">
+                Commitment
+              </h3>
+              <p className="text-gray-700 leading-relaxed text-[15px]">
+                Our dedication ensures we exceed expectations and build lasting
+                relationships grounded in trust and reliability.
+              </p>
             </div>
           </div>
         </div>
       </section>
-
       <SocialLinksSection />
-      <RegisterCtaSection />
+
+      {/* Vision Section */}
     </>
   );
 }
