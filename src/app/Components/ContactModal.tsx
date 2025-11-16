@@ -125,7 +125,6 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                       Send Message
                     </button>
                   </form>
-
                   <p className="text-[10px] text-[#1a1a1a]/40 mt-4 text-center font-light">
                     By submitting this form, you agree to our privacy policy and
                     terms of service.
