@@ -316,7 +316,6 @@ export default function RefinedFooter() {
 
   return (
     <footer className="relative overflow-hidden border-t border-[#f0e4d9] bg-[#fffaf5] text-[#3c2f26]">
-      {/* Decorative top line */}
       <div
         className="h-0.5 w-full"
         style={{
@@ -324,8 +323,6 @@ export default function RefinedFooter() {
             "linear-gradient(90deg, #8b5d3b 0%, #b06c48 45%, #d4a373 65%, #f6d8a4 100%)",
         }}
       />
-
-      {/* Soft glow accents */}
       <div
         className="pointer-events-none absolute -top-24 right-[-10%] h-64 w-64 rounded-full blur-3xl opacity-20"
         style={{
@@ -341,7 +338,7 @@ export default function RefinedFooter() {
 
       <div className="relative z-10">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-12 sm:grid-cols-2 lg:grid-cols-5">
-          {/* About */}
+
           <div className="lg:col-span-2">
             <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
               <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
@@ -372,8 +369,6 @@ export default function RefinedFooter() {
               ))}
             </div>
           </div>
-
-          {/* Quick Links */}
           <div>
             <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
               <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
@@ -461,12 +456,11 @@ export default function RefinedFooter() {
           </div>
         </div>
       </div>
-
       {/* Bottom bar */}
       <div className="relative z-10 bg-[#123456]">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 md:flex-row">
           <p className="text-center text-sm text-white/90">
-            © {year} Elite Properties. All rights reserved.
+            © {year} Evernest Real Estate. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-sm text-white/90">
             <Shield className="h-4 w-4 text-white" />

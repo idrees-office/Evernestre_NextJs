@@ -51,9 +51,14 @@ export default function Header() {
     {
       label: "About Us",
       url: createPageUrl("About"),
-      dropdown: ["Our Team", "Career"],
+      dropdown: ["Our Team", "Careers"],
     },
-    { label: "News & Blogs", url: "#", dropdown: ["News & Blogs", "Blogs"] },
+    { 
+      label: "News & Blogs",
+      url: createPageUrl("News"),
+      dropdown: ["News", "Blogs"]
+
+     },
   ] as const;
 
   return (
@@ -79,14 +84,7 @@ export default function Header() {
       >
         <div className="container mx-auto px-6 md:px-12">
           <nav className="flex items-center justify-between h-24">
-            {/* Logo */}
-
-            {/* Logo */}
-            <Link
-              href={createPageUrl("Home")}
-              className="flex items-center gap-2 group"
-            >
-              {/* Small Logo Image */}
+            <Link href={createPageUrl("Home")} className="flex items-center gap-2 group">
               <img
                 src="/assets/EN-logo.png"
                 alt="Evernest Logo"

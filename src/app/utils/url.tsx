@@ -1,8 +1,4 @@
-// src/utils/index.ts
-
-// Central route map (extend as needed)
 export const ROUTES = {
-  // Top-level
   Home: "/",
   AreaGuide: "/area-guide",
   Developers: "/developers",
@@ -11,17 +7,16 @@ export const ROUTES = {
   Properties: "/properties",
   Careers: "/careers",
   Blog: "/blog",
+  News: "/news",
   Projects: "/projects",
   "All Projects": "/projects",
 
-  // Home variants
   "Main Home": "/",
   "Modern Home": "/modern",
   "Classic Home": "/classic",
   "Area Guide": "/area-guide",
   "Our Team": "/team",
-
-  // Areas
+  
   Downtown: "/areas/downtown",
   Waterfront: "/areas/waterfront",
   Suburban: "/areas/suburban",

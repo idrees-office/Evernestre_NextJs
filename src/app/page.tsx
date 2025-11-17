@@ -27,7 +27,6 @@ export default function App() {
       <TrustedRealEstateSection/>
       <RegisterCtaSection />
       <SocialLinksSection />
-
     </div>
   );
 }
