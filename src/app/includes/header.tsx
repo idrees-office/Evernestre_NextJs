@@ -23,7 +23,7 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { label: "Home", url: createPageUrl("Home"), dropdown: ["Main Home"] },
+    { label: "Home", url: createPageUrl("Home"), dropdown: null },
     {
       label: "Off-Plan",
       url: createPageUrl("Projects"),
@@ -39,26 +39,24 @@ export default function Header() {
       url: createPageUrl("Developers"),
       dropdown: ["All Developer"],
     },
-    {
-      label: "Services",
-      url: "#",
-      dropdown: [
-        "Property Management",
-        "Investment Consulting",
-        "Legal Services",
-      ],
-    },
-    {
-      label: "About Us",
-      url: createPageUrl("About"),
-      dropdown: ["Our Team", "Careers"],
-    },
+
     { 
       label: "News & Blogs",
       url: createPageUrl("News"),
       dropdown: ["News", "Blogs"]
 
      },
+     {
+      label: "Careers",
+      url: createPageUrl("Careers"),
+      dropdown: null,
+    },
+
+     {
+      label: "About Us",
+      url: createPageUrl("About"),
+      dropdown: null,
+    },
   ] as const;
 
   return (
@@ -90,39 +88,7 @@ export default function Header() {
                 alt="Evernest Logo"
                 className="h-8 object-contain"
               />
-
-              {/* Text */}
-              {/* <div className="text-4xl md:text-[24px] font-light tracking-tight">
-                <span className="text-[color:var(--brand)]">Evernest</span>
-                <span
-                  className={`ml-2 transition-colors duration-300 ${
-                    isScrolled
-                      ? "text-[color:var(--charcoal)]"
-                      : "text-[color:var(--charcoal)]"
-                  }`}
-                >
-                  Real Estate
-                </span>
-              </div> */}
             </Link>
-
-            {/* <Link
-              href={createPageUrl("Home")}
-              className="flex items-center group"
-            >
-              <div className="text-4xl md:text-[24px] font-light tracking-tight">
-                <span className="text-[color:var(--brand)]">Evernest</span>
-                <span
-                  className={`ml-2 transition-colors duration-300 ${
-                    isScrolled
-                      ? "text-[color:var(--charcoal)]"
-                      : "text-[color:var(--charcoal)]"
-                  }`}
-                >
-                  Real Estate
-                </span>
-              </div>
-            </Link> */}
             <div className="hidden lg:flex items-center">
               {navItems.map((item) => (
                 <div
@@ -140,15 +106,15 @@ export default function Header() {
                     //   ${pathname === item.url ? 'text-[color:var(--brand)]' : ''}
                     // `}
 
-                    className={`relative px-4 py-3 text-[15px] font-light tracking-wide transition-all duration-300
+                    className={`relative px-4 py-1 text-[15px] font-light tracking-wide transition-all duration-300
                     flex items-center
                     text-[color:var(--charcoal)]/85 hover:text-[color:var(--brand)]
-                    after:absolute after:left-1/2 after:bottom-0 after:h-[1.5px] after:w-0 
+                    after:absolute after:left-1/2 after:bottom-0 after:h-[0.5px] after:w-0 
                     after:bg-[color:var(--brand)] after:transition-all after:duration-300 
                     after:-translate-x-1/2 hover:after:w-4/5
                     ${
                       pathname === item.url
-                        ? "text-[color:var(--brand)] after:w-4/5"
+                        ? "text-[color:var(--brand)] after:w-3/5"
                         : ""
                     }
                   `}
@@ -216,8 +182,6 @@ export default function Header() {
             </button>
           </nav>
         </div>
-
-        {/* Mobile menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
