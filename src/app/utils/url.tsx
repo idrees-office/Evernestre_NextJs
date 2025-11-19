@@ -8,6 +8,9 @@ export const ROUTES = {
   Careers: "/careers",
   Blog: "/blog",
   News: "/news",
+  Privacy: "/privacy-policy",
+  TermCondition: "/term-condition",
+
   Projects: "/projects",
   "All Projects": "/projects",
 
@@ -20,6 +23,8 @@ export const ROUTES = {
   Downtown: "/areas/downtown",
   Waterfront: "/areas/waterfront",
   Suburban: "/areas/suburban",
+
+
 
   // Developers
   "Top Developers": "/developers/top",

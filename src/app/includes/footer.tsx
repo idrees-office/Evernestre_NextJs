@@ -202,13 +202,24 @@ export default function RefinedFooter() {
             © {year} Evernest Real Estate. All rights reserved.
           </p>
           <div className="flex gap-5 text-sm">
-            {["Privacy", "Terms", "Cookies"].map((t) => (
+
+            <Link key="privacy-policy" href={`privacy-policy`}
+                className="text-white/80 transition-colors hover:text-white"
+              >
+                Privacy Policy
+              </Link>
+              <Link key="term-condition" href={`term-condition`} className="text-white/80 transition-colors hover:text-white">
+                Term Condition
+              </Link>
+
+            {/* {["Privacy", "Terms", "Cookies"].map((t) => (
               <Link key={t} href={`/${t.toLowerCase()}`}
                 className="text-white/80 transition-colors hover:text-white"
               >
                 {t}
               </Link>
-            ))}
+            ))} */}
+
           </div>
         </div>
       </div>

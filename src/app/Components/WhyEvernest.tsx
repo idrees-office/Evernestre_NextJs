@@ -36,7 +36,7 @@ export default function WhyEvernest() {
       <div className="container mx-auto max-w-8xl px-6 md:px-8 py-14 md:py-18 lg:py-20">
         <div className="text-center max-w-5xl mx-auto">
           <h2 className="text-[#8b5d3b] text-[34px] md:text-[44px] lg:text-[45px] leading-tight font-serif"> Why Evernest Real Estate is the Perfect Choice? </h2>
-          <p className="mt-4 text-base md:text-lg text-[#111]/80">
+          <p className="mt-4 text-base md:text-lg text-[#111]/80 font-normal">
             Evernest Real Estate is your top choice, offering in-depth market
             expertise, a wide range of properties and a focus on personalized
             service to guarantee a smooth real estate journey.

@@ -2,15 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown, Check, Search, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-type DropdownName =
-  | "buyRent"
-  | "status"
-  | "propertyType"
-  | "minArea"
-  | "maxArea"
-  | "minBedroom"
-  | "maxBedroom"
-  | "maxPrice";
+type DropdownName = | "buyRent" | "status" | "propertyType" | "minArea" | "maxArea" | "minBedroom" | "maxBedroom" | "maxPrice";
 
 interface FiltersState {
   buyRent: string;
@@ -165,7 +157,7 @@ export default function PropertySearchBar() {
 
   if (!isMounted) {
     return (
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[68%] z-[90]">
+      <div className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 w-[68%] z-[90]">
         <div className="bg-white/95 backdrop-blur-2xl shadow-2xl rounded-sm border-white/40">
           <div className="p-4 md:p-4">
             <div className="flex flex-col lg:flex-row gap-4 mb-2">
@@ -246,7 +238,7 @@ export default function PropertySearchBar() {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.6 }}
-      className="absolute bottom-1 left-1/2 -translate-x-1/2 w-[68%] z-[90]"
+      className="hidden md:block absolute bottom-1 left-1/2 -translate-x-1/2 w-[68%] z-[90]"
     >
       <div className="bg-white/95 backdrop-blur-2xl shadow-2xl rounded-sm border-white/40">
         <div className="p-4 md:p-4">

@@ -149,7 +149,7 @@ export default function AreaGuidePage() {
       </section>
       <SocialLinksSection />
       <RegisterCtaSection />
-      <OffPlanProjects />
+      {/* <OffPlanProjects /> */}
     </>
   );
 }
