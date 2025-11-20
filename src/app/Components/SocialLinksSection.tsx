@@ -14,32 +14,32 @@ const socials = [
   {
     name: "Facebook",
     icon: <Facebook className="w-6 h-6" />,
-    href: "https://facebook.com/",
+    href: "https://www.facebook.com/evernestrealestatellc",
   },
   {
     name: "Twitter",
     icon: <Twitter className="w-6 h-6" />,
-    href: "https://twitter.com/",
+    href: "https://x.com/evernest_dxb/status/1384846882665648133",
   },
   {
     name: "Instagram",
     icon: <Instagram className="w-6 h-6" />,
-    href: "https://instagram.com/",
+    href: "https://www.instagram.com/evernest_dubairealestate/",
   },
   {
     name: "YouTube",
     icon: <Youtube className="w-6 h-6" />,
-    href: "https://youtube.com/",
+    href: "https://www.youtube.com/@evernestrealestate3688/videos",
   },
   {
     name: "WhatsApp",
     icon: <MessageCircle className="w-6 h-6" />,
-    href: "https://wa.me/",
+    href: "https://wa.me/+971522406449?text=Hello%2C%20how%20may%20I%20help%20you%3F",
   },
   {
     name: "LinkedIn",
     icon: <Linkedin className="w-6 h-6" />,
-    href: "https://linkedin.com/",
+    href: "https://www.linkedin.com/company/evernest-real-estate-llc/",
   },
 ];
 
@@ -60,15 +60,14 @@ export default function SocialLinksSection() {
               className="group flex flex-col items-center justify-center gap-2 py-6 
               transition-all duration-300 hover:bg-[#fff5ef]"
             >
-              {/* Icon */}
+              
               <div
                 className="text-[#d0845b] group-hover:text-[#b06c48] 
                 transition-colors duration-300"
               >
                 {item.icon}
               </div>
-
-              {/* Label */}
+              
               <span
                 className="text-[15px] font-light text-[#1a1a1a] 
                 group-hover:text-[#d0845b] tracking-wide"

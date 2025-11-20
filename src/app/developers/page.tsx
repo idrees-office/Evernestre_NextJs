@@ -274,8 +274,6 @@ export default function DeveloperPage() {
   return (
     <>
       <Header />
-
-      {/* Hero Section */}
       <section className="bg-[#f6ecdf] py-12 relative overflow-hidden border-b border-[#f0e4d9]">
         <div className="container mx-auto px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-medium text-[#3c2f26] mb-2">
@@ -284,11 +282,9 @@ export default function DeveloperPage() {
           <div className="mx-auto h-[3px] w-20 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>
         </div>
       </section>
-
-      {/* Developer Section */}
       <section className="bg-white py-10">
         <div className="container mx-auto px-6 md:px-10">
-          {/* Search Bar */}
+          
           <div className="flex justify-center mb-10">
             <motion.form
               whileHover={{ scale: 1.01 }}
@@ -324,8 +320,6 @@ export default function DeveloperPage() {
               </button>
             </motion.form>
           </div>
-
-          {/* Developer Grid */}
           <motion.div
             initial="hidden"
             animate="show"
@@ -372,12 +366,10 @@ export default function DeveloperPage() {
         </div>
       </section>
 
-      <SocialLinksSection />
-      <RegisterCtaSection />
-      <OffPlanProjects />
-
       {/* <SocialLinksSection /> */}
       {/* <RegisterCtaSection /> */}
+      {/* <OffPlanProjects projects={[]} /> */}
+
     </>
   );
 }

@@ -173,7 +173,6 @@ export default function PropertySearchBar() {
                   <ChevronDown className="h-4 w-4 text-[#1a1a1a]/40" />
                 </div>
               </div>
-
               <div className="w-full lg:w-44">
                 <div className="w-full px-5 py-2 bg-white/95 border border-white/20 rounded-sm text-left flex items-center justify-between">
                   <span
@@ -186,7 +185,6 @@ export default function PropertySearchBar() {
                   <ChevronDown className="h-4 w-4 text-[#1a1a1a]/40" />
                 </div>
               </div>
-
               <div className="flex-1 relative">
                 <MapPin className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-[#1a1a1a]/30" />
                 <input
@@ -232,7 +230,7 @@ export default function PropertySearchBar() {
       </div>
     );
   }
-
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}

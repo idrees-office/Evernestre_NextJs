@@ -1,210 +1,61 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Bath, BedDouble, Heart, Home, MessageCircle, Phone, Ruler, Share2, } from "lucide-react";
-import HighlightedAreas from "../Components/HighlightedAreas";
-import NewsSection from "../Components/NewsSection";
+import { getProjects } from "@/lib/projects"; 
+import { Bath, BedDouble, Heart, Home, MessageCircle, Phone, Ruler, Share2, ChevronLeft, ChevronRight } from "lucide-react";
+import LuxuryLoader from "../Components/LuxuryLoader";
+import SocialLinksSection from "../Components/SocialLinksSection";
+import RegisterCtaSection from "../Components/RegisterCtaSection";
 
-const PROJECTS = [
-  {
-    slug: "danube-bayz-102-business-bay",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Dubai.webp",
-    priceAED: 150000,
-    type: "Villa",
-    bedrooms: 4,
-    bathrooms: 3,
-    areaSqft: 720,
-  },
-  {
-    slug: "danube-bayz-102-2",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Abu-Dhabi.webp",
-    priceAED: 150000,
-    type: "Apartment",
-    bedrooms: 3,
-    bathrooms: 2,
-    areaSqft: 600,
-  },
-  {
-    slug: "danube-bayz-102-3",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Sharjah.webp",
-    priceAED: 220000,
-    type: "Townhouse",
-    bedrooms: 5,
-    bathrooms: 4,
-    areaSqft: 950,
-  },
-  {
-    slug: "danube-bayz-102-4",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Rak.webp",
-    priceAED: 180000,
-    type: "Villa",
-    bedrooms: 4,
-    bathrooms: 3,
-    areaSqft: 800,
-  },
+function cleanBedrooms(html: string | null) {
+  if (!html) return "";
+  return html
+    .replace(/<\/br>|<br\s*\/?>/gi, " • ")
+    .replace(/<\/?[^>]+(>|$)/g, "")
+    .trim();
+}
 
+export default function AllProjectsPage() {
+  const [projects, setProjects] = useState([]);
+  const [meta, setMeta] = useState<any>(null);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
-  {
-    slug: "danube-bayz-102-11",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Rak.webp",
-    priceAED: 180000,
-    type: "Villa",
-    bedrooms: 4,
-    bathrooms: 3,
-    areaSqft: 800,
-  },
+  useEffect(() => {
+    async function load() {
+      setLoading(true);
+      const res = await getProjects(page);
+      
+      if (res.projects && Array.isArray(res.projects.data)) {
+        setProjects(res.projects.data);
+        setMeta({
+          current: res.projects.current_page,
+          last: res.projects.last_page,
+        });
+      } else if (res.data) {
+        // If it's Laravel pagination format
+        setProjects(res.data);
+        setMeta({
+          current: res.current_page,
+          last: res.last_page,
+        });
+      }
+      setLoading(false);
+    }
+    load();
+  }, [page]);
 
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+    // Scroll to top when page changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-   {
-    slug: "danube-bayz-102-12",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Rak.webp",
-    priceAED: 180000,
-    type: "Villa",
-    bedrooms: 4,
-    bathrooms: 3,
-    areaSqft: 800,
-  },
+  if (loading) {
+    return <LuxuryLoader />;
+  }
 
-
-   {
-    slug: "danube-bayz-102-13",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Rak.webp",
-    priceAED: 180000,
-    type: "Villa",
-    bedrooms: 4,
-    bathrooms: 3,
-    areaSqft: 800,
-  },
-
-   {
-    slug: "danube-bayz-102-15",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Rak.webp",
-    priceAED: 180000,
-    type: "Villa",
-    bedrooms: 4,
-    bathrooms: 3,
-    areaSqft: 800,
-  },
-
-    {
-    slug: "danube-bayz-102-123235",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Rak.webp",
-    priceAED: 180000,
-    type: "Villa",
-    bedrooms: 4,
-    bathrooms: 3,
-    areaSqft: 800,
-  },
-
-
-    {
-    slug: "danube-bayz-102-153434",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Rak.webp",
-    priceAED: 180000,
-    type: "Villa",
-    bedrooms: 4,
-    bathrooms: 3,
-    areaSqft: 800,
-  },
-
-
-    {
-    slug: "danube-bayz-102-15656",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Rak.webp",
-    priceAED: 180000,
-    type: "Villa",
-    bedrooms: 4,
-    bathrooms: 3,
-    areaSqft: 800,
-  },
-
-
-    {
-    slug: "danube-bayz-102-15333",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Rak.webp",
-    priceAED: 180000,
-    type: "Villa",
-    bedrooms: 4,
-    bathrooms: 3,
-    areaSqft: 800,
-  },
-
-
-
-
-    {
-    slug: "danube-bayz-102-business-bay523463643",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Dubai.webp",
-    priceAED: 150000,
-    type: "Villa",
-    bedrooms: 4,
-    bathrooms: 3,
-    areaSqft: 720,
-  },
-  {
-    slug: "danube-bayz-102-235623623",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Abu-Dhabi.webp",
-    priceAED: 150000,
-    type: "Apartment",
-    bedrooms: 3,
-    bathrooms: 2,
-    areaSqft: 600,
-  },
-  {
-    slug: "danube-bayz-102-353646343",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Sharjah.webp",
-    priceAED: 220000,
-    type: "Townhouse",
-    bedrooms: 5,
-    bathrooms: 4,
-    areaSqft: 950,
-  },
-  {
-    slug: "danube-bayz-102-43434",
-    title: "Danube BAYZ 102 At Business Bay",
-    city: "Business Bay, Dubai",
-    image: "/assets/home/Rak.webp",
-    priceAED: 180000,
-    type: "Villa",
-    bedrooms: 4,
-    bathrooms: 3,
-    areaSqft: 800,
-  },
-
-];
-
-export default function ProjectsPage() {
   return (
     <main className="bg-[#f6ecdf]">
       <section className="container mx-auto max-w-8xl px-6 md:px-8 py-10 md:py-10 lg:py-10">
@@ -214,42 +65,42 @@ export default function ProjectsPage() {
               <span className="inline-block h-2 w-2 rounded-full bg-[color:var(--brand)]"></span>
               Premium Off-Plan • Dubai
             </div>
-              <h1 className="text-4xl md:text-5xl font-normal text-[#0e0e0e] leading-[1.15] tracking-tight">
-                Off-Plan Projects in{" "}
-                <span className="bg-gradient-to-r from-[color:var(--brand)] to-[#b96842] bg-clip-text text-transparent">
-                  Dubai
-                </span>
-              </h1>
-              <p className="text-[#1a1a1a]/80 leading-relaxed text-[17px] font-light">
-                Evernest Real Estate curates a hand-picked portfolio of premium
-                off-plan residences across Dubai’s most coveted districts. From
-                launch-day allocations to blue-chip investments, we connect
-                discerning buyers and home seekers with exclusive opportunities.
-                Our advisors provide end-to-end guidance pricing insights, payment
-                plans, and developer due diligence—so every transaction feels
-                seamless. Explore one of the UAE’s largest selections of off-plan
-                projects and find a home that matches your lifestyle and returns.
-              </p>
-              <ul className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[14px] text-[#0e0e0e]/80">
-                <li className="flex items-center gap-2 rounded-xl border border-black/10 bg-white/60 backdrop-blur px-3 py-2 shadow-sm">
-                  <svg width="16" height="16" viewBox="0 0 24 24" className="shrink-0">
-                    <path fill="currentColor" d="M20 6L9 17l-5-5" />
-                  </svg> 
-                  Exclusive inventory
-                </li>
-                <li className="flex items-center gap-2 rounded-xl border border-black/10 bg-white/60 backdrop-blur px-3 py-2 shadow-sm">
-                  <svg width="16" height="16" viewBox="0 0 24 24" className="shrink-0">
-                    <path fill="currentColor" d="M12 2a10 10 0 100 20 10 10 0 000-20zM11 6h2v6h-2V6zm0 8h2v2h-2v-2z" />
-                  </svg>
-                  Expert advisory
-                </li>
-                <li className="flex items-center gap-2 rounded-xl border border-black/10 bg-white/60 backdrop-blur px-3 py-2 shadow-sm">
-                  <svg width="16" height="16" viewBox="0 0 24 24" className="shrink-0">
-                    <path fill="currentColor" d="M3 12l5 5L21 4" />
-                  </svg>
-                  Seamless transactions
-                </li>
-              </ul>
+            <h1 className="text-4xl md:text-5xl font-normal text-[#0e0e0e] leading-[1.15] tracking-tight">
+              Off-Plan Projects in{" "}
+              <span className="bg-gradient-to-r from-[color:var(--brand)] to-[#b96842] bg-clip-text text-transparent">
+                Dubai
+              </span>
+            </h1>
+            <p className="text-[#1a1a1a]/80 leading-relaxed text-[17px] font-light">
+              Evernest Real Estate curates a hand-picked portfolio of premium
+              off-plan residences across Dubai's most coveted districts. From
+              launch-day allocations to blue-chip investments, we connect
+              discerning buyers and home seekers with exclusive opportunities.
+              Our advisors provide end-to-end guidance pricing insights, payment
+              plans, and developer due diligence—so every transaction feels
+              seamless. Explore one of the UAE's largest selections of off-plan
+              projects and find a home that matches your lifestyle and returns.
+            </p>
+            <ul className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[14px] text-[#0e0e0e]/80">
+              <li className="flex items-center gap-2 rounded-xl border border-black/10 bg-white/60 backdrop-blur px-3 py-2 shadow-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" className="shrink-0">
+                  <path fill="currentColor" d="M20 6L9 17l-5-5" />
+                </svg> 
+                Exclusive inventory
+              </li>
+              <li className="flex items-center gap-2 rounded-xl border border-black/10 bg-white/60 backdrop-blur px-3 py-2 shadow-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" className="shrink-0">
+                  <path fill="currentColor" d="M12 2a10 10 0 100 20 10 10 0 000-20zM11 6h2v6h-2V6zm0 8h2v2h-2v-2z" />
+                </svg>
+                Expert advisory
+              </li>
+              <li className="flex items-center gap-2 rounded-xl border border-black/10 bg-white/60 backdrop-blur px-3 py-2 shadow-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" className="shrink-0">
+                  <path fill="currentColor" d="M3 12l5 5L21 4" />
+                </svg>
+                Seamless transactions
+              </li>
+            </ul>
           </div>
           <div className="relative w-full h-[350px] md:h-[420px] rounded-2xl overflow-hidden shadow-xl shadow-black/10 ring-1 ring-black/10 group">
             <img src="https://test_backend.leadshub.ae/media/1476/mi-66d375deb3454-d884dae45381eb5d352e1d17f4b1c82a.webp"
@@ -274,31 +125,47 @@ export default function ProjectsPage() {
       </section>
       <section className="bg-white py-10">
         <div className="container mx-auto max-w-8xl px-6 md:px-8">
+          
           <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-              <h2 className="text-[32px] font-normal text-[#8b5d3b]"> Latest Off-Plan Projects </h2>
-              <p className="text-sm text-[#1a1a1a]/70"> Explore the UAE&apos;s latest developments by leading developers. </p>
+              <h2 className="text-[32px] font-normal text-[#8b5d3b]">
+                Latest Off-Plan Projects
+              </h2>
+              <p className="text-sm text-[#1a1a1a]/70">
+                Explore the UAE&apos;s latest developments by leading developers.
+              </p>
             </div>
-            <Link href="/off-plan-projects" className="inline-flex h-9 items-center rounded-full border border-[#c9a882] px-4 text-sm text-[#8b5d3b] hover:bg-[#c9a882]/10"
-            >
-              Explore All Projects
-            </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PROJECTS.map((p) => (
-              <Link key={p.slug} href={`/off-plan-projects/${p.slug}`} className="group block overflow-hidden rounded-lg border border-[#d0845b]/20 bg-white shadow-md hover:shadow-lg transition-transform hover:-translate-y-1"
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 min-h-[300px] relative">
+            {loading && (
+              <div className="absolute inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center z-20">
+                <LuxuryLoader small  />
+              </div>
+            )}
+            {!loading && projects.map((p: any) => (
+              <Link
+                key={p.slug}
+                href={`/off-plan-projects/${p.slug}`}
+                className="group block overflow-hidden rounded-lg border border-[#d0845b]/20 bg-white shadow-md hover:shadow-lg transition-transform hover:-translate-y-1 cursor-pointer"
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                  <img
+                    src={p.banner}
+                    alt={p.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
                   <div className="absolute top-4 left-4 bg-white/95 text-[#c2754e] px-3 py-1 rounded-full text-sm shadow">
-                    AED {p.priceAED.toLocaleString()}
+                    {p.starting_price}
                   </div>
                 </div>
+
                 <div className="p-3">
                   <h3 className="text-md font-medium text-[#1a1a1a] line-clamp-1">
                     {p.title}
                   </h3>
-                  <p className="text-sm text-[#1a1a1a]/70 mb-2">{p.city}</p>
+                  <p className="text-sm text-[#1a1a1a]/70 mb-2">
+                    {p.locations?.name || "Location not specified"}
+                  </p>
 
                   <div className="grid grid-cols-2 gap-3 text-sm text-[#1a1a1a]">
                     <div className="flex items-center gap-1">
@@ -307,31 +174,57 @@ export default function ProjectsPage() {
                     </div>
                     <div className="flex items-center gap-1">
                       <BedDouble className="h-4 w-4 text-[#8b5d3b]" />
-                      {p.bedrooms} Bed
+                      {cleanBedrooms(p.bedroom) || "Various"}
                     </div>
                     <div className="flex items-center gap-1">
                       <Bath className="h-4 w-4 text-[#8b5d3b]" />
-                      {p.bathrooms} Bath
+                      {p.handover_date || "TBA"}
                     </div>
                     <div className="flex items-center gap-1">
                       <Ruler className="h-4 w-4 text-[#8b5d3b]" />
-                      {p.areaSqft} Sqft
+                      {p.pricepersqft || "Price on request"}
                     </div>
                   </div>
+
                   <div className="mt-3 flex justify-between pt-2 border-t border-[#d0845b]/10">
                     <div className="flex gap-2">
-                      <button className="h-8 w-8 flex items-center justify-center rounded-full border border-[#d0845b]/40 text-[#8b5d3b] hover:bg-[#d0845b]/10">
+                      <button 
+                        className="h-8 w-8 flex items-center justify-center rounded-full border border-[#d0845b]/40 text-[#8b5d3b] hover:bg-[#d0845b]/10 transition-all duration-300 cursor-pointer"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          // Add phone functionality
+                        }}
+                      >
                         <Phone className="h-4 w-4" />
                       </button>
-                      <button className="h-8 w-8 flex items-center justify-center rounded-full border border-[#d0845b]/40 text-[#8b5d3b] hover:bg-[#d0845b]/10">
+                      <button 
+                        className="h-8 w-8 flex items-center justify-center rounded-full border border-[#d0845b]/40 text-[#8b5d3b] hover:bg-[#d0845b]/10 transition-all duration-300 cursor-pointer"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          // Add message functionality
+                        }}
+                      >
                         <MessageCircle className="h-4 w-4" />
                       </button>
                     </div>
+
                     <div className="flex gap-2">
-                      <button className="h-8 w-8 flex items-center justify-center rounded-full border border-[#d0845b]/40 text-[#8b5d3b] hover:bg-[#d0845b]/10">
+                      <button 
+                        className="h-8 w-8 flex items-center justify-center rounded-full border border-[#d0845b]/40 text-[#8b5d3b] hover:bg-[#d0845b]/10 transition-all duration-300 cursor-pointer"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          // Add favorite functionality
+                        }}
+                      >
                         <Heart className="h-4 w-4" />
                       </button>
-                      <button className="h-8 w-8 flex items-center justify-center rounded-full border border-[#d0845b]/40 text-[#8b5d3b] hover:bg-[#d0845b]/10">
+                      <button 
+                        className="h-8 w-8 flex items-center justify-center rounded-full border border-[#d0845b]/40 text-[#8b5d3b] hover:bg-[#d0845b]/10 transition-all duration-300 cursor-pointer"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          // Add share functionality
+                        }}
+                      >
                         <Share2 className="h-4 w-4" />
                       </button>
                     </div>
@@ -340,11 +233,71 @@ export default function ProjectsPage() {
               </Link>
             ))}
           </div>
+
+          {/* Pagination */}
+          {meta && meta.last > 1 && (
+            <div className="mt-10 flex items-center justify-center gap-2">
+              {/* Previous Button */}
+              <button
+                disabled={meta.current === 1}
+                onClick={() => handlePageChange(page - 1)}
+                className={`flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-300 cursor-pointer ${
+                  meta.current === 1
+                    ? "border-gray-300 text-gray-400 cursor-not-allowed"
+                    : "border-[#c9a882] text-[#8b5d3b] hover:bg-[#c9a882]/10 cursor-pointer"
+                }`}
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+
+              {/* Page Numbers */}
+              {Array.from({ length: meta.last }, (_, i) => i + 1)
+                .filter(pageNum => {
+                  // Show first 2 pages, last 2 pages, and pages around current page
+                  if (pageNum === 1 || pageNum === meta.last) return true;
+                  if (Math.abs(pageNum - meta.current) <= 1) return true;
+                  return false;
+                })
+                .map((pageNum, index, array) => {
+                  // Add ellipsis
+                  const showEllipsis = index < array.length - 1 && array[index + 1] - pageNum > 1;
+                  return (
+                    <React.Fragment key={pageNum}>
+                      <button
+                        onClick={() => handlePageChange(pageNum)}
+                        className={`flex items-center justify-center w-10 h-10 rounded-full border text-sm transition-all duration-300 cursor-pointer ${
+                          meta.current === pageNum
+                            ? "bg-[#c9a882] text-white border-[#c9a882] cursor-pointer"
+                            : "border-[#c9a882] text-[#8b5d3b] hover:bg-[#c9a882]/10 cursor-pointer"
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                      {showEllipsis && (
+                        <span className="flex items-center justify-center w-10 h-10 text-[#8b5d3b]">
+                          ...
+                        </span>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              <button
+                disabled={meta.current === meta.last}
+                onClick={() => handlePageChange(page + 1)}
+                className={`flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-300 cursor-pointer ${
+                  meta.current === meta.last
+                    ? "border-gray-300 text-gray-400 cursor-not-allowed"
+                    : "border-[#c9a882] text-[#8b5d3b] hover:bg-[#c9a882]/10 cursor-pointer"
+                }`}
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          )}
         </div>
       </section>
-
-      <HighlightedAreas />
-       <NewsSection />
+      <SocialLinksSection />
+      <RegisterCtaSection />
     </main>
   );
 }
