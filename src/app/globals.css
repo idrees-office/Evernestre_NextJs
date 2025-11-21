@@ -37,3 +37,27 @@ body{
 ::-webkit-scrollbar-thumb:hover{
   background: linear-gradient(135deg,#b8734a,#d0845b);
 }
+
+
+/* @keyframes luxury-shine {
+  0% {
+    transform: translate(-180%, -180%) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate(180%, 180%) rotate(45deg);
+    opacity: 0;
+  }
+} */
+
+
+
+
+
+
+
+  
+

@@ -10,10 +10,14 @@ const inter = Inter({
   variable: '--font-inter', 
   display: 'swap',
 });
-
 export const metadata: Metadata = {
-  title: 'Premium Realty',
+  title: 'Evernest Real Estate',
   description: 'Luxury properties and off-plan investments in prime locations.',
+
+  icons: {
+    icon: "/favicon.ico",
+  },
+
 };
 
 export const viewport: Viewport = {

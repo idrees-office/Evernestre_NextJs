@@ -74,8 +74,8 @@ export default function ContactModal({ isOpen, onClose }: Props) {
               {/* Right Side Form */}
               <div className="lg:col-span-2 p-8 md:p-10">
                 <div className="max-w-2xl">
-                  <h2 className="text-3xl font-light text-[#1a1a1a] mb-2 tracking-tight">
-                    Contact <span className="text-[#d0845b]">Evernest</span>
+                  <h2 className="text-2xl font-normal text-[#1a1a1a] mb-2 tracking-tight">
+                    Book Your <span className="text-[#d0845b]">Dream Home</span>
                   </h2>
                   <p className="text-[#1a1a1a]/60 mb-6 font-light text-sm">
                     Let's find your perfect property in Dubai. Our experts are

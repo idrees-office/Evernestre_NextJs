@@ -16,8 +16,8 @@ import {
 import Header from "../includes/header";
 import SocialLinksSection from "../Components/SocialLinksSection";
 import RegisterCtaSection from "../Components/RegisterCtaSection";
-import { getAllNews } from "@/lib/news";
 import LuxuryLoader from "@/app/Components/LuxuryLoader";
+import { getAllBlogs } from "@/lib/blogs";
 
 type NewsItem = {
   id: string;
@@ -28,7 +28,7 @@ type NewsItem = {
 };
 
 type ApiResponse = {
-  news: {
+  blogs: {
     data: NewsItem[];
     current_page: number;
     last_page: number;
@@ -66,7 +66,7 @@ export default function NewsContactPage() {
     newsletter: true,
   });
 
-  const [news, setNews] = useState<NewsItem[]>([]);
+  const [blogs, setBlogs] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
@@ -101,12 +101,12 @@ export default function NewsContactPage() {
 
     setLoading(true);
     try {
-      const data: ApiResponse = await getAllNews(page);
-      if (data.news) {
-        setNews(data.news.data);
-        setCurrentPage(data.news.current_page);
-        setLastPage(data.news.last_page);
-        setTotal(data.news.total);
+      const data: ApiResponse = await getAllBlogs(page);
+      if (data.blogs) {
+        setBlogs(data.blogs.data);
+        setCurrentPage(data.blogs.current_page);
+        setLastPage(data.blogs.last_page);
+        setTotal(data.blogs.total);
         if (page === 1) {
           hasFetched.current = true;
         }
@@ -149,8 +149,8 @@ export default function NewsContactPage() {
   };
 
   // Get featured news (first item)
-  const featuredNews = news.length > 0 ? news[0] : null;
-  const regularNews = news.length > 1 ? news.slice(1) : [];
+  const featuredNews = blogs.length > 0 ? blogs[0] : null;
+  const regularNews = blogs.length > 1 ? blogs.slice(1) : [];
 
   if (loading && !hasFetched.current) {
     return (
@@ -164,14 +164,12 @@ export default function NewsContactPage() {
   return (
     <>
       <Header />
-
-      {/* Compact Hero Section */}
       <section className="bg-[#f6ecdf]">
         <div className="container-fluid max-w-8xl px-6 md:px-8 py-10">
           <div className="flex justify-center text-center">
             <div className="space-y-5">
               <h1 className="text-3xl md:text-4xl font-normal text-[#0e0e0e] leading-[1.15] tracking-tight">
-                News &amp; Insights{" "}
+                Blogs &amp; Insights{" "}
                 <span className="bg-gradient-to-r from-[color:var(--brand)] to-[#b96842] bg-clip-text text-transparent">
                   Dubai
                 </span>
@@ -228,14 +226,94 @@ export default function NewsContactPage() {
       <section className="py-14 bg-white">
         <div className="container mx-auto px-2 max-w-8xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-            {/* LEFT: News (col-span-8) */}
+            
+
+            <div className="lg:col-span-3 space-y-6">
+              {/* Categories */}
+              <div className="bg-[#f7f8ff] rounded-md border border-[#f1e6da] px-4 py-4">
+                <h3 className="text-[15px] font-medium text-[#8b5d3b] border-l-2 border-[#c17a44] pl-3 mb-3">
+                  Categories
+                </h3>
+                <div className="space-y-2">
+                  {categories.map((cat) => (
+                    <button
+                      key={cat.name}
+                      className="w-full flex items-center justify-between text-[13px] bg-white rounded-sm border border-gray-100 px-3 py-2 hover:border-[#8b5d3b]/70 hover:bg-[#fff7f1] transition-all"
+                      type="button"
+                    >
+                      <span className="text-gray-800">{cat.name}</span>
+                      <span className="text-[#8b5d3b] text-xs font-semibold">
+                        {String(cat.count).padStart(2, "0")}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+            
+              <div className="bg-[#f7f8ff] rounded-md border border-[#f1e6da] px-4 py-4">
+                <h3 className="text-[15px] font-medium text-[#8b5d3b] border-l-2 border-[#c17a44] pl-3 mb-3">
+                  Popular Tags
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {popularTags.map((tag) => (
+                    <button
+                      key={tag}
+                      type="button"
+                      className="text-[11px] px-3 py-1 rounded-full bg-white border border-gray-100 text-gray-700 hover:border-[#8b5d3b]/80 hover:text-[#8b5d3b] hover:bg-[#fff7f1] transition-all"
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="bg-[#f9fafb] rounded-md border border-gray-100 px-4 py-4">
+                <h3 className="text-[15px] font-medium text-gray-900 border-l-2 border-[#c17a44] pl-3 mb-3">
+                  Speak With a Property Advisor
+                </h3>
+                <form onSubmit={handleSubmit} className="space-y-2.5 text-[13px]">
+                  <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
+                    <User className="w-4 h-4 text-gray-400" />
+                    <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Full Name" className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
+                    />
+                  </div>
+
+                  <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
+                    <Mail className="w-4 h-4 text-gray-400" />
+                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email" className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
+                    <Phone className="w-4 h-4 text-gray-400" />
+                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone (WhatsApp preferred)" className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
+                    <MapPin className="w-4 h-4 text-gray-400" />
+                    <select name="interest" value={formData.interest} onChange={handleInputChange} className="w-full bg-transparent text-gray-800 focus:outline-none">
+                      <option value="general">General Inquiry</option>
+                      <option value="buying">Buying in Dubai</option>
+                      <option value="selling">Selling Property</option>
+                      <option value="offplan">Off-Plan Projects</option>
+                    </select>
+                  </div>
+                  <textarea name="message" value={formData.message} onChange={handleInputChange} rows={3} placeholder="Tell us what you're looking for..." className="w-full border border-gray-200 rounded-sm px-3 py-1.5 bg-white text-gray-800 placeholder-gray-400 focus:outline-none resize-none"
+                  />
+                  <button type="submit" className="w-full flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-[#8b5d3b] to-[#d4a373] text-white text-[13px] font-medium py-2 mt-1 hover:brightness-110 transition-all"
+                  >
+                    Request Call Back
+                    <ArrowRight className="w-3 h-3" />
+                  </button>
+                </form>
+              </div>
+            </div>
+
             <div className="lg:col-span-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                {/* Featured News */}
                 {featuredNews && (
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -397,7 +475,6 @@ export default function NewsContactPage() {
                     </div>
                   </div>
                 )}
-
                 {/* Pagination */}
                 {lastPage > 1 && (
                   <motion.div
@@ -463,7 +540,7 @@ export default function NewsContactPage() {
                 )}
 
                 {/* Empty State */}
-                {!loading && news.length === 0 && (
+                {!loading && blogs.length === 0 && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -484,86 +561,6 @@ export default function NewsContactPage() {
                   </motion.div>
                 )}
               </motion.div>
-            </div>
-
-            <div className="lg:col-span-3 space-y-6">
-              {/* Categories */}
-              <div className="bg-[#f7f8ff] rounded-md border border-[#f1e6da] px-4 py-4">
-                <h3 className="text-[15px] font-medium text-[#8b5d3b] border-l-2 border-[#c17a44] pl-3 mb-3">
-                  Categories
-                </h3>
-                <div className="space-y-2">
-                  {categories.map((cat) => (
-                    <button
-                      key={cat.name}
-                      className="w-full flex items-center justify-between text-[13px] bg-white rounded-sm border border-gray-100 px-3 py-2 hover:border-[#8b5d3b]/70 hover:bg-[#fff7f1] transition-all"
-                      type="button"
-                    >
-                      <span className="text-gray-800">{cat.name}</span>
-                      <span className="text-[#8b5d3b] text-xs font-semibold">
-                        {String(cat.count).padStart(2, "0")}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-            
-              <div className="bg-[#f7f8ff] rounded-md border border-[#f1e6da] px-4 py-4">
-                <h3 className="text-[15px] font-medium text-[#8b5d3b] border-l-2 border-[#c17a44] pl-3 mb-3">
-                  Popular Tags
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {popularTags.map((tag) => (
-                    <button
-                      key={tag}
-                      type="button"
-                      className="text-[11px] px-3 py-1 rounded-full bg-white border border-gray-100 text-gray-700 hover:border-[#8b5d3b]/80 hover:text-[#8b5d3b] hover:bg-[#fff7f1] transition-all"
-                    >
-                      {tag}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="bg-[#f9fafb] rounded-md border border-gray-100 px-4 py-4">
-                <h3 className="text-[15px] font-medium text-gray-900 border-l-2 border-[#c17a44] pl-3 mb-3">
-                  Speak With a Property Advisor
-                </h3>
-                <form onSubmit={handleSubmit} className="space-y-2.5 text-[13px]">
-                  <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
-                    <User className="w-4 h-4 text-gray-400" />
-                    <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Full Name" className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
-                    />
-                  </div>
-
-                  <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
-                    <Mail className="w-4 h-4 text-gray-400" />
-                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email" className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
-                    />
-                  </div>
-                  <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
-                    <Phone className="w-4 h-4 text-gray-400" />
-                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone (WhatsApp preferred)" className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
-                    />
-                  </div>
-                  <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
-                    <MapPin className="w-4 h-4 text-gray-400" />
-                    <select name="interest" value={formData.interest} onChange={handleInputChange} className="w-full bg-transparent text-gray-800 focus:outline-none">
-                      <option value="general">General Inquiry</option>
-                      <option value="buying">Buying in Dubai</option>
-                      <option value="selling">Selling Property</option>
-                      <option value="offplan">Off-Plan Projects</option>
-                    </select>
-                  </div>
-                  <textarea name="message" value={formData.message} onChange={handleInputChange} rows={3} placeholder="Tell us what you're looking for..." className="w-full border border-gray-200 rounded-sm px-3 py-1.5 bg-white text-gray-800 placeholder-gray-400 focus:outline-none resize-none"
-                  />
-                  <button type="submit" className="w-full flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-[#8b5d3b] to-[#d4a373] text-white text-[13px] font-medium py-2 mt-1 hover:brightness-110 transition-all"
-                  >
-                    Request Call Back
-                    <ArrowRight className="w-3 h-3" />
-                  </button>
-                </form>
-              </div>
             </div>
           </div>
         </div>
