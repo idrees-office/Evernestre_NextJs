@@ -37,70 +37,69 @@ export default function RegisterCtaSection() {
     return isValidPhoneNumber(phoneNumber);
   };
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    
-    if (!isFormValid) return;
+ async function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+  
+  if (!isFormValid) return;
 
-    const nextErrors: typeof errors = {};
-    
-    if (!firstName.trim()) nextErrors.first = "Please enter your first name.";
-    if (!lastName.trim()) nextErrors.last = "Please enter your last name.";
-    
-    if (!phone) {
-      nextErrors.phone = "Please enter your phone number.";
-    } else if (!validatePhoneNumber(phone)) {
-      nextErrors.phone = "Please enter a valid phone number for the selected country.";
-    }
-    
-    setErrors(nextErrors);
-    if (Object.keys(nextErrors).length) return;
-
-    try {
-      setLoading(true);
-      
-      // Prepare data for Laravel backend
-      const formData = {
-        first_name: firstName.trim(),
-        last_name: lastName.trim(),
-        phone: phone,
-        source: "website_registration",
-        timestamp: new Date().toISOString(),
-      };
-
-      // Submit to Laravel backend
-      const response = await fetch('/api/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || 'Failed to submit form');
-      }
-
-      // Success
-      setErrors({ ok: "✅ Thank you! We'll reach out soon." });
-      setFirstName("");
-      setLastName("");
-      setPhone("");
-      
-    } catch (error) {
-      console.error('Submission error:', error);
-      setErrors({ 
-        phone: error instanceof Error 
-          ? error.message 
-          : "Something went wrong. Please try again." 
-      });
-    } finally {
-      setLoading(false);
-    }
+  const nextErrors: typeof errors = {};
+  
+  if (!firstName.trim()) nextErrors.first = "Please enter your first name.";
+  if (!lastName.trim()) nextErrors.last = "Please enter your last name.";
+  
+  if (!phone) {
+    nextErrors.phone = "Please enter your phone number.";
+  } else if (!validatePhoneNumber(phone)) {
+    nextErrors.phone = "Please enter a valid phone number for the selected country.";
   }
+  
+  setErrors(nextErrors);
+  if (Object.keys(nextErrors).length) return;
+
+  try {
+    setLoading(true);
+
+    const formData = {
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+      phone: phone,
+      source: "website_registration",
+      timestamp: new Date().toISOString(),
+    };
+
+    // ✅ Use BASE_URL here
+    const response = await fetch(`${BASE_URL}/get_website_lead`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || 'Failed to submit form');
+    }
+
+    setErrors({ ok: "✅ Thank you! We'll reach out soon." });
+    setFirstName("");
+    setLastName("");
+    setPhone("");
+    
+  } catch (error) {
+    console.error('Submission error:', error);
+    setErrors({ 
+      phone: error instanceof Error 
+        ? error.message 
+        : "Something went wrong. Please try again."
+    });
+  } finally {
+    setLoading(false);
+  }
+}
+
 
   const handlePhoneChange = (value: string | undefined) => {
     setPhone(value);
