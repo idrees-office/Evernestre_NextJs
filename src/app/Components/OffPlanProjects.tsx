@@ -14,9 +14,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
-
 type OffPlanProjectsProps = {
-  projects: any[]; 
+  projects: any[];
 };
 
 type City = {
@@ -26,11 +25,34 @@ type City = {
 };
 
 const CITIES: City[] = [
-  { name: "DUBAI", slug: "dubai", image: "../assets/home/Dubai.webp" },
-  { name: "ABU DHABI", slug: "abu-dhabi", image: "/assets/home/Abu-Dhabi.webp" },
+  { name: "DUBAI", slug: "dubai", image: "/assets/home/Dubai.webp" },
+  {
+    name: "ABU DHABI",
+    slug: "abu-dhabi",
+    image: "/assets/home/Abu-Dhabi.webp",
+  },
   { name: "SHARJAH", slug: "sharjah", image: "/assets/home/Sharjah.webp" },
-  { name: "RAS AL KHAIMAH", slug: "ras-al-khaimah", image: "/assets/home/Rak.webp" },
+  {
+    name: "RAS AL KHAIMAH",
+    slug: "ras-al-khaimah",
+    image: "/assets/home/Rak.webp",
+  },
 ];
+
+// const CITIES: City[] = [
+//   { name: "DUBAI", slug: "dubai", image: "../assets/home/Dubai.webp" },
+//   {
+//     name: "ABU DHABI",
+//     slug: "abu-dhabi",
+//     image: "/assets/home/Abu-Dhabi.webp",
+//   },
+//   { name: "SHARJAH", slug: "sharjah", image: "/assets/home/Sharjah.webp" },
+//   {
+//     name: "RAS AL KHAIMAH",
+//     slug: "ras-al-khaimah",
+//     image: "/assets/home/Rak.webp",
+//   },
+// ];
 
 type Currency = "AED" | "USD" | "EUR";
 
@@ -49,7 +71,8 @@ function formatMoney(amount: string, currency: Currency) {
   if (isNaN(numeric)) return "Price on Request";
 
   const converted = numeric * FX[currency];
-  const symbol = currency === "AED" ? "AED " : currency === "USD" ? "USD " : "EUR ";
+  const symbol =
+    currency === "AED" ? "AED " : currency === "USD" ? "USD " : "EUR ";
 
   return `${symbol}${Math.round(converted).toLocaleString()}`;
 }
@@ -104,15 +127,22 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
         {/* CITY CARDS */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {CITIES.map((city) => (
-            <Link key={city.slug} href={`/off-plan-projects/${city.slug}`} className="group block">
+            <Link
+              key={city.slug}
+              href={`/off-plan-projects/${city.slug}`}
+              className="group block"
+            >
               <div className="relative overflow-hidden rounded-sm bg-[#eae7e4] shadow-md ring-1 ring-black/5">
                 <Image
                   src={city.image}
                   alt={city.name}
+                  fill
                   className="h-[340px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
-                <div className="absolute bottom-4 left-6 text-white">{city.name}</div>
+                <div className="absolute bottom-4 left-6 text-white">
+                  {city.name}
+                </div>
               </div>
             </Link>
           ))}
@@ -148,8 +178,12 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
               <Link href={`/project/${p.slug}.html`}>
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
-                    src={p.banner || "https://test_backend.leadshub.ae/media/7044/Untitled-2.webp"}
+                    src={
+                      p.banner ||
+                      "https://test_backend.leadshub.ae/media/7044/Untitled-2.webp"
+                    }
                     alt={p.title}
+                    fill
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
@@ -161,8 +195,12 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
                 </div>
 
                 <div className="p-2">
-                  <h3 className="text-md font-normal text-[#1a1a1a]/70 line-clamp-1">{p.title}</h3>
-                  <p className="mt-1 text-sm text-[#1a1a1a]/70">{p.location_name || "Dubai"}</p>
+                  <h3 className="text-md font-normal text-[#1a1a1a]/70 line-clamp-1">
+                    {p.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-[#1a1a1a]/70">
+                    {p.location_name || "Dubai"}
+                  </p>
 
                   <div className="grid grid-cols-2 gap-3 text-sm text-[#1a1a1a] mt-3">
                     <div className="flex items-center">
@@ -179,7 +217,9 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
                     </div>
                     <div className="flex items-center">
                       <Ruler className="h-5 w-5 text-[#8b5d3b]" />
-                      <span className="ml-2">{p.starting_size || "Various Sizes"}</span>
+                      <span className="ml-2">
+                        {p.starting_size || "Various Sizes"}
+                      </span>
                     </div>
                   </div>
 
@@ -214,4 +254,3 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
     </section>
   );
 }
-

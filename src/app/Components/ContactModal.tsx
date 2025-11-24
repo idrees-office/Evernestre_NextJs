@@ -43,6 +43,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                 <Image
                   src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1740&q=80"
                   alt="Dubai Downtown"
+                  fill
                   className="w-full h-48 lg:h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent lg:bg-gradient-to-r lg:from-black/70 lg:via-black/30 lg:to-transparent" />

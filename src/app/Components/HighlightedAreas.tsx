@@ -1,6 +1,3 @@
-
-
-
 "use client";
 
 import Link from "next/link";
@@ -25,14 +22,14 @@ export default function HighlightedAreas({ areas }: { areas: any[] }) {
   return (
     <section className="bg-red py-10 pb-12">
       <div className="container mx-auto max-w-8xl px-6 md:px-10">
-
         <div className="mb-6 md:mb-8 flex items-start justify-between gap-4">
           <div>
             <h2 className="text-[32px] md:text-[34px] lg:text-[38px] font-normal tracking-tight text-[#8b5d3b]">
               Highlighted Areas
             </h2>
             <p className="text-[#1a1a1a]/70 text-sm">
-              Explore the UAE’s latest communities — from waterfront living to luxury estates.
+              Explore the UAE’s latest communities — from waterfront living to
+              luxury estates.
             </p>
           </div>
 
@@ -87,18 +84,25 @@ export default function HighlightedAreas({ areas }: { areas: any[] }) {
             className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm text-[#8b5d3b] border border-[#8b5d3b] transition-all duration-300 hover:bg-[#8b5d3b] hover:text-white"
           >
             View All Areas
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
             </svg>
           </Link>
         </div>
-
       </div>
     </section>
   );
 }
-
-
 
 function AreaCard({
   area,
@@ -106,7 +110,7 @@ function AreaCard({
   isHovered,
   setIsHovered,
   className = "",
-  priority = false
+  priority = false,
 }: {
   area: any;
   index: number;
@@ -157,7 +161,8 @@ function AreaCard({
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 bg-[#d0845b] rounded-full"></span>
             <p className="text-white/90 text-sm font-light">
-              Starting from <span className="font-semibold">{area.price} AED</span>
+              Starting from{" "}
+              <span className="font-semibold">{area.price} AED</span>
             </p>
           </div>
         )}
@@ -165,5 +170,3 @@ function AreaCard({
     </Link>
   );
 }
-
-

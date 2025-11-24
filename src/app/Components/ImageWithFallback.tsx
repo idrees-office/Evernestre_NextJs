@@ -16,10 +16,9 @@ export function ImageWithFallback(props: ImageProps) {
       src={error ? ERROR_IMG_SRC : src}
       alt={error ? "Error loading image" : alt}
       onError={() => setError(true)}
-      
+      fill
       // Required when using external images OR fallback SVG
       unoptimized
-      
       className={className}
       style={style}
       {...rest}
