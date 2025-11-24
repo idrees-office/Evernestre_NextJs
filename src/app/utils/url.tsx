@@ -19,12 +19,10 @@ export const ROUTES = {
   "Classic Home": "/classic",
   "Area Guide": "/area-guide",
   "Our Team": "/team",
-  
+
   Downtown: "/areas/downtown",
   Waterfront: "/areas/waterfront",
   Suburban: "/areas/suburban",
-
-
 
   // Developers
   "Top Developers": "/developers/top",
