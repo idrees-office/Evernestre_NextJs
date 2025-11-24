@@ -22,13 +22,16 @@ function LuxuryLoader() {
           <div className="absolute inset-0 border-2 border-[#c9a882] border-t-transparent rounded-full animate-spin"></div>
           <div className="absolute inset-2 border-2 border-[#d0845b] border-b-transparent rounded-full animate-spin-reverse"></div>
         </div>
-        <p className="text-white/60 font-light tracking-widest text-sm">LOADING PRESTIGE</p>
+        <p className="text-white/60 font-light tracking-widest text-sm">
+          LOADING PRESTIGE
+        </p>
       </div>
     </div>
   );
 }
 
 export default function App() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 

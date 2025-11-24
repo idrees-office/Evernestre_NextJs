@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
-import 'react-phone-number-input/style.css';
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import { BASE_URL } from "@/lib/config";
 
 export default function RegisterCtaSection() {
@@ -37,78 +37,77 @@ export default function RegisterCtaSection() {
     return isValidPhoneNumber(phoneNumber);
   };
 
- async function handleSubmit(e: React.FormEvent) {
-  e.preventDefault();
-  if (!isFormValid) return;
-  const nextErrors: typeof errors = {};
-  if (!firstName.trim()) nextErrors.first = "Please enter your first name.";
-  if (!lastName.trim()) nextErrors.last = "Please enter your last name.";
-  if (!phone) {
-    nextErrors.phone = "Please enter your phone number.";
-  } else if (!validatePhoneNumber(phone)) {
-    nextErrors.phone = "Please enter a valid phone number for the selected country.";
-  }
-  
-  setErrors(nextErrors);
-  if (Object.keys(nextErrors).length) return;
-
-  try {
-    setLoading(true);
-
-    const formData = {
-      first_name: firstName.trim(),
-      last_name: lastName.trim(),
-      phone: phone,
-      source: "website_registration",
-      timestamp: new Date().toISOString(),
-    };
-    
-    const response = await fetch(`${BASE_URL}/get_website_lead`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify(formData),
-      
-    });
-
-    const result = await response.json();
-
-    if (!response.ok) {
-      throw new Error(result.message || 'Failed to submit form');
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!isFormValid) return;
+    const nextErrors: typeof errors = {};
+    if (!firstName.trim()) nextErrors.first = "Please enter your first name.";
+    if (!lastName.trim()) nextErrors.last = "Please enter your last name.";
+    if (!phone) {
+      nextErrors.phone = "Please enter your phone number.";
+    } else if (!validatePhoneNumber(phone)) {
+      nextErrors.phone =
+        "Please enter a valid phone number for the selected country.";
     }
 
-    setErrors({ ok: "✅ Thank you! We'll reach out soon." });
-    setFirstName("");
-    setLastName("");
-    setPhone("");
-    
-  } catch (error) {
-    console.error('Submission error:', error);
-    setErrors({ 
-      phone: error instanceof Error 
-        ? error.message 
-        : "Something went wrong. Please try again."
-    });
-  } finally {
-    setLoading(false);
-  }
-}
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length) return;
 
+    try {
+      setLoading(true);
+
+      const formData = {
+        first_name: firstName.trim(),
+        last_name: lastName.trim(),
+        phone: phone,
+        source: "website_registration",
+        timestamp: new Date().toISOString(),
+      };
+
+      const response = await fetch(`${BASE_URL}/get_website_lead`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to submit form");
+      }
+
+      setErrors({ ok: "✅ Thank you! We'll reach out soon." });
+      setFirstName("");
+      setLastName("");
+      setPhone("");
+    } catch (error) {
+      setErrors({
+        phone:
+          error instanceof Error
+            ? error.message
+            : "Something went wrong. Please try again.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const handlePhoneChange = (value: string | undefined) => {
     setPhone(value);
     if (errors.phone) {
-      setErrors(prev => ({ ...prev, phone: undefined }));
+      setErrors((prev) => ({ ...prev, phone: undefined }));
     }
   };
 
-  const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>, field: string) => 
+  const handleInputChange =
+    (setter: React.Dispatch<React.SetStateAction<string>>, field: string) =>
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setter(e.target.value);
       if (errors[field as keyof typeof errors]) {
-        setErrors(prev => ({ ...prev, [field]: undefined }));
+        setErrors((prev) => ({ ...prev, [field]: undefined }));
       }
     };
 
@@ -132,7 +131,7 @@ export default function RegisterCtaSection() {
             Register & Stay Updated on New Projects.
           </h2>
           <p className="text-gray-700 text-base leading-relaxed">
-            Join thousands of investors discovering Dubai's finest off-plan
+            Join thousands of investors discovering Dubai&apos;s finest off-plan
             developments and exclusive opportunities.
           </p>
         </motion.div>
@@ -173,14 +172,14 @@ export default function RegisterCtaSection() {
                   label: "First Name *",
                   value: firstName,
                   setter: setFirstName,
-                  field: 'first',
+                  field: "first",
                   err: errors.first,
                 },
                 {
                   label: "Last Name *",
                   value: lastName,
                   setter: setLastName,
-                  field: 'last',
+                  field: "last",
                   err: errors.last,
                 },
               ].map(({ label, value, setter, field, err }, i) => (
@@ -208,7 +207,11 @@ export default function RegisterCtaSection() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="phone-input-wrapper"
               >
-                <div className={`phone-input-custom ${errors.phone ? "error" : ""}`}>
+                <div
+                  className={`phone-input-custom ${
+                    errors.phone ? "error" : ""
+                  }`}
+                >
                   <PhoneInput
                     international
                     defaultCountry="AE"
@@ -221,33 +224,40 @@ export default function RegisterCtaSection() {
                 {errors.phone && (
                   <p className="text-sm text-red-500 mt-1">{errors.phone}</p>
                 )}
-                
+
                 {phone && !errors.phone && (
-                  <p className={`text-xs mt-1 ${
-                    validatePhoneNumber(phone) ? 'text-emerald-600' : 'text-amber-600'
-                  }`}>
-                    {validatePhoneNumber(phone) 
-                      ? '✓ Valid phone number format' 
-                      : '⚠ Please check the number format for the selected country'
-                    }
+                  <p
+                    className={`text-xs mt-1 ${
+                      validatePhoneNumber(phone)
+                        ? "text-emerald-600"
+                        : "text-amber-600"
+                    }`}
+                  >
+                    {validatePhoneNumber(phone)
+                      ? "✓ Valid phone number format"
+                      : "⚠ Please check the number format for the selected country"}
                   </p>
                 )}
               </motion.div>
 
               {/* Button */}
               <motion.button
-                whileHover={isFormValid ? {
-                  scale: 1.06,
-                  boxShadow: "0px 10px 25px rgba(201, 122, 82, 0.5)",
-                } : {}}
+                whileHover={
+                  isFormValid
+                    ? {
+                        scale: 1.06,
+                        boxShadow: "0px 10px 25px rgba(201, 122, 82, 0.5)",
+                      }
+                    : {}
+                }
                 whileTap={isFormValid ? { scale: 0.95 } : {}}
                 transition={{ type: "spring", stiffness: 200 }}
                 type="submit"
                 disabled={!isFormValid || loading}
                 className={`relative overflow-hidden bg-gradient-to-r from-[#c97a52] via-[#b06c48] to-[#8b5d3b] inline-flex h-12 w-full items-center justify-center rounded-sm text-[15px] text-white transition-all duration-200 cursor-pointer ${
-                  !isFormValid || loading 
-                    ? 'opacity-50 cursor-not-allowed cursor-pointer' 
-                    : 'hover:shadow-lg cursor-pointer'
+                  !isFormValid || loading
+                    ? "opacity-50 cursor-not-allowed cursor-pointer"
+                    : "hover:shadow-lg cursor-pointer"
                 }`}
               >
                 {loading ? (
@@ -258,11 +268,13 @@ export default function RegisterCtaSection() {
                     <motion.span
                       animate={isFormValid ? { x: [0, 5, 0] } : { x: 0 }}
                       transition={
-                        isFormValid ? {
-                          repeat: Infinity,
-                          duration: 1.4,
-                          ease: "easeInOut",
-                        } : {}
+                        isFormValid
+                          ? {
+                              repeat: Infinity,
+                              duration: 1.4,
+                              ease: "easeInOut",
+                            }
+                          : {}
                       }
                       className="ml-2 inline-block"
                     >
@@ -377,8 +389,6 @@ function inputClass(hasError?: string) {
   return [
     "w-full rounded-sm px-4 py-2 text-[15px] border border-gray-300 transition-all duration-300 cursor-pointer",
     "focus:outline-none focus:border-[#c97a52] focus:scale-[1.02]",
-    hasError
-      ? "border-red-400 focus:border-red-400"
-      : "border-gray-300"
+    hasError ? "border-red-400 focus:border-red-400" : "border-gray-300",
   ].join(" ");
 }

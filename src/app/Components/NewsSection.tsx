@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -15,7 +14,7 @@ export type NewsPost = {
 
 export default function NewsSection({
   news = [],
-  subtitle = "Explore the UAE's latest Off-Plan projects by top developers, representing a new era of investment excellence.",
+  subtitle = "Explore the UAE&apos;s latest Off-Plan projects by top developers, representing a new era of investment excellence.",
   locale = "en-GB",
   timeZone = "Asia/Dubai",
 }: {
@@ -41,7 +40,6 @@ export default function NewsSection({
   return (
     <section className="bg-[#ffffff] py-8 md:py-8 lg:py-8">
       <div className="container mx-auto max-w-8xl px-6 md:px-10">
-        
         {/* Heading */}
         <div className="mb-6 md:mb-8 flex items-start justify-between gap-4">
           <div>
@@ -61,7 +59,6 @@ export default function NewsSection({
 
         {/* Content */}
         <div className="grid lg:grid-cols-3 gap-10 items-stretch">
-          
           {/* Featured Post */}
           <article className="lg:col-span-2 h-full">
             <Link
@@ -129,7 +126,6 @@ export default function NewsSection({
               ))}
             </ul>
           </div>
-
         </div>
       </div>
     </section>

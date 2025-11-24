@@ -4,7 +4,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
-export default function HighlightedAreas({ areas }: { areas: any[] }) {
+interface Area {
+  slug: string;
+  image: string;
+  title: string;
+  price?: string;
+}
+
+export default function HighlightedAreas({ areas }: { areas: Area[] }) {
   const [isHovered, setIsHovered] = useState<number | null>(null);
 
   // Show 4 items only
@@ -112,7 +119,7 @@ function AreaCard({
   className = "",
   priority = false,
 }: {
-  area: any;
+  area: Area;
   index: number;
   isHovered: number | null;
   setIsHovered: (i: number | null) => void;

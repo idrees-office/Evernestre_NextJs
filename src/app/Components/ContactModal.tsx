@@ -80,8 +80,8 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                     Book Your <span className="text-[#d0845b]">Dream Home</span>
                   </h2>
                   <p className="text-[#1a1a1a]/60 mb-6 font-light text-sm">
-                    Let's find your perfect property in Dubai. Our experts are
-                    here to help.
+                    Let&apos;s find your perfect property in Dubai. Our experts
+                    are here to help.
                   </p>
 
                   <form className="space-y-5">
@@ -106,7 +106,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                       />
 
                       <select className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md focus:border-[#d0845b] focus:outline-none transition-all bg-white/60 text-sm text-[#1a1a1a]/60">
-                        <option value="">I'm interested in</option>
+                        <option value="">I&apos;m interested in</option>
                         <option value="buy">Buying</option>
                         <option value="rent">Renting</option>
                         <option value="investment">Investment</option>

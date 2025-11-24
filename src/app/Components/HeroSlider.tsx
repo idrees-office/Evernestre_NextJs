@@ -2,7 +2,39 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Star, MapPin, Sparkles } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Star,
+  MapPin,
+  Sparkles,
+} from "lucide-react";
+
+interface Slide {
+  image: string;
+  title: string;
+  subtitle: string;
+  price: string;
+  plan: string;
+  features: string[];
+  rating: number;
+  type: string;
+}
+
+interface Property {
+  banner: string;
+  title: string;
+  bedrooms: string | null;
+  location_name: string;
+  starting_price: string;
+  payment_plan: string;
+  features: string[];
+  rating: number;
+  type: string;
+}
+interface HeroSliderProps {
+  hero: Property[];
+}
 
 function cleanBedrooms(html: string | null) {
   if (!html) return "";
@@ -12,7 +44,8 @@ function cleanBedrooms(html: string | null) {
     .trim();
 }
 
-export default function HeroSlider({ hero }: { hero: any }) {
+export default function HeroSlider({ hero }: HeroSliderProps) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [slides, setSlides] = useState<any[]>([]);
   const [current, setCurrent] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
@@ -21,25 +54,30 @@ export default function HeroSlider({ hero }: { hero: any }) {
   useEffect(() => {
     setIsMounted(true);
 
-    const formatted = hero.slice(0, 5).map((p: any) => ({
+    const formatted = hero.slice(0, 5).map((p: Property) => ({
       image: p.banner,
       title: p.title,
-      subtitle: cleanBedrooms(p.bedrooms) || p.location_name || "Business Bay, Dubai",
+      subtitle:
+        cleanBedrooms(p.bedrooms) || p.location_name || "Business Bay, Dubai",
       price: p.starting_price,
       plan: p.payment_plan?.replace(/<[^>]*>/g, "") || "Flexible Payment Plan",
       features: p.features || ["Luxury Living", "Premium Location"],
       rating: p.rating || 5,
-      type: p.type || "Luxury Residence"
+      type: p.type || "Luxury Residence",
     }));
 
     setSlides(formatted);
   }, [hero]);
 
-  const nextSlide = useCallback(() =>
-    setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1)), [slides.length]);
+  const nextSlide = useCallback(
+    () => setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1)),
+    [slides.length]
+  );
 
-  const prevSlide = useCallback(() =>
-    setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1)), [slides.length]);
+  const prevSlide = useCallback(
+    () => setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1)),
+    [slides.length]
+  );
 
   // Auto-slide with pause on hover
   useEffect(() => {
@@ -57,17 +95,20 @@ export default function HeroSlider({ hero }: { hero: any }) {
       <div className="w-full h-[70vh] flex items-center justify-center bg-gradient-to-br from-[#0c0c0c] to-[#1a1a1a]">
         <div className="text-center">
           <Sparkles className="w-10 h-10 text-[#c9a882] mx-auto mb-3" />
-          <p className="text-white/60 font-light text-base">No luxury properties available</p>
+          <p className="text-white/60 font-light text-base">
+            No luxury properties available
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="relative w-full h-[70vh] md:h-[78vh] lg:h-[82vh] overflow-hidden bg-[#0c0c0c] group" onMouseEnter={() => setIsHovering(true)}
+    <div
+      className="relative w-full h-[70vh] md:h-[78vh] lg:h-[82vh] overflow-hidden bg-[#0c0c0c] group"
+      onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-
       <div className="absolute inset-0 opacity-5 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#c9a882] via-[#d0845b] to-[#b89374] mix-blend-soft-light"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width='60' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
@@ -80,8 +121,8 @@ export default function HeroSlider({ hero }: { hero: any }) {
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ 
-            duration: 1.2, 
+          transition={{
+            duration: 1.2,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
           className="absolute inset-0"
@@ -89,7 +130,7 @@ export default function HeroSlider({ hero }: { hero: any }) {
           {/* Gradient overlays */}
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/70 via-black/30 to-transparent w-3/4" />
           <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-          
+
           {/* Light sweep */}
           <motion.div
             initial={{ x: "-100%", opacity: 0 }}
@@ -115,10 +156,10 @@ export default function HeroSlider({ hero }: { hero: any }) {
           key={`content-${current}`}
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ 
-            duration: 0.8, 
+          transition={{
+            duration: 0.8,
             delay: 0.2,
-            ease: [0.25, 0.46, 0.45, 0.94]
+            ease: [0.25, 0.46, 0.45, 0.94],
           }}
           className="relative max-w-xl"
         >
@@ -131,14 +172,14 @@ export default function HeroSlider({ hero }: { hero: any }) {
           >
             {/* Floating elements */}
             <motion.div
-              animate={{ 
+              animate={{
                 rotate: 360,
                 opacity: [0.1, 0.4, 0.1],
-                scale: [1, 1.2, 1]
+                scale: [1, 1.2, 1],
               }}
-              transition={{ 
+              transition={{
                 rotate: { duration: 15, repeat: Infinity, ease: "linear" },
-                opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" },
               }}
               className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-[#c9a882] to-[#d0845b] rounded-full blur-lg"
             />
@@ -152,7 +193,7 @@ export default function HeroSlider({ hero }: { hero: any }) {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex items-center gap-3 mb-6"
             >
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-1"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -163,8 +204,8 @@ export default function HeroSlider({ hero }: { hero: any }) {
                     key={i}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ 
-                      duration: 0.4, 
+                    transition={{
+                      duration: 0.4,
                       delay: 0.6 + i * 0.1,
                     }}
                   >
@@ -197,47 +238,53 @@ export default function HeroSlider({ hero }: { hero: any }) {
             </motion.div>
 
             {/* Title */}
-            <motion.h1 
+            <motion.h1
               className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 tracking-tight leading-[0.95]"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
             >
-              {slides[current].title.split(" ").map((word: string, i: number) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: 0.8 + i * 0.1,
-                    ease: "easeOut"
-                  }}
-                  className={`inline-block mr-2 ${
-                    i === 0 
-                      ? "text-transparent bg-gradient-to-r from-[#d0845b] to-[#c9a882] bg-clip-text font-extralight" 
-                      : "text-white"
-                  }`}
-                >
-                  {word}
-                </motion.span>
-              ))}
+              {slides[current].title
+                .split(" ")
+                .map((word: string, i: number) => (
+                  // {slides[current].title
+                  // .split(" ")
+                  // .map((word: string, i: number) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.8 + i * 0.1,
+                      ease: "easeOut",
+                    }}
+                    className={`inline-block mr-2 ${
+                      i === 0
+                        ? "text-transparent bg-gradient-to-r from-[#d0845b] to-[#c9a882] bg-clip-text font-extralight"
+                        : "text-white"
+                    }`}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
             </motion.h1>
 
-           
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1 }}
               className="flex items-center gap-4 mb-6"
             >
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-2 text-white/95 bg-gradient-to-r from-white/15 to-white/10 backdrop-blur-lg px-3 py-1 rounded-full border border-white/20"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
                 <MapPin className="w-4 h-4 text-[#c9a882]" />
-                <span className="text-base font-normal tracking-wide">{slides[current].subtitle}</span>
+                <span className="text-base font-normal tracking-wide">
+                  {slides[current].subtitle}
+                </span>
               </motion.div>
             </motion.div>
 
@@ -257,12 +304,12 @@ export default function HeroSlider({ hero }: { hero: any }) {
                 Starting Price
               </motion.span>
 
-              <motion.h2 
+              <motion.h2
                 className="text-4xl md:text-3xl lg:text-4xl font-normal text-transparent bg-gradient-to-br from-[#d0845b] via-[#c9a882] to-[#e6b891] bg-clip-text mb-3"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ 
-                  duration: 0.7, 
+                transition={{
+                  duration: 0.7,
                   delay: 1.3,
                 }}
               >
@@ -320,34 +367,33 @@ export default function HeroSlider({ hero }: { hero: any }) {
 
       {/* Slide Counter */}
       <div className="absolute right-4 top-4 z-30">
-  <motion.div
-    key={current}
-    initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.4 }}
-    className="flex items-center gap-1 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-lg rounded-lg px-3 py-1 border border-white/20"
-  >
-    <span className="text-sm md:text-base text-white font-light">
-      {String(current + 1).padStart(2, "0")}
-    </span>
-    <span className="text-white/50 mx-1 text-xs">/</span>
-    <span className="text-sm md:text-base text-white/70 font-light">
-      {String(slides.length).padStart(2, "0")}
-    </span>
-  </motion.div>
-</div>
-
+        <motion.div
+          key={current}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4 }}
+          className="flex items-center gap-1 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-lg rounded-lg px-3 py-1 border border-white/20"
+        >
+          <span className="text-sm md:text-base text-white font-light">
+            {String(current + 1).padStart(2, "0")}
+          </span>
+          <span className="text-white/50 mx-1 text-xs">/</span>
+          <span className="text-sm md:text-base text-white/70 font-light">
+            {String(slides.length).padStart(2, "0")}
+          </span>
+        </motion.div>
+      </div>
 
       {/* Floating Elements */}
       <motion.div
-        animate={{ 
+        animate={{
           rotate: 360,
           scale: [1, 1.1, 1],
-          opacity: [0.3, 0.6, 0.3]
+          opacity: [0.3, 0.6, 0.3],
         }}
-        transition={{ 
+        transition={{
           rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-          scale: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+          scale: { duration: 6, repeat: Infinity, ease: "easeInOut" },
         }}
         className="absolute top-1/4 -right-32 w-64 h-64 border border-[#c9a882]/15 rounded-full pointer-events-none backdrop-blur-lg"
       />

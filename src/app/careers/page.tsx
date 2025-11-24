@@ -2,7 +2,15 @@
 
 import React, { JSX, useState } from "react";
 import { motion } from "framer-motion";
-import { Briefcase, MapPin, Clock, Award, GraduationCap, Users, TrendingUp } from "lucide-react";
+import {
+  Briefcase,
+  MapPin,
+  Clock,
+  Award,
+  GraduationCap,
+  Users,
+  TrendingUp,
+} from "lucide-react";
 import Header from "../includes/header";
 import SocialLinksSection from "../Components/SocialLinksSection";
 import RegisterCtaSection from "../Components/RegisterCtaSection";
@@ -36,14 +44,20 @@ export default function CareersPage() {
       location: "Dubai, UAE",
       type: "Full-time",
       experience: "5+ Years",
-      description: "Join our technology team to build cutting-edge real estate platforms and proptech solutions.",
+      description:
+        "Join our technology team to build cutting-edge real estate platforms and proptech solutions.",
       requirements: [
         "React/Next.js expertise",
         "TypeScript proficiency",
         "Modern CSS frameworks",
-        "API integration experience"
+        "API integration experience",
       ],
-      benefits: ["Flexible hours", "Learning budget", "Health insurance", "Remote options"]
+      benefits: [
+        "Flexible hours",
+        "Learning budget",
+        "Health insurance",
+        "Remote options",
+      ],
     },
     {
       id: "2",
@@ -52,14 +66,20 @@ export default function CareersPage() {
       location: "Dubai, UAE",
       type: "Full-time",
       experience: "3+ Years",
-      description: "Capture stunning visuals of luxury properties and create compelling marketing content.",
+      description:
+        "Capture stunning visuals of luxury properties and create compelling marketing content.",
       requirements: [
         "Professional photography portfolio",
         "Drone operation license",
         "Video editing skills",
-        "Luxury brand experience"
+        "Luxury brand experience",
       ],
-      benefits: ["Equipment allowance", "Creative freedom", "Travel opportunities", "Performance bonuses"]
+      benefits: [
+        "Equipment allowance",
+        "Creative freedom",
+        "Travel opportunities",
+        "Performance bonuses",
+      ],
     },
     {
       id: "3",
@@ -68,14 +88,20 @@ export default function CareersPage() {
       location: "Dubai, UAE",
       type: "Full-time",
       experience: "2+ Years",
-      description: "Help clients find their dream properties and provide expert market guidance.",
+      description:
+        "Help clients find their dream properties and provide expert market guidance.",
       requirements: [
         "Real estate license",
         "Sales experience",
         "Market knowledge",
-        "Client relationship skills"
+        "Client relationship skills",
       ],
-      benefits: ["Commission based", "Car allowance", "Laptop provided", "Career growth"]
+      benefits: [
+        "Commission based",
+        "Car allowance",
+        "Laptop provided",
+        "Career growth",
+      ],
     },
     {
       id: "4",
@@ -84,14 +110,20 @@ export default function CareersPage() {
       location: "Remote",
       type: "Full-time",
       experience: "4+ Years",
-      description: "Design intuitive and beautiful interfaces for our digital real estate platforms.",
+      description:
+        "Design intuitive and beautiful interfaces for our digital real estate platforms.",
       requirements: [
         "Figma/Adobe Creative Suite",
         "User research experience",
         "Prototyping skills",
-        "Mobile-first design"
+        "Mobile-first design",
       ],
-      benefits: ["Remote work", "Design budget", "Conference tickets", "Flexible schedule"]
+      benefits: [
+        "Remote work",
+        "Design budget",
+        "Conference tickets",
+        "Flexible schedule",
+      ],
     },
     {
       id: "5",
@@ -100,14 +132,20 @@ export default function CareersPage() {
       location: "Dubai, UAE",
       type: "Full-time",
       experience: "3+ Years",
-      description: "Drive our digital presence and create impactful marketing campaigns.",
+      description:
+        "Drive our digital presence and create impactful marketing campaigns.",
       requirements: [
         "Social media management",
         "Content strategy",
         "Analytics tools",
-        "SEO/SEM knowledge"
+        "SEO/SEM knowledge",
       ],
-      benefits: ["Campaign budget", "Performance bonuses", "Training programs", "Creative control"]
+      benefits: [
+        "Campaign budget",
+        "Performance bonuses",
+        "Training programs",
+        "Creative control",
+      ],
     },
     {
       id: "6",
@@ -116,45 +154,61 @@ export default function CareersPage() {
       location: "Dubai, UAE",
       type: "Full-time",
       experience: "2+ Years",
-      description: "Ensure smooth operations and support our growing team across departments.",
+      description:
+        "Ensure smooth operations and support our growing team across departments.",
       requirements: [
         "Project management",
         "Communication skills",
         "Problem solving",
-        "Multitasking ability"
+        "Multitasking ability",
       ],
-      benefits: ["Stable hours", "Health insurance", "Team events", "Career development"]
-    }
+      benefits: [
+        "Stable hours",
+        "Health insurance",
+        "Team events",
+        "Career development",
+      ],
+    },
   ];
 
-  const departments = ["All", "Technology", "Creative", "Sales", "Marketing", "Operations"];
+  const departments = [
+    "All",
+    "Technology",
+    "Creative",
+    "Sales",
+    "Marketing",
+    "Operations",
+  ];
 
   const benefits: Benefit[] = [
     {
       icon: <Award className="w-8 h-8" />,
       title: "Career Growth",
-      description: "Clear progression paths and regular promotion opportunities"
+      description:
+        "Clear progression paths and regular promotion opportunities",
     },
     {
       icon: <GraduationCap className="w-8 h-8" />,
       title: "Learning & Development",
-      description: "Annual training budget and professional certification support"
+      description:
+        "Annual training budget and professional certification support",
     },
     {
       icon: <Users className="w-8 h-8" />,
       title: "Great Culture",
-      description: "Collaborative environment with team-building activities"
+      description: "Collaborative environment with team-building activities",
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
       title: "Competitive Packages",
-      description: "Attractive salaries, bonuses, and comprehensive benefits"
-    }
+      description: "Attractive salaries, bonuses, and comprehensive benefits",
+    },
   ];
 
-  const filteredJobs = activeDepartment === "All" 
-    ? jobs 
-    : jobs.filter((job) => job.department === activeDepartment);
+  const filteredJobs =
+    activeDepartment === "All"
+      ? jobs
+      : jobs.filter((job) => job.department === activeDepartment);
 
   return (
     <>
@@ -177,8 +231,9 @@ export default function CareersPage() {
             </span>
           </h1>
           <p className="text-[#3c2f26]/70 text-lg mx-auto max-w-2xl leading-relaxed mb-6">
-            Join our dynamic team and shape the future of real estate in Dubai. 
-            Grow with us while delivering exceptional experiences to our clients.
+            Join our dynamic team and shape the future of real estate in Dubai.
+            Grow with us while delivering exceptional experiences to our
+            clients.
           </p>
           <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-md border border-[#8b5d3b]/20 rounded-full px-6 py-3 mb-6 shadow-sm">
             <span className="w-2 h-2 bg-[#8b5d3b] rounded-full"></span>
@@ -284,7 +339,9 @@ export default function CareersPage() {
                   </p>
 
                   <div className="mb-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">Key Requirements:</h4>
+                    <h4 className="font-semibold text-gray-900 mb-2">
+                      Key Requirements:
+                    </h4>
                     <ul className="text-sm text-gray-600 space-y-1">
                       {job.requirements.slice(0, 3).map((req, idx) => (
                         <li key={idx} className="flex items-center gap-2">
@@ -320,8 +377,9 @@ export default function CareersPage() {
                 No Open Positions
               </h3>
               <p className="text-gray-600 max-w-md mx-auto">
-                There are currently no open positions in the {activeDepartment} department. 
-                Please check back later or explore other departments.
+                There are currently no open positions in the {activeDepartment}{" "}
+                department. Please check back later or explore other
+                departments.
               </p>
             </div>
           )}
@@ -336,23 +394,29 @@ export default function CareersPage() {
               Our Culture & Values
             </h2>
             <div className="w-16 h-1 bg-[#8b5d3b] rounded-full mx-auto mb-8"></div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
               {[
                 {
                   title: "Innovation First",
-                  description: "We embrace new ideas and technologies to stay ahead in the real estate industry."
+                  description:
+                    "We embrace new ideas and technologies to stay ahead in the real estate industry.",
                 },
                 {
                   title: "Collaborative Spirit",
-                  description: "Teamwork and open communication are at the heart of everything we do."
+                  description:
+                    "Teamwork and open communication are at the heart of everything we do.",
                 },
                 {
                   title: "Client Focused",
-                  description: "Our success is measured by the satisfaction and success of our clients."
-                }
+                  description:
+                    "Our success is measured by the satisfaction and success of our clients.",
+                },
               ].map((value, index) => (
-                <div key={index} className="bg-white/60 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300">
+                <div
+                  key={index}
+                  className="bg-white/60 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300"
+                >
                   <h3 className="text-lg font-semibold text-[#3c2f26] mb-3">
                     {value.title}
                   </h3>
@@ -374,7 +438,8 @@ export default function CareersPage() {
           </h2>
           <div className="w-16 h-1 bg-[#8b5d3b] rounded-full mx-auto mb-6"></div>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-            Can't find the perfect role? Send us your resume and we'll keep you in mind for future opportunities.
+            Can&apos;t find the perfect role? Send us your resume and we&apos;ll
+            keep you in mind for future opportunities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-[#8b5d3b] text-white px-8 py-3 rounded-full font-medium hover:bg-[#7a4f32] hover:shadow-[0_0_15px_rgba(139,93,59,0.4)] transition-all duration-300 transform hover:-translate-y-1 shadow-lg">

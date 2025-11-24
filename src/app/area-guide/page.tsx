@@ -5,8 +5,6 @@ import Header from "../includes/header";
 import Link from "next/link";
 import RegisterCtaSection from "../Components/RegisterCtaSection";
 import SocialLinksSection from "../Components/SocialLinksSection";
-import NewsSection from "../Components/NewsSection";
-import OffPlanProjects from "../Components/OffPlanProjects";
 import { getAllAreas } from "@/lib/area";
 import LuxuryLoader from "../Components/LuxuryLoader";
 import Image from "next/image";
@@ -28,6 +26,14 @@ type PaginationInfo = {
   to: number;
 };
 
+type ApiArea = {
+  id: number;
+  title: string;
+  slug: string;
+  image: string;
+  price: string;
+};
+
 export default function AreaGuidePage() {
   const [areas, setAreas] = useState<Area[]>([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +46,7 @@ export default function AreaGuidePage() {
       setLoading(true);
       const data = await getAllAreas(page);
       if (data.areas && data.areas.data) {
-        const transformedAreas = data.areas.data.map((area: any) => ({
+        const transformedAreas = data.areas.data.map((area: ApiArea) => ({
           id: area.id,
           title: area.title,
           slug: area.slug,
@@ -213,6 +219,7 @@ export default function AreaGuidePage() {
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 rounded-md"
                           draggable={false}
                           fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                           onError={(e) => {
                             e.currentTarget.src =
                               "https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1200";

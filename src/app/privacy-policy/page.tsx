@@ -81,7 +81,9 @@ export default function PrivacyPolicy() {
           Collecting and Using Your Personal Data
         </h2>
 
-        <h3 className="text-xl font-medium mt-6 mb-2">Types of Data Collected</h3>
+        <h3 className="text-xl font-medium mt-6 mb-2">
+          Types of Data Collected
+        </h3>
 
         <h4 className="text-lg font-medium mt-4 mb-2">Personal Data</h4>
         <p className="mb-3">
@@ -123,9 +125,7 @@ export default function PrivacyPolicy() {
           <li>To provide, maintain, and improve our Service</li>
           <li>To manage your account and user access</li>
           <li>To contact you regarding updates or inquiries</li>
-          <li>
-            To send promotional content (unless you opt out)
-          </li>
+          <li>To send promotional content (unless you opt out)</li>
           <li>To analyze usage trends and improve user experience</li>
           <li>To manage inquiries and support requests</li>
           <li>For business transfers such as mergers or acquisitions</li>
@@ -203,7 +203,7 @@ export default function PrivacyPolicy() {
         {/* ------------------------------------------ */}
 
         <h2 className="text-2xl font-semibold mt-8 mb-3">
-          Children's Privacy
+          Children&apos;s Privacy
         </h2>
 
         <p className="mb-4">
@@ -243,10 +243,14 @@ export default function PrivacyPolicy() {
 
         <h2 className="text-2xl font-semibold mt-8 mb-3">Contact Us</h2>
 
-        <p className="mb-4">If you have any questions, you can contact us at:</p>
+        <p className="mb-4">
+          If you have any questions, you can contact us at:
+        </p>
 
         <ul className="list-disc list-inside space-y-1">
-          <li>Email: <strong>evernestre@gmail.com</strong></li>
+          <li>
+            Email: <strong>evernestre@gmail.com</strong>
+          </li>
           <li>
             Office: Evernest Real Estate, Al Zarouni Business Center, Office
             #301, Al Barsha 1, Dubai, UAE

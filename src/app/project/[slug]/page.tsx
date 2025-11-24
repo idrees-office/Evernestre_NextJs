@@ -1,5 +1,6 @@
 interface ProjectDetailParams {
   params: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     slug: any;
   };
 }

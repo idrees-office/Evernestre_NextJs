@@ -1,13 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Phone,
   Mail,
   MapPin,
-  Shield,
   ArrowRight,
   Facebook,
   Twitter,
@@ -16,7 +15,11 @@ import {
 } from "lucide-react";
 
 export default function RefinedFooter() {
-  const year = new Date().getFullYear();
+  const [year, setYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
 
   const quick = [
     { label: "Careers", href: "/careers" },
@@ -77,14 +80,13 @@ export default function RefinedFooter() {
 
       <div className="relative z-10">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-12 sm:grid-cols-2 lg:grid-cols-5">
-
           <div className="lg:col-span-2">
             <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
               <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
               Evernest Real Estate
             </h3>
             <p className="text-sm leading-relaxed text-[#3c2f26]/90">
-              Discover Dubai’s most prestigious developments—handpicked for
+              Discover Dubai&apos;s most prestigious developments—handpicked for
               luxury, innovation, and world-class design. Your key to
               exceptional real estate begins here.
             </p>
@@ -94,7 +96,8 @@ export default function RefinedFooter() {
                 <motion.a
                   key={label}
                   href={href}
-                   target="_blank"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   whileHover={{ scale: 1.08 }}
                   className="flex h-9 w-9 items-center justify-center rounded-full text-white shadow-md transition-all duration-300 hover:brightness-110"
@@ -118,7 +121,7 @@ export default function RefinedFooter() {
               {quick.map((q) => (
                 <li key={q.label} className="group">
                   <Link
-                    href={q.href} target="_blank"
+                    href={q.href}
                     className="inline-flex items-center text-[#3c2f26]/90 transition-colors hover:text-[#8b5d3b]"
                   >
                     <ArrowRight className="mr-2 h-[14px] w-[14px] text-[#b06c48] transition-transform group-hover:translate-x-0.5" />
@@ -199,27 +202,23 @@ export default function RefinedFooter() {
       <div className="relative z-10 bg-[#123456]">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 md:flex-row">
           <p className="text-center text-sm text-white/90">
-            © {year} Evernest Real Estate. All rights reserved.
+            © {year || "2024"} Evernest Real Estate. All rights reserved.
           </p>
           <div className="flex gap-5 text-sm">
-
-            <Link key="privacy-policy" href={`privacy-policy`}
-                className="text-white/80 transition-colors hover:text-white"
-              >
-                Privacy Policy
-              </Link>
-              <Link key="term-condition" href={`term-condition`} className="text-white/80 transition-colors hover:text-white">
-                Term Condition
-              </Link>
-
-            {/* {["Privacy", "Terms", "Cookies"].map((t) => (
-              <Link key={t} href={`/${t.toLowerCase()}`}
-                className="text-white/80 transition-colors hover:text-white"
-              >
-                {t}
-              </Link>
-            ))} */}
-
+            <Link
+              key="privacy-policy"
+              href={`privacy-policy`}
+              className="text-white/80 transition-colors hover:text-white"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              key="term-condition"
+              href={`term-condition`}
+              className="text-white/80 transition-colors hover:text-white"
+            >
+              Term Condition
+            </Link>
           </div>
         </div>
       </div>

@@ -250,8 +250,9 @@ export default function NewsContactPage() {
                           <Image
                             src={featuredNews.image}
                             alt={featuredNews.title}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                            sizes="(max-width: 1280px) 100vw, 50vw"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               target.src = "/assets/img/property/project1.jpg";
@@ -262,12 +263,18 @@ export default function NewsContactPage() {
                           <div className="absolute top-5 left-5 z-20">
                             <div className="bg-[#8b5d3b] text-white rounded-md shadow-md text-center text-xs leading-tight px-2 py-2">
                               <div className="font-semibold">
-                                {new Date(featuredNews.date).getDate().toString().padStart(2, "0")}
+                                {new Date(featuredNews.date)
+                                  .getDate()
+                                  .toString()
+                                  .padStart(2, "0")}
                               </div>
                               <div className="uppercase text-[10px] tracking-wide">
-                                {new Date(featuredNews.date).toLocaleString("en-US", {
-                                  month: "short",
-                                })}
+                                {new Date(featuredNews.date).toLocaleString(
+                                  "en-US",
+                                  {
+                                    month: "short",
+                                  }
+                                )}
                               </div>
                             </div>
                           </div>
@@ -340,10 +347,13 @@ export default function NewsContactPage() {
                             <Image
                               src={newsItem.image}
                               alt={newsItem.title}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              fill
+                              className="object-cover transition-transform duration-500 group-hover:scale-110"
+                              sizes="(max-width: 768px) 100vw, 50vw"
                               onError={(e) => {
                                 const target = e.target as HTMLImageElement;
-                                target.src = "/assets/img/property/project1.jpg";
+                                target.src =
+                                  "/assets/img/property/project1.jpg";
                               }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -509,7 +519,6 @@ export default function NewsContactPage() {
                 </div>
               </div>
 
-            
               <div className="bg-[#f7f8ff] rounded-md border border-[#f1e6da] px-4 py-4">
                 <h3 className="text-[15px] font-medium text-[#8b5d3b] border-l-2 border-[#c17a44] pl-3 mb-3">
                   Popular Tags
@@ -530,35 +539,69 @@ export default function NewsContactPage() {
                 <h3 className="text-[15px] font-medium text-gray-900 border-l-2 border-[#c17a44] pl-3 mb-3">
                   Speak With a Property Advisor
                 </h3>
-                <form onSubmit={handleSubmit} className="space-y-2.5 text-[13px]">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-2.5 text-[13px]"
+                >
                   <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
                     <User className="w-4 h-4 text-gray-400" />
-                    <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Full Name" className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Full Name"
+                      className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
                     />
                   </div>
 
                   <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
                     <Mail className="w-4 h-4 text-gray-400" />
-                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email" className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="Email"
+                      className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
                     />
                   </div>
                   <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
                     <Phone className="w-4 h-4 text-gray-400" />
-                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone (WhatsApp preferred)" className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="Phone (WhatsApp preferred)"
+                      className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
                     />
                   </div>
                   <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
                     <MapPin className="w-4 h-4 text-gray-400" />
-                    <select name="interest" value={formData.interest} onChange={handleInputChange} className="w-full bg-transparent text-gray-800 focus:outline-none">
+                    <select
+                      name="interest"
+                      value={formData.interest}
+                      onChange={handleInputChange}
+                      className="w-full bg-transparent text-gray-800 focus:outline-none"
+                    >
                       <option value="general">General Inquiry</option>
                       <option value="buying">Buying in Dubai</option>
                       <option value="selling">Selling Property</option>
                       <option value="offplan">Off-Plan Projects</option>
                     </select>
                   </div>
-                  <textarea name="message" value={formData.message} onChange={handleInputChange} rows={3} placeholder="Tell us what you're looking for..." className="w-full border border-gray-200 rounded-sm px-3 py-1.5 bg-white text-gray-800 placeholder-gray-400 focus:outline-none resize-none"
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows={3}
+                    placeholder="Tell us what you're looking for..."
+                    className="w-full border border-gray-200 rounded-sm px-3 py-1.5 bg-white text-gray-800 placeholder-gray-400 focus:outline-none resize-none"
                   />
-                  <button type="submit" className="w-full flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-[#8b5d3b] to-[#d4a373] text-white text-[13px] font-medium py-2 mt-1 hover:brightness-110 transition-all"
+                  <button
+                    type="submit"
+                    className="w-full flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-[#8b5d3b] to-[#d4a373] text-white text-[13px] font-medium py-2 mt-1 hover:brightness-110 transition-all"
                   >
                     Request Call Back
                     <ArrowRight className="w-3 h-3" />

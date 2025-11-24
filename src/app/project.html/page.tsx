@@ -30,6 +30,7 @@ function cleanBedrooms(html: string | null) {
 
 export default function AllProjectsPage() {
   const [projects, setProjects] = useState([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [meta, setMeta] = useState<any>(null);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -46,7 +47,6 @@ export default function AllProjectsPage() {
           last: res.projects.last_page,
         });
       } else if (res.data) {
-        // If it's Laravel pagination format
         setProjects(res.data);
         setMeta({
           current: res.current_page,
@@ -85,13 +85,14 @@ export default function AllProjectsPage() {
             </h1>
             <p className="text-[#1a1a1a]/80 leading-relaxed text-[17px] font-light">
               Evernest Real Estate curates a hand-picked portfolio of premium
-              off-plan residences across Dubai's most coveted districts. From
-              launch-day allocations to blue-chip investments, we connect
+              off-plan residences across Dubai&apos;s most coveted districts.
+              From launch-day allocations to blue-chip investments, we connect
               discerning buyers and home seekers with exclusive opportunities.
               Our advisors provide end-to-end guidance pricing insights, payment
               plans, and developer due diligence—so every transaction feels
-              seamless. Explore one of the UAE's largest selections of off-plan
-              projects and find a home that matches your lifestyle and returns.
+              seamless. Explore one of the UAE&apos;s largest selections of
+              off-plan projects and find a home that matches your lifestyle and
+              returns.
             </p>
             <ul className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[14px] text-[#0e0e0e]/80">
               <li className="flex items-center gap-2 rounded-xl border border-black/10 bg-white/60 backdrop-blur px-3 py-2 shadow-sm">
@@ -197,6 +198,7 @@ export default function AllProjectsPage() {
               </div>
             )}
             {!loading &&
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               projects.map((p: any) => (
                 <Link
                   key={p.slug}

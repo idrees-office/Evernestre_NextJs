@@ -1,38 +1,56 @@
 import type { NextConfig } from "next";
 
-// const nextConfig: NextConfig = {
-//   /* config options here */
-// };
-
-// export default nextConfig;
-
-
 const nextConfig = {
   images: {
-    domains: ['test_backend.leadshub.ae', 'i.pravatar.cc', 'evernest.ae'],
-    // or using remotePatterns for more control (recommended in newer Next.js versions)
+    domains: [
+      "test_backend.leadshub.ae",
+      "i.pravatar.cc",
+      "evernest.ae",
+      "127.0.0.1",
+      "localhost",
+      "images.pexels.com",
+    ],
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'test_backend.leadshub.ae',
-        port: '',
-        pathname: '/media/**',
+        protocol: "https",
+        hostname: "test_backend.leadshub.ae",
+        port: "",
+        pathname: "/media/**",
       },
       {
-        protocol: 'https',
-        hostname: 'i.pravatar.cc',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "i.pravatar.cc",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "i.evernest.ae",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+        port: "",
+        pathname: "/**",
       },
 
+      // Add these for localhost
       {
-        protocol: 'https',
-        hostname: 'i.evernest.ae',
-        port: '',
-        pathname: '/**',
+        protocol: "http",
+        hostname: "127.0.0.1",
+        port: "8000",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "8000",
+        pathname: "/**",
       },
     ],
   },
-}
+};
 
-module.exports = nextConfig
+export default nextConfig;

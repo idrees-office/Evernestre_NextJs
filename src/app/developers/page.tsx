@@ -10,7 +10,6 @@ import SocialLinksSection from "../Components/SocialLinksSection";
 import RegisterCtaSection from "../Components/RegisterCtaSection";
 import Image from "next/image";
 
-
 type DEVELOPER = {
   id: number;
   name: string;
@@ -103,9 +102,9 @@ export default function DeveloperPage() {
 
           {/* Developers List */}
           {loading ? (
-            <LuxuryLoader/>
-            // <p className="text-center text-[#8b5d3b]">Loading developers...</p>
+            <LuxuryLoader />
           ) : (
+            // <p className="text-center text-[#8b5d3b]">Loading developers...</p>
             <>
               <motion.div
                 key={`page-${page}`} // Force re-render on page change
@@ -130,12 +129,17 @@ export default function DeveloperPage() {
                     className="bg-white border border-[#f0e4d9] rounded-xl p-5 shadow-sm cursor-pointer hover:shadow-md transition-all"
                   >
                     <Link href={`/developer-guide/${developer.slug}`}>
-                      <div className="h-[150px] flex items-center justify-center bg-[#fffaf5]">
+                      <div className="h-[150px] flex items-center justify-center bg-[#fffaf5] relative">
                         <Image
                           src={developer.image}
                           alt={developer.name}
-                          className="h-full object-contain p-4"
-                          unoptimized
+                          fill
+                          className="object-contain p-4"
+                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                          onError={(e) => {
+                            e.currentTarget.src =
+                              "https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1200";
+                          }}
                         />
                       </div>
 

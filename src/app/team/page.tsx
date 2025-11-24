@@ -217,7 +217,8 @@ export default function TeamPage() {
                 className="group relative bg-white rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-[#8b5d3b]/20"
               >
                 <div className="relative h-72 overflow-hidden">
-                  <Image src={member.image}
+                  <Image
+                    src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -326,7 +327,7 @@ export default function TeamPage() {
           <div className="w-16 h-1 bg-[#8b5d3b] rounded-full mx-auto mb-6"></div>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
             Let our expert team guide you through your real estate journey in
-            Dubai. We're here to make your property dreams a reality.
+            Dubai. We&apos;re here to make your property dreams a reality.
           </p>
           <button className="bg-[#8b5d3b] text-white px-8 py-3 rounded-full font-medium hover:bg-[#7a4f32] hover:shadow-[0_0_15px_rgba(139,93,59,0.4)] transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
             Connect With Our Team
