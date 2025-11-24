@@ -102,6 +102,7 @@ export default function NewsContactPage() {
     setLoading(true);
     try {
       const data: ApiResponse = await getAllBlogs(page);
+      
       if (data.blogs) {
         setBlogs(data.blogs.data);
         setCurrentPage(data.blogs.current_page);

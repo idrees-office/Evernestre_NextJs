@@ -4,19 +4,16 @@ import Header from "../includes/header";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { getDevelopers } from "@/lib/developer";
-import Pagination from "../Components/Pagination";
-
-type PROJECT = {
-  name: string;
-  slug: string;
-  image: string;
-};
+import { ArrowRight } from "lucide-react";
+import LuxuryLoader from "../Components/LuxuryLoader";
+import SocialLinksSection from "../Components/SocialLinksSection";
+import RegisterCtaSection from "../Components/RegisterCtaSection";
 
 type DEVELOPER = {
+  id: number;
   name: string;
   slug: string;
   image: string;
-  projects?: PROJECT[];
 };
 
 export default function DeveloperPage() {
@@ -32,13 +29,14 @@ export default function DeveloperPage() {
   useEffect(() => {
     const fetchDevelopers = async () => {
       try {
+        setLoading(true);
         const data = await getDevelopers(page);
-        
-        setDevelopers(data.developer.data || []);
+
+        setDevelopers(data.developers.data || []);
 
         setMeta({
-          current: data.developer.meta.current,
-          last: data.developer.meta.last,
+          current: data.developers.current_page,
+          last: data.developers.last_page,
         });
       } catch (error) {
         console.error("Failed to fetch developers:", error);
@@ -53,6 +51,12 @@ export default function DeveloperPage() {
   const filteredDevelopers = developers.filter((dev) =>
     dev.name.toLowerCase().includes(query.toLowerCase())
   );
+
+  // Handle page change with scroll to top
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -97,10 +101,12 @@ export default function DeveloperPage() {
 
           {/* Developers List */}
           {loading ? (
-            <p className="text-center text-[#8b5d3b]">Loading developers...</p>
+            <LuxuryLoader/>
+            // <p className="text-center text-[#8b5d3b]">Loading developers...</p>
           ) : (
             <>
               <motion.div
+                key={`page-${page}`} // Force re-render on page change
                 initial="hidden"
                 animate="show"
                 variants={{
@@ -110,18 +116,17 @@ export default function DeveloperPage() {
                     transition: { staggerChildren: 0.1 },
                   },
                 }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
               >
                 {filteredDevelopers.map((developer) => (
                   <motion.div
-                    key={developer.slug}
+                    key={`${developer.id}-${page}`} // Unique key with page
                     variants={{
                       hidden: { opacity: 0, y: 40 },
                       show: { opacity: 1, y: 0 },
                     }}
-                    className="bg-white border border-[#f0e4d9] rounded-xl p-5 shadow-sm"
+                    className="bg-white border border-[#f0e4d9] rounded-xl p-5 shadow-sm cursor-pointer hover:shadow-md transition-all"
                   >
-                    {/* Developer Image + Name */}
                     <Link href={`/developer-guide/${developer.slug}`}>
                       <div className="h-[150px] flex items-center justify-center bg-[#fffaf5]">
                         <img
@@ -135,53 +140,76 @@ export default function DeveloperPage() {
                         {developer.name}
                       </p>
                     </Link>
-
-                    {/* Projects */}
-                    {developer.projects && developer.projects.length > 0 && (
-                      <div className="mt-4">
-                        <h3 className="text-sm font-medium text-[#8b5d3b] mb-2">
-                          Projects
-                        </h3>
-
-                        <div className="grid grid-cols-2 gap-3">
-                          {developer.projects.map((project) => (
-                            <Link
-                              key={project.slug}
-                              href={`/projects/${project.slug}`}
-                              className="block border rounded-lg overflow-hidden hover:shadow"
-                            >
-                              <img
-                                src={project.image}
-                                alt={project.name}
-                                className="h-[80px] w-full object-cover"
-                              />
-                              <p className="text-xs p-2 text-center font-semibold text-[#3c2f26]">
-                                {project.name}
-                              </p>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    )}
                   </motion.div>
                 ))}
               </motion.div>
 
-              {/* Pagination (BELOW GRID) */}
-              {meta && (
-                <Pagination
-                  current={meta.current}
-                  last={meta.last}
-                  onChange={(newPage) => {
-                    setPage(newPage);
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                />
+              {/* Pagination */}
+              {meta && meta.last > 1 && (
+                <div className="flex justify-center items-center gap-4 mt-10">
+                  {/* Prev */}
+                  <button
+                    onClick={() => handlePageChange(meta.current - 1)}
+                    disabled={meta.current === 1}
+                    className={`px-2 py-2 rounded-full border transition-all duration-300 flex items-center gap-2 text-sm ${
+                      meta.current === 1
+                        ? "border-gray-200 text-gray-400 bg-gray-50 cursor-not-allowed"
+                        : "border-[#8b5d3b] text-[#8b5d3b] hover:bg-[#8b5d3b] hover:text-white hover:shadow-md"
+                    }`}
+                  >
+                    <ArrowRight className="w-4 h-4 rotate-180" />
+                  </button>
+
+                  {/* Page Numbers */}
+                  <div className="flex gap-2">
+                    {Array.from({ length: Math.min(5, meta.last) }, (_, i) => {
+                      let pageNum;
+                      if (meta.last <= 5) {
+                        pageNum = i + 1;
+                      } else if (meta.current <= 3) {
+                        pageNum = i + 1;
+                      } else if (meta.current >= meta.last - 2) {
+                        pageNum = meta.last - 4 + i;
+                      } else {
+                        pageNum = meta.current - 2 + i;
+                      }
+
+                      return (
+                        <button
+                          key={pageNum}
+                          onClick={() => handlePageChange(pageNum)}
+                          className={`w-8 h-8 rounded-full border transition-all duration-300 text-sm cursor-pointer ${
+                            meta.current === pageNum
+                              ? "bg-[#8b5d3b] text-white border-[#8b5d3b] shadow-md scale-105 cursor-pointer"
+                              : "border-gray-200 text-gray-600 hover:border-[#8b5d3b] hover:text-[#8b5d3b] bg-white hover:shadow-sm cursor-pointer"
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Next */}
+                  <button
+                    onClick={() => handlePageChange(meta.current + 1)}
+                    disabled={meta.current === meta.last}
+                    className={`px-2 py-2 rounded-full border transition-all duration-300 flex items-center gap-2 text-sm cursor-pointer ${
+                      meta.current === meta.last
+                        ? "border-gray-200 text-gray-400 bg-gray-50 cursor-not-allowed cursor-pointer"
+                        : "border-[#8b5d3b] text-[#8b5d3b] hover:bg-[#8b5d3b] hover:text-white hover:shadow-md cursor-pointer"
+                    }`}
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
               )}
             </>
           )}
         </div>
       </section>
+      <SocialLinksSection />
+      <RegisterCtaSection />
     </>
   );
 }

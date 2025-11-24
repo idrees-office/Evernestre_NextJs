@@ -6,11 +6,11 @@ export async function getAllBlogs(page: number = 1) {
       cache: "no-store",
     });
 
-    if (!res.ok) throw new Error("Failed to fetch areas");
+    if (!res.ok) throw new Error("Failed to fetch blogs");
 
     return res.json();
   } catch (error) {
     console.error("getAllAreas error:", error);
-    return { areas: [], error: true };
+    return { blogs: [], error: true };
   }
 }

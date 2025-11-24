@@ -14,6 +14,7 @@ export default function RegisterCtaSection() {
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState<string>();
   const [loading, setLoading] = useState(false);
+
   const [errors, setErrors] = useState<{
     first?: string;
     last?: string;
@@ -21,7 +22,6 @@ export default function RegisterCtaSection() {
     ok?: string;
   }>({});
 
-  // Check if all fields are valid and filled
   const isFormValid = useMemo(() => {
     return (
       firstName.trim() !== "" &&
@@ -39,14 +39,10 @@ export default function RegisterCtaSection() {
 
  async function handleSubmit(e: React.FormEvent) {
   e.preventDefault();
-  
   if (!isFormValid) return;
-
   const nextErrors: typeof errors = {};
-  
   if (!firstName.trim()) nextErrors.first = "Please enter your first name.";
   if (!lastName.trim()) nextErrors.last = "Please enter your last name.";
-  
   if (!phone) {
     nextErrors.phone = "Please enter your phone number.";
   } else if (!validatePhoneNumber(phone)) {
@@ -66,8 +62,7 @@ export default function RegisterCtaSection() {
       source: "website_registration",
       timestamp: new Date().toISOString(),
     };
-
-    // ✅ Use BASE_URL here
+    
     const response = await fetch(`${BASE_URL}/get_website_lead`, {
       method: 'POST',
       headers: {
@@ -75,6 +70,7 @@ export default function RegisterCtaSection() {
         'Accept': 'application/json',
       },
       body: JSON.stringify(formData),
+      
     });
 
     const result = await response.json();
@@ -248,10 +244,10 @@ export default function RegisterCtaSection() {
                 transition={{ type: "spring", stiffness: 200 }}
                 type="submit"
                 disabled={!isFormValid || loading}
-                className={`relative overflow-hidden bg-gradient-to-r from-[#c97a52] via-[#b06c48] to-[#8b5d3b] inline-flex h-12 w-full items-center justify-center rounded-sm text-[15px] text-white transition-all duration-200 ${
+                className={`relative overflow-hidden bg-gradient-to-r from-[#c97a52] via-[#b06c48] to-[#8b5d3b] inline-flex h-12 w-full items-center justify-center rounded-sm text-[15px] text-white transition-all duration-200 cursor-pointer ${
                   !isFormValid || loading 
-                    ? 'opacity-50 cursor-not-allowed' 
-                    : 'hover:shadow-lg'
+                    ? 'opacity-50 cursor-not-allowed cursor-pointer' 
+                    : 'hover:shadow-lg cursor-pointer'
                 }`}
               >
                 {loading ? (
