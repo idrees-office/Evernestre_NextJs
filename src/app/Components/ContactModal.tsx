@@ -3,6 +3,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Phone, Mail, MapPin } from "lucide-react";
+import Image from "next/image";
 
 interface Props {
   isOpen: boolean;
@@ -39,7 +40,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
             <div className="grid grid-cols-1 lg:grid-cols-3">
               {/* Left Side Image */}
               <div className="lg:col-span-1 relative">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1740&q=80"
                   alt="Dubai Downtown"
                   className="w-full h-48 lg:h-full object-cover"

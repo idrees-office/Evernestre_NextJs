@@ -11,8 +11,8 @@ export const ROUTES = {
   Privacy: "/privacy-policy",
   TermCondition: "/term-condition",
 
-  Projects: "/projects",
-  "All Projects": "/projects",
+  Projects: "/project.html",
+  "All Projects": "/project.html",
 
   "Main Home": "/",
   "Modern Home": "/modern",

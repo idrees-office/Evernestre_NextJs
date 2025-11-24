@@ -7,6 +7,7 @@ import { Bath, BedDouble, Heart, Home, MessageCircle, Phone, Ruler, Share2, Chev
 import LuxuryLoader from "../Components/LuxuryLoader";
 import SocialLinksSection from "../Components/SocialLinksSection";
 import RegisterCtaSection from "../Components/RegisterCtaSection";
+import Image from "next/image";
 
 function cleanBedrooms(html: string | null) {
   if (!html) return "";
@@ -103,7 +104,7 @@ export default function AllProjectsPage() {
             </ul>
           </div>
           <div className="relative w-full h-[350px] md:h-[420px] rounded-2xl overflow-hidden shadow-xl shadow-black/10 ring-1 ring-black/10 group">
-            <img src="https://test_backend.leadshub.ae/media/1476/mi-66d375deb3454-d884dae45381eb5d352e1d17f4b1c82a.webp"
+            <Image src="https://test_backend.leadshub.ae/media/1476/mi-66d375deb3454-d884dae45381eb5d352e1d17f4b1c82a.webp"
             alt="Off-Plan Projects in Dubai" className="object-cover w-full h-full transform transition-transform duration-500 group-hover:scale-[1.03]" loading="eager" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/60" />
             <div className="pointer-events-none absolute inset-0 [background:radial-gradient(120%_80%_at_80%_20%,transparent,rgba(0,0,0,.25))]" />
@@ -149,7 +150,7 @@ export default function AllProjectsPage() {
                 className="group block overflow-hidden rounded-lg border border-[#d0845b]/20 bg-white shadow-md hover:shadow-lg transition-transform hover:-translate-y-1 cursor-pointer"
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <Image
                     src={p.banner}
                     alt={p.title}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

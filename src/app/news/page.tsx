@@ -18,6 +18,7 @@ import SocialLinksSection from "../Components/SocialLinksSection";
 import RegisterCtaSection from "../Components/RegisterCtaSection";
 import { getAllNews } from "@/lib/news";
 import LuxuryLoader from "@/app/Components/LuxuryLoader";
+import Image from "next/image";
 
 type NewsItem = {
   id: string;
@@ -246,7 +247,7 @@ export default function NewsContactPage() {
                     <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-500">
                       <div className="grid grid-cols-1 xl:grid-cols-2">
                         <div className="h-80 xl:h-96 relative overflow-hidden">
-                          <img
+                          <Image
                             src={featuredNews.image}
                             alt={featuredNews.title}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -336,7 +337,7 @@ export default function NewsContactPage() {
                           className="bg-white rounded-sm overflow-hidden shadow-md border border-gray-100 group cursor-pointer hover:shadow-xl transition-all duration-500 hover:-translate-y-1.5"
                         >
                           <div className="h-52 relative overflow-hidden">
-                            <img
+                            <Image
                               src={newsItem.image}
                               alt={newsItem.title}
                               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

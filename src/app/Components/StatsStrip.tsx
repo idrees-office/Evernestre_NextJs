@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import Image from "next/image";
+
 
 type Stat = {
   value: number;
@@ -73,7 +75,7 @@ export default function StatsStrip() {
 
   return (
     <section className="relative">
-      <img
+      <Image
         src={BACKGROUND_IMG}
         alt=""
         aria-hidden

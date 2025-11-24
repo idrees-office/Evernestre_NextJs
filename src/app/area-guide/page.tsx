@@ -9,6 +9,7 @@ import NewsSection from "../Components/NewsSection";
 import OffPlanProjects from "../Components/OffPlanProjects";
 import { getAllAreas } from "@/lib/area";
 import LuxuryLoader from "../Components/LuxuryLoader";
+import Image from "next/image";
 
 type Area = {
   id: number;
@@ -181,7 +182,7 @@ export default function AreaGuidePage() {
                     <div className="relative rounded-lg bg-white shadow-sm hover:shadow-xl transition-all duration-500 ease-out hover:-translate-y-1 border border-gray-100/80 w-full">
                       
                       <div className="relative h-48 sm:h-56 md:h-60 w-full rounded-md">
-                        <img
+                        <Image
                           src={area.image}
                           alt={area.title}
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 rounded-md"

@@ -12,6 +12,8 @@ import {
   Ruler,
   Share2,
 } from "lucide-react";
+import Image from "next/image";
+
 
 type OffPlanProjectsProps = {
   projects: any[]; 
@@ -104,7 +106,7 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
           {CITIES.map((city) => (
             <Link key={city.slug} href={`/off-plan-projects/${city.slug}`} className="group block">
               <div className="relative overflow-hidden rounded-sm bg-[#eae7e4] shadow-md ring-1 ring-black/5">
-                <img
+                <Image
                   src={city.image}
                   alt={city.name}
                   className="h-[340px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -143,9 +145,9 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
               key={p.slug}
               className="group relative overflow-hidden rounded-lg border border-[#d0845b]/20 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:-translate-y-1"
             >
-              <Link href={`/off-plan-projects/${p.slug}`}>
+              <Link href={`/project/${p.slug}.html`}>
                 <div className="relative h-48 w-full overflow-hidden">
-                  <img
+                  <Image
                     src={p.banner || "https://test_backend.leadshub.ae/media/7044/Untitled-2.webp"}
                     alt={p.title}
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"

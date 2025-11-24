@@ -8,6 +8,8 @@ import { ArrowRight } from "lucide-react";
 import LuxuryLoader from "../Components/LuxuryLoader";
 import SocialLinksSection from "../Components/SocialLinksSection";
 import RegisterCtaSection from "../Components/RegisterCtaSection";
+import Image from "next/image";
+
 
 type DEVELOPER = {
   id: number;
@@ -129,10 +131,11 @@ export default function DeveloperPage() {
                   >
                     <Link href={`/developer-guide/${developer.slug}`}>
                       <div className="h-[150px] flex items-center justify-center bg-[#fffaf5]">
-                        <img
+                        <Image
                           src={developer.image}
                           alt={developer.name}
                           className="h-full object-contain p-4"
+                          unoptimized
                         />
                       </div>
 

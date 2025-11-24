@@ -7,6 +7,7 @@ import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPageUrl } from "../utils/url";
 import ContactModal from "../Components/ContactModal";
+import Image from "next/image";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -83,7 +84,7 @@ export default function Header() {
         <div className="container mx-auto px-6 md:px-12">
           <nav className="flex items-center justify-between h-24">
             <Link href={createPageUrl("Home")} className="flex items-center gap-2 group">
-              <img
+              <Image
                 src="/assets/EN-logo.png"
                 alt="Evernest Logo"
                 className="h-8 object-contain"

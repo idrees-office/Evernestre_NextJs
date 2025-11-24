@@ -6,6 +6,7 @@ import { Mail, MessageCircle } from "lucide-react";
 import Header from "../includes/header";
 import SocialLinksSection from "../Components/SocialLinksSection";
 import RegisterCtaSection from "../Components/RegisterCtaSection";
+import Image from "next/image";
 
 type Member = {
   name: string;
@@ -216,8 +217,7 @@ export default function TeamPage() {
                 className="group relative bg-white rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-[#8b5d3b]/20"
               >
                 <div className="relative h-72 overflow-hidden">
-                  <img
-                    src={member.image}
+                  <Image src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
