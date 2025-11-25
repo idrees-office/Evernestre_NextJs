@@ -17,6 +17,10 @@ const nextConfig = {
         port: "",
         pathname: "/media/**",
       },
+       {
+        protocol: "https",
+        hostname: "backend.evernest.ae",
+      },
       {
         protocol: "https",
         hostname: "i.pravatar.cc",
@@ -36,7 +40,6 @@ const nextConfig = {
         pathname: "/**",
       },
 
-      // Add these for localhost
       {
         protocol: "http",
         hostname: "127.0.0.1",
