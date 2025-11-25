@@ -27,7 +27,6 @@ body{
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
 }
 
-/* Optional: brand selection & scrollbar polish */
 ::selection { background: rgba(208,132,91,.25); color: var(--brand-contrast); }
 
 ::-webkit-scrollbar-thumb{
