@@ -56,7 +56,7 @@ export default function HeroSlider({ hero }: HeroSliderProps) {
 
     const formatted = hero.slice(0, 5).map((p: Property) => ({
       image: p.banner,
-      title: p.title,
+      title: p.title ? p.title.slice(0, 35) : "",
       subtitle:
         cleanBedrooms(p.bedrooms) || p.location_name || "Business Bay, Dubai",
       price: p.starting_price,
@@ -186,7 +186,6 @@ export default function HeroSlider({ hero }: HeroSliderProps) {
           </motion.div>
 
           <div className="relative z-10">
-            {/* Premium Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -239,7 +238,7 @@ export default function HeroSlider({ hero }: HeroSliderProps) {
 
             {/* Title */}
             <motion.h1
-              className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 tracking-tight leading-[0.95]"
+              className="text-3xl md:text-4xl lg:text-5xl font-normal text-white mb-6 tracking-tight leading-[0.95]"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
@@ -247,9 +246,6 @@ export default function HeroSlider({ hero }: HeroSliderProps) {
               {slides[current].title
                 .split(" ")
                 .map((word: string, i: number) => (
-                  // {slides[current].title
-                  // .split(" ")
-                  // .map((word: string, i: number) => (
                   <motion.span
                     key={i}
                     initial={{ opacity: 0, y: 30 }}
@@ -287,8 +283,6 @@ export default function HeroSlider({ hero }: HeroSliderProps) {
                 </span>
               </motion.div>
             </motion.div>
-
-            {/* Price Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
