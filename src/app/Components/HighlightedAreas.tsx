@@ -128,7 +128,7 @@ function AreaCard({
 }) {
   return (
     <Link
-      href={`/areas/${area.slug}`}
+      href={`/area-guide/${area.slug}`}
       className={`group relative overflow-hidden rounded-xl ${className}`}
       onMouseEnter={() => setIsHovered(index)}
       onMouseLeave={() => setIsHovered(null)}
