@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown, Check, Search, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 type DropdownName = | "buyRent" | "status" | "propertyType" | "minArea" | "maxArea" | "minBedroom" | "maxBedroom" | "maxPrice";
 
@@ -22,16 +23,17 @@ export default function PropertySearchBar() {
   );
   const [isMounted, setIsMounted] = useState(false);
   const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const router = useRouter();
 
   const dropdownOptions = {
-    buyRent: ["Buy", "Rent"],
-    status: ["Ready", "Off Plan"],
-    propertyType: ["Apartment", "Villa", "Townhouse", "Penthouse", "Duplex"],
-    minArea: ["50 m²", "100 m²", "150 m²", "200 m²", "300 m²"],
-    maxArea: ["200 m²", "300 m²", "400 m²", "500 m²", "1000 m²"],
-    minBedroom: ["Studio", "1", "2", "3", "4", "5+"],
-    maxBedroom: ["1", "2", "3", "4", "5", "6+"],
-    maxPrice: ["AED 1M", "AED 2M", "AED 5M", "AED 10M", "AED 20M", "AED 50M+"],
+    buyRent      : ["Buy", "Rent"],
+    status       : ["Ready", "Off Plan"],
+    propertyType : ["Apartment", "Villa", "Townhouse", "Penthouse", "Duplex"],
+    minArea      : ["50 m²", "100 m²", "150 m²", "200 m²", "300 m²"],
+    maxArea      : ["200 m²", "300 m²", "400 m²", "500 m²", "1000 m²"],
+    minBedroom   : ["Studio", "1", "2", "3", "4", "5+"],
+    maxBedroom   : ["1", "2", "3", "4", "5", "6+"],
+    maxPrice     : ["AED 1M", "AED 2M", "AED 5M", "AED 10M", "AED 20M", "AED 50M+"],
   } as const;
 
   const [filters, setFilters] = useState<FiltersState>({
@@ -52,7 +54,7 @@ export default function PropertySearchBar() {
 
   useEffect(() => {
     if (!isMounted) return;
-
+    
     const handleClickOutside = (event: MouseEvent) => {
       if (!activeDropdown) return;
       const refEl = dropdownRefs.current[activeDropdown];
@@ -155,6 +157,14 @@ export default function PropertySearchBar() {
     );
   };
 
+  const handleSearch = () => {
+    const query = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) query.append(key, value);
+    });
+    router.push(`/mainsearchbar?${query.toString()}`);
+  };
+
   if (!isMounted) {
     return (
       <div className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 w-[68%] z-[90]">
@@ -195,10 +205,12 @@ export default function PropertySearchBar() {
                   className="w-full pl-14 pr-5 py-2 bg-white/95 border border-white/20 rounded-sm text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 placeholder:font-light tracking-wide"
                 />
               </div>
-
-              <button className="w-full lg:w-auto px-10 py-2 bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white rounded-sm flex items-center justify-center gap-3 font-light tracking-wider font-normal">
-                <Search className="h-5 w-5" />
-                <span>Search Properties</span>
+              <button 
+                onClick={handleSearch}
+                className="cursor-pointer w-full lg:w-auto px-10 py-2 bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white rounded-sm transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl hover:scale-[1.02] group tracking-wider font-normal"
+              >
+                <Search className="h-5 w-5 group-hover:scale-110 transition-transform duration-300 font-normal" />
+                <span className="font-normal">Search Properties</span>
               </button>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
@@ -272,7 +284,10 @@ export default function PropertySearchBar() {
                 className="cursor-pointer w-full pl-14 pr-5 py-2 bg-white/95 backdrop-blur-sm border border-white/20 rounded-sm focus:outline-none focus:border-[#d0845b] focus:bg-white transition-all duration-300 text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 placeholder:font-light tracking-wide"
               />
             </div>
-            <button className="cursor-pointer w-full lg:w-auto px-10 py-2 bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white rounded-sm transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl hover:scale-[1.02] group tracking-wider font-normal">
+            <button 
+              onClick={handleSearch}
+              className="cursor-pointer w-full lg:w-auto px-10 py-2 bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white rounded-sm transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl hover:scale-[1.02] group tracking-wider font-normal"
+            >
               <Search className="h-5 w-5 group-hover:scale-110 transition-transform duration-300 font-normal" />
               <span className="font-normal">Search Properties</span>
             </button>

@@ -9,6 +9,7 @@ const nextConfig = {
       "127.0.0.1",
       "localhost",
       "images.pexels.com",
+      "images.unsplash.com",
     ],
     remotePatterns: [
       {
@@ -21,6 +22,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "backend.evernest.ae",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+
       {
         protocol: "https",
         hostname: "i.pravatar.cc",
