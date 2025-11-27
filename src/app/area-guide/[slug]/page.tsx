@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Header from "../../includes/header";
 import Link from "next/link";
 import RegisterCtaSection from "../../Components/RegisterCtaSection";
@@ -27,18 +27,17 @@ type ApiArea = {
 
 interface ProjectDetailParams {
   params: {
-    slug: any;
+    slug: string;
   };
 }
 
-
-export default function AreaGuidePage({params}: ProjectDetailParams) {
+export default function AreaGuidePage({ params }: ProjectDetailParams) {
   const [areas, setAreas] = useState<Area[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { slug } = params;
 
-  const fetchAreas = async (page: number = 1) => {
+  const fetchAreas = useCallback(async (page: number = 1) => {
     try {
       setLoading(true);
       const data = await getAreaBySlug(slug);
@@ -61,11 +60,11 @@ export default function AreaGuidePage({params}: ProjectDetailParams) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [slug]);
 
   useEffect(() => {
-    fetchAreas(slug);
-  }, []);
+    fetchAreas();
+  }, [fetchAreas]);
 
   if (loading) {
     return (
@@ -131,6 +130,7 @@ export default function AreaGuidePage({params}: ProjectDetailParams) {
       </div>
     );
   }
+
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
       <Header />
@@ -146,58 +146,55 @@ export default function AreaGuidePage({params}: ProjectDetailParams) {
       <section className="relative bg-white py-10 sm:py-12 md:py-16 w-full">
         <div className="absolute inset-0 bg-gradient-to-br from-[#f8f5f0] to-[#f6ecdf] opacity-30"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          
-        <div className="w-full">
-          <div className="flex flex-col md:flex-row-reverse items-center gap-10">
-            
-            {/* TEXT CONTENT */}
-            <div
-              className="w-full md:w-1/2"
-              data-aos="fade-up"
-              data-aos-duration="1200"
-              data-aos-delay="100"
-            >
-              <div className="mb-8">
-                <h2 className="text-3xl md:text-4xl font-semibold text-[#3c2f26] mb-4">
-                  Dubai Area Guide
-                </h2>
+          <div className="w-full">
+            <div className="flex flex-col md:flex-row-reverse items-center gap-10">
+              {/* TEXT CONTENT */}
+              <div
+                className="w-full md:w-1/2"
+                data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="100"
+              >
+                <div className="mb-8">
+                  <h2 className="text-3xl md:text-4xl font-semibold text-[#3c2f26] mb-4">
+                    Dubai Area Guide
+                  </h2>
 
-                <p className="text-[#6f5b4b] leading-relaxed mb-4">
-                  Transmds is the world’s driving worldwide coordinations supplier — we uphold
-                  industry and exchange the worldwide trade of merchandi and exchange the
-                  worldwide trade of merchandi.
-                </p>
+                  <p className="text-[#6f5b4b] leading-relaxed mb-4">
+                    Transmds is the world&apos;s driving worldwide coordinations
+                    provider — we uphold industry and exchange the worldwide
+                    exchange of merchandise and exchange the worldwide exchange
+                    of merchandise.
+                  </p>
 
-                <p className="text-[#6f5b4b] leading-relaxed">
-                  Transmds is the world’s driving worldwide coordinations supplier — we uphold
-                  industry and exchange the worldwide trade of merchandi and exchange the
-                  worldwide trade of merchandi.
-                </p>
+                  <p className="text-[#6f5b4b] leading-relaxed">
+                    Transmds is the world&apos;s driving worldwide coordinations
+                    provider — we uphold industry and exchange the worldwide
+                    exchange of merchandise and exchange the worldwide exchange
+                    of merchandise.
+                  </p>
+                </div>
+              </div>
+
+              {/* IMAGE */}
+              <div
+                className="w-full md:w-1/2"
+                data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="150"
+              >
+                <div className="rounded-lg overflow-hidden shadow-lg">
+                  <Image
+                    src="https://evernest.ae/assets/img/projectspage/offplan_project_dubai_market.jpg"
+                    alt="Dubai Area Guide"
+                    width={800}
+                    height={500}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
               </div>
             </div>
-
-            {/* IMAGE */}
-            <div
-              className="w-full md:w-1/2"
-              data-aos="fade-up"
-              data-aos-duration="1200"
-              data-aos-delay="150"
-            >
-              <div className="rounded-lg overflow-hidden shadow-lg">
-                <Image
-                  src="https://evernest.ae/assets/img/projectspage/offplan_project_dubai_market.jpg"
-                  alt="Dubai Area Guide"
-                  width={800}
-                  height={500}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            </div>
-
           </div>
-        </div>
-
-          
         </div>
       </section>
 

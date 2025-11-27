@@ -60,7 +60,6 @@ export default function AllProjectsPage() {
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
-    // Scroll to top when page changes
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPageUrl } from "../utils/url";
 import ContactModal from "../Components/ContactModal";
@@ -59,11 +58,8 @@ export default function Header() {
     },
   ] as const;
 
-  // Don't render scroll-dependent styles during SSR
   const headerClass = isMounted
-    ? isScrolled
-      ? "bg-white/90 backdrop-blur-2xl border-b border-[color:var(--brand)]/10 shadow-[0_6px_30px_-12px_rgba(0,0,0,0.25)]"
-      : "bg-transparent"
+    ? isScrolled ? "bg-white/90 backdrop-blur-2xl border-b border-[color:var(--brand)]/10 shadow-[0_6px_30px_-12px_rgba(0,0,0,0.25)]" : "bg-transparent"
     : "bg-transparent";
 
   return (
@@ -224,10 +220,7 @@ export default function Header() {
                   </div>
                 ))}
                 <button
-                  onClick={() => {
-                    setIsContactOpen(true);
-                    setIsMobileMenuOpen(false);
-                  }}
+                  onClick={() => { setIsContactOpen(true); setIsMobileMenuOpen(false); }}
                   className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-[color:var(--brand)] to-[#c97a52] text-white rounded-lg font-light tracking-wider"
                 >
                   Contact Us
@@ -237,7 +230,6 @@ export default function Header() {
           )}
         </AnimatePresence>
       </motion.header>
-
       <ContactModal
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
