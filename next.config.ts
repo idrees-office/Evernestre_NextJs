@@ -2,15 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig = {
   images: {
-    domains: [
-      "test_backend.leadshub.ae",
-      "i.pravatar.cc",
-      "evernest.ae",
-      "127.0.0.1",
-      "localhost",
-      "images.pexels.com",
-      "images.unsplash.com",
-    ],
     remotePatterns: [
       {
         protocol: "https",
@@ -18,7 +9,7 @@ const nextConfig = {
         port: "",
         pathname: "/media/**",
       },
-       {
+      {
         protocol: "https",
         hostname: "backend.evernest.ae",
       },
@@ -26,7 +17,6 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
-
       {
         protocol: "https",
         hostname: "i.pravatar.cc",
@@ -45,7 +35,6 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
-
       {
         protocol: "http",
         hostname: "127.0.0.1",
@@ -56,6 +45,13 @@ const nextConfig = {
         protocol: "http",
         hostname: "localhost",
         port: "8000",
+        pathname: "/**",
+      },
+      // Add evernest.ae if you need it
+      {
+        protocol: "https",
+        hostname: "evernest.ae",
+        port: "",
         pathname: "/**",
       },
     ],
