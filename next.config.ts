@@ -47,7 +47,6 @@ const nextConfig = {
         port: "8000",
         pathname: "/**",
       },
-      // Add evernest.ae if you need it
       {
         protocol: "https",
         hostname: "evernest.ae",
