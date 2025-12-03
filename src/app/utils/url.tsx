@@ -26,6 +26,7 @@ export const ROUTES = {
 
   // Developers
   "Top Developers": "/developers/top",
+   "All Developer": "/developers",
   "Boutique Developers": "/developers/boutique",
   International: "/developers/international",
 

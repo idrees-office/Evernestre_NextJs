@@ -23,3 +23,20 @@ export async function getDevelopers(page: number = 1) {
     };
   }
 }
+
+
+
+export async function getDevelopersBySlug(slug: string) {
+  try {
+    const res = await fetch(`${BASE_URL}/developers/${slug}`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) throw new Error("Failed to fetch area by slug");
+
+    return res.json();
+  } catch (error) {
+    console.error("getAreaBySlug error:", error);
+    return { area: null, error: true };
+  }
+}

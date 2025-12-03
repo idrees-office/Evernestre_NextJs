@@ -136,7 +136,7 @@ export default function RegisterCtaSection() {
             developments and exclusive opportunities.
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden bg-white ring-1 ring-[#c97a52]/20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 rounded-sm overflow-hidden bg-white ring-1 ring-[#c97a52]/20">
 
           <motion.div
             initial={{ x: -100, opacity: 0 }}

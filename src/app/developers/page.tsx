@@ -95,12 +95,10 @@ export default function DeveloperPage() {
                 type="submit"
                 className="h-11 w-12 flex items-center justify-center bg-[#c97a52] text-white rounded-r-full"
               >
-                🔍
+                <ArrowRight className="w-5 h-5" />
               </button>
             </motion.form>
           </div>
-
-          {/* Developers List */}
           {loading ? (
             <LuxuryLoader />
           ) : (
@@ -121,14 +119,14 @@ export default function DeveloperPage() {
               >
                 {filteredDevelopers.map((developer) => (
                   <motion.div
-                    key={`${developer.id}-${page}`} // Unique key with page
+                    key={`${developer.id}-${page}`} 
                     variants={{
                       hidden: { opacity: 0, y: 40 },
                       show: { opacity: 1, y: 0 },
                     }}
                     className="bg-white border border-[#f0e4d9] rounded-xl p-5 shadow-sm cursor-pointer hover:shadow-md transition-all"
                   >
-                    <Link href={`/developer-guide/${developer.slug}`}>
+                    <Link href={`/developers/${developer.slug}`}>
                       <div className="h-[150px] flex items-center justify-center bg-[#fffaf5] relative">
                         <Image
                           src={developer.image}
@@ -136,10 +134,6 @@ export default function DeveloperPage() {
                           fill
                           className="object-contain p-4"
                           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 25vw, 20vw"
-                          onError={(e) => {
-                            e.currentTarget.src =
-                              "https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1200";
-                          }}
                         />
                       </div>
 
@@ -150,11 +144,8 @@ export default function DeveloperPage() {
                   </motion.div>
                 ))}
               </motion.div>
-
-              {/* Pagination */}
               {meta && meta.last > 1 && (
                 <div className="flex justify-center items-center gap-4 mt-10">
-                  {/* Prev */}
                   <button
                     onClick={() => handlePageChange(meta.current - 1)}
                     disabled={meta.current === 1}
@@ -167,7 +158,7 @@ export default function DeveloperPage() {
                     <ArrowRight className="w-4 h-4 rotate-180" />
                   </button>
 
-                  {/* Page Numbers */}
+                  
                   <div className="flex gap-2">
                     {Array.from({ length: Math.min(5, meta.last) }, (_, i) => {
                       let pageNum;

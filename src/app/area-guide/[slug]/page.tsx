@@ -8,10 +8,8 @@ import { getAreaBySlug } from "@/lib/area";
 import LuxuryLoader from "@/app/Components/LuxuryLoader";
 
 export default function AreaDetail({ params }: { params: Promise<{ slug: string }> }) {
-
-  // ✅ Correct: unwrap params using use()
+  
   const { slug } = usePromise(params);
-
   const [area1, setArea1] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -22,10 +20,7 @@ export default function AreaDetail({ params }: { params: Promise<{ slug: string 
     const fetchArea = async () => {
       try {
         setLoading(true);
-
         const data = await getAreaBySlug(slug);
-
-        // Adjust this line depending on your API shape
         setArea1(data.area ?? data);
 
       } catch (err) {
@@ -42,14 +37,10 @@ export default function AreaDetail({ params }: { params: Promise<{ slug: string 
   if (loading) return <LuxuryLoader />;
   if (error || !area1) return <div className="p-10 text-center text-red-600">{error}</div>;
 
-  // ✅ Safe short text (now will not crash)
   const mainDesc = area1.main_description || "";
   const shortText =
     mainDesc.length > 611 ? mainDesc.substring(0, 611) + "..." : mainDesc;
 
-  // ---------------------------------------
-  // ACCORDION BUILDER
-  // ---------------------------------------
   const accordionSections = [
     { id: "one", heading: area1.heading_one, content: area1.para_one },
     { id: "two", heading: area1.heading_two, content: area1.para_two },
@@ -79,7 +70,7 @@ export default function AreaDetail({ params }: { params: Promise<{ slug: string 
           <div className="flex flex-col md:flex-row-reverse items-center gap-8 max-w-6xl mx-auto">
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="w-full md:w-1/2">
               <h2 className="text-2xl md:text-3xl font-semibold text-[#3c2f26] mb-4">
-                {area1.title} Area Guide
+                {area1.title},  Area Guide
               </h2>
               <div className="text-[#6f5b4b] leading-relaxed space-y-3 [&>p]:mb-3">
               {!showFullText ? (
