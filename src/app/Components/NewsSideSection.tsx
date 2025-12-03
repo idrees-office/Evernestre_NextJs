@@ -7,8 +7,11 @@ import { User, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 type SidebarProps = {
   categories: { name: string; count: number }[];
   popularTags: string[];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formData: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleInputChange: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleSubmit: any;
 };
 

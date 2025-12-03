@@ -6,13 +6,16 @@ import { ChevronDown } from "lucide-react";
 import RegisterCtaSection from "@/app/Components/RegisterCtaSection";
 import { getAreaBySlug } from "@/lib/area";
 import LuxuryLoader from "@/app/Components/LuxuryLoader";
+import Image from "next/image";
 
 export default function AreaDetail({ params }: { params: Promise<{ slug: string }> }) {
   
   const { slug } = usePromise(params);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [area1, setArea1] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [openAccordion, setOpenAccordion] = useState<any>(null);
   const [showFullText, setShowFullText] = useState(false);
 
@@ -51,6 +54,7 @@ export default function AreaDetail({ params }: { params: Promise<{ slug: string 
     { id: "seven", heading: area1.heading_seven, content: area1.para_seven },
   ].filter((sec) => sec.heading && sec.content);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const toggleAccordion = (id: any) => {
     setOpenAccordion(openAccordion === id ? null : id);
   };
@@ -109,11 +113,13 @@ export default function AreaDetail({ params }: { params: Promise<{ slug: string 
               className="w-full md:w-1/2"
             >
               <div className="rounded-sm overflow-hidden shadow-md">
-                <img
-                  src={area1.image}
-                  alt={area1.title}
-                  className="w-full h-[280px] md:h-[350px] object-cover"
-                />
+                <Image
+                    src={area1.image}
+                    alt={area1.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="w-full h-[280px] md:h-[350px] object-cover"
+                  />
               </div>
             </motion.div>
           </div>
