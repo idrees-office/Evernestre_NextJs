@@ -1,205 +1,196 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
-import Header from "../../includes/header";
-import Link from "next/link";
-import RegisterCtaSection from "../../Components/RegisterCtaSection";
-import SocialLinksSection from "../../Components/SocialLinksSection";
+import React, { useEffect, useState, use as usePromise } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import RegisterCtaSection from "@/app/Components/RegisterCtaSection";
 import { getAreaBySlug } from "@/lib/area";
-import LuxuryLoader from "../../Components/LuxuryLoader";
-import Image from "next/image";
+import LuxuryLoader from "@/app/Components/LuxuryLoader";
 
-type Area = {
-  id: number;
-  title: string;
-  slug: string;
-  image: string;
-  price: string;
-};
+export default function AreaDetail({ params }: { params: Promise<{ slug: string }> }) {
 
-type ApiArea = {
-  id: number;
-  title: string;
-  slug: string;
-  image: string;
-  price: string;
-};
+  // ✅ Correct: unwrap params using use()
+  const { slug } = usePromise(params);
 
-interface ProjectDetailParams {
-  params: {
-    slug: string;
-  };
-}
-
-export default function AreaGuidePage({ params }: ProjectDetailParams) {
-  const [areas, setAreas] = useState<Area[]>([]);
+  const [area1, setArea1] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { slug } = params;
-
-  const fetchAreas = useCallback(async (page: number = 1) => {
-    try {
-      setLoading(true);
-      const data = await getAreaBySlug(slug);
-      if (data.areas && data.areas.data) {
-        const transformedAreas = data.areas.data.map((area: ApiArea) => ({
-          id: area.id,
-          title: area.title,
-          slug: area.slug,
-          image: area.image,
-          price: area.price,
-        }));
-
-        setAreas(transformedAreas);
-      } else {
-        setAreas([]);
-      }
-    } catch (err) {
-      console.error("Error fetching areas:", err);
-      setError("Failed to load areas. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  }, [slug]);
+  const [openAccordion, setOpenAccordion] = useState<any>(null);
+  const [showFullText, setShowFullText] = useState(false);
 
   useEffect(() => {
-    fetchAreas();
-  }, [fetchAreas]);
+    const fetchArea = async () => {
+      try {
+        setLoading(true);
 
-  if (loading) {
-    return (
-      <div className="w-full overflow-x-hidden">
-        <Header />
-        <section className="bg-[#f6ecdf] py-12 relative border-b border-[#f0e4d9] w-full">
-          <div className="container mx-auto px-6 text-center relative z-10 w-full">
-            <h2 className="text-3xl md:text-4xl font-medium text-[#3c2f26] mb-2">
-              Popular Areas in Dubai
-            </h2>
-            <div className="mx-auto h-[3px] w-20 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>
-          </div>
-        </section>
+        const data = await getAreaBySlug(slug);
 
-        {/* Luxury Loader for initial load */}
-        <LuxuryLoader />
-      </div>
-    );
-  }
+        // Adjust this line depending on your API shape
+        setArea1(data.area ?? data);
 
-  if (error) {
-    return (
-      <div className="min-h-screen w-full overflow-x-hidden">
-        <Header />
-        <section className="bg-[#f6ecdf] py-12 relative border-b border-[#f0e4d9] w-full">
-          <div className="container mx-auto px-6 text-center relative z-10 w-full">
-            <h2 className="text-3xl md:text-4xl font-medium text-[#3c2f26] mb-2">
-              Popular Areas in Dubai
-            </h2>
-            <div className="mx-auto h-[3px] w-20 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>
-          </div>
-        </section>
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load area details.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        <section className="relative bg-white py-10 sm:py-12 md:py-16 w-full">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
-              <svg
-                className="w-12 h-12 text-red-400 mx-auto mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"
-                />
-              </svg>
-              <h3 className="text-lg font-medium text-red-800 mb-2">
-                Error Loading Areas
-              </h3>
-              <p className="text-red-600">{error}</p>
-              <button
-                onClick={() => fetchAreas(1)}
-                className="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
-              >
-                Try Again
-              </button>
-            </div>
-          </div>
-        </section>
-      </div>
-    );
-  }
+    fetchArea();
+  }, [slug]);
+
+  if (loading) return <LuxuryLoader />;
+  if (error || !area1) return <div className="p-10 text-center text-red-600">{error}</div>;
+
+  // ✅ Safe short text (now will not crash)
+  const mainDesc = area1.main_description || "";
+  const shortText =
+    mainDesc.length > 611 ? mainDesc.substring(0, 611) + "..." : mainDesc;
+
+  // ---------------------------------------
+  // ACCORDION BUILDER
+  // ---------------------------------------
+  const accordionSections = [
+    { id: "one", heading: area1.heading_one, content: area1.para_one },
+    { id: "two", heading: area1.heading_two, content: area1.para_two },
+    { id: "three", heading: area1.heading_three, content: area1.para_three },
+    { id: "four", heading: area1.heading_four, content: area1.para_four },
+    { id: "five", heading: area1.heading_five, content: area1.para_five },
+    { id: "six", heading: area1.heading_six, content: area1.para_six },
+    { id: "seven", heading: area1.heading_seven, content: area1.para_seven },
+  ].filter((sec) => sec.heading && sec.content);
+
+  const toggleAccordion = (id: any) => {
+    setOpenAccordion(openAccordion === id ? null : id);
+  };
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
-      <Header />
-      <section className="bg-[#f6ecdf] py-12 relative border-b border-[#f0e4d9] w-full">
-        <div className="container mx-auto px-6 text-center relative z-10 w-full">
-          <h2 className="text-3xl md:text-4xl font-medium text-[#3c2f26] mb-2">
-            Areas
-          </h2>
-          <div className="mx-auto h-[3px] w-20 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>
+    <div className="min-h-screen bg-[#f8f5f0]">
+      <section className="bg-[#f6ecdf] py-8 border-b border-[#e8ddd0]">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-2xl md:text-3xl font-medium text-[#3c2f26] mb-2">
+            {area1?.title}
+          </h1>
+          <div className="mx-auto h-[3px] w-16 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>
         </div>
       </section>
-
-      <section className="relative bg-white py-10 sm:py-12 md:py-16 w-full">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#f8f5f0] to-[#f6ecdf] opacity-30"></div>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="w-full">
-            <div className="flex flex-col md:flex-row-reverse items-center gap-10">
-              {/* TEXT CONTENT */}
-              <div
-                className="w-full md:w-1/2"
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="100"
-              >
-                <div className="mb-8">
-                  <h2 className="text-3xl md:text-4xl font-semibold text-[#3c2f26] mb-4">
-                    Dubai Area Guide
-                  </h2>
-
-                  <p className="text-[#6f5b4b] leading-relaxed mb-4">
-                    Transmds is the world&apos;s driving worldwide coordinations
-                    provider — we uphold industry and exchange the worldwide
-                    exchange of merchandise and exchange the worldwide exchange
-                    of merchandise.
-                  </p>
-
-                  <p className="text-[#6f5b4b] leading-relaxed">
-                    Transmds is the world&apos;s driving worldwide coordinations
-                    provider — we uphold industry and exchange the worldwide
-                    exchange of merchandise and exchange the worldwide exchange
-                    of merchandise.
-                  </p>
+      <section className="bg-white py-10 md:py-14">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row-reverse items-center gap-8 max-w-6xl mx-auto">
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="w-full md:w-1/2">
+              <h2 className="text-2xl md:text-3xl font-semibold text-[#3c2f26] mb-4">
+                {area1.title} Area Guide
+              </h2>
+              <div className="text-[#6f5b4b] leading-relaxed space-y-3 [&>p]:mb-3">
+              {!showFullText ? (
+                <>
+                  <div dangerouslySetInnerHTML={{ __html: shortText }} />
+                  {area1.main_description.length > 611 && (
+                    <button
+                      onClick={() => setShowFullText(true)}
+                      className="inline-block text-[#b06c48] font-normal"
+                    >
+                      Read More
+                    </button>
+                  )}
+                </>
+              ) : null}
+              {showFullText && (
+                <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="w-full md:w-1/2">
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+                  <div className="bg-white max-w-2xl w-full p-6 rounded-xl shadow-xl relative overflow-y-auto max-h-[80vh]">
+                    <button className="absolute top-3 right-3 text-gray-700 hover:text-black text-xl" onClick={() => setShowFullText(false)}> ✕ </button>
+                    <h3 className="text-2xl font-semibold text-[#3c2f26] mb-4"> {area1.title} — Full Overview </h3>
+                    <div
+                      className="text-[#6f5b4b] leading-relaxed space-y-3 [&>p]:mb-3"
+                      dangerouslySetInnerHTML={{ __html: area1.main_description }}
+                    />
+                  </div>
                 </div>
-              </div>
-
-              {/* IMAGE */}
-              <div
-                className="w-full md:w-1/2"
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="150"
-              >
-                <div className="rounded-lg overflow-hidden shadow-lg">
-                  <Image
-                    src="https://evernest.ae/assets/img/projectspage/offplan_project_dubai_market.jpg"
-                    alt="Dubai Area Guide"
-                    width={800}
-                    height={500}
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
-              </div>
+                </motion.div>
+              )}
             </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="w-full md:w-1/2"
+            >
+              <div className="rounded-sm overflow-hidden shadow-md">
+                <img
+                  src={area1.image}
+                  alt={area1.title}
+                  className="w-full h-[280px] md:h-[350px] object-cover"
+                />
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
-
-      <SocialLinksSection />
       <RegisterCtaSection />
+      <section className="py-10 md:py-14">
+        <div className="container mx-auto px-4 max-w-8xl">
+          <div className="space-y-3">
+            {accordionSections.map((section, index) => (
+              <motion.div
+                key={section.id}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-sm border border-[#e8ddd0] overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              >
+                <button
+                  className={`w-full text-left px-5 py-4 flex justify-between items-center gap-4 transition-colors cursor-pointer ${
+                    openAccordion === section.id
+                      ? "bg-[#f6ecdf]"
+                      : "hover:bg-[#faf7f2]"
+                  }`}
+                  onClick={() => toggleAccordion(section.id)}
+                  type="button"
+                >
+                  <span className="text-lg md:text-xl font-normal text-[#3c2f26] cursor-pointer">
+                    {section.heading}
+                  </span>
+
+                  <motion.span
+                    animate={{ rotate: openAccordion === section.id ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex-shrink-0"
+                  >
+                    <ChevronDown className="w-5 h-5 text-[#b06c48]" />
+                  </motion.span>
+                </button>
+
+                <AnimatePresence>
+                  {openAccordion === section.id && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="px-5 pb-5 pt-2 border-t border-[#e8ddd0]">
+                        <div
+                          className="text-[#6f5b4b] leading-relaxed
+                          [&>p]:mb-3 [&>p]:last:mb-0
+                          [&_ul]:mt-2 [&_ul]:space-y-1.5
+                          [&_li]:pl-4 [&_li]:relative
+                          [&_li]:before:content-[''] [&_li]:before:absolute [&_li]:before:left-0 [&_li]:before:top-2
+                          [&_li]:before:w-1.5 [&_li]:before:h-1.5 [&_li]:before:bg-[#d4a373] [&_li]:before:rounded-full
+                          [&_strong]:text-[#3c2f26] [&_strong]:font-medium"
+                          dangerouslySetInnerHTML={{ __html: section.content }}
+                        />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

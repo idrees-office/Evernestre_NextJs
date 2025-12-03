@@ -56,7 +56,6 @@ export default function AreaGuidePage() {
 
         setAreas(transformedAreas);
 
-        // Set pagination info
         if (data.areas) {
           setPagination({
             current_page: data.areas.current_page || 1,
@@ -87,7 +86,6 @@ export default function AreaGuidePage() {
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= (pagination?.last_page || 1)) {
       fetchAreas(page);
-      // Scroll to top when page changes
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -104,13 +102,10 @@ export default function AreaGuidePage() {
             <div className="mx-auto h-[3px] w-20 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>
           </div>
         </section>
-
-        {/* Luxury Loader for initial load */}
         <LuxuryLoader />
       </div>
     );
   }
-
   if (error) {
     return (
       <div className="min-h-screen w-full overflow-x-hidden">
@@ -144,10 +139,7 @@ export default function AreaGuidePage() {
                 Error Loading Areas
               </h3>
               <p className="text-red-600">{error}</p>
-              <button
-                onClick={() => fetchAreas(1)}
-                className="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
-              >
+              <button onClick={() => fetchAreas(1)} className="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
                 Try Again
               </button>
             </div>
