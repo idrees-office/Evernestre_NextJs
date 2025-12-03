@@ -14,7 +14,6 @@ export async function getAllAreas(page: number = 1) {
     return { areas: [], error: true };
   }
 }
-
 export async function getAreaBySlug(slug: string) {
   try {
     const res = await fetch(`${BASE_URL}/area/${slug}`, {

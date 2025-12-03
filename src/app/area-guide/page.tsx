@@ -118,7 +118,6 @@ export default function AreaGuidePage() {
             <div className="mx-auto h-[3px] w-20 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>
           </div>
         </section>
-
         <section className="relative bg-white py-10 sm:py-12 md:py-16 w-full">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
             <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
@@ -135,9 +134,7 @@ export default function AreaGuidePage() {
                   d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"
                 />
               </svg>
-              <h3 className="text-lg font-medium text-red-800 mb-2">
-                Error Loading Areas
-              </h3>
+              <h3 className="text-lg font-medium text-red-800 mb-2"> Error Loading Areas </h3>
               <p className="text-red-600">{error}</p>
               <button onClick={() => fetchAreas(1)} className="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
                 Try Again

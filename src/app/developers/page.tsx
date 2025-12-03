@@ -32,9 +32,7 @@ export default function DeveloperPage() {
       try {
         setLoading(true);
         const data = await getDevelopers(page);
-
         setDevelopers(data.developers.data || []);
-
         setMeta({
           current: data.developers.current_page,
           last: data.developers.last_page,
