@@ -11,6 +11,7 @@ const inter = Inter({
   display: "swap",
 });
 
+
 export const metadata: Metadata = {
   title: "Evernest Real Estate",
   description: "Luxury properties and off-plan investments in prime locations.",
