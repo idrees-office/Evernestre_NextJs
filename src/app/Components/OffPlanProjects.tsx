@@ -37,29 +37,12 @@ type City = {
   image: string;
 };
 
-// const CITIES: City[] = [
-//   { name: "DUBAI", slug: "dubai", image: "/assets/home/Dubai.webp" },
-//   {
-//     name: "ABU DHABI",
-//     slug: "abu-dhabi",
-//     image: "/assets/home/Abu-Dhabi.webp",
-//   },
-//   { name: "SHARJAH", slug: "sharjah", image: "/assets/home/Sharjah.webp" },
-//   {
-//     name: "RAS AL KHAIMAH",
-//     slug: "ras-al-khaimah",
-//     image: "/assets/home/Rak.webp",
-//   },
-// ];
-
-
 const CITIES: City[] = [
   { name: "DUBAI", slug: "dubai", image: "/assets/home/Dubai.webp" },
   { name: "ABU DHABI", slug: "abu-dhabi", image: "/assets/home/Abu-Dhabi.webp" },
   { name: "SHARJAH", slug: "sharjah", image: "/assets/home/Sharjah.webp" },
   { name: "RAS AL KHAIMAH", slug: "ras-al-khaimah", image: "/assets/home/Rak.webp" },
 
-  // ⭐ New cities
   { name: "AJMAN", slug: "ajman", image: "/assets/home/Ajman.webp" },
   { name: "FUJAIRAH", slug: "fujairah", image: "/assets/home/Fujairah.webp" },
 ];
@@ -139,10 +122,7 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
               <Link href={`/project/${p.slug}.html`}>
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
-                    src={
-                      p.banner ||
-                      "https://test_backend.leadshub.ae/media/7044/Untitled-2.webp"
-                    }
+                    src={ p.banner || "https://test_backend.leadshub.ae/media/7044/Untitled-2.webp" }
                     alt={p.title}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"

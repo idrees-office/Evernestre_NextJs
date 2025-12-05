@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useRef, useMemo } from "react";
+// import React, { useState, useRef, useMemo } from "react";
+import React, { useEffect,  useMemo, useRef , useState, use as usePromise } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import {
@@ -177,7 +178,12 @@ const projectData: ProjectData = {
   ],
 };
 
-export default function ProjectDetail() {
+// export default function ProjectDetail() {
+  export default function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = usePromise(params);
+
+  console.log(slug);
+
   const [isFavorite, setIsFavorite] = useState(false);
   const [activeGalleryImage, setActiveGalleryImage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
