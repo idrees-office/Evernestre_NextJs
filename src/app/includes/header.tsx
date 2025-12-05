@@ -58,9 +58,13 @@ export default function Header() {
     },
   ] as const;
 
-  const headerClass = isMounted
-    ? isScrolled ? "bg-white/90 backdrop-blur-2xl border-b border-[color:var(--brand)]/10 shadow-[0_6px_30px_-12px_rgba(0,0,0,0.25)]" : "bg-transparent"
-    : "bg-transparent";
+
+  const headerClass =
+  "bg-white/90 backdrop-blur-2xl border-b border-[color:var(--brand)]/10 shadow-[0_6px_30px_-12px_rgba(0,0,0,0.25)]";
+
+  // const headerClass = isMounted
+  //   ? isScrolled ? "bg-white/90 backdrop-blur-2xl border-b border-[color:var(--brand)]/10 shadow-[0_6px_30px_-12px_rgba(0,0,0,0.25)]" : "bg-transparent"
+  //   : "bg-transparent";
 
   return (
     <>

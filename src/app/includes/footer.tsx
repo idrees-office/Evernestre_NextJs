@@ -24,9 +24,9 @@ export default function RefinedFooter() {
   const quick = [
     { label: "Careers", href: "/careers" },
     { label: "FAQs", href: "/faqs" },
-    { label: "Blog", href: "/blog" },
+    { label: "Blog", href: "/blogs" },
     { label: "Testimonials", href: "/testimonials" },
-    { label: "Developers", href: "/developer-guide" },
+    { label: "Developers", href: "/developers" },
   ];
 
   const socials = [

@@ -13,6 +13,7 @@ import NewsSection from "./Components/NewsSection";
 import TrustedRealEstateSection from "./Components/ClientFeedBack";
 import RegisterCtaSection from "./Components/RegisterCtaSection";
 import SocialLinksSection from "./Components/SocialLinksSection";
+import Vision from "./Components/Vision";
 
 function LuxuryLoader() {
   return (
@@ -52,16 +53,13 @@ export default function App() {
         <HeroSlider hero={data.hero} />
         <PropertySearchBar />
       </div>
-
       <OffPlanProjects projects={data.projects} />
       <HighlightedAreas areas={data.areas} />
-
       <WhyEvernest />
       <StatsStrip />
-
       <NewsSection news={data.news} />
-
       <TrustedRealEstateSection />
+      <Vision />
       <RegisterCtaSection />
       <SocialLinksSection />
     </div>

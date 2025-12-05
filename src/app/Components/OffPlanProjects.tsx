@@ -13,6 +13,7 @@ import {
   Share2,
 } from "lucide-react";
 import Image from "next/image";
+import CitiesGrid from "./CitiesGrid";
 
 interface Project {
   slug: string;
@@ -36,19 +37,31 @@ type City = {
   image: string;
 };
 
+// const CITIES: City[] = [
+//   { name: "DUBAI", slug: "dubai", image: "/assets/home/Dubai.webp" },
+//   {
+//     name: "ABU DHABI",
+//     slug: "abu-dhabi",
+//     image: "/assets/home/Abu-Dhabi.webp",
+//   },
+//   { name: "SHARJAH", slug: "sharjah", image: "/assets/home/Sharjah.webp" },
+//   {
+//     name: "RAS AL KHAIMAH",
+//     slug: "ras-al-khaimah",
+//     image: "/assets/home/Rak.webp",
+//   },
+// ];
+
+
 const CITIES: City[] = [
   { name: "DUBAI", slug: "dubai", image: "/assets/home/Dubai.webp" },
-  {
-    name: "ABU DHABI",
-    slug: "abu-dhabi",
-    image: "/assets/home/Abu-Dhabi.webp",
-  },
+  { name: "ABU DHABI", slug: "abu-dhabi", image: "/assets/home/Abu-Dhabi.webp" },
   { name: "SHARJAH", slug: "sharjah", image: "/assets/home/Sharjah.webp" },
-  {
-    name: "RAS AL KHAIMAH",
-    slug: "ras-al-khaimah",
-    image: "/assets/home/Rak.webp",
-  },
+  { name: "RAS AL KHAIMAH", slug: "ras-al-khaimah", image: "/assets/home/Rak.webp" },
+
+  // ⭐ New cities
+  { name: "AJMAN", slug: "ajman", image: "/assets/home/Ajman.webp" },
+  { name: "FUJAIRAH", slug: "fujairah", image: "/assets/home/Fujairah.webp" },
 ];
 
 type Currency = "AED" | "USD" | "EUR";
@@ -77,7 +90,6 @@ function formatMoney(amount: string, currency: Currency) {
 export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
   const [currency, setCurrency] = useState<Currency>("AED");
 
-  // Format prices based on selected currency
   const pricedProjects = useMemo(() => {
     return projects?.map((p) => ({
       ...p,
@@ -89,15 +101,19 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
     <section className="bg-[#ffffff] py-10">
       <div className="container mx-auto max-w-8xl px-6 md:px-10">
         <div className="mb-8 flex justify-between items-start">
-          <div>
-            <h2 className="text-[32px] lg:text-[38px] text-[#8b5d3b] font-normal">
-              Off-Plan Projects
-            </h2>
-            <p className="text-[#1a1a1a]/70 text-sm">
-              Explore The UAE&apos;s Latest Off-Plan Projects By Top Developers.
-            </p>
+         <div className="mt-5">
+            <h2 className="text-[32px] lg:text-[38px] text-[#8b5d3b] font-normal"> Off-Plan Projects by City </h2>
+            <p className="text-[#1a1a1a]/70 text-sm"> Explore the UAE’s latest off-plan projects by city. </p>
           </div>
-
+        </div>
+        <CitiesGrid/>
+      </div> 
+      <div className="container mx-auto max-w-8xl px-6 md:px-8 mt-14">
+        <div className="mb-6 flex justify-between items-center">
+          <div>
+            <h2 className="text-[32px] lg:text-[38px] font-normal text-[#8b5d3b]"> Latest Off-Plan Projects </h2>
+            <p className="text-sm text-[#1a1a1a]/70 mt-1"> Explore the UAE&apos;s latest Off-Plan projects by top developers. </p>
+          </div>
           <div className="flex items-center gap-2">
             {CURRENCIES.map((c) => {
               const active = currency === c;
@@ -106,9 +122,7 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
                   key={c}
                   onClick={() => setCurrency(c)}
                   aria-pressed={!!active}
-                  className={[
-                    "h-9 px-4 rounded-full text-sm transition-all",
-                    active
+                  className={[ "h-9 px-4 rounded-full text-sm transition-all cursor-pointer", active
                       ? "bg-gradient-to-r from-[#d0845b] to-[#c9a882] text-white shadow"
                       : "border border-[#d0845b]/50 text-[#8b5d3b] hover:bg-[#d0845b]/10",
                   ].join(" ")}
@@ -119,58 +133,9 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
             })}
           </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {CITIES.map((city) => (
-            <Link
-              key={city.slug}
-              href={`/off-plan-projects/${city.slug}`}
-              className="group block"
-            >
-              <div className="relative overflow-hidden rounded-sm bg-[#eae7e4] shadow-md ring-1 ring-black/5 h-[340px]">
-                <Image
-                  src={city.image}
-                  alt={city.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
-                <div className="absolute bottom-4 left-6 text-white text-lg font-medium">
-                  {city.name}
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div className="container mx-auto max-w-8xl px-6 md:px-8 mt-14">
-        <div className="mb-6 flex justify-between items-center">
-          <div>
-            <h2 className="text-[32px] lg:text-[38px] font-normal text-[#8b5d3b]">
-              Latest Off-Plan Projects
-            </h2>
-            <p className="text-sm text-[#1a1a1a]/70 mt-1">
-              Explore the UAE&apos;s latest Off-Plan projects by top developers.
-            </p>
-          </div>
-
-          <Link
-            href="/off-plan-projects"
-            className="inline-flex h-9 items-center border border-[#c9a882] px-4 rounded-full text-sm text-[#8b5d3b] hover:bg-[#c9a882]/10 transition-colors"
-          >
-            Explore All Projects
-          </Link>
-        </div>
-
-        {/* PROJECT CARDS */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {pricedProjects?.map((p) => (
-            <div
-              key={p.slug}
-              className="group relative overflow-hidden rounded-lg border border-[#d0845b]/20 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:-translate-y-1"
-            >
+            <div key={p.slug} className="group relative overflow-hidden rounded-lg border border-[#d0845b]/20 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:-translate-y-1">
               <Link href={`/project/${p.slug}.html`}>
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image

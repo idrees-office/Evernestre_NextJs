@@ -134,8 +134,7 @@ export default function DeveloperPage() {
                           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 25vw, 20vw"
                         />
                       </div>
-
-                      <p className="mt-3 text-[18px] font-semibold text-[#3c2f26] text-center">
+                      <p className="mt-3 text-[18px] font-normal text-[#3c2f26] text-center">
                         {developer.name}
                       </p>
                     </Link>

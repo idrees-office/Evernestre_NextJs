@@ -32,7 +32,7 @@ export async function getDevelopersBySlug(slug: string) {
       cache: "no-store",
     });
 
-    if (!res.ok) throw new Error("Failed to fetch area by slug");
+    if (!res.ok) throw new Error("Failed to fetch area by slug");                   
 
     return res.json();
   } catch (error) {
