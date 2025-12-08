@@ -1,8 +1,8 @@
 "use client";
-// import React, { useState, useRef, useMemo } from "react";
 import React, { useEffect,  useMemo, useRef , useState, use as usePromise } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { getProjectBySlug } from "@/lib/projects";
 import {
   Heart,
   Share2,
@@ -39,7 +39,6 @@ import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import { inputClass } from "@/app/utils/inputClass";
 import { BASE_URL } from "@/lib/config";
 import RegisterLeadForm from "@/app/Components/RegisterLeadForm";
-
 
 interface ContentItem {
   type: "text" | "heading";
@@ -83,112 +82,22 @@ interface ProjectData {
   description: ContentItem[];
 }
 
-const projectData: ProjectData = {
-  title: "Six Senses Beachfront Villas",
-  location: "Palm Jumeirah, Dubai",
-  price: "AED 25,000,000",
-  startingSize: "12,500 sq.ft",
-  area: "AED 2,000/sq.ft",
-  handover: "Q4 2026",
-  mainImage: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
-  mapIframeUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.798297979974!2d55.27041531500816!3d25.19753498390123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43348a67e24b%3A0xff45e502e1ceb7e2!2sBurj%20Khalifa!5e0!3m2!1sen!2sae!4v1620000000000!5m2!1sen!2sae",
-  developer: "Select Group & ESIC",
-  developerDescription: "The Select Group is a leading real estate developer with a portfolio of iconic projects across the UAE. Partnering with ESIC, they bring world-class developments that redefine luxury living.",
-  gallery: [
-    "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80",
-    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
-    "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
-    "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80",
-  ],
-  amenities: [
-    { name: "Tennis Court", icon: Sparkles },
-    { name: "Large Swimming Pools", icon: Waves },
-    { name: "Football Field", icon: Dumbbell },
-    { name: "Restaurants", icon: Utensils },
-    { name: "Library", icon: Coffee },
-    { name: "Bars", icon: Coffee },
-    { name: "Children's Club", icon: Baby },
-    { name: "Private Beach", icon: Waves },
-    { name: "Spa & Wellness", icon: Sparkles },
-    { name: "Gym & Squash Court", icon: Dumbbell },
-    { name: "Underground Parking", icon: Car },
-    { name: "24/7 Security", icon: Shield },
-  ],
-  highlights: [
-    "9 signature beachfront villas",
-    "Fashionable community living",
-    "Breathtaking luxurious project",
-    "A branded beachfront lifestyle",
-    "A true epitome of luxury",
-    "Iconic residential destination",
-    "World-class amenities",
-    "Managed by Six Senses Hotels",
-  ],
-  paymentPlan: { onBooking: 20, onConstruction: 50, onHandover: 30 },
-  locationDescription: "Located on Palm Jumeirah, just 25 minutes from Downtown Dubai and 30 minutes from the airport. Nearby attractions include Aquaventure Waterpark, Dubai Harbour, Al-Ittihad Park, and Nakheel Mall with 140+ stores.",
-  floorPlans: [
-    { type: "4 Bedroom Villa", size: "12,500 sq.ft", price: "From AED 25M" },
-    { type: "5 Bedroom Villa", size: "15,000 sq.ft", price: "From AED 35M" },
-    { type: "6 Bedroom Villa", size: "18,000 sq.ft", price: "From AED 45M" },
-    { type: "Signature Villa", size: "22,000+ sq.ft", price: "From AED 60M" },
-  ],
-  description: [
-    {
-      type: "text",
-      content: "The waterfront project is a joint venture between the Select Group and ESIC, signing an agreement with Six Senses Hotels Resorts Spas. Only a selected few get to book their dream home in 9 signature beachfront villas. The Six Senses Residences Beach Villas here are secluded, away from the bustling city noise and chaos. It gives each resident the privacy needed, to feel closer to each other and cherish the moments."
-    },
-    {
-      type: "text",
-      content: "All the housing units here are well managed by Six Senses, offering residents the ultimate privilege to make use of top, hotel-like amenities. You will be mesmerized by the breathtaking views to cherish for life! This is the new fashionable address in Dubai, located at one of the most desirable locations. The architectural elements of the project are based on the coral reef since UAE gives a lot of importance to preserving it."
-    },
-    {
-      type: "heading",
-      content: "Signature Six Senses Beach Villas at Palm Jumeirah"
-    },
-    {
-      type: "text",
-      content: "All of the beachfront signature homes at Six Senses Beach Villas Dubai have their own underground parking space. From your homes, you can cherish the mesmerizing views of the Arabian Gulf and the charming Dubai Skyline. Each of the signature beachfront villas offers a private garden, an infinity pool, and mesmerizing views of the palm."
-    },
-    {
-      type: "text",
-      content: "From the gym, squash court, spa, library, and even meeting rooms, kid's club, to beach space and swimming pool. The list of amenities and facilities to expect here is endless, catering to your lifestyle and wellness both."
-    },
-    {
-      type: "text",
-      content: "For those who enjoy a quick session of fun and activity within the community, they can indulge in jogging, paddle court, tennis game, and more. One of the most fascinating, and highly indulging highlights of Six Senses Beachfront Villas Dubai is its central garden. The garden is fully covered with hills, viewing the gorgeous Jebel and the valleys, and courtyards, for you to adore."
-    },
-    {
-      type: "heading",
-      content: "Beachfront Living at Six Senses Beach Villas - The Palm"
-    },
-    {
-      type: "text",
-      content: "Along with the much-needed space, and landscape, residents can gain the benefit of hotel amenities, that you can use to add fun, entertainment and leisure overloaded. There are various attractions nearby, for those who want to have fun and enjoy their weekends. You can take a short drive to the Aquaventure Waterpark, the Dubai Harbour also Al-Ittihad Park, and Palm Jumeirah Corniche."
-    },
-    {
-      type: "text",
-      content: "With that, you can explore Nakheel mall for shopping in more than 140 stores. There's an entertainment park, and VOX cinema for a quick movie time! Everything that you wish to access, be it shopping, dining, fun, adventure, and entertainment, is nearby. Those who want to explore Downtown can reach it within 25 minutes while going to the airport is as quick as a 30 minutes ride."
-    },
-    {
-      type: "text",
-      content: "Wake up to the mesmerizing views of the blue waters, shimmering, and glittering as the sun's rays fall on them. The peace and tranquility offered here can not be experienced elsewhere, that is what makes this project, highly appealing."
-    },
-  ],
-};
 
-// export default function ProjectDetail() {
+
+
   export default function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = usePromise(params);
-
-  console.log(slug);
-
+  const cleanSlug = slug.replace(/\.html$/, "");
   const [isFavorite, setIsFavorite] = useState(false);
   const [activeGalleryImage, setActiveGalleryImage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("details");
+
+  const [singleProject, setSingleProject] = useState<any>(null);
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const detailsRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -208,6 +117,32 @@ const projectData: ProjectData = {
     brochure: brochureRef,
   };
 
+
+    useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        setLoading(true);
+        const data = await getProjectBySlug(cleanSlug);
+        
+        if (data.error) {
+          throw new Error('Project not found');
+        }
+
+        console.log('Fetched project data:', data);
+
+        setSingleProject(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load project');
+        console.error('Error fetching project:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProject();
+  }, [cleanSlug]);
+
+
   const handleTabClick = (tabId: keyof typeof sectionRefs) => {
     setActiveTab(tabId);
     const ref = sectionRefs[tabId];
@@ -218,14 +153,14 @@ const projectData: ProjectData = {
     }
   };
 
-  const nextImage = () => setActiveGalleryImage((prev) => (prev === projectData.gallery.length - 1 ? 0 : prev + 1));
-  const prevImage = () => setActiveGalleryImage((prev) => (prev === 0 ? projectData.gallery.length - 1 : prev - 1));
+  const nextImage = () => setActiveGalleryImage((prev) => (prev === singleProject.gallery.length - 1 ? 0 : prev + 1));
+  const prevImage = () => setActiveGalleryImage((prev) => (prev === 0 ? singleProject.gallery.length - 1 : prev - 1));
 
 
   const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [phone, setPhone] = useState<string>();
-    const [loading, setLoading] = useState(false);
+  
   
     const [errors, setErrors] = useState<{
       first?: string;
@@ -380,172 +315,166 @@ const projectData: ProjectData = {
               </div>
 
               <div className="p-5">
-  <motion.div
-    initial={{ x: 100, opacity: 0 }}
-    whileInView={{ x: 0, opacity: 1 }}
-    transition={{ duration: 0.9, ease: "easeOut" }}
-    className="flex flex-col justify-center"
-  >
-    <form
-      onSubmit={handleSubmit}
-      className="w-full max-w-md mx-auto space-y-6"
-    >
-      {/* First + Last Name */}
-      {[
-        {
-          label: "First Name *",
-          value: firstName,
-          setter: setFirstName,
-          field: "first",
-          err: errors.first,
-        },
-        {
-          label: "Last Name *",
-          value: lastName,
-          setter: setLastName,
-          field: "last",
-          err: errors.last,
-        },
-      ].map(({ label, value, setter, field, err }, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.1, duration: 0.6 }}
-        >
-          <input
-            type="text"
-            placeholder={label}
-            value={value}
-            onChange={handleInputChange(setter, field)}
-            className={inputClass(err)}
-          />
-          {err && <p className="text-sm text-red-500 mt-1">{err}</p>}
-        </motion.div>
-      ))}
+                <motion.div
+                  initial={{ x: 100, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.9, ease: "easeOut" }}
+                  className="flex flex-col justify-center"
+                >
+                  <form
+                    onSubmit={handleSubmit}
+                    className="w-full max-w-md mx-auto space-y-6"
+                  >
+                    {/* First + Last Name */}
+                    {[
+                      {
+                        label: "First Name *",
+                        value: firstName,
+                        setter: setFirstName,
+                        field: "first",
+                        err: errors.first,
+                      },
+                      {
+                        label: "Last Name *",
+                        value: lastName,
+                        setter: setLastName,
+                        field: "last",
+                        err: errors.last,
+                      },
+                    ].map(({ label, value, setter, field, err }, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.1, duration: 0.6 }}
+                      >
+                        <input
+                          type="text"
+                          placeholder={label}
+                          value={value}
+                          onChange={handleInputChange(setter, field)}
+                          className={inputClass(err)}
+                        />
+                        {err && <p className="text-sm text-red-500 mt-1">{err}</p>}
+                      </motion.div>
+                    ))}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2, duration: 0.6 }}
+                    >
+                      <div className={`phone-input-custom ${errors.phone ? "error" : ""}`}>
+                        <PhoneInput
+                          international
+                          defaultCountry="AE"
+                          value={phone}
+                          onChange={handlePhoneChange}
+                          placeholder="Enter phone number"
+                        />
+                      </div>
 
-      {/* Phone Number */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-      >
-        <div className={`phone-input-custom ${errors.phone ? "error" : ""}`}>
-          <PhoneInput
-            international
-            defaultCountry="AE"
-            value={phone}
-            onChange={handlePhoneChange}
-            placeholder="Enter phone number"
-          />
-        </div>
+                      {errors.phone && (
+                        <p className="text-sm text-red-500 mt-1">{errors.phone}</p>
+                      )}
 
-        {errors.phone && (
-          <p className="text-sm text-red-500 mt-1">{errors.phone}</p>
-        )}
+                      {phone && !errors.phone && (
+                        <p
+                          className={`text-xs mt-1 ${
+                            validatePhoneNumber(phone)
+                              ? "text-emerald-600"
+                              : "text-amber-600"
+                          }`}
+                        >
+                          {validatePhoneNumber(phone)
+                            ? "✓ Valid phone number format"
+                            : "⚠ Please check the number format for the selected country"}
+                        </p>
+                      )}
+                    </motion.div>
 
-        {phone && !errors.phone && (
-          <p
-            className={`text-xs mt-1 ${
-              validatePhoneNumber(phone)
-                ? "text-emerald-600"
-                : "text-amber-600"
-            }`}
-          >
-            {validatePhoneNumber(phone)
-              ? "✓ Valid phone number format"
-              : "⚠ Please check the number format for the selected country"}
-          </p>
-        )}
-      </motion.div>
+                    {/* Submit Button */}
+                    <motion.button
+                      whileHover={
+                        isFormValid
+                          ? {
+                              scale: 1.06,
+                              boxShadow: "0px 10px 25px rgba(201, 122, 82, 0.5)",
+                            }
+                          : {}
+                      }
+                      whileTap={isFormValid ? { scale: 0.95 } : {}}
+                      transition={{ type: "spring", stiffness: 200 }}
+                      type="submit"
+                      disabled={!isFormValid || loading}
+                      className={`relative overflow-hidden bg-gradient-to-r from-[#c97a52] via-[#b06c48] to-[#8b5d3b] inline-flex h-12 w-full items-center justify-center rounded-sm text-[15px] text-white transition-all duration-200 ${
+                        !isFormValid || loading
+                          ? "opacity-50 cursor-not-allowed"
+                          : "hover:shadow-lg"
+                      }`}
+                    >
+                      {loading ? (
+                        "Submitting..."
+                      ) : (
+                        <>
+                          Submit
+                          <motion.span
+                            animate={isFormValid ? { x: [0, 5, 0] } : { x: 0 }}
+                            transition={
+                              isFormValid
+                                ? { repeat: Infinity, duration: 1.4, ease: "easeInOut" }
+                                : {}
+                            }
+                            className="ml-2 inline-block"
+                          >
+                            <ArrowRight className="h-4 w-4" />
+                          </motion.span>
+                        </>
+                      )}
+                    </motion.button>
 
-      {/* Submit Button */}
-      <motion.button
-        whileHover={
-          isFormValid
-            ? {
-                scale: 1.06,
-                boxShadow: "0px 10px 25px rgba(201, 122, 82, 0.5)",
-              }
-            : {}
-        }
-        whileTap={isFormValid ? { scale: 0.95 } : {}}
-        transition={{ type: "spring", stiffness: 200 }}
-        type="submit"
-        disabled={!isFormValid || loading}
-        className={`relative overflow-hidden bg-gradient-to-r from-[#c97a52] via-[#b06c48] to-[#8b5d3b] inline-flex h-12 w-full items-center justify-center rounded-sm text-[15px] text-white transition-all duration-200 ${
-          !isFormValid || loading
-            ? "opacity-50 cursor-not-allowed"
-            : "hover:shadow-lg"
-        }`}
-      >
-        {loading ? (
-          "Submitting..."
-        ) : (
-          <>
-            Submit
-            <motion.span
-              animate={isFormValid ? { x: [0, 5, 0] } : { x: 0 }}
-              transition={
-                isFormValid
-                  ? { repeat: Infinity, duration: 1.4, ease: "easeInOut" }
-                  : {}
-              }
-              className="ml-2 inline-block"
-            >
-              <ArrowRight className="h-4 w-4" />
-            </motion.span>
-          </>
-        )}
-      </motion.button>
+                    {/* Success Message */}
+                    {errors.ok && (
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-sm text-emerald-600 text-center"
+                      >
+                        {errors.ok}
+                      </motion.p>
+                    )}
 
-      {/* Success Message */}
-      {errors.ok && (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-sm text-emerald-600 text-center"
-        >
-          {errors.ok}
-        </motion.p>
-      )}
-
-      {/* Privacy Policy */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.7 }}
-        className="text-xs text-gray-500 text-center"
-      >
-        By submitting this form, you agree to our{" "}
-        <Link
-          href="/privacy-policy"
-          className="underline hover:text-[#c97a52]"
-        >
-          Privacy Policy
-        </Link>
-        .
-      </motion.p>
-    </form>
-  </motion.div>
-</div>
-
-
+                    {/* Privacy Policy */}
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.4, duration: 0.7 }}
+                      className="text-xs text-gray-500 text-center"
+                    >
+                      By submitting this form, you agree to our{" "}
+                      <Link
+                        href="/privacy-policy"
+                        className="underline hover:text-[#c97a52]"
+                      >
+                        Privacy Policy
+                      </Link>
+                      .
+                    </motion.p>
+                  </form>
+                </motion.div>
+              </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Breadcrumb */}
-      <div className="bg-[#f9f5f0] border-b border-[#e8dfd4]">
+      <div className="bg-[#f9f5f0] border-b border-[#e8dfd4] py-2">
         <div className="container mx-auto px-4 py-2">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <nav className="text-xs text-gray-500 flex items-center flex-wrap gap-1">
               <span className="hover:text-[#c97a52] cursor-pointer transition-colors">Off Plan Projects</span>
+              {/* <span className="text-gray-300">›</span> */}
+              {/* <span className="hover:text-[#c97a52] cursor-pointer transition-colors">Palm Jumeirah</span> */}
               <span className="text-gray-300">›</span>
-              <span className="hover:text-[#c97a52] cursor-pointer transition-colors">Palm Jumeirah</span>
-              <span className="text-gray-300">›</span>
-              <span className="text-gray-700">{projectData.title}</span>
+              <span className="text-gray-700">{singleProject?.name}</span>
             </nav>
             <div className="flex items-center gap-2">
               <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 hover:text-gray-900 bg-white border border-gray-200 rounded-sm hover:border-gray-300 transition-all">
@@ -558,65 +487,54 @@ const projectData: ProjectData = {
           </div>
         </div>
       </div>
-
-      {/* Hero Section */}
-      <section className="w-full py-3">
+      <section className="w-full py-3 mt-4">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
             <div className="relative h-[260px] sm:h-[320px] lg:h-[450px] lg:col-span-9 w-full overflow-hidden rounded-sm">
-              <Image 
-                src={projectData.mainImage} 
-                alt={projectData.title} 
+              {/* Circular Loader */}
+              {!singleProject?.main_image_loaded && (
+                <div className="absolute inset-0 flex items-center justify-center z-20 bg-gray-100/70">
+                  <div className="w-20 h-20 border-2 border-gray-300 border-t-[#c97a52] rounded-full animate-spin"></div>
+                </div>
+              )}
+              <Image
+                src={singleProject?.main_image || "/placeholder.jpg"} 
+                alt={singleProject?.name || "Project Image"} 
                 fill 
-                className="object-cover"
+                className={`object-cover transition-opacity duration-700 ${singleProject?.main_image_loaded ? "opacity-100" : "opacity-0"}`}
+                onLoadingComplete={() =>
+                  setSingleProject((prev: any) => ({ ...prev, main_image_loaded: true }))
+                }
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+
               <button onClick={() => setIsFavorite(!isFavorite)} className={`absolute top-3 right-3 z-20 p-2 rounded-full backdrop-blur-md transition-all ${isFavorite ? "bg-red-500 text-white" : "bg-black/30 text-white hover:bg-black/40"}`}>
                 <Heart className={`w-4 h-4 ${isFavorite ? "fill-current" : ""}`} />
               </button>
               <button onClick={() => setIsModalOpen(true)} className="absolute top-3 left-3 z-20 p-2 rounded-full bg-black/30 backdrop-blur-md text-white hover:bg-black/40 transition-all flex items-center gap-1.5">
                 <Camera className="w-4 h-4" />
-                <span className="text-xs font-medium">{projectData.gallery.length}</span>
+                <span className="text-xs font-medium">{singleProject?.gallery?.length || 0}</span>
               </button>
-              <div className="absolute bottom-0 left-0 right-0 p-4">
-                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-                  <div className="text-white">
-                    <h1 className="text-lg sm:text-xl lg:text-2xl font-medium mb-1 drop-shadow-lg">{projectData.title}</h1>
-                    <div className="flex items-center text-white/90 text-sm">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      <span>{projectData.location}</span>
-                    </div>
-                  </div>
-                  <div className="flex gap-2">
-                    <button onClick={() => setIsFormOpen(true)} className="flex items-center gap-1.5 px-3 py-2 bg-white/95 backdrop-blur-sm text-gray-900 rounded-sm text-xs font-medium hover:bg-white transition-all">
-                      <Download className="w-3.5 h-3.5" /> Brochure
-                    </button>
-                    <button onClick={() => setIsFormOpen(true)} className="flex items-center gap-1.5 px-3 py-2 bg-[#c97a52] text-white rounded-sm text-xs font-medium hover:bg-[#b56a42] transition-all">
-                      <FileText className="w-3.5 h-3.5" /> Floor Plan
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-4"></div>
             </div>
-            <div className="relative h-[180px] sm:h-[220px] lg:h-[450px] lg:col-span-3 w-full overflow-hidden rounded-sm">
-              <iframe src={projectData.mapIframeUrl} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="absolute inset-0 w-full h-full" />
+
+            <div className="relative h-[180px] sm:h-[220px] lg:h-[450px] lg:col-span-3 w-full overflow-hidden rounded-sm">              
+               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14442.468972107661!2d55.26149851188493!3d25.18239884203875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f682def25f457%3A0x3dd4c4097970950e!2sBusiness%20Bay%20-%20Dubai!5e0!3m2!1sen!2sae!4v1765184199009!5m2!1sen!2sae" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="absolute inset-0 w-full h-full" /> 
             </div>
           </div>
         </div>
       </section>
-
-      {/* Stats Bar */}
-      <section className="bg-[#faf8f5] py-2.5 border-b border-gray-100">
+       <section className="bg-[#faf8f5] py-2.5 border-b border-gray-100">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3">
             {[
-              { icon: CreditCard, label: "Starting Price", value: projectData.price },
-              { icon: Ruler, label: "Starting Size", value: projectData.startingSize },
-              { icon: MapPin, label: "Location", value: projectData.location },
-              { icon: Building, label: "Developer", value: projectData.developer },
-              { icon: Ruler, label: "Price/Sq.ft", value: projectData.area },
-              { icon: Calendar, label: "Completion", value: projectData.handover },
+              { icon: CreditCard, label: "Starting Price", value: singleProject?.starting_price },
+               { icon: Ruler, label: "Price Per/Sq.ft", value: singleProject?.pricepersqft },
+              { icon: Ruler, label: "Starting Size", value: singleProject?.starting_size },
+              // { icon: MapPin, label: "Location", value: singleProject?.location },
+              // { icon: Building, label: "Developer", value: singleProject?.developer },
+              { icon: Calendar, label: "Completion", value: singleProject?.handover_date },
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-2">
                 <div className="p-1.5 rounded-sm bg-[#c97a52]/10 flex-shrink-0">
@@ -632,8 +550,8 @@ const projectData: ProjectData = {
         </div>
       </section>
 
-      {/* Navigation Tabs */}
-      <section className="bg-white border-y border-gray-100 sticky top-0 z-40 shadow-sm">
+      
+      {/* <section className="bg-white border-y border-gray-100 sticky top-0 z-40 shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex overflow-x-auto hide-scrollbar -mx-4 px-4">
             {tabs.map((tab) => (
@@ -651,10 +569,10 @@ const projectData: ProjectData = {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       
-      <section ref={detailsRef} className="py-6 sm:py-8 bg-white">
+      {/* <section ref={detailsRef} className="py-6 sm:py-8 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
             <div className="lg:col-span-8">
@@ -721,10 +639,10 @@ const projectData: ProjectData = {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Gallery Section */}
-      <section ref={galleryRef} className="py-6 sm:py-8 bg-[#faf8f5]">
+     
+      {/* <section ref={galleryRef} className="py-6 sm:py-8 bg-[#faf8f5]">
         <div className="container mx-auto px-4 mb-3">
           <div className="flex items-center gap-2">
             <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
@@ -763,10 +681,10 @@ const projectData: ProjectData = {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Floor Plans Section */}
-      <section ref={floorplanRef} className="py-6 sm:py-8 bg-white">
+      
+      {/* <section ref={floorplanRef} className="py-6 sm:py-8 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
             <div className="flex items-center gap-2">
@@ -797,10 +715,10 @@ const projectData: ProjectData = {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Amenities Section */}
-      <section ref={amenitiesRef} className="py-6 sm:py-8 bg-[#faf8f5]">
+      
+      {/* <section ref={amenitiesRef} className="py-6 sm:py-8 bg-[#faf8f5]">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
@@ -820,10 +738,10 @@ const projectData: ProjectData = {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Highlights Section */}
-      <section className="py-6 sm:py-8 bg-white">
+    
+      {/* <section className="py-6 sm:py-8 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
@@ -838,10 +756,10 @@ const projectData: ProjectData = {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Location Section */}
-      <section ref={locationRef} className="py-6 sm:py-8 bg-[#faf8f5]">
+      
+      {/* <section ref={locationRef} className="py-6 sm:py-8 bg-[#faf8f5]">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
@@ -872,10 +790,10 @@ const projectData: ProjectData = {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Payment Plan Section */}
-      <section ref={paymentRef} className="py-6 sm:py-8 bg-gradient-to-br from-[#c97a52] to-[#a85f3b]">
+     
+      {/* <section ref={paymentRef} className="py-6 sm:py-8 bg-gradient-to-br from-[#c97a52] to-[#a85f3b]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-6">
             <h3 className="text-lg sm:text-xl font-normal text-white mb-1">Payment Plan</h3>
@@ -897,10 +815,10 @@ const projectData: ProjectData = {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Brochure Section */}
-      <section ref={brochureRef} className="py-6 sm:py-8 bg-white">
+      
+      {/* <section ref={brochureRef} className="py-6 sm:py-8 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
@@ -916,10 +834,10 @@ const projectData: ProjectData = {
             </button>
           </div>
         </div>
-      </section>
-
-      {/* Developer Section */}
-      <section className="py-6 sm:py-8 bg-[#faf8f5]">
+      </section> */}
+{/*  */}
+      
+      {/* <section className="py-6 sm:py-8 bg-[#faf8f5]">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
@@ -951,10 +869,10 @@ const projectData: ProjectData = {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Gallery Modal */}
-      <AnimatePresence>
+      
+       {/*<AnimatePresence>
         {isModalOpen && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center" onClick={() => setIsModalOpen(false)}>
             <button className="absolute top-3 right-3 text-white p-2 hover:bg-white/10 rounded-full transition-colors z-10">
@@ -980,7 +898,7 @@ const projectData: ProjectData = {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       <style jsx>{`
         .hide-scrollbar::-webkit-scrollbar { display: none; }

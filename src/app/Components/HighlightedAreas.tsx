@@ -14,10 +14,8 @@ interface Area {
 export default function HighlightedAreas({ areas }: { areas: Area[] }) {
   const [isHovered, setIsHovered] = useState<number | null>(null);
 
-  // Show 4 items only
   const fourAreas = areas?.slice(0, 4) || [];
 
-  // Fallback if no data
   if (!fourAreas.length) {
     return (
       <section className="py-10">
@@ -49,7 +47,7 @@ export default function HighlightedAreas({ areas }: { areas: Area[] }) {
         </div>
 
         <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[200px] md:auto-rows-[240px] lg:auto-rows-[280px]">
-          {/* CARD 1 - big */}
+          
           <AreaCard
             area={fourAreas[0]}
             index={0}
