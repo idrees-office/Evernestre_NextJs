@@ -692,6 +692,7 @@ interface ProjectData {
             </h2>
             <div className="bg-[#faf8f5] rounded-sm p-4 sm:p-5 border border-[#f0ebe4] prose prose-sm max-w-none">
               {
+
               singleProject?.parsedDescription && singleProject.parsedDescription.length > 0 ? (
                 singleProject.parsedDescription.map((item: { type: string; content: React.ReactNode; }, index: React.Key | null | undefined) => {
                   if (item.type === 'heading') {
@@ -710,7 +711,14 @@ interface ProjectData {
                 })
               ) : (
                 <div dangerouslySetInnerHTML={{ __html: singleProject?.description || '' }} />
-              )}
+              )
+              
+              }
+
+
+              
+
+
             </div>
           </div>
           <div className="lg:col-span-4 lg:sticky lg:top-16 lg:self-start space-y-3">
@@ -995,12 +1003,9 @@ interface ProjectData {
             <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
             <h3 className="text-base sm:text-lg font-medium text-gray-900">Highlights</h3>
           </div>
-
           {singleProject?.highlights?.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-              {
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              singleProject.highlights.map((highlight: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
+              {singleProject.highlights.map((highlight: string, index: number) => (
                 <div key={index} className="flex items-start gap-2 p-2.5 sm:p-3 bg-[#faf8f5] border border-[#f0ebe4] rounded-sm">
                   <CheckCircle2 className="w-4 h-4 text-[#c97a52] flex-shrink-0 mt-0.5" />
                   <span className="text-xs text-gray-600">{highlight}</span>
