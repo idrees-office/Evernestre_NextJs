@@ -1144,8 +1144,6 @@ const renderContent = (content: ContentItem[]) => {
             </div>
           </div>
        </section>   
-
-      
        <section ref={brochureRef} className="py-6 sm:py-8 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
