@@ -207,14 +207,14 @@ export default function RefinedFooter() {
           <div className="flex gap-5 text-sm">
             <Link
               key="privacy-policy"
-              href={`privacy-policy`}
+              href={`/privacy-policy`}
               className="text-white/80 transition-colors hover:text-white"
             >
               Privacy Policy
             </Link>
             <Link
               key="term-condition"
-              href={`term-condition`}
+              href={`/term-condition`}
               className="text-white/80 transition-colors hover:text-white"
             >
               Term Condition

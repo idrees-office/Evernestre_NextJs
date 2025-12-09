@@ -12,6 +12,14 @@ const nextConfig = {
         port: "",
         pathname: "/media/**",
       },
+
+      {
+        protocol: "https",
+        hostname: "backend.leadshub.ae",
+        port: "",
+        pathname: "/media/**",
+      },
+
       {
         protocol: "https",
         hostname: "backend.evernest.ae",
