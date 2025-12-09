@@ -199,9 +199,7 @@ export default function AllProjectsPage() {
             {!loading &&
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               projects.map((p: any) => (
-                <Link
-                  key={p.slug}
-                  href={`/off-plan-projects/${p.slug}`}
+                <Link key={p.slug} href={`/project/${p.slug}.html`}
                   className="group block overflow-hidden rounded-lg border border-[#d0845b]/20 bg-white shadow-md hover:shadow-lg transition-transform hover:-translate-y-1 cursor-pointer"
                 >
                   <div className="relative h-48 overflow-hidden">
