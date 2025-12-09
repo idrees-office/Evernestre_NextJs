@@ -118,35 +118,107 @@ interface ProjectData {
     brochure: brochureRef,
   };
 
-  const parseHTMLContent = (html: string) => {
-  if (!html) return [];
+//   const parseHTMLContent = (html: string) => {
+//   if (!html) return [];
   
+//   const contentItems: ContentItem[] = [];
+//   const tempDiv = document.createElement('div');
+  
+//   // Remove span tags and their styles
+//   const cleanedHtml = html
+//     .replace(/<span[^>]*>/g, '')
+//     .replace(/<\/span>/g, '')
+//     .replace(/style="[^"]*"/g, '');
+  
+//   tempDiv.innerHTML = cleanedHtml;
+  
+//   const elements = Array.from(tempDiv.childNodes);
+  
+//   for (let i = 0; i < elements.length; i++) {
+//     const element = elements[i];
+    
+//     if (element.nodeType === Node.ELEMENT_NODE) {
+//       const el = element as Element;
+      
+//       if (el.tagName === 'H2') {
+//         contentItems.push({
+//           type: 'heading',
+//           content: el.textContent?.trim() || ''
+//         });
+//       } else if (el.tagName === 'P') {
+//         const text = el.textContent?.trim();
+//         if (text) {
+//           contentItems.push({
+//             type: 'text',
+//             content: text
+//           });
+//         }
+//       } else if (el.tagName === 'UL') {
+//         const items = el.querySelectorAll('li');
+//         items.forEach(item => {
+//           const text = item.textContent?.trim();
+//           if (text) {
+//             contentItems.push({
+//               type: 'text',
+//               content: `• ${text}`
+//             });
+//           }
+//         });
+//       } else if (el.tagName === 'DIV' || el.tagName === 'SPAN') {
+//         // Handle nested content
+//         const text = el.textContent?.trim();
+//         if (text) {
+//           contentItems.push({
+//             type: 'text',
+//             content: text
+//           });
+//         }
+//       }
+//     } else if (element.nodeType === Node.TEXT_NODE) {
+//       const text = element.textContent?.trim();
+//       if (text) {
+//         contentItems.push({
+//           type: 'text',
+//           content: text
+//         });
+//       }
+//     }
+//   }
+  
+//   return contentItems;
+// };
+
+
+const parseHTMLContent = (html: string) => {
+  if (!html) return [];
+
   const contentItems: ContentItem[] = [];
   const tempDiv = document.createElement('div');
-  
+
   // Remove span tags and their styles
   const cleanedHtml = html
     .replace(/<span[^>]*>/g, '')
     .replace(/<\/span>/g, '')
     .replace(/style="[^"]*"/g, '');
-  
+
   tempDiv.innerHTML = cleanedHtml;
-  
+
   const elements = Array.from(tempDiv.childNodes);
-  
+
   for (let i = 0; i < elements.length; i++) {
     const element = elements[i];
-    
+
     if (element.nodeType === Node.ELEMENT_NODE) {
       const el = element as Element;
       
       if (el.tagName === 'H2') {
+        const text = el.textContent?.trim() || '';
         contentItems.push({
           type: 'heading',
-          content: el.textContent?.trim() || ''
+          content: text
         });
       } else if (el.tagName === 'P') {
-        const text = el.textContent?.trim();
+        const text = el.textContent?.trim() || '';
         if (text) {
           contentItems.push({
             type: 'text',
@@ -156,7 +228,7 @@ interface ProjectData {
       } else if (el.tagName === 'UL') {
         const items = el.querySelectorAll('li');
         items.forEach(item => {
-          const text = item.textContent?.trim();
+          const text = item.textContent?.trim() || '';
           if (text) {
             contentItems.push({
               type: 'text',
@@ -166,7 +238,7 @@ interface ProjectData {
         });
       } else if (el.tagName === 'DIV' || el.tagName === 'SPAN') {
         // Handle nested content
-        const text = el.textContent?.trim();
+        const text = el.textContent?.trim() || '';
         if (text) {
           contentItems.push({
             type: 'text',
@@ -175,7 +247,7 @@ interface ProjectData {
         }
       }
     } else if (element.nodeType === Node.TEXT_NODE) {
-      const text = element.textContent?.trim();
+      const text = element.textContent?.trim() || '';
       if (text) {
         contentItems.push({
           type: 'text',
@@ -184,7 +256,7 @@ interface ProjectData {
       }
     }
   }
-  
+
   return contentItems;
 };
 
@@ -371,43 +443,27 @@ interface ProjectData {
   ];
 
 
-  const renderContent = (content: ContentItem[]) => {
+const renderContent = (content: ContentItem[]) => {
   return content.map((item, index) => {
     if (item.type === "heading") {
       return (
         <div key={index} className="flex items-center gap-2 mt-6 mb-3">
           <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
           <h3 className="text-base sm:text-lg font-medium text-gray-900">
-            {typeof item.content === 'string' ? item.content : ''}
+            {typeof item.content === 'string' ? item.content : JSON.stringify(item.content)}
           </h3>
         </div>
       );
     }
     return (
       <p key={index} className="text-sm text-gray-600 leading-relaxed mb-3">
-        {typeof item.content === 'string' ? item.content : ''}
+        {typeof item.content === 'string' ? item.content : JSON.stringify(item.content)}
       </p>
     );
   });
 };
 
-  // const renderContent = (content: ContentItem[]) => {
-  //   return content.map((item, index) => {
-  //     if (item.type === "heading") {
-  //       return (
-  //         <div key={index} className="flex items-center gap-2 mt-6 mb-3">
-  //           <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
-  //           <h3 className="text-base sm:text-lg font-medium text-gray-900">{item.content}</h3>
-  //         </div>
-  //       );
-  //     }
-  //     return (
-  //       <p key={index} className="text-sm text-gray-600 leading-relaxed mb-3">
-  //         {item.content}
-  //       </p>
-  //     );
-  //   });
-  // };
+  
 
   return (
     <main className="min-h-screen bg-white">
@@ -583,13 +639,15 @@ interface ProjectData {
       <div className="bg-[#f9f5f0] border-b border-[#e8dfd4] py-2">
         <div className="container mx-auto px-4 py-2">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+
             <nav className="text-xs text-gray-500 flex items-center flex-wrap gap-1">
               <span className="hover:text-[#c97a52] cursor-pointer transition-colors">Off Plan Projects</span>
-              {/* <span className="text-gray-300">›</span> */}
-              {/* <span className="hover:text-[#c97a52] cursor-pointer transition-colors">Palm Jumeirah</span> */}
               <span className="text-gray-300">›</span>
-              <span className="text-gray-700">{singleProject?.name}</span>
+              <span className="text-gray-700">
+                {typeof singleProject?.name === 'string' ? singleProject?.name : 'Project'}
+              </span>
             </nav>
+
             <div className="flex items-center gap-2">
               <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 hover:text-gray-900 bg-white border border-gray-200 rounded-sm hover:border-gray-300 transition-all">
                 <Share2 className="w-3.5 h-3.5" /> Share
@@ -645,10 +703,25 @@ interface ProjectData {
           <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3">
             {[
               { icon: CreditCard, label: "Starting Price", value: singleProject?.starting_price },
-               { icon: Ruler, label: "Price Per/Sq.ft", value: singleProject?.pricepersqft },
+              { icon: Ruler, label: "Price Per/Sq.ft", value: singleProject?.pricepersqft },
               { icon: Ruler, label: "Starting Size", value: singleProject?.starting_size },
-              { icon: MapPin, label: "Location", value: singleProject?.location?.name },
-              { icon: Building, label: "Developer", value: singleProject?.developer?.name },
+              {
+                icon: MapPin,
+                label: "Location",
+                value:
+                  typeof singleProject?.location === "object"
+                    ? singleProject?.location?.name
+                    : singleProject?.location || "N/A"
+              },
+              {
+                icon: Building,
+                label: "Developer",
+                value:
+                  typeof singleProject?.developer === "object"
+                    ? singleProject?.developer?.name
+                    : singleProject?.developer || "N/A"
+              },
+
               { icon: Calendar, label: "Completion", value: singleProject?.handover_date },
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-2">
@@ -691,34 +764,27 @@ interface ProjectData {
               {singleProject?.name}
             </h2>
             <div className="bg-[#faf8f5] rounded-sm p-4 sm:p-5 border border-[#f0ebe4] prose prose-sm max-w-none">
-              {
-
-              singleProject?.parsedDescription && singleProject.parsedDescription.length > 0 ? (
+              {singleProject?.parsedDescription && Array.isArray(singleProject.parsedDescription) && singleProject.parsedDescription.length > 0 ? (
                 singleProject.parsedDescription.map((item: { type: string; content: React.ReactNode; }, index: React.Key | null | undefined) => {
                   if (item.type === 'heading') {
                     return (
                       <div key={index} className="flex items-center gap-2 mt-6 mb-3">
                         <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
-                        <h3 className="text-base font-medium text-gray-900">{item.content}</h3>
+                        <h3 className="text-base font-medium text-gray-900">
+                          {typeof item.content === 'string' ? item.content : ''}
+                        </h3>
                       </div>
                     );
                   }
                   return (
                     <p key={index} className="text-sm text-gray-600 leading-relaxed mb-3">
-                      {item.content}
+                      {typeof item.content === 'string' ? item.content : ''}
                     </p>
                   );
                 })
               ) : (
                 <div dangerouslySetInnerHTML={{ __html: singleProject?.description || '' }} />
-              )
-              
-              }
-
-
-              
-
-
+              )}
             </div>
           </div>
           <div className="lg:col-span-4 lg:sticky lg:top-16 lg:self-start space-y-3">
@@ -830,7 +896,6 @@ interface ProjectData {
         </div>
       )}
     </section>
-
     <section ref={floorplanRef} className="py-6 sm:py-8 bg-white">
       <div className="container mx-auto px-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
@@ -997,6 +1062,7 @@ interface ProjectData {
           )}
         </div>
       </section>
+      
       <section className="py-6 sm:py-8 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
@@ -1005,10 +1071,12 @@ interface ProjectData {
           </div>
           {singleProject?.highlights?.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-              {singleProject.highlights.map((highlight: string, index: number) => (
+              {singleProject.highlights.map((highlight: {id: number, name: string | null}, index: number) => (
                 <div key={index} className="flex items-start gap-2 p-2.5 sm:p-3 bg-[#faf8f5] border border-[#f0ebe4] rounded-sm">
                   <CheckCircle2 className="w-4 h-4 text-[#c97a52] flex-shrink-0 mt-0.5" />
-                  <span className="text-xs text-gray-600">{highlight}</span>
+                  <span className="text-xs text-gray-600">
+                    {highlight.name || `Highlight ${highlight.id}`}
+                  </span>
                 </div>
               ))}
             </div>
@@ -1053,31 +1121,29 @@ interface ProjectData {
           </div>
         </div>
       </section> 
-
-     
-        {/* <section ref={paymentRef} className="py-6 sm:py-8 bg-gradient-to-br from-[#c97a52] to-[#a85f3b]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-6">
-            <h3 className="text-lg sm:text-xl font-normal text-white mb-1">Payment Plan</h3>
-            <p className="text-white/70 text-xs">Flexible payment options</p>
-          </div>
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-2xl mx-auto">
-            {[
-              { icon: Home, value: projectData.paymentPlan.onBooking, label: "On Booking" },
-              { icon: Building2, value: projectData.paymentPlan.onConstruction, label: "Construction" },
-              { icon: Percent, value: projectData.paymentPlan.onHandover, label: "On Handover" },
-            ].map((item, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur-sm rounded-sm p-3 sm:p-5 text-center border border-white/20">
-                <div className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 mb-2">
-                  <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+         <section ref={paymentRef} className="py-6 sm:py-8 bg-gradient-to-br from-[#c97a52] to-[#a85f3b]">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-6">
+              <h3 className="text-lg sm:text-xl font-normal text-white mb-1">Payment Plan</h3>
+              <p className="text-white/70 text-xs">Flexible payment options</p>
+            </div>
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-2xl mx-auto">
+              {[
+                { icon: Home,  value: singleProject?.on_booking || 0, label: "On Booking" },
+                { icon: Building2, value: singleProject?.on_construction || 0, label: "Construction" },
+                { icon: Percent, value: singleProject?.on_handover || 0, label: "On Handover" },
+              ].map((item, index) => (
+                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-sm p-3 sm:p-5 text-center border border-white/20">
+                  <div className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 mb-2">
+                    <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                  </div>
+                  <div className="text-2xl sm:text-3xl font-light text-white mb-0.5">{item.value}%</div>
+                  <div className="text-white/80 text-[10px] sm:text-xs">{item.label}</div>
                 </div>
-                <div className="text-2xl sm:text-3xl font-light text-white mb-0.5">{item.value}%</div>
-                <div className="text-white/80 text-[10px] sm:text-xs">{item.label}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      {/* </section>   */} 
+       </section>   
 
       
        <section ref={brochureRef} className="py-6 sm:py-8 bg-white">
@@ -1125,7 +1191,9 @@ interface ProjectData {
               <div className="w-14 h-14 mx-auto mb-2 bg-white rounded-full flex items-center justify-center shadow">
                 <Building className="w-6 h-6 text-[#c97a52]" />
               </div>
-              <h4 className="text-sm font-medium text-gray-900">{singleProject?.developer?.name}</h4>
+                <h4 className="text-sm font-medium text-gray-900">
+                  {typeof singleProject?.developer === 'object' ? singleProject?.developer?.name : singleProject?.developer}
+                </h4>
               <p className="text-[10px] text-gray-500 mt-0.5">Award-Winning Developer</p>
             </div>
           </div>
