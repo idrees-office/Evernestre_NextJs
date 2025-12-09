@@ -370,23 +370,44 @@ interface ProjectData {
     { id: "brochure", label: "Brochure" },
   ];
 
+
   const renderContent = (content: ContentItem[]) => {
-    return content.map((item, index) => {
-      if (item.type === "heading") {
-        return (
-          <div key={index} className="flex items-center gap-2 mt-6 mb-3">
-            <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
-            <h3 className="text-base sm:text-lg font-medium text-gray-900">{item.content}</h3>
-          </div>
-        );
-      }
+  return content.map((item, index) => {
+    if (item.type === "heading") {
       return (
-        <p key={index} className="text-sm text-gray-600 leading-relaxed mb-3">
-          {item.content}
-        </p>
+        <div key={index} className="flex items-center gap-2 mt-6 mb-3">
+          <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
+          <h3 className="text-base sm:text-lg font-medium text-gray-900">
+            {typeof item.content === 'string' ? item.content : ''}
+          </h3>
+        </div>
       );
-    });
-  };
+    }
+    return (
+      <p key={index} className="text-sm text-gray-600 leading-relaxed mb-3">
+        {typeof item.content === 'string' ? item.content : ''}
+      </p>
+    );
+  });
+};
+
+  // const renderContent = (content: ContentItem[]) => {
+  //   return content.map((item, index) => {
+  //     if (item.type === "heading") {
+  //       return (
+  //         <div key={index} className="flex items-center gap-2 mt-6 mb-3">
+  //           <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
+  //           <h3 className="text-base sm:text-lg font-medium text-gray-900">{item.content}</h3>
+  //         </div>
+  //       );
+  //     }
+  //     return (
+  //       <p key={index} className="text-sm text-gray-600 leading-relaxed mb-3">
+  //         {item.content}
+  //       </p>
+  //     );
+  //   });
+  // };
 
   return (
     <main className="min-h-screen bg-white">
