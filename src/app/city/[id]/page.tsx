@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import {
   Bath,
   BedDouble,
@@ -54,7 +55,15 @@ interface CitywiseProjectProps {
   id: number;
 }
 
-export default function CitywiseProject({ id }: CitywiseProjectProps) {
+export default function CitywiseProject({ id: propId }: CitywiseProjectProps) {
+  
+   const params = useParams();
+
+   const id = Number(params.id || propId);
+
+   console.log(id);
+
+
   const [currency, setCurrency] = useState<Currency>("AED");
   const [projects, setProjects] = useState<Project[]>([]);
   const [cityName, setCityName] = useState<string>("");
@@ -68,12 +77,9 @@ export default function CitywiseProject({ id }: CitywiseProjectProps) {
         setLoading(true);
         const data = await getCityWiseProject(id);
 
-        console.log(data);
-
-        
-        if (data && data.city) {
-          setCityName(data.city.name || "City");
-          setProjects(data.projects || []);
+        if (data && data.projects) {
+          setCityName(data.projects.data[0].city?.name || "City");
+          setProjects(data.projects.data || []);
         } else {
           setError("No projects found for this city");
         }
@@ -197,7 +203,6 @@ export default function CitywiseProject({ id }: CitywiseProjectProps) {
                         </div>
                       </div>
                     </div>
-
                     <div className="p-4">
                       <h3 className="text-md font-normal text-[#1a1a1a]/70 line-clamp-1">
                         {p.title}
