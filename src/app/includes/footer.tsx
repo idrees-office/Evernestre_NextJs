@@ -25,7 +25,7 @@ export default function RefinedFooter() {
     { label: "Careers", href: "/careers" },
     { label: "FAQs", href: "/faqs" },
     { label: "Blog", href: "/blogs" },
-    { label: "Testimonials", href: "/testimonials" },
+    // { label: "Testimonials", href: "/testimonials" },
     { label: "Developers", href: "/developers" },
   ];
 

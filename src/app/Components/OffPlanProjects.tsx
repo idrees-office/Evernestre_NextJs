@@ -31,22 +31,6 @@ type OffPlanProjectsProps = {
   projects: Project[];
 };
 
-type City = {
-  name: string;
-  slug: string;
-  image: string;
-};
-
-const CITIES: City[] = [
-  { name: "DUBAI", slug: "dubai", image: "/assets/home/Dubai.webp" },
-  { name: "ABU DHABI", slug: "abu-dhabi", image: "/assets/home/Abu-Dhabi.webp" },
-  { name: "SHARJAH", slug: "sharjah", image: "/assets/home/Sharjah.webp" },
-  { name: "RAS AL KHAIMAH", slug: "ras-al-khaimah", image: "/assets/home/Rak.webp" },
-
-  { name: "AJMAN", slug: "ajman", image: "/assets/home/Ajman.webp" },
-  { name: "FUJAIRAH", slug: "fujairah", image: "/assets/home/Fujairah.webp" },
-];
-
 type Currency = "AED" | "USD" | "EUR";
 
 const FX: Record<Currency, number> = {
@@ -162,8 +146,6 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
                       <span>{p.starting_size || "Various Sizes"}</span>
                     </div>
                   </div>
-
-                  {/* Buttons */}
                   <div className="mt-4 flex items-center justify-between border-t border-[#d0845b]/10 pt-3">
                     <div className="flex items-center gap-2">
                       <button className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d0845d]/40 text-[#8b5d3b] hover:bg-[#d0845d]/10 transition-colors">

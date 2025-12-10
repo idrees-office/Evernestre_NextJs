@@ -30,3 +30,20 @@ export async function getProjectBySlug(slug: string) {
     return { area: null, error: true };
   }
 }
+
+
+
+export async function getCityWiseProject(id: number) {
+  try {
+    const res = await fetch(`${BASE_URL}/city/${id}`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) throw new Error("Failed to fetch area by slug");                   
+
+    return res.json();
+  } catch (error) {
+    console.error("getAreaBySlug error:", error);
+    return { area: null, error: true };
+  }
+}
