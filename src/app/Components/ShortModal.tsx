@@ -98,10 +98,8 @@ export default function ShortModalForm() {
         />
       </div>
       {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
-
-      {/* PHONE INPUT */}
-      <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
-        <Phone className="w-4 h-4 text-gray-400" />
+      {/* <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white"> */}
+        {/* <Phone className="w-4 h-4 text-gray-400" /> */}
         <PhoneInput
           international
           defaultCountry="AE"
@@ -110,10 +108,7 @@ export default function ShortModalForm() {
           placeholder="Phone Number"
           className="phone-input-custom w-full"
         />
-      </div>
       {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
-
-      {/* INTEREST SELECT */}
       <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
         <MapPin className="w-4 h-4 text-gray-400" />
         <select
