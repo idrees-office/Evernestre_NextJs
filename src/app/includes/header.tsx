@@ -46,15 +46,16 @@ export default function Header() {
       url: createPageUrl("News"),
       dropdown: ["News", "Blogs"],
     },
-    {
-      label: "Careers",
-      url: createPageUrl("Careers"),
-      dropdown: null,
-    },
+    // {
+    //   label: "Careers",
+    //   url: createPageUrl("Careers"),
+    //   dropdown: null,
+    // },
     {
       label: "About Us",
       url: createPageUrl("About"),
-      dropdown: null,
+      dropdown: ["Our Team"],
+      // dropdown: null,
     },
   ] as const;
 
