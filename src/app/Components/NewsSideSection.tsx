@@ -25,10 +25,6 @@ export default function NewsSideSection({
 }: SidebarProps) {
   return (
     <div className="space-y-6">
-
-      {/* ------------------------- */}
-      {/* 1️⃣ CATEGORIES */}
-      {/* ------------------------- */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -59,10 +55,6 @@ export default function NewsSideSection({
           ))}
         </div>
       </motion.div>
-
-      {/* ------------------------- */}
-      {/* 2️⃣ POPULAR TAGS */}
-      {/* ------------------------- */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -88,10 +80,6 @@ export default function NewsSideSection({
           ))}
         </div>
       </motion.div>
-
-      {/* ------------------------- */}
-      {/* 3️⃣ SPEAK WITH ADVISOR FORM */}
-      {/* ------------------------- */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}

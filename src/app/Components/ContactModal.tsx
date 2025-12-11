@@ -25,6 +25,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const nextErrors: any = {};
 
     if (!fullName.trim()) nextErrors.fullName = "Full name is required";
@@ -62,7 +63,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
       setPhone("");
       setInterest("");
       setMessage("");
-
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setErrors({ general: error.message });
     } finally {
@@ -197,7 +198,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                           onChange={(e) => setInterest(e.target.value)}
                           className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md"
                         >
-                          <option value="">I'm interested in</option>
+                          <option value="">I&apos;m interested in</option>
                           <option value="buy">Buying</option>
                           <option value="rent">Renting</option>
                           <option value="investment">Investment</option>
