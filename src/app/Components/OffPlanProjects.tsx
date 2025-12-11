@@ -2,16 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import {
-  Bath,
-  BedDouble,
-  Heart,
-  Home,
-  MessageCircle,
-  Phone,
-  Ruler,
-  Share2,
-} from "lucide-react";
+import { Bath, BedDouble, Heart, Home, MessageCircle, Phone, Ruler, Share2, } from "lucide-react";
 import Image from "next/image";
 import CitiesGrid from "./CitiesGrid";
 
@@ -169,8 +160,7 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
               </Link>
             </div>
           ))}
-        </div>
-
+          </div>
         <div className="mt-12" />
       </div>
     </section>
