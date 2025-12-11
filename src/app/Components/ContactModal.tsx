@@ -115,7 +115,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                     <div className="flex items-center gap-3">
                       <Phone className="w-4 h-4 text-[#d0845b]" />
                       <span className="text-xs font-light">
-                        +971 522 406 449
+                        +971 52 74 69 500
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
