@@ -92,7 +92,6 @@ export default function NewsSideSection({
           <h3 className="text-sm font-semibold text-gray-900 border-l-2 border-[#c97a52] pl-3 mb-4">
             Speak With a Property Advisor
           </h3>
-
           <ShortModalForm />
         </div>
       </motion.div>

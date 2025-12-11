@@ -133,8 +133,6 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                   </div>
                 </div>
               </div>
-
-              {/* Right Side Form */}
               <div className="lg:col-span-2 p-8 md:p-10">
                 <div className="max-w-2xl">
                   <h2 className="text-2xl font-normal text-[#1a1a1a] mb-2 tracking-tight">

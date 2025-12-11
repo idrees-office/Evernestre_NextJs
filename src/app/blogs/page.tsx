@@ -266,12 +266,10 @@ export default function BlogContactPage() {
                   ))}
                 </div>
               </div>
-
               <div className="bg-[#f9fafb] rounded-md border border-gray-100 px-4 py-4">
                 <h3 className="text-[15px] font-medium text-gray-900 border-l-2 border-[#c17a44] pl-3 mb-3">
                   Speak With a Property Advisor
                 </h3>
-                
                 <ShortModalForm />
               </div>
             </div>
