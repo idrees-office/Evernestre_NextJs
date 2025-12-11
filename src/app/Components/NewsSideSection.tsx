@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { User, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import ShortModalForm from "./ShortModal";
 
 type SidebarProps = {
   categories: { name: string; count: number }[];
@@ -104,83 +105,7 @@ export default function NewsSideSection({
             Speak With a Property Advisor
           </h3>
 
-          <form onSubmit={handleSubmit} className="space-y-3 text-[13px]">
-
-            {/* Full Name */}
-            <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-2.5 bg-gray-50/50 focus-within:border-[#8b5d3b]">
-              <User className="w-4 h-4 text-[#8b5d3b]/60" />
-              <input
-                type="text"
-                name="name"
-                placeholder="Full Name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full bg-transparent focus:outline-none"
-              />
-            </div>
-
-            {/* Email */}
-            <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-2.5 bg-gray-50/50 focus-within:border-[#8b5d3b]">
-              <Mail className="w-4 h-4 text-[#8b5d3b]/60" />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full bg-transparent focus:outline-none"
-              />
-            </div>
-
-            {/* Phone */}
-            <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-2.5 bg-gray-50/50 focus-within:border-[#8b5d3b]">
-              <Phone className="w-4 h-4 text-[#8b5d3b]/60" />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={handleInputChange}
-                className="w-full bg-transparent focus:outline-none"
-              />
-            </div>
-
-            {/* Interest */}
-            <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-2.5 bg-gray-50/50 focus-within:border-[#8b5d3b]">
-              <MapPin className="w-4 h-4 text-[#8b5d3b]/60" />
-              <select
-                name="interest"
-                value={formData.interest}
-                onChange={handleInputChange}
-                className="w-full bg-transparent focus:outline-none"
-              >
-                <option value="general">General Inquiry</option>
-                <option value="buying">Buying in Dubai</option>
-                <option value="selling">Selling Property</option>
-                <option value="offplan">Off-Plan Projects</option>
-              </select>
-            </div>
-
-            {/* Message */}
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleInputChange}
-              rows={3}
-              placeholder="Tell us what you're looking for..."
-              className="w-full border border-gray-200 rounded-sm px-3 py-2 bg-gray-50/50 focus:outline-none focus:border-[#8b5d3b] resize-none"
-            />
-
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              type="submit"
-              className="w-full flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-[#8b5d3b] to-[#c97a52] text-white text-[13px] font-medium py-3 mt-2 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Request Call Back
-              <ArrowRight className="w-4 h-4" />
-            </motion.button>
-          </form>
+          <ShortModalForm />
         </div>
       </motion.div>
     </div>

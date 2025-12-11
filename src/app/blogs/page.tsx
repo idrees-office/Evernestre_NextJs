@@ -20,6 +20,7 @@ import LuxuryLoader from "@/app/Components/LuxuryLoader";
 import { getAllBlogs } from "@/lib/blogs";
 import Image from "next/image";
 import Link from "next/link";
+import ShortModalForm from "../Components/ShortModal";
 
 type NewsItem = {
   id: string;
@@ -265,78 +266,13 @@ export default function BlogContactPage() {
                   ))}
                 </div>
               </div>
+
               <div className="bg-[#f9fafb] rounded-md border border-gray-100 px-4 py-4">
                 <h3 className="text-[15px] font-medium text-gray-900 border-l-2 border-[#c17a44] pl-3 mb-3">
                   Speak With a Property Advisor
                 </h3>
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-2.5 text-[13px]"
-                >
-                  <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
-                    <User className="w-4 h-4 text-gray-400" />
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="Full Name"
-                      className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
-                    />
-                  </div>
-
-                  <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
-                    <Mail className="w-4 h-4 text-gray-400" />
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="Email"
-                      className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
-                    />
-                  </div>
-                  <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
-                    <Phone className="w-4 h-4 text-gray-400" />
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="Phone (WhatsApp preferred)"
-                      className="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
-                    />
-                  </div>
-                  <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
-                    <MapPin className="w-4 h-4 text-gray-400" />
-                    <select
-                      name="interest"
-                      value={formData.interest}
-                      onChange={handleInputChange}
-                      className="w-full bg-transparent text-gray-800 focus:outline-none"
-                    >
-                      <option value="general">General Inquiry</option>
-                      <option value="buying">Buying in Dubai</option>
-                      <option value="selling">Selling Property</option>
-                      <option value="offplan">Off-Plan Projects</option>
-                    </select>
-                  </div>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={3}
-                    placeholder="Tell us what you're looking for..."
-                    className="w-full border border-gray-200 rounded-sm px-3 py-1.5 bg-white text-gray-800 placeholder-gray-400 focus:outline-none resize-none"
-                  />
-                  <button
-                    type="submit"
-                    className="w-full flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-[#8b5d3b] to-[#d4a373] text-white text-[13px] font-medium py-2 mt-1 hover:brightness-110 transition-all"
-                  >
-                    Request Call Back
-                    <ArrowRight className="w-3 h-3" />
-                  </button>
-                </form>
+                
+                <ShortModalForm />
               </div>
             </div>
 
