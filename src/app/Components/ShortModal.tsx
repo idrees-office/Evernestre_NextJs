@@ -97,9 +97,7 @@ export default function ShortModalForm() {
           className="w-full bg-transparent focus:outline-none text-gray-800"
         />
       </div>
-      {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
-      {/* <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white"> */}
-        {/* <Phone className="w-4 h-4 text-gray-400" /> */}
+      {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}  
         <PhoneInput
           international
           defaultCountry="AE"
