@@ -134,7 +134,7 @@ export default function ShortModalForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-[#8b5d3b] to-[#d4a373] text-white text-[13px] font-medium py-2 mt-1 hover:brightness-110 transition-all"
+        className="w-full flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-[#8b5d3b] to-[#d4a373] text-white text-[13px] font-medium py-2 mt-1 hover:brightness-110 transition-all cursor-pointer"
       >
         {loading ? "Submitting..." : "Request Call Back"}
         {!loading && <ArrowRight className="w-3 h-3" />}

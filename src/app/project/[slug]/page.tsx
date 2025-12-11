@@ -463,6 +463,23 @@ const renderContent = (content: ContentItem[]) => {
   });
 };
 
+
+const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Grand Polo Club & Resort Townhouses",
+          text: "Check out this project!",
+          url: window.location.href,
+        });
+      } catch (err) {
+        console.log("Share canceled", err);
+      }
+    } else {
+      alert("Sharing is not supported on this browser.");
+    }
+  };
+
   
 
   return (
@@ -649,7 +666,7 @@ const renderContent = (content: ContentItem[]) => {
             </nav>
 
             <div className="flex items-center gap-2">
-              <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 hover:text-gray-900 bg-white border border-gray-200 rounded-sm hover:border-gray-300 transition-all">
+              <button  onClick={handleShare} className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 hover:text-gray-900 bg-white border border-gray-200 rounded-sm hover:border-gray-300 transition-all cursor-pointer">
                 <Share2 className="w-3.5 h-3.5" /> Share
               </button>
               <button onClick={() => setIsFormOpen(true)} className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-medium text-white bg-[#c97a52] rounded-sm hover:bg-[#b56a42] transition-all">

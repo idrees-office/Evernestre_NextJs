@@ -177,7 +177,6 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      
                       <div className="input-group">
                         <PhoneInput
                           international
@@ -193,10 +192,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                       </div>
 
                       <div className="input-group">
-                        <select
-                          value={interest}
-                          onChange={(e) => setInterest(e.target.value)}
-                          className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md"
+                        <select value={interest} onChange={(e) => setInterest(e.target.value)} className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md"
                         >
                           <option value="">I&apos;m interested in</option>
                           <option value="buy">Buying</option>
@@ -206,7 +202,6 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                         </select>
                       </div>
                     </div>
-
                     <div className="input-group">
                       <textarea
                         placeholder="Tell us about your requirements..."
@@ -220,7 +215,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white py-2.5 rounded-md text-sm"
+                      className="w-full bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white py-2.5 rounded-md text-sm cursor-pointer"
                     >
                       {loading ? "Sending..." : "Send Message"}
                     </button>

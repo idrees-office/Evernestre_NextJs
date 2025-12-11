@@ -151,7 +151,33 @@ export default function Header() {
               ))}
             </div>
 
-            <div>
+            {/* <div>
+              <button
+                onClick={() => setIsContactOpen(true)}
+                className="
+                  cursor-pointer
+                  relative px-6 py-2 text-sm font-normal tracking-wide rounded-sm
+                  text-white bg-gradient-to-r from-[color:var(--brand)] to-[#c97a52]
+                  overflow-hidden transition-all duration-300
+                "
+              >
+                <span className="relative z-10">Book Now</span>
+                <span
+                  className="
+                    absolute inset-0
+                    w-[180%] h-[180%]
+                    -top-[40%] -left-[40%]
+                    rotate-45
+                    bg-gradient-to-r from-transparent via-white/70 to-transparent
+                    blur-[1px]
+                    animate-[luxury-shine_1.6s_ease-in-out_infinite]
+                    pointer-events-none
+                  "
+                ></span>
+              </button> */}
+            {/* </div> */}
+
+            <div className="hidden lg:block">
               <button
                 onClick={() => setIsContactOpen(true)}
                 className="
