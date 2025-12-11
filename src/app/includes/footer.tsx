@@ -418,7 +418,7 @@ export default function RefinedFooter() {
                   <MessageCircle className="h-4 w-4" />
                   WhatsApp
                 </motion.button>
-                <motion.button
+                {/* <motion.button
                   onClick={handleCallClick}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -426,7 +426,7 @@ export default function RefinedFooter() {
                 >
                   <Phone className="h-4 w-4" />
                   Call Us
-                </motion.button>
+                </motion.button> */}
               </div>
             </div>
           </div>
