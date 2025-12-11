@@ -379,7 +379,7 @@ const parseHTMLContent = (html: string) => {
           first_name: firstName.trim(),
           last_name: lastName.trim(),
           phone: phone,
-          source: "website_registration",
+          source: "Website",
           timestamp: new Date().toISOString(),
         };
   
@@ -794,20 +794,20 @@ const renderContent = (content: ContentItem[]) => {
                     transition={{ duration: 0.9, ease: "easeOut" }}
                     className="p-6 md:p-12 flex flex-col justify-center"
                   >    
-                  <RegisterLeadForm
-                    firstName={firstName}
-                    lastName={lastName}
-                    phone={phone}
-                    errors={errors}
-                    loading={loading}
-                    isFormValid={isFormValid}
-                    handleSubmit={handleSubmit}
-                    handlePhoneChange={handlePhoneChange}
-                    handleInputChange={handleInputChange}
-                    validatePhoneNumber={validatePhoneNumber}
-                    setFirstName={setFirstName}
-                    setLastName={setLastName}
-                  />
+                   {/* <RegisterLeadForm
+                                fullName={fullName}
+                                email={email}
+                                phone={phone}
+                                errors={errors}
+                                loading={loading}
+                                isFormValid={isFormValid}
+                                handleSubmit={handleSubmit}
+                                handlePhoneChange={handlePhoneChange}
+                                handleInputChange={handleInputChange}
+                                validatePhoneNumber={validatePhoneNumber}
+                                setFullName={setFullName}
+                                setEmail={setEmail}
+                              /> */}
                 </motion.div>
 
                   <motion.div

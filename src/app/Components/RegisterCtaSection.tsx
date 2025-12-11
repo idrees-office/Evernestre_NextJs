@@ -1,37 +1,39 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
-import "react-phone-number-input/style.css";
-import { BASE_URL } from "@/lib/config";
+import { isValidPhoneNumber } from "react-phone-number-input";
+import { submitLeadForm } from "@/lib/form";
 import RegisterLeadForm from "./RegisterLeadForm";
 
 export default function RegisterCtaSection() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState<string>();
   const [loading, setLoading] = useState(false);
-
   const [errors, setErrors] = useState<{
-    first?: string;
-    last?: string;
+    fullName?: string;
+    email?: string;
     phone?: string;
     ok?: string;
   }>({});
 
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const isFormValid = useMemo(() => {
     return (
-      firstName.trim() !== "" &&
-      lastName.trim() !== "" &&
+      fullName.trim() !== "" &&
+      email.trim() !== "" &&
+      isValidEmail(email) && // This will work now
       phone !== undefined &&
       phone !== "" &&
       isValidPhoneNumber(phone)
     );
-  }, [firstName, lastName, phone]);
+  }, [fullName, email, phone]);
 
   const validatePhoneNumber = (phoneNumber: string | undefined): boolean => {
     if (!phoneNumber) return false;
@@ -40,56 +42,51 @@ export default function RegisterCtaSection() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!isFormValid) return;
+    
+    // Validation
     const nextErrors: typeof errors = {};
-    if (!firstName.trim()) nextErrors.first = "Please enter your first name.";
-    if (!lastName.trim()) nextErrors.last = "Please enter your last name.";
+    if (!fullName.trim()) nextErrors.fullName = "Please enter your full name.";
+    if (!email.trim()) {
+      nextErrors.email = "Please enter your email address.";
+    } else if (!isValidEmail(email)) {
+      nextErrors.email = "Please enter a valid email address.";
+    }
     if (!phone) {
       nextErrors.phone = "Please enter your phone number.";
     } else if (!validatePhoneNumber(phone)) {
-      nextErrors.phone =
-        "Please enter a valid phone number for the selected country.";
+      nextErrors.phone = "Please enter a valid phone number.";
     }
 
-    setErrors(nextErrors);
-    if (Object.keys(nextErrors).length) return;
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      return;
+    }
 
     try {
       setLoading(true);
+      setErrors({}); 
 
       const formData = {
-        first_name: firstName.trim(),
-        last_name: lastName.trim(),
-        phone: phone,
-        source: "website_registration",
+        name: fullName.trim(), 
+        email: email.trim(), 
+        phone: phone!,
+        source: "Website",
         timestamp: new Date().toISOString(),
       };
 
-      const response = await fetch(`${BASE_URL}/get_website_lead`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      // Use the API function
+      await submitLeadForm(formData);
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || "Failed to submit form");
-      }
-
-      setErrors({ ok: "✅ Thank you! We'll reach out soon." });
-      setFirstName("");
-      setLastName("");
+      // Success
+      setErrors({ ok: "✅ Thank you! We'll reach out to you soon." });
+      setFullName("");
+      setEmail("");
       setPhone("");
     } catch (error) {
       setErrors({
-        phone:
-          error instanceof Error
-            ? error.message
-            : "Something went wrong. Please try again.",
+        phone: error instanceof Error 
+          ? error.message 
+          : "Failed to submit form. Please try again.",
       });
     } finally {
       setLoading(false);
@@ -136,8 +133,9 @@ export default function RegisterCtaSection() {
             developments and exclusive opportunities.
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 rounded-sm overflow-hidden bg-white ring-1 ring-[#c97a52]/20">
 
+        <div className="grid grid-cols-1 lg:grid-cols-2 rounded-sm overflow-hidden bg-white ring-1 ring-[#c97a52]/20">
+          {/* Left side - Image */}
           <motion.div
             initial={{ x: -100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -153,27 +151,29 @@ export default function RegisterCtaSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#8b5d3bbd] via-transparent to-transparent opacity-60" />
           </motion.div>
+
+          {/* Right side - Form */}
           <motion.div
-              initial={{ x: 100, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.9, ease: "easeOut" }}
-              className="p-6 md:p-12 flex flex-col justify-center"
-            >
-              <RegisterLeadForm
-                firstName={firstName}
-                lastName={lastName}
-                phone={phone}
-                errors={errors}
-                loading={loading}
-                isFormValid={isFormValid}
-                handleSubmit={handleSubmit}
-                handlePhoneChange={handlePhoneChange}
-                handleInputChange={handleInputChange}
-                validatePhoneNumber={validatePhoneNumber}
-                setFirstName={setFirstName}
-                setLastName={setLastName}
-              />
-            </motion.div>
+            initial={{ x: 100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="p-6 md:p-12 flex flex-col justify-center"
+          >
+            <RegisterLeadForm
+              fullName={fullName}
+              email={email}
+              phone={phone}
+              errors={errors}
+              loading={loading}
+              isFormValid={isFormValid}
+              handleSubmit={handleSubmit}
+              handlePhoneChange={handlePhoneChange}
+              handleInputChange={handleInputChange}
+              validatePhoneNumber={validatePhoneNumber}
+              setFullName={setFullName}
+              setEmail={setEmail}
+            />
+          </motion.div>
         </div>
       </div>
     </motion.section>

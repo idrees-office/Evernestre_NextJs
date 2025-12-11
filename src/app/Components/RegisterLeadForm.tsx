@@ -1,3 +1,6 @@
+
+
+
 "use client";
 
 import React from "react";
@@ -8,12 +11,12 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 interface Props {
-  firstName: string;
-  lastName: string;
+  fullName: string; // Changed from firstName
+  email: string; // Changed from lastName
   phone?: string;
   errors: {
-    first?: string;
-    last?: string;
+    fullName?: string; // Changed from first
+    email?: string; // Changed from last
     phone?: string;
     ok?: string;
   };
@@ -26,13 +29,13 @@ interface Props {
     field: string
   ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
   validatePhoneNumber: (phoneNumber: string | undefined) => boolean;
-  setFirstName: React.Dispatch<React.SetStateAction<string>>;
-  setLastName: React.Dispatch<React.SetStateAction<string>>;
+  setFullName: React.Dispatch<React.SetStateAction<string>>; // Changed from setFirstName
+  setEmail: React.Dispatch<React.SetStateAction<string>>; // Changed from setLastName
 }
 
 export default function RegisterLeadForm({
-  firstName,
-  lastName,
+  fullName,
+  email,
   phone,
   errors,
   loading,
@@ -41,28 +44,30 @@ export default function RegisterLeadForm({
   handlePhoneChange,
   handleInputChange,
   validatePhoneNumber,
-  setFirstName,
-  setLastName,
+  setFullName,
+  setEmail,
 }: Props) {
   return (
     <>
       <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto space-y-6">
         {[
           {
-            label: "First Name *",
-            value: firstName,
-            setter: setFirstName,
-            field: "first",
-            err: errors.first,
+            label: "Full Name *",
+            value: fullName,
+            setter: setFullName,
+            field: "fullName",
+            err: errors.fullName,
+            type: "text",
           },
           {
-            label: "Last Name *",
-            value: lastName,
-            setter: setLastName,
-            field: "last",
-            err: errors.last,
+            label: "Email *",
+            value: email,
+            setter: setEmail,
+            field: "email",
+            err: errors.email,
+            type: "email",
           },
-        ].map(({ label, value, setter, field, err }, i) => (
+        ].map(({ label, value, setter, field, err, type }, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 20 }}
@@ -70,7 +75,7 @@ export default function RegisterLeadForm({
             transition={{ delay: i * 0.1, duration: 0.6 }}
           >
             <input
-              type="text"
+              type={type}
               placeholder={label}
               value={value}
               onChange={handleInputChange(setter, field)}
@@ -126,7 +131,7 @@ export default function RegisterLeadForm({
           transition={{ type: "spring", stiffness: 200 }}
           type="submit"
           disabled={!isFormValid || loading}
-          className={`relative overflow-hidden bg-gradient-to-r from-[#c97a52] via-[#b06c48] to-[#8b5d3b] inline-flex h-12 w-full items-center justify-center rounded-sm text-[15px] text-white transition-all duration-200 ${
+          className={`relative overflow-hidden bg-gradient-to-r from-[#c97a52] via-[#b06c48] to-[#8b5d3b] inline-flex h-10 w-full items-center justify-center rounded-sm text-[15px] text-white transition-all duration-200 cursor-pointer ${
             !isFormValid || loading
               ? "opacity-50 cursor-not-allowed"
               : "hover:shadow-lg"
@@ -212,10 +217,9 @@ export default function RegisterLeadForm({
           width: 20px;
           height: 15px;
           border-radius: 2px;
-           border: 1px solid #d1d5dc;
+          border: 1px solid #d1d5dc;
         }
 
-      
         .phone-input-custom .PhoneInputCountrySelectArrow {
           margin-left: 6px;
           opacity: 0.6;

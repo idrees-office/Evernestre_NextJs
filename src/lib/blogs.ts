@@ -15,8 +15,6 @@ export async function getAllBlogs(page: number = 1) {
   }
 }
 
-
-
 export async function getBlogsBySlug(slug: string) {
   try {
     const res = await fetch(`${BASE_URL}/blogs/${slug}`, {
