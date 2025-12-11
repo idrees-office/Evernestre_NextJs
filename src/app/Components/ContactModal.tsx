@@ -4,6 +4,9 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Phone, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import { submitLeadForm } from "@/lib/form";
 
 interface Props {
   isOpen: boolean;
@@ -11,6 +14,63 @@ interface Props {
 }
 
 export default function ContactModal({ isOpen, onClose }: Props) {
+  const [fullName, setFullName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [interest, setInterest] = React.useState("");
+  const [message, setMessage] = React.useState("");
+  const [errors, setErrors] = React.useState<{ [key: string]: string }>({});
+  const [loading, setLoading] = React.useState(false);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    const nextErrors: any = {};
+
+    if (!fullName.trim()) nextErrors.fullName = "Full name is required";
+    if (!email.trim()) nextErrors.email = "Email is required";
+    if (!phone.trim()) nextErrors.phone = "Phone number is required";
+
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setErrors({});
+
+      const payload = {
+        name: fullName,
+        email,
+        phone,
+        interest,
+        message,
+        source: "Website",
+      };
+
+      const res = await submitLeadForm(payload);
+      console.log(res)
+
+      if (res.message != 'Success') throw new Error("Failed to submit");
+
+      setErrors({ ok: "Message sent successfully!" });
+
+      // Reset form
+      setFullName("");
+      setEmail("");
+      setPhone("");
+      setInterest("");
+      setMessage("");
+
+    } catch (error: any) {
+      setErrors({ general: error.message });
+    } finally {
+      setLoading(false);
+    }
+  }
+
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -84,48 +144,94 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                     are here to help.
                   </p>
 
-                  <form className="space-y-5">
+                  <form className="space-y-5" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      <input
-                        type="text"
-                        placeholder="Full Name"
-                        className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md focus:border-[#d0845b] focus:outline-none transition-all bg-white/60 text-sm"
-                      />
-                      <input
-                        type="email"
-                        placeholder="Email Address"
-                        className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md focus:border-[#d0845b] focus:outline-none transition-all bg-white/60 text-sm"
-                      />
+                      <div className="input-group">
+                        <input
+                          type="text"
+                          placeholder="Full Name"
+                          value={fullName}
+                          onChange={(e) => {
+                            setFullName(e.target.value);
+                            setErrors((p) => ({ ...p, fullName: "" }));
+                          }}
+                          className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md"
+                        />
+                        {errors.fullName && <p className="text-xs text-red-500">{errors.fullName}</p>}
+                      </div>
+
+                      <div className="input-group">
+                        <input
+                          type="email"
+                          placeholder="Email Address"
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                            setErrors((p) => ({ ...p, email: "" }));
+                          }}
+                          className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md"
+                        />
+                        {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
+                      </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      <input
-                        type="tel"
-                        placeholder="Phone Number"
-                        className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md focus:border-[#d0845b] focus:outline-none transition-all bg-white/60 text-sm"
-                      />
+                      
+                      <div className="input-group">
+                        <PhoneInput
+                          international
+                          defaultCountry="AE"
+                          value={phone}
+                          onChange={(value) => {
+                            setPhone(value || "");
+                          }}
+                          placeholder="Enter phone number"
+                          className={`phone-input-custom ${errors.phone ? "error" : ""}`}
+                        />
+                        {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
+                      </div>
 
-                      <select className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md focus:border-[#d0845b] focus:outline-none transition-all bg-white/60 text-sm text-[#1a1a1a]/60">
-                        <option value="">I&apos;m interested in</option>
-                        <option value="buy">Buying</option>
-                        <option value="rent">Renting</option>
-                        <option value="investment">Investment</option>
-                        <option value="consultation">Consultation</option>
-                      </select>
+                      <div className="input-group">
+                        <select
+                          value={interest}
+                          onChange={(e) => setInterest(e.target.value)}
+                          className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md"
+                        >
+                          <option value="">I'm interested in</option>
+                          <option value="buy">Buying</option>
+                          <option value="rent">Renting</option>
+                          <option value="investment">Investment</option>
+                          <option value="consultation">Consultation</option>
+                        </select>
+                      </div>
                     </div>
 
-                    <textarea
-                      placeholder="Tell us about your requirements..."
-                      rows={3}
-                      className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md focus:border-[#d0845b] focus:outline-none transition-all bg-white/60 text-sm resize-none"
-                    />
-
+                    <div className="input-group">
+                      <textarea
+                        placeholder="Tell us about your requirements..."
+                        rows={3}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md"
+                      />
+                    </div>
+                    
                     <button
                       type="submit"
-                      className="cursor-pointer w-full bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white py-2.5 rounded-md text-sm tracking-wide hover:shadow-lg transition-all duration-300 hover:scale-[1.02] font-medium"
+                      disabled={loading}
+                      className="w-full bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white py-2.5 rounded-md text-sm"
                     >
-                      Send Message
+                      {loading ? "Sending..." : "Send Message"}
                     </button>
+
+                    {errors.ok && (
+                      <p className="text-emerald-600 text-center text-sm mt-2">{errors.ok}</p>
+                    )}
+
+                    {errors.general && (
+                      <p className="text-red-600 text-center text-sm mt-2">{errors.general}</p>
+                    )}
+
                   </form>
                   <p className="text-[10px] text-[#1a1a1a]/40 mt-4 text-center font-light">
                     By submitting this form, you agree to our privacy policy and
