@@ -1009,6 +1009,7 @@ interface FiltersState {
 
 export default function HeroSlider({ hero }: HeroSliderProps) {
   const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [slides, setSlides] = useState<any[]>([]);
   const [current, setCurrent] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
