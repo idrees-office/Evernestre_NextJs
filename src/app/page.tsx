@@ -51,7 +51,7 @@ export default function App() {
     <div className="min-h-screen bg-[#faf8f6]">
       <div className="relative">
         <HeroSlider hero={data.hero} />
-        <PropertySearchBar />
+        {/* <PropertySearchBar /> */}
       </div>
       <OffPlanProjects projects={data.projects} />
       <HighlightedAreas areas={data.areas} />
