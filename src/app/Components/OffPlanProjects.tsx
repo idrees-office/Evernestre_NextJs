@@ -35,14 +35,20 @@ const CURRENCIES = ["AED", "USD", "EUR"] as const;
 function formatMoney(amount: string, currency: Currency) {
   if (!amount) return "Price on Request";
 
+  // Extract numbers including decimals
   const numeric = parseFloat(amount.replace(/[^\d.]/g, ""));
   if (isNaN(numeric)) return "Price on Request";
 
   const converted = numeric * FX[currency];
-  const symbol =
-    currency === "AED" ? "AED " : currency === "USD" ? "USD " : "EUR ";
+  const symbol = currency === "AED" ? "AED " : currency === "USD" ? "USD " : "EUR ";
 
-  return `${symbol}${Math.round(converted).toLocaleString()}`;
+  // Format to show up to 2 decimal places only if needed
+  const formatted = converted.toLocaleString('en-US', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  });
+
+  return `${symbol}${formatted}`;
 }
 
 export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
@@ -80,8 +86,7 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
                   key={c}
                   onClick={() => setCurrency(c)}
                   aria-pressed={!!active}
-                  className={[ "h-9 px-4 rounded-full text-sm transition-all cursor-pointer", active
-                      ? "bg-gradient-to-r from-[#d0845b] to-[#c9a882] text-white shadow"
+                  className={[ "h-9 px-4 rounded-full text-sm transition-all cursor-pointer", active ? "bg-gradient-to-r from-[#d0845b] to-[#c9a882] text-white shadow"
                       : "border border-[#d0845b]/50 text-[#8b5d3b] hover:bg-[#d0845b]/10",
                   ].join(" ")}
                 >
