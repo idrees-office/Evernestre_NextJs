@@ -41,6 +41,7 @@ import { BASE_URL } from "@/lib/config";
 import RegisterLeadForm from "@/app/Components/RegisterLeadForm";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
+
 interface ContentItem {
   type: "text" | "heading";
   content: string;
@@ -93,6 +94,8 @@ interface ProjectData {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("details");
+  const [showMapCard, setShowMapCard] = useState(false);
+
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [singleProject, setSingleProject] = useState<any>(null);
@@ -676,45 +679,187 @@ const handleShare = async () => {
           </div>
         </div>
       </div>
-      <section className="w-full py-3 mt-4">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
-            <div className="relative h-[260px] sm:h-[320px] lg:h-[450px] lg:col-span-9 w-full overflow-hidden rounded-sm">
-              {/* Circular Loader */}
-              {!singleProject?.main_image_loaded && (
-                <div className="absolute inset-0 flex items-center justify-center z-20 bg-gray-100/70">
-                  <div className="w-20 h-20 border-2 border-gray-300 border-t-[#c97a52] rounded-full animate-spin"></div>
-                </div>
-              )}
-              <Image
-                src={singleProject?.main_image || "/placeholder.jpg"} 
-                alt={singleProject?.name || "Project Image"} 
-                fill 
-                className={`object-cover transition-opacity duration-700 ${singleProject?.main_image_loaded ? "opacity-100" : "opacity-0"}`}
-                onLoadingComplete={() =>
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  setSingleProject((prev: any) => ({ ...prev, main_image_loaded: true }))
-                }
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+        <section className="w-full py-3 mt-4">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
+              <div className="relative h-[260px] sm:h-[320px] lg:h-[450px] lg:col-span-9 w-full overflow-hidden rounded-sm">
+                {/* Main image content remains the same */}
+                {!singleProject?.main_image_loaded && (
+                  <div className="absolute inset-0 flex items-center justify-center z-20 bg-gray-100/70">
+                    <div className="w-20 h-20 border-2 border-gray-300 border-t-[#c97a52] rounded-full animate-spin"></div>
+                  </div>
+                )}
+                <Image
+                  src={singleProject?.main_image || "/placeholder.jpg"} 
+                  alt={singleProject?.name || "Project Image"} 
+                  fill 
+                  className={`object-cover transition-opacity duration-700 ${singleProject?.main_image_loaded ? "opacity-100" : "opacity-0"}`}
+                  onLoadingComplete={() =>
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    setSingleProject((prev: any) => ({ ...prev, main_image_loaded: true }))
+                  }
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
 
-              <button onClick={() => setIsFavorite(!isFavorite)} className={`absolute top-3 right-3 z-20 p-2 rounded-full backdrop-blur-md transition-all ${isFavorite ? "bg-red-500 text-white" : "bg-black/30 text-white hover:bg-black/40"}`}>
-                <Heart className={`w-4 h-4 ${isFavorite ? "fill-current" : ""}`} />
-              </button>
-              <button onClick={() => setIsModalOpen(true)} className="absolute top-3 left-3 z-20 p-2 rounded-full bg-black/30 backdrop-blur-md text-white hover:bg-black/40 transition-all flex items-center gap-1.5">
-                <Camera className="w-4 h-4" />
-                <span className="text-xs font-medium">{singleProject?.gallery?.length || 0}</span>
-              </button>
-              <div className="absolute bottom-0 left-0 right-0 p-4"></div>
-            </div>
-
-            <div className="relative h-[180px] sm:h-[220px] lg:h-[450px] lg:col-span-3 w-full overflow-hidden rounded-sm">              
-               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14442.468972107661!2d55.26149851188493!3d25.18239884203875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f682def25f457%3A0x3dd4c4097970950e!2sBusiness%20Bay%20-%20Dubai!5e0!3m2!1sen!2sae!4v1765184199009!5m2!1sen!2sae" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="absolute inset-0 w-full h-full" /> 
+                <button onClick={() => setIsFavorite(!isFavorite)} className={`absolute top-3 right-3 z-20 p-2 rounded-full backdrop-blur-md transition-all ${isFavorite ? "bg-red-500 text-white" : "bg-black/30 text-white hover:bg-black/40"}`}>
+                  <Heart className={`w-4 h-4 ${isFavorite ? "fill-current" : ""}`} />
+                </button>
+                <button onClick={() => setIsModalOpen(true)} className="absolute top-3 left-3 z-20 p-2 rounded-full bg-black/30 backdrop-blur-md text-white hover:bg-black/40 transition-all flex items-center gap-1.5">
+                  <Camera className="w-4 h-4" />
+                  <span className="text-xs font-medium">{singleProject?.gallery?.length || 0}</span>
+                </button>
+              </div>
+              
+              {/* Map Section */}
+              <div className="relative h-[180px] sm:h-[220px] lg:h-[450px] lg:col-span-3 w-full overflow-hidden rounded-sm"
+                onMouseEnter={() => setShowMapCard(true)}
+                onMouseLeave={() => setShowMapCard(false)}
+              >
+                {singleProject?.location?.geo_lat && singleProject?.location?.geo_long ? (
+                  <>
+                    <iframe 
+                      src={`https://maps.google.com/maps?q=${singleProject.location.geo_lat},${singleProject.location.geo_long}&z=15&output=embed`}
+                      allowFullScreen 
+                      loading="lazy" 
+                      referrerPolicy="no-referrer-when-downgrade" 
+                      className="absolute inset-0 w-full h-full"
+                      title={`${singleProject?.name} Location`}
+                      style={{ border: 'none' }}
+                    />
+                    
+                    {/* Vertical Card with Smooth Animation */}
+                    <AnimatePresence>
+                      {showMapCard && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
+                          className="absolute top-3 right-3 w-40 bg-white rounded-md shadow-lg overflow-hidden border border-gray-200"
+                        >
+                          {/* Project Image - Top Section */}
+                          <div className="relative h-24 w-full">
+                            {singleProject?.banner || singleProject?.main_image ? (
+                              <Image
+                                src={singleProject.banner || singleProject.main_image}
+                                alt={singleProject?.name || "Project"}
+                                fill
+                                className="object-cover"
+                              />
+                            ) : (
+                              <div className="w-full h-full bg-gradient-to-br from-[#c97a52]/20 to-[#a85f3b]/20 flex items-center justify-center">
+                                <Home className="w-8 h-8 text-[#c97a52]/40" />
+                              </div>
+                            )}
+                            {/* Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                            
+                            {/* Price Badge */}
+                            <div className="absolute bottom-2 left-2 right-2">
+                              <div className="bg-gradient-to-r from-[#c97a52] to-[#a85f3b] text-white text-xs font-semibold px-2 py-1 rounded-sm text-center">
+                                {singleProject?.starting_price || 'Price on Request'}
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Project Info - Bottom Section */}
+                          <div className="p-3">
+                            <h4 className="text-xs font-bold text-gray-900 truncate mb-1">
+                              {singleProject?.name}
+                            </h4>
+                            
+                            <div className="flex items-center gap-1 mb-2">
+                              <MapPin className="w-3 h-3 text-[#c97a52] flex-shrink-0" />
+                              <p className="text-[10px] text-gray-600 truncate">
+                                {singleProject?.location?.name || 'Dubai, UAE'}
+                              </p>
+                            </div>
+                            
+                            {/* View Details Button */}
+                            <button 
+                              onClick={() => handleTabClick('details')}
+                              className="w-full text-xs text-[#c97a52] font-medium hover:text-[#a85f3b] transition-colors flex items-center justify-center gap-1 mt-2 pt-2 border-t border-gray-100"
+                            >
+                              View Details
+                              <ArrowRight className="w-3 h-3" />
+                            </button>
+                          </div>
+                          
+                          {/* Close Button */}
+                          <button 
+                            onClick={() => setShowMapCard(false)}
+                            className="absolute top-1 right-1 w-5 h-5 bg-black/60 text-white rounded-full flex items-center justify-center text-[10px] hover:bg-black/80 transition-colors"
+                          >
+                            ✕
+                          </button>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                    
+                    {/* Map Pin Marker - Always Visible */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                      <motion.div 
+                        animate={{ scale: showMapCard ? 1.2 : 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-6 h-6 bg-[#c97a52] rounded-full flex items-center justify-center shadow-lg cursor-pointer"
+                        onClick={() => setShowMapCard(!showMapCard)}
+                      >
+                        <MapPin className="w-3 h-3 text-white" />
+                      </motion.div>
+                    </div>
+                    
+                    {/* Coordinates Badge */}
+                    <div className="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] px-2 py-1 rounded-sm backdrop-blur-sm">
+                      <span className="font-mono">
+                        {parseFloat(singleProject.location.geo_lat).toFixed(4)}, {parseFloat(singleProject.location.geo_long).toFixed(4)}
+                      </span>
+                    </div>
+                    
+                    {/* Show Card Hint - Only when card is hidden */}
+                    {!showMapCard && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1 }}
+                        className="absolute top-3 left-3 bg-black/70 text-white text-[10px] px-2 py-1 rounded-sm backdrop-blur-sm"
+                      >
+                        Hover for details →
+                      </motion.div>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <iframe 
+                      src="https://maps.google.com/maps?q=25.2048,55.2708&z=12&output=embed"
+                      allowFullScreen 
+                      loading="lazy" 
+                      referrerPolicy="no-referrer-when-downgrade" 
+                      className="absolute inset-0 w-full h-full"
+                      title="Default Dubai Map"
+                      style={{ border: 'none' }}
+                    />
+                    
+                    {/* Default Card */}
+                    <div className="absolute top-3 left-3 right-3 bg-white rounded-sm shadow-lg p-3 border border-gray-200">
+                      <div className="flex flex-col items-center text-center">
+                        <div className="w-10 h-10 bg-gradient-to-br from-[#c97a52]/10 to-[#a85f3b]/10 rounded-full flex items-center justify-center mb-2">
+                          <MapPin className="w-5 h-5 text-[#c97a52]" />
+                        </div>
+                        <h4 className="text-xs font-medium text-gray-900">Project Location</h4>
+                        <p className="text-[10px] text-gray-600 mt-1">Coordinates not available</p>
+                      </div>
+                    </div>
+                  </>
+                )}
+                
+                {/* Map Frame Border */}
+                <div className="absolute inset-0 pointer-events-none border-2 border-white/30 rounded-sm shadow-inner"></div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+
        <section className="bg-[#faf8f5] py-2.5 border-b border-gray-100 mt-3">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3">
@@ -1099,7 +1244,7 @@ const handleShare = async () => {
         </div>
       </section>
 
-       <section ref={locationRef} className="py-6 sm:py-8 bg-[#faf8f5]">
+       {/* <section ref={locationRef} className="py-6 sm:py-8 bg-[#faf8f5]">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
@@ -1107,31 +1252,84 @@ const handleShare = async () => {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
             <div className="space-y-3">
-              
               <p className="text-sm text-gray-600 leading-relaxed"  dangerouslySetInnerHTML={{ __html: singleProject?.location?.description || '' }} ></p>
-              {/* <div className="grid grid-cols-2 gap-2">
-                {[
-                  { label: "Airport", value: "30 min" },
-                  { label: "Downtown", value: "25 min" },
-                  { label: "Nakheel Mall", value: "5 min" },
-                  { label: "Aquaventure", value: "10 min" },
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-2 p-2.5 bg-white rounded-sm border border-[#f0ebe4]">
-                    <MapPin className="w-3 h-3 text-[#c97a52]" />
-                    <div>
-                       <p className="text-[9px] text-gray-400 uppercase">{item.label}</p>
-                       <p className="text-xs font-medium text-gray-900">{item.value}</p> 
-                    </div>
-                  </div>
-                ))}
-              </div> */}
             </div>
             <div className="h-[200px] sm:h-[250px] rounded-sm overflow-hidden">
-              {/* <iframe src={projectData.mapIframeUrl} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="w-full h-full" /> */}
+              
             </div>
           </div>
         </div>
-      </section> 
+      </section>  */}
+
+
+      <section ref={locationRef} className="py-6 sm:py-8 bg-[#faf8f5]">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
+            <h3 className="text-base sm:text-lg font-medium text-gray-900">About Location</h3>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
+            <div className="space-y-3">
+              <p className="text-sm text-gray-600 leading-relaxed" dangerouslySetInnerHTML={{ 
+                __html: singleProject?.location?.description || 'No location description available.' 
+              }}></p>
+            </div>
+            <div className="h-[250px] sm:h-[300px] lg:h-[350px] rounded-sm overflow-hidden border border-gray-200 relative">
+              {singleProject?.location?.geo_lat && singleProject?.location?.geo_long ? (
+                <iframe 
+                  src={`https://maps.google.com/maps?q=${singleProject.location.geo_lat},${singleProject.location.geo_long}&z=15&output=embed`}
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade" 
+                  className="w-full h-full"
+                  title="Project Location Map"
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gray-100">
+                  <div className="text-center p-4">
+                    <MapPin className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+                    <p className="text-gray-500 text-sm">Location coordinates not available</p>
+                    <p className="text-gray-400 text-xs mt-1">Showing default Dubai map</p>
+                  </div>
+                  <iframe 
+                    src="https://maps.google.com/maps?q=25.2048,55.2708&z=12&output=embed"
+                    allowFullScreen 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade" 
+                    className="w-full h-full"
+                    title="Default Dubai Map"
+                  />
+                </div>
+              )}
+              
+              {/* Custom Marker with Project Info */}
+              <div className="absolute top-3 left-3 bg-white rounded-sm shadow-lg p-3 max-w-xs border border-gray-200">
+                <div className="flex items-start gap-2">
+                  <div className="flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[#c97a52]/20 flex items-center justify-center">
+                      <MapPin className="w-4 h-4 text-[#c97a52]" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-medium text-gray-900 mb-0.5">{singleProject?.name}</h4>
+                    <p className="text-[10px] text-gray-600 mb-1">
+                      {singleProject?.location?.name || 'Dubai, UAE'}
+                    </p>
+                    {singleProject?.location?.geo_lat && singleProject?.location?.geo_long && (
+                      <p className="text-[9px] text-gray-500">
+                        Coordinates: {singleProject.location.geo_lat}, {singleProject.location.geo_long}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
          <section ref={paymentRef} className="py-6 sm:py-8 bg-gradient-to-br from-[#c97a52] to-[#a85f3b]">
           <div className="container mx-auto px-4">
             <div className="text-center mb-6">
