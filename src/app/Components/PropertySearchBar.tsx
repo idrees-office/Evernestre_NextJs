@@ -350,12 +350,22 @@
 
 
 
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown, Check, Search, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 
-type DropdownName = "buyRent" | "status" | "propertyType" | "minArea" | "maxArea" | "minBedroom" | "maxBedroom" | "maxPrice";
+type DropdownName =
+  | "buyRent"
+  | "status"
+  | "propertyType"
+  | "minArea"
+  | "maxArea"
+  | "minBedroom"
+  | "maxBedroom"
+  | "maxPrice";
 
 interface FiltersState {
   buyRent: string;
@@ -398,9 +408,7 @@ export default function PropertySearchBar() {
     location: "",
   });
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  useEffect(() => setIsMounted(true), []);
 
   useEffect(() => {
     if (!isMounted) return;
@@ -408,9 +416,7 @@ export default function PropertySearchBar() {
     const handleClickOutside = (event: MouseEvent) => {
       if (!activeDropdown) return;
       const refEl = dropdownRefs.current[activeDropdown];
-      if (refEl && !refEl.contains(event.target as Node)) {
-        setActiveDropdown(null);
-      }
+      if (refEl && !refEl.contains(event.target as Node)) setActiveDropdown(null);
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -422,10 +428,7 @@ export default function PropertySearchBar() {
     setActiveDropdown((prev) => (prev === name ? null : name));
   };
 
-  function handleFilterChange<K extends keyof FiltersState>(
-    filterName: K,
-    value: FiltersState[K]
-  ) {
+  function handleFilterChange<K extends keyof FiltersState>(filterName: K, value: FiltersState[K]) {
     setFilters((prev) => ({ ...prev, [filterName]: value }));
   }
 
@@ -435,7 +438,6 @@ export default function PropertySearchBar() {
     options: readonly string[];
     selected?: string;
     onSelect: (value: string) => void;
-    className?: string;
   }
 
   const CustomDropdown: React.FC<CustomDropdownProps> = ({
@@ -444,31 +446,30 @@ export default function PropertySearchBar() {
     options,
     selected,
     onSelect,
-    className = "",
   }) => {
     return (
       <div
-        className={`relative ${className}`}
+        className="relative w-full"
         ref={(el) => {
           dropdownRefs.current[name] = el;
         }}
       >
         <button
           type="button"
-          className={`cursor-pointer w-full px-3 sm:px-4 md:px-5 py-2 bg-white/95 backdrop-blur-sm border border-white/20 rounded-sm text-left flex items-center justify-between transition-all duration-300 hover:border-[#d0845b]/30 hover:bg-white focus:outline-none group ${
+          className={`cursor-pointer w-full px-4 sm:px-5 py-2 bg-white/95 backdrop-blur-sm border border-white/20 rounded-sm text-left flex items-center justify-between transition-all duration-300 hover:border-[#d0845b]/30 hover:bg-white focus:outline-none group ${
             activeDropdown === name ? "border-[#d0845b] bg-white shadow-lg" : ""
           }`}
           onClick={() => toggleDropdown(name)}
         >
           <span
-            className={`text-xs sm:text-sm font-light tracking-wide truncate ${
+            className={`text-sm font-light tracking-wide truncate pr-2 ${
               selected ? "text-[#1a1a1a]" : "text-[#1a1a1a]/50"
             }`}
           >
             {selected || placeholder}
           </span>
           <ChevronDown
-            className={`h-3 w-3 sm:h-4 sm:w-4 text-[#1a1a1a]/40 transition-all duration-300 group-hover:text-[#d0845b] ${
+            className={`h-4 w-4 shrink-0 text-[#1a1a1a]/40 transition-all duration-300 group-hover:text-[#d0845b] ${
               activeDropdown === name ? "rotate-180 text-[#d0845b]" : ""
             }`}
           />
@@ -481,24 +482,22 @@ export default function PropertySearchBar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="absolute z-[100] mt-2 w-full min-w-[180px] bg-white border border-[#1a1a1a]/10 rounded-xl shadow-2xl"
+              className="absolute z-[100] mt-2 w-full bg-white border border-[#1a1a1a]/10 rounded-xl shadow-2xl"
             >
               <div className="max-h-64 overflow-y-auto">
                 {options.map((option, index) => (
                   <div
                     key={index}
-                    className="px-4 py-2 cursor-pointer hover:bg-[#faf8f6] transition-all duration-200 flex items-center justify-between group border-b border-[#1a1a1a]/5 last:border-0"
+                    className="px-4 sm:px-5 py-2 cursor-pointer hover:bg-[#faf8f6] transition-all duration-200 flex items-center justify-between group border-b border-[#1a1a1a]/5 last:border-0"
                     onClick={() => {
                       onSelect(option);
                       setActiveDropdown(null);
                     }}
                   >
-                    <span className="text-xs sm:text-sm text-[#1a1a1a]/80 group-hover:text-[#d0845b] font-light tracking-wide transition-colors duration-200 truncate">
+                    <span className="text-sm text-[#1a1a1a]/80 group-hover:text-[#d0845b] font-light tracking-wide transition-colors duration-200">
                       {option}
                     </span>
-                    {selected === option && (
-                      <Check className="h-3 w-3 sm:h-4 sm:w-4 text-[#d0845b]" />
-                    )}
+                    {selected === option && <Check className="h-4 w-4 text-[#d0845b]" />}
                   </div>
                 ))}
               </div>
@@ -517,23 +516,71 @@ export default function PropertySearchBar() {
     router.push(`/mainsearchbar?${query.toString()}`);
   };
 
-  // Skeleton loader for SSR
+  // ✅ responsive wrapper:
+  // - Mobile: normal block (place it under hero)
+  // - Desktop: absolute overlay (same as your design)
+  const wrapperClass =
+    "relative md:absolute md:-bottom-8 left-0 md:left-1/2 md:-translate-x-1/2 w-full md:w-[90%] lg:w-[75%] xl:w-[70%] z-[90] px-4 md:px-0";
+
   if (!isMounted) {
+    // keep your skeleton, but make it mobile-friendly (block on mobile)
     return (
-      <div className="w-full px-4 sm:px-6 md:px-8 absolute -bottom-8 left-1/2 -translate-x-1/2 z-[90] max-w-[1550px]">
-        <div className="bg-white/95 backdrop-blur-2xl shadow-2xl rounded-sm border-white/40">
-          <div className="p-4 sm:p-4 md:p-6">
+      <div className={wrapperClass}>
+        <div className="max-w-6xl mx-auto bg-white/95 backdrop-blur-2xl shadow-2xl rounded-sm border-white/40">
+          <div className="p-4">
             <div className="flex flex-col lg:flex-row gap-3 mb-3">
-              
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="h-10 bg-gray-200 animate-pulse rounded-sm"></div>
-              ))}
+              <div className="w-full lg:w-44">
+                <div className="w-full px-4 sm:px-5 py-2 bg-white/95 border border-white/20 rounded-sm flex items-center justify-between">
+                  <span className="text-sm font-light tracking-wide text-[#1a1a1a]/50">
+                    Buy / Rent
+                  </span>
+                  <ChevronDown className="h-4 w-4 text-[#1a1a1a]/40" />
+                </div>
+              </div>
+
+              <div className="w-full lg:w-44">
+                <div className="w-full px-4 sm:px-5 py-2 bg-white/95 border border-white/20 rounded-sm flex items-center justify-between">
+                  <span className="text-sm font-light tracking-wide text-[#1a1a1a]/50">
+                    Status
+                  </span>
+                  <ChevronDown className="h-4 w-4 text-[#1a1a1a]/40" />
+                </div>
+              </div>
+
+              <div className="w-full lg:flex-1 relative">
+                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[#1a1a1a]/30" />
+                <input
+                  type="text"
+                  placeholder="Enter location or project name"
+                  value={filters.location}
+                  readOnly
+                  className="w-full pl-12 pr-4 py-2 bg-white/95 border border-white/20 rounded-sm text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 placeholder:font-light tracking-wide"
+                />
+              </div>
+
+              <button
+                onClick={handleSearch}
+                className="w-full lg:w-auto px-8 py-2 bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white rounded-sm flex items-center justify-center gap-3 shadow-lg tracking-wider font-normal"
+              >
+                <Search className="h-5 w-5" />
+                <span>Search Properties</span>
+              </button>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-              {/* Loading skeleton for secondary filters */}
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-10 bg-gray-200 animate-pulse rounded-sm"></div>
-              ))}
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3">
+              {["Property Type", "Min Area", "Max Area", "Min Bedroom", "Max Bedroom", "Max Price"].map(
+                (t, i) => (
+                  <div
+                    key={i}
+                    className="w-full px-4 sm:px-5 py-2 bg-white/95 border border-white/20 rounded-sm flex items-center justify-between"
+                  >
+                    <span className="text-sm font-light tracking-wide text-[#1a1a1a]/50 truncate pr-2">
+                      {t}
+                    </span>
+                    <ChevronDown className="h-4 w-4 text-[#1a1a1a]/40 shrink-0" />
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>
@@ -545,15 +592,14 @@ export default function PropertySearchBar() {
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.6 }}
-      className="w-full px-4 sm:px-6 md:px-8 absolute -bottom-8 left-1/2 -translate-x-1/2 z-[90] max-w-[1550px]"
+      transition={{ duration: 0.8, delay: 0.4 }}
+      className={wrapperClass}
     >
-      <div className="bg-white/95 backdrop-blur-2xl shadow-2xl rounded-sm border-white/40">
-        <div className="p-4 sm:p-4 md:p-6">
-          {/* Main Search Row */}
+      <div className="max-w-6xl mx-auto bg-white/95 backdrop-blur-2xl shadow-2xl rounded-sm border-white/40">
+        <div className="p-4">
+          {/* Main row */}
           <div className="flex flex-col lg:flex-row gap-3 mb-3">
-            {/* Buy/Rent Dropdown - Full width on mobile, fixed on desktop */}
-            <div className="w-full lg:w-40 xl:w-44 flex-shrink-0">
+            <div className="w-full lg:w-40 xl:w-44">
               <CustomDropdown
                 name="buyRent"
                 placeholder="Buy / Rent"
@@ -563,8 +609,7 @@ export default function PropertySearchBar() {
               />
             </div>
 
-            {/* Status Dropdown */}
-            <div className="w-full lg:w-40 xl:w-44 flex-shrink-0">
+            <div className="w-full lg:w-40 xl:w-44">
               <CustomDropdown
                 name="status"
                 placeholder="Status"
@@ -574,31 +619,29 @@ export default function PropertySearchBar() {
               />
             </div>
 
-            {/* Location Search - Takes remaining space */}
-            <div className="flex-1 min-w-0">
+            <div className="w-full lg:flex-1 min-w-0">
               <div className="relative">
-                <MapPin className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#1a1a1a]/30" />
+                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[#1a1a1a]/30" />
                 <input
                   type="text"
                   placeholder="Enter location or project name"
                   value={filters.location}
                   onChange={(e) => handleFilterChange("location", e.target.value)}
-                  className="cursor-pointer w-full pl-10 sm:pl-12 pr-4 py-2 bg-white/95 backdrop-blur-sm border border-white/20 rounded-sm focus:outline-none focus:border-[#d0845b] focus:bg-white transition-all duration-300 text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 placeholder:font-light placeholder:text-xs sm:placeholder:text-sm tracking-wide"
+                  className="w-full pl-12 pr-4 py-2 bg-white/95 backdrop-blur-sm border border-white/20 rounded-sm focus:outline-none focus:border-[#d0845b] focus:bg-white transition-all duration-300 text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 placeholder:font-light tracking-wide"
                 />
               </div>
             </div>
-            
-            {/* Search Button */}
-            <button 
+
+            <button
               onClick={handleSearch}
-              className="cursor-pointer w-full lg:w-auto px-6 sm:px-8 md:px-10 py-2 bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white rounded-sm transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 shadow-lg hover:shadow-xl hover:scale-[1.02] group tracking-wider font-medium whitespace-nowrap"
+              className="w-full lg:w-auto px-6 sm:px-8 md:px-10 py-2 bg-gradient-to-r from-[#d0845b] to-[#c97a52] text-white rounded-sm transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 shadow-lg hover:shadow-xl hover:scale-[1.02] group tracking-wider font-normal whitespace-nowrap"
             >
               <Search className="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform duration-300" />
-              <span className="text-xs sm:text-sm md:text-base font-medium">Search</span>
+              <span className="text-sm sm:text-base font-normal">Search Properties</span>
             </button>
           </div>
-          
-          {/* Secondary Filters Grid */}
+
+          {/* Secondary row */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3">
             <CustomDropdown
               name="propertyType"
@@ -648,3 +691,4 @@ export default function PropertySearchBar() {
     </motion.div>
   );
 }
+
