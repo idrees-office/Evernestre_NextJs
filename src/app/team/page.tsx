@@ -288,7 +288,6 @@ export default function TeamPage() {
                       className="group"
                     >
                       <div className="relative bg-white rounded-md overflow-hidden border border-neutral-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
-                        {/* Image Container */}
                         <div className="relative h-[400px] overflow-hidden">
                           <Image
                             src={
