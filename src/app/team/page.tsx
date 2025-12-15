@@ -8,6 +8,8 @@ import SocialLinksSection from "../Components/SocialLinksSection";
 import RegisterCtaSection from "../Components/RegisterCtaSection";
 import Image from "next/image";
 import { getTeam } from "@/lib/team";
+import { useRouter } from "next/navigation";
+
 
 type TeamMember = {
   id: number;
@@ -18,6 +20,8 @@ type TeamMember = {
   photo: string | null;
   photo_thumb: string | null;
   joining_date: string | null;
+  slug: string;
+
 };
 
 type TeamData = {
@@ -29,6 +33,7 @@ export default function TeamPage() {
   const [teamData, setTeamData] = useState<TeamData>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [hoveredMember, setHoveredMember] = useState<number | null>(null);
+  const router = useRouter();
 
   // Fetch team data
   useEffect(() => {
@@ -61,7 +66,7 @@ export default function TeamPage() {
     categoriesSet.add("CEO");
     categoriesSet.add("Sales");
     categoriesSet.add("Creative");
-    categoriesSet.add("Support");
+    categoriesSet.add("Admins");
     
     return Array.from(categoriesSet);
   };
@@ -83,7 +88,7 @@ export default function TeamPage() {
 
   // Get category for each member
   const getMemberCategory = (designation: string | null): string => {
-    if (!designation) return "Support";
+    if (!designation) return "Admins";
     
     const designationLower = designation.toLowerCase();
     
@@ -114,8 +119,8 @@ export default function TeamPage() {
       return "Creative";
     }
     
-    // Support category (everything else)
-    return "Support";
+    
+    return "Admins";
   };
 
   // Format phone number
@@ -160,6 +165,10 @@ export default function TeamPage() {
     hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } }
   };
+
+  const handleMemberClick = (member: TeamMember) => {
+      router.push(`/team/${member.slug}`);
+  };    
 
   if (loading) {
     return (
@@ -283,6 +292,7 @@ export default function TeamPage() {
                     <motion.div
                       key={member.id}
                       layout
+                       onClick={() => handleMemberClick(member)}
                       onMouseEnter={() => setHoveredMember(member.id)}
                       onMouseLeave={() => setHoveredMember(null)}
                       className="group"
@@ -309,9 +319,9 @@ export default function TeamPage() {
                             <h3 className="text-white text-lg font-normal tracking-tight">
                               {member.name}
                             </h3>
-                            {/* <p className="text-white/80 text-xs mt-1">
+                             <p className="text-white/80 text-xs mt-1">
                               {member.designation || "Team Member"}
-                            </p> */}
+                            </p> 
                           </div>
 
                           {/* Category Icon (top right, subtle) */}
@@ -326,7 +336,7 @@ export default function TeamPage() {
                               {category === "Creative" && (
                                 <Sparkles className="w-4 h-4 text-white" />
                               )}
-                              {category === "Support" && (
+                              {category === "Admins" && (
                                 <Settings className="w-4 h-4 text-white" />
                               )}
                             </div>

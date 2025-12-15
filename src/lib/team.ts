@@ -14,3 +14,24 @@ export async function getTeam() {
     return { teams: [], error: true };
   }
 }
+
+
+export async function getTeamMemberBySlug(slug: string) {
+  try {
+    const res = await fetch(`${BASE_URL}/team/${slug}`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      if (res.status === 404) {
+        return null;
+      }
+      throw new Error("Failed to fetch team member");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("getTeamMemberBySlug error:", error);
+    return null;
+  }
+}
