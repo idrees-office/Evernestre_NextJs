@@ -7,6 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Mail } from "lucide-react";
 import { getTeamMemberBySlug } from "@/lib/team";
+import SocialLinksSection from "@/app/Components/SocialLinksSection";
+import RegisterCtaSection from "@/app/Components/RegisterCtaSection";
 
 
 type TeamMember = {
@@ -64,19 +66,17 @@ export default function TeamMemberPage({
     <>
       <Header />
 
-      <div className="min-h-screen bg-[#ffffff]">
-        <div className="container mx-auto px-6 py-14">
+    <section className="bg-[#f6ecdf] py-12 border-b border-[#f0e4d9]">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-medium text-[#3c2f26] mb-2">
+             {member.name}
+          </h2>
+          <div className="mx-auto h-[3px] w-20 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>
+        </div>
+      </section>
 
-          {/* Back */}
-          <Link
-            href="/team"
-            className="inline-flex items-center gap-2 text-sm text-[#8b5d3b] hover:underline mb-10"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Team
-          </Link>
-
-          {/* Main Layout */}
+      <div className="screen bg-[#ffffff]">
+        <div className="container mx-auto px-2 py-2 mt-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 max-w-6xl mx-auto">
 
             {/* LEFT – Image + Name */}
@@ -189,6 +189,9 @@ export default function TeamMemberPage({
           </div>
         </div>
       </div>
+    <SocialLinksSection />
+    <RegisterCtaSection />
+
     </>
   );
 }

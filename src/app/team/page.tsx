@@ -11,6 +11,7 @@ import { getTeam } from "@/lib/team";
 import { useRouter } from "next/navigation";
 
 
+
 type TeamMember = {
   id: number;
   name: string;
@@ -154,8 +155,7 @@ export default function TeamPage() {
       );
 
   const categories = getCategories();
-
-  // Animation variants
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
