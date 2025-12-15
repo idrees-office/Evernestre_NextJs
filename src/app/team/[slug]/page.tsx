@@ -22,6 +22,7 @@ type TeamMember = {
   photo: string | null;
   photo_thumb: string | null;
   joining_date: string | null;
+  description :  string | null;
 };
 
 export default function TeamMemberPage({
@@ -108,34 +109,14 @@ export default function TeamMemberPage({
 
             {/* RIGHT – About Section */}
             <div className="lg:col-span-8">
-              <h1 className="text-2xl font-semibold text-[#111111] mb-6">
+              {/* <h1 className="text-2xl font-semibold text-[#111111] mb-6">
                 About {member.name}
-              </h1>
+              </h1> */}
 
-              <div className="space-y-5 text-[15px] leading-relaxed text-gray-700">
-                <p>
-                  {member.name} is a dedicated professional at Evernest Real
-                  Estate, currently serving as{" "}
-                  <strong>{member.designation || "a key team member"}</strong>.
-                  With a strong commitment to excellence,{" "}
-                  {member.name.split(" ")[0]} plays an important role in
-                  delivering high-quality results and maintaining the company’s
-                  standards.
-                </p>
-
-                <p>
-                  Known for a detail-oriented mindset and a collaborative
-                  approach, {member.name.split(" ")[0]} consistently contributes
-                  to team success by combining industry knowledge with practical
-                  execution.
-                </p>
-
-                <p>
-                  At Evernest, {member.name.split(" ")[0]} is valued not only for
-                  technical and professional expertise, but also for integrity,
-                  reliability, and a passion for continuous improvement.
-                </p>
-              </div>
+              <div
+                    className="space-y-5 text-[15px] leading-relaxed text-gray-700"
+                    dangerouslySetInnerHTML={{ __html: member.description || "" }}
+                    />
 
               {/* Divider */}
               <div className="mt-10 border-t border-gray-200 pt-10">
