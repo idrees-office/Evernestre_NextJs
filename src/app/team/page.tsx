@@ -289,7 +289,7 @@ export default function TeamPage() {
                     >
                       <div className="relative bg-white rounded-md overflow-hidden border border-neutral-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
                         {/* Image Container */}
-                        <div className="relative h-[320px] overflow-hidden">
+                        <div className="relative h-[405px] overflow-hidden">
                           <Image
                             src={
                               member.photo ||
