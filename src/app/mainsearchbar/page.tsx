@@ -78,7 +78,7 @@ function SearchBarContent() {
         Object.entries(filters).filter(([_, value]) => value != null)
       );
       const queryString = new URLSearchParams(cleanFilters as Record<string, string>).toString();
-      const response = await fetch(`/api/website/properties?${queryString}`);
+      const response = await fetch(`/api/website/search_property?${queryString}`);
       const data = await response.json();
       setProperties(data || []);
     } catch (error) {
