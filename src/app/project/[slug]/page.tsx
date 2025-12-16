@@ -1147,7 +1147,10 @@ const handleShare = async () => {
         </div>
         {singleProject?.amenities?.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
-            {singleProject.amenities.map((amenity: any, index: number) => (
+             
+            {
+               // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            singleProject.amenities.map((amenity: any, index: number) => (
               <div
                 key={index}
                 className="flex items-center gap-2 p-2.5 sm:p-3 bg-white border border-[#f0ebe4] rounded-sm hover:shadow-sm transition-all"
