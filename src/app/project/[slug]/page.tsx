@@ -38,8 +38,9 @@ import { div } from "framer-motion/client";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import { inputClass } from "@/app/utils/inputClass";
 import { BASE_URL } from "@/lib/config";
-import RegisterLeadForm from "@/app/Components/RegisterLeadForm";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import ShortModalForm from "@/app/Components/ShortModal";
+
 
 
 interface ContentItem {
@@ -262,31 +263,6 @@ const parseHTMLContent = (html: string) => {
 
   return contentItems;
 };
-
-
-  //   useEffect(() => {
-  //   const fetchProject = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const data = await getProjectBySlug(cleanSlug);
-        
-  //       if (data.error) {
-  //         throw new Error('Project not found');
-  //       }
-
-  //       console.log('Fetched project data:', data);
-
-  //       setSingleProject(data);
-  //     } catch (err) {
-  //       setError(err instanceof Error ? err.message : 'Failed to load project');
-  //       console.error('Error fetching project:', err);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchProject();
-  // }, [cleanSlug]);
 
 
   useEffect(() => {
@@ -951,21 +927,14 @@ const handleShare = async () => {
           </div>
           <div className="lg:col-span-4 lg:sticky lg:top-16 lg:self-start space-y-3">
                 <motion.div initial={{ x: 100, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.9, ease: "easeOut" }} className="p-6 md:p-12 flex flex-col justify-center"
-                  >    
-                   {/* <RegisterLeadForm
-                      fullName={fullName}
-                      email={email}
-                      phone={phone}
-                      errors={errors}
-                      loading={loading}
-                      isFormValid={isFormValid}
-                      handleSubmit={handleSubmit}
-                      handlePhoneChange={handlePhoneChange}
-                      handleInputChange={handleInputChange}
-                      validatePhoneNumber={validatePhoneNumber}
-                      setFullName={setFullName}
-                      setEmail={setEmail}
-                    /> */}
+                  >  
+                    <div className="bg-[#f9fafb] rounded-md border border-gray-100 px-4 py-4">
+                      <h3 className="text-[15px] font-medium text-gray-900 border-l-2 border-[#c17a44] pl-3 mb-3">
+                        Speak With a Property Advisor
+                      </h3>
+                      <ShortModalForm />
+                    </div>
+              
                 </motion.div>
                   <motion.div
                     initial={{ x: 100, opacity: 0 }}
@@ -1258,7 +1227,6 @@ const handleShare = async () => {
           </div>
         </div>
       </section>
-
          <section ref={paymentRef} className="py-6 sm:py-8 bg-gradient-to-br from-[#c97a52] to-[#a85f3b]">
           <div className="container mx-auto px-4">
             <div className="text-center mb-6">
@@ -1336,6 +1304,9 @@ const handleShare = async () => {
         </div>
       </section>  
       
+
+
+      
        <AnimatePresence>
         {isModalOpen && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center" onClick={() => setIsModalOpen(false)}>
@@ -1367,7 +1338,75 @@ const handleShare = async () => {
       <style jsx>{`
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .phone-input-custom .PhoneInput {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          border: 1px solid #d1d5db;
+          border-radius: 2px;
+          transition: all 0.3s ease;
+          background: white;
+          padding: 0;
+        }
+
+        .phone-input-custom .PhoneInput:focus-within {
+          border-color: #c97a52;
+          box-shadow: 0 0 0 1px #c97a52;
+          transform: scale(1.02);
+        }
+
+        .phone-input-custom .PhoneInputCountry {
+          display: flex;
+          align-items: center;
+          padding: 8px 12px;
+          margin: 0;
+          background: transparent;
+          border: none;
+          border: 1px solid #d1d5dc;
+        }
+
+        .phone-input-custom .PhoneInputCountryIcon {
+          width: 20px;
+          height: 15px;
+          border-radius: 2px;
+          border: 1px solid #d1d5dc;
+        }
+
+        .phone-input-custom .PhoneInputCountrySelectArrow {
+          margin-left: 6px;
+          opacity: 0.6;
+          border-left: 3px solid transparent;
+          border-right: 3px solid transparent;
+          border-top: 4px solid #374151;
+        }
+
+        .phone-input-custom .PhoneInputInput {
+          flex: 1;
+          padding: 8px 16px;
+          font-size: 15px;
+          outline: none;
+          border: 1px solid #d1d5dc;
+          background: transparent;
+          width: 100%;
+        }
+
+        .phone-input-custom .PhoneInputInput::placeholder {
+          color: #9ca3af;
+        }
+
+        /* Error state */
+        .phone-input-custom.error .PhoneInput {
+          border-color: #f87171 !important;
+        }
+
+        .phone-input-custom.error .PhoneInput:focus-within {
+          border-color: #f87171 !important;
+          box-shadow: 0 0 0 1px #f87171;
+        }
+
       `}</style>
     </main>
   );
 }
+

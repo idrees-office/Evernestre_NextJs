@@ -75,7 +75,7 @@ export default function ShortModalForm() {
     <form onSubmit={handleSubmit} className="space-y-2.5 text-[13px]">
       {/* NAME */}
       <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
-        <User className="w-4 h-4 text-gray-400" />
+        <User className="w-6 h-6 text-gray-400" />
         <input
           type="text"
           placeholder="Full Name"
@@ -88,7 +88,7 @@ export default function ShortModalForm() {
 
       {/* EMAIL */}
       <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
-        <Mail className="w-4 h-4 text-gray-400" />
+        <Mail className="w-6 h-6 text-gray-400" />
         <input
           type="email"
           placeholder="Email Address"
@@ -108,7 +108,7 @@ export default function ShortModalForm() {
         />
       {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
       <div className="flex items-center gap-2 border border-gray-200 rounded-sm px-3 py-1.5 bg-white">
-        <MapPin className="w-4 h-4 text-gray-400" />
+        <MapPin className="w-6 h-6 text-gray-400" />
         <select
           value={interest}
           onChange={(e) => setInterest(e.target.value)}

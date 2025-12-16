@@ -29,8 +29,8 @@ interface Props {
     field: string
   ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
   validatePhoneNumber: (phoneNumber: string | undefined) => boolean;
-  setFullName: React.Dispatch<React.SetStateAction<string>>; // Changed from setFirstName
-  setEmail: React.Dispatch<React.SetStateAction<string>>; // Changed from setLastName
+  setFullName: React.Dispatch<React.SetStateAction<string>>; 
+  setEmail: React.Dispatch<React.SetStateAction<string>>; 
 }
 
 export default function RegisterLeadForm({
@@ -184,74 +184,6 @@ export default function RegisterLeadForm({
           .
         </motion.p>
       </form>
-      <style jsx global>{`
-        /* Global styles for the phone input */
-        .phone-input-custom .PhoneInput {
-          display: flex;
-          align-items: center;
-          width: 100%;
-          border: 1px solid #d1d5db;
-          border-radius: 2px;
-          transition: all 0.3s ease;
-          background: white;
-          padding: 0;
-        }
-
-        .phone-input-custom .PhoneInput:focus-within {
-          border-color: #c97a52;
-          box-shadow: 0 0 0 1px #c97a52;
-          transform: scale(1.02);
-        }
-
-        .phone-input-custom .PhoneInputCountry {
-          display: flex;
-          align-items: center;
-          padding: 8px 12px;
-          margin: 0;
-          background: transparent;
-          border: none;
-          border: 1px solid #d1d5dc;
-        }
-
-        .phone-input-custom .PhoneInputCountryIcon {
-          width: 20px;
-          height: 15px;
-          border-radius: 2px;
-          border: 1px solid #d1d5dc;
-        }
-
-        .phone-input-custom .PhoneInputCountrySelectArrow {
-          margin-left: 6px;
-          opacity: 0.6;
-          border-left: 3px solid transparent;
-          border-right: 3px solid transparent;
-          border-top: 4px solid #374151;
-        }
-
-        .phone-input-custom .PhoneInputInput {
-          flex: 1;
-          padding: 8px 16px;
-          font-size: 15px;
-          outline: none;
-          border: 1px solid #d1d5dc;
-          background: transparent;
-          width: 100%;
-        }
-
-        .phone-input-custom .PhoneInputInput::placeholder {
-          color: #9ca3af;
-        }
-
-        /* Error state */
-        .phone-input-custom.error .PhoneInput {
-          border-color: #f87171 !important;
-        }
-
-        .phone-input-custom.error .PhoneInput:focus-within {
-          border-color: #f87171 !important;
-          box-shadow: 0 0 0 1px #f87171;
-        }
-      `}</style>
     </>
   );
 }
