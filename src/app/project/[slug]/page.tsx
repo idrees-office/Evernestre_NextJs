@@ -1172,7 +1172,35 @@ const handleShare = async () => {
         )}
       </div>
     </section>
-      <section className="py-6 sm:py-8 bg-white">
+
+
+    <section className="py-6 sm:py-8 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
+          <h3 className="text-base sm:text-lg font-medium text-gray-900">Highlights</h3>
+        </div>
+        {singleProject?.highlights?.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+            { // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            singleProject.highlights.map((highlight: any, index: number) => (
+              <div key={index} className="flex items-start gap-2 p-2.5 sm:p-3 bg-[#faf8f5] border border-[#f0ebe4] rounded-sm">
+                <CheckCircle2 className="w-4 h-4 text-[#c97a52] flex-shrink-0 mt-0.5" />
+                <span className="text-xs text-gray-600">
+                  {highlight?.highlight?.name || highlight?.name || `Highlight ${index + 1}`}
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-sm text-gray-500 bg-[#faf8f5] p-3 border border-[#f0ebe4] rounded-sm">
+            No highlights found. Please add from CRM.
+          </p>
+        )}
+      </div>
+    </section>
+
+      {/* <section className="py-6 sm:py-8 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
@@ -1195,24 +1223,8 @@ const handleShare = async () => {
             </p>
           )}
         </div>
-      </section>
+      </section> */}
 
-       {/* <section ref={locationRef} className="py-6 sm:py-8 bg-[#faf8f5]">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
-            <h3 className="text-base sm:text-lg font-medium text-gray-900">About Location</h3>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
-            <div className="space-y-3">
-              <p className="text-sm text-gray-600 leading-relaxed"  dangerouslySetInnerHTML={{ __html: singleProject?.location?.description || '' }} ></p>
-            </div>
-            <div className="h-[200px] sm:h-[250px] rounded-sm overflow-hidden">
-              
-            </div>
-          </div>
-        </div>
-      </section>  */}
 
 
       <section ref={locationRef} className="py-6 sm:py-8 bg-[#faf8f5]">
