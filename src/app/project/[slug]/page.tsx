@@ -884,7 +884,7 @@ const handleShare = async () => {
                     : singleProject?.developer || "N/A"
               },
 
-              { icon: Calendar, label: "Completion", value: singleProject?.handover_date },
+              { icon: Calendar, label: "Payment Plan", value: singleProject?.payment_plan },
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-2">
                 <div className="p-1.5 rounded-sm bg-[#c97a52]/10 flex-shrink-0">
@@ -1052,12 +1052,20 @@ const handleShare = async () => {
         </div>
       )}
     </section>
+
+
+    
+
+     
+
     <section ref={floorplanRef} className="py-6 sm:py-8 bg-white">
       <div className="container mx-auto px-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
           <div className="flex items-center gap-2">
             <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
-            <h3 className="text-base sm:text-lg font-medium text-gray-900">Floor Plans</h3>
+            <h3 className="text-base sm:text-lg font-medium text-gray-900">
+              Floor Plans
+            </h3>
           </div>
 
           <div className="flex gap-2">
@@ -1067,6 +1075,7 @@ const handleShare = async () => {
             >
               <FileText className="w-3 h-3" /> View All
             </button>
+
             <button
               onClick={() => setIsFormOpen(true)}
               className="flex items-center gap-1 px-3 py-1.5 bg-[#c97a52] text-white rounded-sm text-xs font-medium hover:bg-[#b56a42] transition-all"
@@ -1075,115 +1084,37 @@ const handleShare = async () => {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
 
-          <div
-            className="bg-[#faf8f5] rounded-sm overflow-hidden border border-[#f0ebe4] group cursor-pointer hover:shadow-md transition-all"
-            onClick={() => setIsFormOpen(true)}
-          >
-            <div className="h-24 sm:h-28 bg-gradient-to-br from-[#f0ebe4] to-[#e8dfd4] flex items-center justify-center">
-              <Home className="w-8 h-8 sm:w-10 sm:h-10 text-[#c97a52]/40 group-hover:scale-110 transition-transform" />
-            </div>
-            <div className="p-2.5 sm:p-3">
-              <h4 className="font-medium text-gray-900 text-xs sm:text-sm mb-0.5">1 Bedroom</h4>
-              <p className="text-[10px] sm:text-xs text-gray-500">650 sq ft</p>
-              <p className="text-[10px] sm:text-xs text-[#c97a52] font-medium mt-0.5">AED 1.2M</p>
-            </div>
+        {singleProject?.floor_plans?.length > 0 ? (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+            {singleProject.floor_plans.map((image: string, index: number) => (
+              <div
+                key={index}
+                onClick={() => setIsFormOpen(true)}
+                className="group cursor-pointer border border-[#f0ebe4] bg-[#faf8f5] rounded-sm overflow-hidden hover:shadow-md transition-all"
+              >
+                <div className="relative w-full aspect-[4/5] bg-gray-100">
+                  <Image
+                    src={image}
+                    alt={`Floor Plan ${index + 1}`}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 25vw"
+                    className="object-contain p-2 group-hover:scale-[1.02] transition-transform"
+                    priority={index === 0}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
-          <div
-            className="bg-[#faf8f5] rounded-sm overflow-hidden border border-[#f0ebe4] group cursor-pointer hover:shadow-md transition-all"
-            onClick={() => setIsFormOpen(true)}
-          >
-            <div className="h-24 sm:h-28 bg-gradient-to-br from-[#f0ebe4] to-[#e8dfd4] flex items-center justify-center">
-              <Home className="w-8 h-8 sm:w-10 sm:h-10 text-[#c97a52]/40 group-hover:scale-110 transition-transform" />
-            </div>
-            <div className="p-2.5 sm:p-3">
-              <h4 className="font-medium text-gray-900 text-xs sm:text-sm mb-0.5">2 Bedroom</h4>
-              <p className="text-[10px] sm:text-xs text-gray-500">950 sq ft</p>
-              <p className="text-[10px] sm:text-xs text-[#c97a52] font-medium mt-0.5">AED 1.8M</p>
-            </div>
-          </div>
-          <div
-            className="bg-[#faf8f5] rounded-sm overflow-hidden border border-[#f0ebe4] group cursor-pointer hover:shadow-md transition-all"
-            onClick={() => setIsFormOpen(true)}
-          >
-            <div className="h-24 sm:h-28 bg-gradient-to-br from-[#f0ebe4] to-[#e8dfd4] flex items-center justify-center">
-              <Home className="w-8 h-8 sm:w-10 sm:h-10 text-[#c97a52]/40 group-hover:scale-110 transition-transform" />
-            </div>
-            <div className="p-2.5 sm:p-3">
-              <h4 className="font-medium text-gray-900 text-xs sm:text-sm mb-0.5">3 Bedroom</h4>
-              <p className="text-[10px] sm:text-xs text-gray-500">1200 sq ft</p>
-              <p className="text-[10px] sm:text-xs text-[#c97a52] font-medium mt-0.5">AED 2.4M</p>
-            </div>
-          </div>
-
-          <div
-            className="bg-[#faf8f5] rounded-sm overflow-hidden border border-[#f0ebe4] group cursor-pointer hover:shadow-md transition-all"
-            onClick={() => setIsFormOpen(true)}
-          >
-            <div className="h-24 sm:h-28 bg-gradient-to-br from-[#f0ebe4] to-[#e8dfd4] flex items-center justify-center">
-              <Home className="w-8 h-8 sm:w-10 sm:h-10 text-[#c97a52]/40 group-hover:scale-110 transition-transform" />
-            </div>
-            <div className="p-2.5 sm:p-3">
-              <h4 className="font-medium text-gray-900 text-xs sm:text-sm mb-0.5">Studio</h4>
-              <p className="text-[10px] sm:text-xs text-gray-500">450 sq ft</p>
-              <p className="text-[10px] sm:text-xs text-[#c97a52] font-medium mt-0.5">AED 850K</p>
-            </div>
-          </div>
-        </div>
+        ) : (
+          <p className="text-sm text-gray-500 bg-[#faf8f5] p-3 border border-[#f0ebe4] rounded-sm">
+            No floor plans found. Please add from admin panel.
+          </p>
+        )}
       </div>
     </section>
 
-      {/* <section ref={floorplanRef} className="py-6 sm:py-8 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-            <div className="flex items-center gap-2">
-              <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
-              <h3 className="text-base sm:text-lg font-medium text-gray-900">Floor Plans</h3>
-            </div>
 
-            <div className="flex gap-2">
-              <button
-                onClick={() => setIsFormOpen(true)}
-                className="flex items-center gap-1 px-3 py-1.5 bg-white border border-gray-200 rounded-sm text-xs font-medium text-gray-700 hover:bg-gray-50 transition-all"
-              >
-                <FileText className="w-3 h-3" /> View All
-              </button>
-              <button
-                onClick={() => setIsFormOpen(true)}
-                className="flex items-center gap-1 px-3 py-1.5 bg-[#c97a52] text-white rounded-sm text-xs font-medium hover:bg-[#b56a42] transition-all"
-              >
-                <Download className="w-3 h-3" /> Download
-              </button>
-            </div>
-          </div>
-
-          {projectData?.floorPlans?.length > 0 ? (
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
-              {projectData.floorPlans.map((plan, index) => (
-                <div
-                  key={index}
-                  className="bg-[#faf8f5] rounded-sm overflow-hidden border border-[#f0ebe4] group cursor-pointer hover:shadow-md transition-all"
-                  onClick={() => setIsFormOpen(true)}
-                >
-                  <div className="h-24 sm:h-28 bg-gradient-to-br from-[#f0ebe4] to-[#e8dfd4] flex items-center justify-center">
-                    <Home className="w-8 h-8 sm:w-10 sm:h-10 text-[#c97a52]/40 group-hover:scale-110 transition-transform" />
-                  </div>
-                  <div className="p-2.5 sm:p-3">
-                    <h4 className="font-medium text-gray-900 text-xs sm:text-sm mb-0.5">{plan.type}</h4>
-                    <p className="text-[10px] sm:text-xs text-gray-500">{plan.size}</p>
-                    <p className="text-[10px] sm:text-xs text-[#c97a52] font-medium mt-0.5">{plan.price}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-sm text-gray-500 bg-[#faf8f5] p-3 border border-[#f0ebe4] rounded-sm">
-              No floor plans found. Please add from admin panel.
-            </p>
-          )}
-        </div>
-      </section> */}
 
      <section ref={amenitiesRef} className="py-6 sm:py-8 bg-[#faf8f5]">
         <div className="container mx-auto px-4">
@@ -1328,8 +1259,6 @@ const handleShare = async () => {
         </div>
       </section>
 
-
-
          <section ref={paymentRef} className="py-6 sm:py-8 bg-gradient-to-br from-[#c97a52] to-[#a85f3b]">
           <div className="container mx-auto px-4">
             <div className="text-center mb-6">
@@ -1346,7 +1275,7 @@ const handleShare = async () => {
                   <div className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 mb-2">
                     <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                   </div>
-                  <div className="text-2xl sm:text-3xl font-light text-white mb-0.5">{item.value}%</div>
+                  <div className="text-2xl sm:text-3xl font-light text-white mb-0.5">{item.value}</div>
                   <div className="text-white/80 text-[10px] sm:text-xs">{item.label}</div>
                 </div>
               ))}
