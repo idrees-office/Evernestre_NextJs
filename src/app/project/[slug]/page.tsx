@@ -938,11 +938,11 @@ const handleShare = async () => {
               <motion.div
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
-                className="text-[#c97a52] font-bold"
+                className="text-[#c97a52] font-normal"
               >
-                1–4
+                {singleProject?.bedrooms }
               </motion.div>
-              <span>Bedroom Apartments</span>
+              {/* <span>Bedroom Apartments</span> */}
             </div>
           </motion.div>
         </div>
