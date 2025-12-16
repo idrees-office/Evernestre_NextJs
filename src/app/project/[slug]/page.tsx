@@ -3,6 +3,7 @@ import React, { useEffect,  useMemo, useRef , useState, use as usePromise } from
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { getProjectBySlug } from "@/lib/projects";
+
 import {
   Heart,
   Share2,
@@ -875,25 +876,81 @@ const handleShare = async () => {
           </div>
         </div>
       </section>
-       <section className="bg-white border-y border-gray-100 sticky top-0 z-40 shadow-sm">
-        <div className="container mx-auto px-4">
-          <div className="flex overflow-x-auto hide-scrollbar -mx-4 px-4 py-2 ">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => handleTabClick(tab.id)}
-                className={`px-4 py-2.5 text-xs sm:text-sm font-medium whitespace-nowrap transition-all border-b-2 cursor-pointer ${
-                  activeTab === tab.id
-                    ? "text-[#c97a52] border-[#c97a52]"
-                    : "text-gray-500 border-transparent hover:text-gray-800"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+       
+
+
+  <section className="bg-white border-y border-gray-100 sticky top-0 z-40 shadow-sm">
+    <div className="container mx-auto px-4">
+      <div className="flex items-center justify-between gap-3">
+        {/* LEFT: Tabs (scrollable) */}
+        <div className="flex flex-nowrap overflow-x-auto whitespace-nowrap hide-scrollbar py-2 gap-1 flex-1">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => handleTabClick(tab.id)}
+              className={`px-4 py-2.5 text-xs sm:text-sm font-medium whitespace-nowrap shrink-0 transition-all border-b-2 cursor-pointer ${
+                activeTab === tab.id
+                  ? "text-[#c97a52] border-[#c97a52]"
+                  : "text-gray-500 border-transparent hover:text-gray-800"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
-      </section>
+
+        {/* RIGHT: Animated Bedroom Badge - Simple Version */}
+        <div className="hidden sm:flex items-center pr-2 sm:pr-4 lg:pr-6">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0px 8px 20px rgba(201, 122, 82, 0.25)",
+            }}
+            className="relative"
+          >
+            {/* Animated gradient background */}
+            <motion.span
+              animate={{ 
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] 
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity, 
+                ease: "linear" 
+              }}
+              className="absolute inset-0 rounded-sm bg-gradient-to-r from-[#c97a52]/20 via-[#e6c1a3]/30 to-[#c97a52]/20 blur-sm"
+              style={{ backgroundSize: "200% 100%" }}
+            />
+
+            {/* Badge content */}
+            <div className="relative z-10 flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-800 bg-[#faf8f5] border border-[#f0ebe4] px-3 py-1.5 rounded-sm whitespace-nowrap">
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <Home className="w-4 h-4 text-[#c97a52]" />
+              </motion.div>
+              
+              {/* Animated numbers with pulse */}
+              <motion.div
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="text-[#c97a52] font-bold"
+              >
+                1–4
+              </motion.div>
+              <span>Bedroom Apartments</span>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
       <section ref={detailsRef} className="py-6 sm:py-8 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
@@ -1082,43 +1139,36 @@ const handleShare = async () => {
         )}
       </div>
     </section>
-
-
-
      <section ref={amenitiesRef} className="py-6 sm:py-8 bg-[#faf8f5]">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
-            <h3 className="text-base sm:text-lg font-medium text-gray-900">Amenities</h3>
-          </div>
-          {singleProject?.amenities?.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
-              
-              {
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              singleProject.amenities.map((amenity: { icon: any; name: React.ReactNode}, index: React.Key | null | undefined) => {
-                const Icon = amenity.icon;
-                return (
-                  <div
-                    key={index}
-                    className="flex items-center gap-2 p-2.5 sm:p-3 bg-white border border-[#f0ebe4] rounded-sm hover:shadow-sm transition-all"
-                  >
-                    <div className="p-1.5 bg-[#c97a52]/10 rounded-sm">
-                      <Icon className="w-3.5 h-3.5 text-[#c97a52]" />
-                    </div>
-                    <span className="text-xs text-gray-700">{amenity.name}</span>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <p className="text-sm text-gray-500 bg-white p-3 border border-[#f0ebe4] rounded-sm">
-              No amenities found. Please add from CRM.
-            </p>
-          )}
+      <div className="container mx-auto px-4">
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
+          <h3 className="text-base sm:text-lg font-medium text-gray-900">Amenities</h3>
         </div>
-      </section>
-      
+        {singleProject?.amenities?.length > 0 ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
+            {singleProject.amenities.map((amenity: any, index: number) => (
+              <div
+                key={index}
+                className="flex items-center gap-2 p-2.5 sm:p-3 bg-white border border-[#f0ebe4] rounded-sm hover:shadow-sm transition-all"
+              >
+                <div className="p-1.5 bg-[#c97a52]/10 rounded-sm">
+                  {/* Use a default icon since your API doesn't provide icons */}
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#c97a52]" />
+                </div>
+                <span className="text-xs text-gray-700">
+                  {amenity?.amenity?.name || amenity?.name || `Amenity ${index + 1}`}
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-sm text-gray-500 bg-white p-3 border border-[#f0ebe4] rounded-sm">
+            No amenities found. Please add from CRM.
+          </p>
+        )}
+      </div>
+    </section>
       <section className="py-6 sm:py-8 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
