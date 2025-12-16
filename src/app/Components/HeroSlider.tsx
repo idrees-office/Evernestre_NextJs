@@ -76,6 +76,70 @@ export default function HeroSlider({ hero }: HeroSliderProps) {
     maxPrice: ["AED 1M", "AED 2M", "AED 5M", "AED 10M", "AED 20M", "AED 50M+"],
   } as const;
 
+//   const dropdownOptions = {
+//   buyRent: [
+//     { label: "Buy", value: "Buy" },
+//     { label: "Rent", value: "Rent" },
+//   ],
+
+//   status: [
+//     { label: "Ready", value: "Ready" },
+//     { label: "Off Plan", value: "Off Plan" },
+//   ],
+
+//   propertyType: [
+//     { label: "Apartment", value: "Apartment" },
+//     { label: "Villa", value: "Villa" },
+//     { label: "Townhouse", value: "Townhouse" },
+//     { label: "Penthouse", value: "Penthouse" },
+//     { label: "Duplex", value: "Duplex" },
+//   ],
+
+//   minArea: [
+//     { label: "50 m²", value: 50 },
+//     { label: "100 m²", value: 100 },
+//     { label: "150 m²", value: 150 },
+//     { label: "200 m²", value: 200 },
+//     { label: "300 m²", value: 300 },
+//   ],
+
+//   maxArea: [
+//     { label: "200 m²", value: 200 },
+//     { label: "300 m²", value: 300 },
+//     { label: "400 m²", value: 400 },
+//     { label: "500 m²", value: 500 },
+//     { label: "1000 m²", value: 1000 },
+//   ],
+
+//   minBedroom: [
+//     { label: "Studio", value: 0 },
+//     { label: "1", value: 1 },
+//     { label: "2", value: 2 },
+//     { label: "3", value: 3 },
+//     { label: "4", value: 4 },
+//     { label: "5+", value: 5 },
+//   ],
+
+//   maxBedroom: [
+//     { label: "1", value: 1 },
+//     { label: "2", value: 2 },
+//     { label: "3", value: 3 },
+//     { label: "4", value: 4 },
+//     { label: "5", value: 5 },
+//     { label: "6+", value: 6 },
+//   ],
+
+//   maxPrice: [
+//     { label: "AED 1M", value: 1_000_000 },
+//     { label: "AED 2M", value: 2_000_000 },
+//     { label: "AED 5M", value: 5_000_000 },
+//     { label: "AED 10M", value: 10_000_000 },
+//     { label: "AED 20M", value: 20_000_000 },
+//     { label: "AED 50M+", value: 50_000_000 },
+//   ],
+// } as const;
+
+
   const [filters, setFilters] = useState<FiltersState>({
     buyRent: "",
     status: "",
