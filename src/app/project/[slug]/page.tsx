@@ -876,81 +876,150 @@ const handleShare = async () => {
           </div>
         </div>
       </section>
-       
-
-
-  <section className="bg-white border-y border-gray-100 sticky top-0 z-40 shadow-sm">
-    <div className="container mx-auto px-4">
-      <div className="flex items-center justify-between gap-3">
-        {/* LEFT: Tabs (scrollable) */}
-        <div className="flex flex-nowrap overflow-x-auto whitespace-nowrap hide-scrollbar py-2 gap-1 flex-1">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => handleTabClick(tab.id)}
-              className={`px-4 py-2.5 text-xs sm:text-sm font-medium whitespace-nowrap shrink-0 transition-all border-b-2 cursor-pointer ${
-                activeTab === tab.id
-                  ? "text-[#c97a52] border-[#c97a52]"
-                  : "text-gray-500 border-transparent hover:text-gray-800"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* RIGHT: Animated Bedroom Badge - Simple Version */}
-        <div className="hidden sm:flex items-center pr-2 sm:pr-4 lg:pr-6">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0px 8px 20px rgba(201, 122, 82, 0.25)",
-            }}
-            className="relative"
-          >
-            {/* Animated gradient background */}
-            <motion.span
-              animate={{ 
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] 
-              }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity, 
-                ease: "linear" 
-              }}
-              className="absolute inset-0 rounded-sm bg-gradient-to-r from-[#c97a52]/20 via-[#e6c1a3]/30 to-[#c97a52]/20 blur-sm"
-              style={{ backgroundSize: "200% 100%" }}
-            />
-
-            {/* Badge content */}
-            <div className="relative z-10 flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-800 bg-[#faf8f5] border border-[#f0ebe4] px-3 py-1.5 rounded-sm whitespace-nowrap">
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              >
-                <Home className="w-4 h-4 text-[#c97a52]" />
-              </motion.div>
-              
-              {/* Animated numbers with pulse */}
-              <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="text-[#c97a52] font-normal"
-              >
-                {singleProject?.bedrooms }
-              </motion.div>
-              {/* <span>Bedroom Apartments</span> */}
+      <section className="bg-white border-y border-gray-100 sticky top-0 z-40 shadow-sm">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
+            {/* Tabs Section - Mobile scrollable, Desktop normal */}
+            <div className="flex flex-nowrap overflow-x-auto whitespace-nowrap hide-scrollbar py-2 sm:py-0 gap-1 flex-1">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => handleTabClick(tab.id)}
+                  className={`px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm font-medium whitespace-nowrap shrink-0 transition-all border-b-2 cursor-pointer ${
+                    activeTab === tab.id
+                      ? "text-[#c97a52] border-[#c97a52]"
+                      : "text-gray-500 border-transparent hover:text-gray-800"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
             </div>
-          </motion.div>
+
+            {/* Bedroom Badge - Mobile on separate row, Desktop inline */}
+            <div className="flex items-center justify-center sm:justify-end py-2 sm:py-0 pr-0 sm:pr-2 md:pr-4 lg:pr-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0px 8px 20px rgba(201, 122, 82, 0.25)",
+                }}
+                className="relative"
+              >
+                {/* Animated gradient background */}
+                <motion.span
+                  animate={{ 
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] 
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
+                  className="absolute inset-0 rounded-sm bg-gradient-to-r from-[#c97a52]/20 via-[#e6c1a3]/30 to-[#c97a52]/20 blur-sm"
+                  style={{ backgroundSize: "200% 100%" }}
+                />
+
+                {/* Badge content */}
+                <div className="relative z-10 flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-800 bg-[#faf8f5] border border-[#f0ebe4] px-3 sm:px-3 py-1.5 sm:py-1.5 rounded-sm whitespace-nowrap">
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="hidden xs:block"
+                  >
+                    <Home className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#c97a52]" />
+                  </motion.div>
+                  
+                  {/* Animated numbers with pulse */}
+                  <motion.div
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="text-[#c97a52] font-normal flex items-center gap-1"
+                  >
+                    <Home className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#c97a52] block xs:hidden mr-1" />
+                    {singleProject?.bedrooms}
+                    <span className="hidden sm:inline ml-1 text-gray-600 font-medium">
+                      Bedrooms
+                    </span>
+                    <span className="sm:hidden text-gray-600 font-medium ml-1">
+                      Beds
+                    </span>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
+      {/* <section className="bg-white border-y border-gray-100 sticky top-0 z-40 shadow-sm">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-nowrap overflow-x-auto whitespace-nowrap hide-scrollbar py-2 gap-1 flex-1">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => handleTabClick(tab.id)}
+                  className={`px-4 py-2.5 text-xs sm:text-sm font-medium whitespace-nowrap shrink-0 transition-all border-b-2 cursor-pointer ${
+                    activeTab === tab.id
+                      ? "text-[#c97a52] border-[#c97a52]"
+                      : "text-gray-500 border-transparent hover:text-gray-800"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+            <div className="hidden sm:flex items-center pr-2 sm:pr-4 lg:pr-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0px 8px 20px rgba(201, 122, 82, 0.25)",
+                }}
+                className="relative"
+              >
+              
+                <motion.span
+                  animate={{ 
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] 
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
+                  className="absolute inset-0 rounded-sm bg-gradient-to-r from-[#c97a52]/20 via-[#e6c1a3]/30 to-[#c97a52]/20 blur-sm"
+                  style={{ backgroundSize: "200% 100%" }}
+                />
 
-
+              
+                <div className="relative z-10 flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-800 bg-[#faf8f5] border border-[#f0ebe4] px-3 py-1.5 rounded-sm whitespace-nowrap">
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  >
+                    <Home className="w-4 h-4 text-[#c97a52]" />
+                  </motion.div>
+                  
+                  
+                  <motion.div
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="text-[#c97a52] font-normal"
+                  >
+                    {singleProject?.bedrooms }
+                  </motion.div>
+                  
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section> */}
       <section ref={detailsRef} className="py-6 sm:py-8 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
