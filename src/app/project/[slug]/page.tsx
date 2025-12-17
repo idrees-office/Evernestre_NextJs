@@ -940,12 +940,8 @@ const handleShare = async () => {
                   >
                     <Home className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#c97a52] block xs:hidden mr-1" />
                     {singleProject?.bedrooms}
-                    <span className="hidden sm:inline ml-1 text-gray-600 font-medium">
-                      Bedrooms
-                    </span>
-                    <span className="sm:hidden text-gray-600 font-medium ml-1">
-                      Beds
-                    </span>
+                    {/* <span className="hidden sm:inline ml-1 text-gray-600 font-medium"> Bedrooms </span> */}
+                    {/* <span className="sm:hidden text-gray-600 font-medium ml-1"> Beds </span> */}
                   </motion.div>
                 </div>
               </motion.div>
