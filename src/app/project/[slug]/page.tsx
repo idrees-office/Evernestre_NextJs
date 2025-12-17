@@ -659,7 +659,8 @@ const handleShare = async () => {
         <section className="w-full py-3 mt-4">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
-              <div className="relative h-[260px] sm:h-[320px] lg:h-[450px] lg:col-span-9 w-full overflow-hidden rounded-sm">
+              {/* <div className="relative h-[260px] sm:h-[320px] lg:h-[450px] lg:col-span-9 w-full overflow-hidden rounded-sm"> */}
+              <div className="relative h-[200px] xs:h-[240px] sm:h-[320px] md:h-[380px] lg:h-[450px] lg:col-span-9 w-full overflow-hidden rounded-sm">
                 {/* Main image content remains the same */}
                 {!singleProject?.main_image_loaded && (
                   <div className="absolute inset-0 flex items-center justify-center z-20 bg-gray-100/70">
@@ -689,7 +690,8 @@ const handleShare = async () => {
               </div>
               
               {/* Map Section */}
-              <div className="relative h-[180px] sm:h-[220px] lg:h-[450px] lg:col-span-3 w-full overflow-hidden rounded-sm"
+              {/* <div className="relative h-[180px] sm:h-[220px] lg:h-[450px] lg:col-span-3 w-full overflow-hidden rounded-sm" */}
+              <div className="relative h-[150px] xs:h-[180px] sm:h-[220px] md:h-[300px] lg:h-[450px] lg:col-span-3 w-full overflow-hidden rounded-sm"
                 onMouseEnter={() => setShowMapCard(true)}
                 onMouseLeave={() => setShowMapCard(false)}
               >
@@ -839,7 +841,8 @@ const handleShare = async () => {
 
        <section className="bg-[#faf8f5] py-2.5 border-b border-gray-100 mt-3">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3">
+          {/* <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3"> */}
+            <div className="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3">
             {[
               { icon: CreditCard, label: "Starting Price", value: singleProject?.starting_price },
               { icon: Ruler, label: "Price Per/Sq.ft", value: singleProject?.pricepersqft },
@@ -877,7 +880,7 @@ const handleShare = async () => {
         </div>
       </section>
       <section className="bg-white border-y border-gray-100 sticky top-0 z-40 shadow-sm">
-        <div className="container mx-auto px-3 sm:px-4">
+        <div className="container mx-auto px-3 sm:px-4 py-2">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
             {/* Tabs Section - Mobile scrollable, Desktop normal */}
             <div className="flex flex-nowrap overflow-x-auto whitespace-nowrap hide-scrollbar py-2 sm:py-0 gap-1 flex-1">
@@ -1018,9 +1021,13 @@ const handleShare = async () => {
       </section> */}
       <section ref={detailsRef} className="py-6 sm:py-8 bg-white">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
+        {/* <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6"> */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
+
           <div className="lg:col-span-8">
-            <h2 className="text-lg sm:text-xl font-medium text-gray-900 mb-4">
+            {/* <h2 className="text-lg sm:text-xl font-medium text-gray-900 mb-4"> */}
+              <h2 className="text-base xs:text-lg sm:text-xl font-medium text-gray-900 mb-4">
+
               {singleProject?.name}
             </h2>
             <div className="bg-[#faf8f5] rounded-sm p-4 sm:p-5 border border-[#f0ebe4] prose prose-sm max-w-none">
@@ -1092,7 +1099,9 @@ const handleShare = async () => {
       </div>
        {singleProject?.gallery && singleProject.gallery.length > 0 ? (
         <>
-          <div className="relative w-full aspect-[16/7] sm:aspect-[16/6] overflow-hidden cursor-pointer mb-3" onClick={() => setIsModalOpen(true)}>
+          {/* <div className="relative w-full aspect-[16/7] sm:aspect-[16/6] overflow-hidden cursor-pointer mb-3" onClick={() => setIsModalOpen(true)}> */}
+          <div className="relative w-full aspect-[4/3] sm:aspect-[16/6] overflow-hidden cursor-pointer mb-3" onClick={() => setIsModalOpen(true)}>
+
             <Image 
               src={singleProject.gallery[activeGalleryImage] || "/placeholder.jpg"} 
               alt={`Gallery ${activeGalleryImage + 1}`} 
@@ -1211,7 +1220,9 @@ const handleShare = async () => {
           <h3 className="text-base sm:text-lg font-medium text-gray-900">Amenities</h3>
         </div>
         {singleProject?.amenities?.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
+          // <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
+
              
             {
                // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -1363,7 +1374,9 @@ const handleShare = async () => {
               <h3 className="text-lg sm:text-xl font-normal text-white mb-1">Payment Plan</h3>
               <p className="text-white/70 text-xs">Flexible payment options</p>
             </div>
-            <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-2xl mx-auto">
+            {/* <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-2xl mx-auto"> */}
+            <div className="grid grid-cols-1 xs:grid-cols-3 gap-2 sm:gap-3 max-w-2xl mx-auto">
+
               {[
                 { icon: Home,  value: singleProject?.on_booking || 0, label: "On Booking" },
                 { icon: Building2, value: singleProject?.on_construction || 0, label: "Construction" },
@@ -1386,7 +1399,8 @@ const handleShare = async () => {
             <div className="w-1 h-5 bg-[#c97a52] rounded-full"></div>
             <h3 className="text-base sm:text-lg font-medium text-gray-900">Download Brochure</h3>
           </div>
-          <div className="bg-[#faf8f5] rounded-sm p-4 sm:p-6 border border-[#f0ebe4] flex flex-col sm:flex-row items-center justify-between gap-3">
+          {/* <div className="bg-[#faf8f5] rounded-sm p-4 sm:p-6 border border-[#f0ebe4] flex flex-col sm:flex-row items-center justify-between gap-3"> */}
+              <div className="bg-[#faf8f5] rounded-sm p-3 sm:p-6 border border-[#f0ebe4] flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="text-center sm:text-left">
               <h4 className="text-sm sm:text-base font-medium text-gray-900 mb-0.5">Get the Complete Project Brochure</h4>
               <p className="text-xs text-gray-500">Download detailed floor plans, pricing, and specifications</p>
@@ -1407,7 +1421,9 @@ const handleShare = async () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
             <div className="lg:col-span-2 space-y-3">
               <p className="text-sm text-gray-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: singleProject?.developer?.description || '' }}></p>
-              <div className="grid grid-cols-4 gap-2">
+              {/* <div className="grid grid-cols-4 gap-2"> */}
+                <div className="grid grid-cols-2 xs:grid-cols-4 gap-2">
+
                 {[
                   { label: "Experience", value: "15+ yrs" },
                   { label: "Projects", value: "30+" },
