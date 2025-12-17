@@ -5,6 +5,7 @@ import { useEffect, useState, Suspense } from 'react';
 import Link from "next/link";
 import { Bath, BedDouble, Heart, Home, MessageCircle, Phone, Ruler, Share2, Search, Filter } from "lucide-react";
 import Image from "next/image";
+import { BASE_URL } from '@/lib/config';
 
 interface Project {
   slug: string;
@@ -78,7 +79,7 @@ function SearchBarContent() {
         Object.entries(filters).filter(([_, value]) => value != null)
       );
       const queryString = new URLSearchParams(cleanFilters as Record<string, string>).toString();
-      const response = await fetch(`/api/website/search_property?${queryString}`);
+      const response = await fetch(`${BASE_URL}/search_property?${queryString}`);
       const data = await response.json();
       setProperties(data || []);
     } catch (error) {
