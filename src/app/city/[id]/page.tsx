@@ -17,15 +17,18 @@ import Image from "next/image";
 import { getCityWiseProject } from "@/lib/projects";
 
 interface Project {
+  id: number;
   slug: string;
   starting_price: string;
-  banner: string;
+  main_image: string; 
   title: string;
-  location_name: string;
-  type: string;
-  bedrooms_raw: string;
-  bathrooms: string;
-  starting_size: string;
+  city: { id: number; name: string };
+  developer: string;
+}
+
+interface ProjectResponse {
+  current_page: number;
+  data: Project[];
 }
 
 type Currency = "AED" | "USD" | "EUR";
@@ -57,12 +60,8 @@ interface CitywiseProjectProps {
 
 export default function CitywiseProject({ id: propId }: CitywiseProjectProps) {
   
-   const params = useParams();
-
-   const id = Number(params.id || propId);
-
-   console.log(id);
-
+  const params = useParams();
+  const id = Number(params.id || propId);
 
   const [currency, setCurrency] = useState<Currency>("AED");
   const [projects, setProjects] = useState<Project[]>([]);
@@ -77,8 +76,12 @@ export default function CitywiseProject({ id: propId }: CitywiseProjectProps) {
         setLoading(true);
         const data = await getCityWiseProject(id);
 
-        if (data && data.projects) {
-          setCityName(data.projects.data[0].city?.name || "City");
+        if (data && data.projects && data.projects.data) {
+          // Extract city name from first project
+          const firstProject = data.projects.data[0];
+          setCityName(firstProject?.city?.name || "City");
+          
+          // Set projects with proper structure
           setProjects(data.projects.data || []);
         } else {
           setError("No projects found for this city");
@@ -181,20 +184,21 @@ export default function CitywiseProject({ id: propId }: CitywiseProjectProps) {
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
               {pricedProjects?.map((p) => (
                 <div
-                  key={p.slug}
+                  key={p.id}
                   className="group relative overflow-hidden rounded-lg border border-[#d0845b]/20 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:-translate-y-1"
                 >
                   <Link href={`/project/${p.slug}.html`}>
                     <div className="relative h-48 w-full overflow-hidden">
                       <Image
                         src={
-                          p.banner ||
+                          p.main_image || // Changed from p.banner to p.main_image
                           "https://test_backend.leadshub.ae/media/7044/Untitled-2.webp"
                         }
                         alt={p.title}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        priority={pricedProjects.indexOf(p) < 4} // Prioritize first 4 images
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                       <div className="absolute top-4 left-4 rounded-full bg-white/95 px-3 py-1.5 shadow-lg">
@@ -204,46 +208,58 @@ export default function CitywiseProject({ id: propId }: CitywiseProjectProps) {
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="text-md font-normal text-[#1a1a1a]/70 line-clamp-1">
+                      <h3 className="text-md font-normal text-[#1a1a1a]/90 line-clamp-1">
                         {p.title}
                       </h3>
                       <p className="mt-1 text-sm text-[#1a1a1a]/70">
-                        {p.location_name || "Dubai"}
+                        {p.city?.name || "Dubai"} {/* Changed from p.location_name */}
                       </p>
 
+                      {/* Simplified info section since data might not be available */}
                       <div className="grid grid-cols-2 gap-3 text-sm text-[#1a1a1a] mt-3">
                         <div className="flex items-center">
                           <Home className="h-4 w-4 text-[#8b5d3b] mr-2" />
-                          <span>{p.type}</span>
+                          <span>{p.developer || "Developer"}</span>
                         </div>
                         <div className="flex items-center">
                           <BedDouble className="h-5 w-5 text-[#8b5d3b] mr-2" />
-                          <span>{p.bedrooms_raw || "Studio"}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Bath className="h-5 w-5 text-[#8b5d3b] mr-2" />
-                          <span>{p.bathrooms || "—"}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Ruler className="h-5 w-5 text-[#8b5d3b] mr-2" />
-                          <span>{p.starting_size || "Various Sizes"}</span>
+                          <span>Various Types</span>
                         </div>
                       </div>
+                      
                       <div className="mt-4 flex items-center justify-between border-t border-[#d0845b]/10 pt-3">
                         <div className="flex items-center gap-2">
-                          <button className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d0845d]/40 text-[#8b5d3b] hover:bg-[#d0845d]/10 transition-colors">
+                          <button 
+                            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d0845d]/40 text-[#8b5d3b] hover:bg-[#d0845d]/10 transition-colors"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              window.location.href = `tel:+971527469500`;
+                            }}
+                          >
                             <Phone className="h-3.5 w-3.5" />
                           </button>
-                          <button className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d0845d]/40 text-[#8b5d3b] hover:bg-[#d0845d]/10 transition-colors">
+                          <button 
+                            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d0845d]/40 text-[#8b5d3b] hover:bg-[#d0845d]/10 transition-colors"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              window.location.href = 'https://wa.me/971527469500';
+                            }}
+                          >
                             <MessageCircle className="h-3.5 w-3.5" />
                           </button>
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <button className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d0845d]/40 text-[#8b5d3b] hover:bg-[#d0845d]/10 transition-colors">
+                          <button 
+                            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d0845d]/40 text-[#8b5d3b] hover:bg-[#d0845d]/10 transition-colors"
+                            onClick={(e) => e.preventDefault()}
+                          >
                             <Heart className="h-3.5 w-3.5" />
                           </button>
-                          <button className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d0845d]/40 text-[#8b5d3b] hover:bg-[#d0845d]/10 transition-colors">
+                          <button 
+                            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d0845d]/40 text-[#8b5d3b] hover:bg-[#d0845d]/10 transition-colors"
+                            onClick={(e) => e.preventDefault()}
+                          >
                             <Share2 className="h-3.5 w-3.5" />
                           </button>
                         </div>
