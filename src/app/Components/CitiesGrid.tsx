@@ -93,13 +93,12 @@
 
 
 
-
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, TouchEvent } from "react";
 
 export type City = {
   id: number;
@@ -125,6 +124,8 @@ type CitiesGridProps = {
 export default function CitiesGrid({ cities = CITIES }: CitiesGridProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -153,17 +154,28 @@ export default function CitiesGrid({ cities = CITIES }: CitiesGridProps) {
     setCurrentSlide(index);
   };
 
-  // Calculate visible slides based on screen size
-  const getVisibleSlides = () => {
-    if (!isMobile) return cities.length;
-    
-    if (window.innerWidth < 480) return 2; // xs
-    if (window.innerWidth < 640) return 3; // sm
-    return 4; // md and above will use grid
+  // Touch handlers for swipe
+  const handleTouchStart = (e: TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
   };
 
-  // Calculate slide width for mobile
-  const slideWidth = isMobile ? `${100 / getVisibleSlides()}%` : "auto";
+  const handleTouchMove = (e: TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    const threshold = 50; // Minimum swipe distance
+    
+    if (touchStart - touchEnd > threshold) {
+      // Swipe left - next slide
+      nextSlide();
+    }
+
+    if (touchStart - touchEnd < -threshold) {
+      // Swipe right - previous slide
+      prevSlide();
+    }
+  };
 
   // Desktop grid view
   if (!isMobile) {
@@ -232,62 +244,69 @@ export default function CitiesGrid({ cities = CITIES }: CitiesGridProps) {
     );
   }
 
-  // Mobile slider view
+  // Mobile slider view - Show ONE slide at a time
   return (
-    <div className="relative px-8 md:px-0">
-      {/* Navigation Buttons */}
-      {currentSlide > 0 && (
-        <button
-          onClick={prevSlide}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center border border-gray-200 hover:bg-white transition-all duration-200"
-        >
-          <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-gray-700" />
-        </button>
-      )}
+    <div className="relative">
+      {/* Navigation Buttons - Always visible on mobile */}
+      <button
+        onClick={prevSlide}
+        className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center border border-gray-200 hover:bg-white transition-all duration-200 hover:scale-110 ${
+          currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''
+        }`}
+        disabled={currentSlide === 0}
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-5 h-5 text-gray-700" />
+      </button>
 
-      {currentSlide < cities.length - getVisibleSlides() && (
-        <button
-          onClick={nextSlide}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center border border-gray-200 hover:bg-white transition-all duration-200"
-        >
-          <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-gray-700" />
-        </button>
-      )}
+      <button
+        onClick={nextSlide}
+        className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center border border-gray-200 hover:bg-white transition-all duration-200 hover:scale-110 ${
+          currentSlide === cities.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
+        }`}
+        disabled={currentSlide === cities.length - 1}
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-5 h-5 text-gray-700" />
+      </button>
 
-      {/* Slider Container */}
-      <div className="overflow-hidden">
+      {/* Slider Container - Show ONE slide at a time */}
+      <div className="overflow-hidden px-4">
         <div 
           ref={sliderRef}
           className="flex transition-transform duration-300 ease-out"
-          style={{ transform: `translateX(-${currentSlide * (100 / getVisibleSlides())}%)` }}
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           {cities.map((city) => (
             <div 
               key={city.id} 
-              className="flex-shrink-0"
-              style={{ width: slideWidth }}
+              className="flex-shrink-0 w-full px-1"
             >
               <Link
                 href={`/city/${city.id}`}
-                className="group block px-2 transition-transform duration-300 hover:-translate-y-1"
+                className="group block transition-transform duration-300 active:scale-95"
               >
                 <div className="
-                  relative overflow-hidden rounded-md 
+                  relative overflow-hidden rounded-lg 
                   bg-[#eae7e4] shadow-lg 
                   ring-1 ring-black/5
-                  h-[150px]
+                  h-[220px]  // Taller for better visibility
                 ">
                   <Image
                     src={city.image}
                     alt={city.name}
                     fill
-                    sizes="50vw"
+                    sizes="100vw"
                     className="object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
+                    priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
-                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
-                    <div className="text-white text-sm font-medium text-center">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
+                    <div className="text-white text-base font-medium text-center">
                       {city.name}
                     </div>
                   </div>
@@ -306,20 +325,30 @@ export default function CitiesGrid({ cities = CITIES }: CitiesGridProps) {
         </div>
       </div>
 
-      {/* Dots Indicator */}
-      <div className="flex justify-center items-center gap-2 mt-4">
-        {Array.from({ length: cities.length - getVisibleSlides() + 1 }).map((_, index) => (
+      {/* Dots Indicator - Show all dots */}
+      <div className="flex justify-center items-center gap-2 mt-6">
+        {cities.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-200 ${
+            className={`w-3 h-3 rounded-full transition-all duration-200 ${
               currentSlide === index 
-                ? "bg-[#8b5d3b] w-4" 
+                ? "bg-[#8b5d3b] scale-125" 
                 : "bg-gray-300 hover:bg-gray-400"
             }`}
-            aria-label={`Go to slide ${index + 1}`}
+            aria-label={`Go to ${cities[index].name}`}
           />
         ))}
+      </div>
+
+      {/* Slide Counter */}
+      <div className="text-center mt-2">
+        <p className="text-xs text-gray-500">
+          <span className="font-medium">{currentSlide + 1}</span> / {cities.length}
+        </p>
+        <p className="text-xs text-gray-400 mt-1">
+          Swipe or tap arrows to navigate
+        </p>
       </div>
     </div>
   );
