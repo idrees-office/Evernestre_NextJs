@@ -176,7 +176,8 @@ export default function DeveloperDetail({ params }: { params: Promise<{ slug: st
             </section>
 
             <RegisterCtaSection />
-            <OffPlanProjects projects={[]} />
+            <OffPlanProjects projects={developers?.projects?.data || []} />
+            {/* <OffPlanProjects projects={[]} /> */}
         </div>
     );
 }
