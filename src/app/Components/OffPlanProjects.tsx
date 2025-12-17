@@ -74,9 +74,13 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
       </div> 
       <div className="container mx-auto max-w-8xl px-6 md:px-8 mt-14">
         <div className="mb-6 flex justify-between items-center">
-          <div>
-            <h2 className="text-[32px] lg:text-[38px] font-normal text-[#8b5d3b]"> Latest Off-Plan Projects </h2>
-            <p className="text-sm text-[#1a1a1a]/70 mt-1"> Explore the UAE&apos;s latest Off-Plan projects by top developers. </p>
+          <div className="text-center sm:text-left">
+            <h2 className="text-[22px] sm:text-[26px] md:text-[32px] lg:text-[38px] font-normal text-[#8b5d3b] leading-tight">
+              Latest Off-Plan Projects
+            </h2>
+            <p className="text-xs sm:text-sm md:text-base text-[#1a1a1a]/70 mt-2 max-w-2xl">
+              Explore the UAE&apos;s latest off-plan projects by top developers.
+            </p>
           </div>
           <div className="flex items-center gap-2">
             {CURRENCIES.map((c) => {
