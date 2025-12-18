@@ -1342,8 +1342,6 @@ const handleShare = async () => {
                   />
                 </div>
               )}
-              
-              {/* Custom Marker with Project Info */}
               <div className="absolute top-3 left-3 bg-white rounded-sm shadow-lg p-3 max-w-xs border border-gray-200">
                 <div className="flex items-start gap-2">
                   <div className="flex-shrink-0">
