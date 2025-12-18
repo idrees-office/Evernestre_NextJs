@@ -1374,8 +1374,8 @@ const handleShare = async () => {
               <h3 className="text-lg sm:text-xl font-normal text-white mb-1">Payment Plan</h3>
               <p className="text-white/70 text-xs">Flexible payment options</p>
             </div>
-            {/* <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-2xl mx-auto"> */}
-            <div className="grid grid-cols-1 xs:grid-cols-3 gap-2 sm:gap-3 max-w-2xl mx-auto">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-2xl mx-auto">
+            {/* <div className="grid grid-cols-1 xs:grid-cols-3 gap-2 sm:gap-3 max-w-2xl mx-auto"> */}
 
               {[
                 { icon: Home,  value: singleProject?.on_booking || 0, label: "On Booking" },

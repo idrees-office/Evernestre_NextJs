@@ -170,11 +170,9 @@ export default function DeveloperDetail({ params }: { params: Promise<{ slug: st
                                 </div>
                             ))}
                         </motion.div>
-
                     </div>
                 </div>
             </section>
-
             <RegisterCtaSection />
             <OffPlanProjects projects={developers?.projects?.data || []} />
             {/* <OffPlanProjects projects={[]} /> */}
