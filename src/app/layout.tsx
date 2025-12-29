@@ -1,9 +1,6 @@
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-
-import Header from "./includes/header";
-import Footer from "./includes/footer";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,33 +8,19 @@ const inter = Inter({
   display: "swap",
 });
 
-
 export const metadata: Metadata = {
-  title: "Evernest Real Estate",
-  description: "Luxury properties and off-plan investments in prime locations.",
-  icons: {
-    icon: "/favicon.ico",
-  },
+  title: 'Evernest Real Estate',
+  description: 'Luxury Real Estate in Dubai',
 };
 
-export const viewport: Viewport = {
-  themeColor: "#d0845b",
-};
-
-export default function RootLayout({
-  children,
-}: {
+export default function RootLayout({ children,
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body
-        suppressHydrationWarning
-        className="min-h-dvh bg-[#faf8f6] antialiased"
-      >
-        <Header />
-        <main className="pt-24">{children}</main>
-        <Footer />
+   <html lang="en" className={inter.variable}>
+      <body suppressHydrationWarning className="min-h-dvh bg-[#faf8f6] antialiased">
+        {children}
       </body>
     </html>
   );

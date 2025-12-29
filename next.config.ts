@@ -1,8 +1,12 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from 'next-intl/plugin';
 
-const nextConfig = {
+// Specify the exact path to your i18n config
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
+const nextConfig: NextConfig = {
   devIndicators: false,
+  reactStrictMode: true,
   
   images: {
     remotePatterns: [
@@ -12,6 +16,12 @@ const nextConfig = {
         port: "",
         pathname: "/media/**",
       },
+     {
+        protocol: "https",
+        hostname: "backend.leadshub.ae",
+        port: "",
+        pathname: "/**",  
+      },
 
       {
         protocol: "https",
@@ -19,6 +29,13 @@ const nextConfig = {
         port: "",
         pathname: "/media/**",
       },
+      {
+        protocol: "https",
+        hostname: "backend.leadshub.ae",
+        port: "",
+        pathname: "/assets/**",  
+      },
+      
 
       {
         protocol: "https",
@@ -101,9 +118,9 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
-
     ],
   },
 };
 
-export default nextConfig;
+// Apply the next-intl plugin to your config
+export default withNextIntl(nextConfig);

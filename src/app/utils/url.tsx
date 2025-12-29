@@ -26,7 +26,7 @@ export const ROUTES = {
 
   // Developers
   "Top Developers": "/developers/top",
-   "All Developer": "/developers",
+  "All Developer": "/developers",
   "Boutique Developers": "/developers/boutique",
   International: "/developers/international",
 
@@ -39,9 +39,6 @@ export const ROUTES = {
   "Our Story": "/about#story",
   Team: "/about/team",
   Testimonials: "/about/testimonials",
-
-  // Example param route (uncomment if you need it)
-  // 'Property Details': '/properties/:id',
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;
@@ -57,14 +54,22 @@ export function slugify(input: string): string {
 
 /**
  * Create a URL by name from ROUTES. Falls back to /{slugified-name} if not mapped.
+ * - locale: optional locale prefix (e.g., 'en', 'cz')
  * - params: replaces :param in the path
  * - query:  appends ?key=value pairs
  */
 export function createPageUrl(
   name: RouteKey | string,
-  params?: Record<string, string | number>,
-  query?: Record<string, string | number | boolean>
+  options?: {
+    locale?: string;
+    params?: Record<string, string | number>;
+    query?: Record<string, string | number | boolean>;
+  }
 ): string {
+  const locale = options?.locale;
+  const params = options?.params;
+  const query = options?.query;
+
   const base =
     (name as RouteKey) in ROUTES
       ? ROUTES[name as RouteKey]
@@ -89,5 +94,56 @@ export function createPageUrl(
     path += `?${qs}`;
   }
 
+  // Add locale prefix if provided
+  if (locale) {
+    // Don't add locale if path already starts with it
+    if (!path.startsWith(`/${locale}/`) && path !== `/${locale}`) {
+      path = `/${locale}${path}`;
+    }
+  }
+
   return path;
+}
+
+/**
+ * Helper function to create localized URLs with current locale
+ * Use this in components where you have access to locale
+ */
+export function createLocalizedUrl(
+  name: RouteKey | string,
+  locale: string,
+  options?: {
+    params?: Record<string, string | number>;
+    query?: Record<string, string | number | boolean>;
+  }
+): string {
+  return createPageUrl(name, {
+    locale,
+    params: options?.params,
+    query: options?.query,
+  });
+}
+
+/**
+ * Extract locale from pathname
+ * Returns the locale if found, otherwise null
+ */
+export function getLocaleFromPath(pathname: string): string | null {
+  const match = pathname.match(/^\/(en|cz)(\/|$)/);
+  return match ? match[1] : null;
+}
+
+/**
+ * Remove locale from pathname
+ * Returns pathname without locale prefix
+ */
+export function removeLocaleFromPath(pathname: string): string {
+  return pathname.replace(/^\/(en|cz)/, '') || '/';
+}
+
+/**
+ * Check if a pathname has a locale prefix
+ */
+export function hasLocalePrefix(pathname: string): boolean {
+  return /^\/(en|cz)(\/|$)/.test(pathname);
 }
