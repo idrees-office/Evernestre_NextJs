@@ -25,7 +25,7 @@ export default function Footer() {
   }, []);
 
   const quick = [
-    { label: "Careers", href: `${locale}/careers` },
+    { label: "careers", href: `${locale}/careers` },
     { label: "FAQs", href: `${locale}/faqs` },
     { label: "Blog", href: `${locale}/blogs` },
     { label: "Developers", href: `${locale}/developers` },
@@ -130,9 +130,7 @@ export default function Footer() {
                 {t('evernest')}
               </h3>
               <p className="text-sm leading-relaxed text-[#3c2f26]/90">
-                Discover Dubai&apos;s most prestigious developments—handpicked for
-                luxury, innovation, and world-class design. Your key to
-                exceptional real estate begins here.
+                {t('footer_description')}
               </p>
 
               <div className="mt-5 flex gap-3 flex-wrap">
@@ -159,7 +157,7 @@ export default function Footer() {
             <div>
               <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
                 <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
-                Quick Links
+                { t('quick_links') }
               </h3>
               <ul className="space-y-2 text-sm">
                 {quick.map((q) => (
@@ -177,7 +175,8 @@ export default function Footer() {
             <div>
               <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
                 <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
-                Contact
+                  { t('contact') }
+                
               </h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center gap-3">
