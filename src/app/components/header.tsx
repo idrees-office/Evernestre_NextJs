@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -30,36 +30,71 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navItems = [
-    { label: t('home'), url: createPageUrl("Home"), dropdown: null },
+
+   const navItems = useMemo(() => [
+    { 
+      label: t('home'), 
+      url: createPageUrl("Home"), 
+      dropdown: null 
+    },
     {
       label: t('offPlan'),
       url: createPageUrl("Projects"),
-      dropdown: [t('allProjects')],
+      dropdown: [
+        { 
+          label: t('allProjects'), 
+          routeKey: "Projects"
+        }
+      ],
     },
     {
       label: t('areas'),
       url: createPageUrl("AreaGuide"),
-      dropdown: [t('areaGuide')],
+      dropdown: [
+        { 
+          label: t('areaGuide'), 
+          routeKey: "AreaGuide" 
+        }
+      ],
     },
     {
       label: t('developers'),
       url: createPageUrl("developers"),
-      dropdown: [t('developers')],
+      dropdown: [
+        { 
+          label: t('developers'), 
+          routeKey: "All Developer"
+        }
+      ],
     },
     {
       label: t('news'),
       url: createPageUrl("News"),
-      dropdown: [t('news'), t('blogs')],
+      dropdown: [
+        { 
+          label: t('news'), 
+          routeKey: "News" 
+        },
+        { 
+          label: t('blogs'), 
+          routeKey: "Blogs" 
+        }
+      ],
     },
     {
       label: t('about'),
       url: createPageUrl("About"),
-      dropdown: [t('ourTeam')],
+      dropdown: [
+        { 
+          label: t('ourTeam'), 
+          routeKey: "Our Team" 
+        }
+      ],
     },
-  ] as const;
+  ], [t, locale]); 
 
   const headerClass = "bg-white/90 backdrop-blur-2xl border-b border-[color:var(--brand)]/10 shadow-[0_6px_30px_-12px_rgba(0,0,0,0.25)]";
+
   const languages = [
     { code: "en", label: "EN", flagClass: "fi fi-gb", name: "English" },
     { code: "cz", label: "CZ", flagClass: "fi fi-cz", name: "Čeština" },
@@ -141,9 +176,10 @@ export default function Header() {
                   onMouseEnter={() => setActiveDropdown(item.label)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  {/* UPDATE: Add locale to all nav links */}
-                  <Link
-                    href={createLocalizedUrl(item.url)}
+                <Link
+                    // href={createLocalizedUrl(item.url)}
+                     href={item.url}
+                    
                     className={`relative px-4 py-1 text-[15px] font-light tracking-wide transition-all duration-300
                     flex items-center
                     text-[color:var(--charcoal)]/85 hover:text-[color:var(--brand)]
@@ -167,7 +203,19 @@ export default function Header() {
                           transition={{ duration: 0.18 }}
                           className="absolute top-full left-0 mt-2 w-60 bg-white rounded-sm shadow-2xl border border-black/10 overflow-hidden"
                         >
-                          {item.dropdown.map((drop, index) => (
+
+                          {item.dropdown?.map((dropItem, index) => (
+                            <Link
+                              key={index}
+                              href={createPageUrl(dropItem.routeKey, { locale })}
+                              className="block px-3 py-2 text-sm text-[#1a1a1a]/75 hover:text-[color:var(--brand)] hover:bg-[color:var(--cream)] transition-all duration-200 border-b border-black/5 last:border-0 font-light"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              {dropItem.label}
+                            </Link>
+                          ))}
+
+                          {/* {item.dropdown.map((drop, index) => (
                             <Link
                               key={index}
                               href={createLocalizedUrl(createPageUrl(item.dropdown?.[index] || ''))}
@@ -177,7 +225,7 @@ export default function Header() {
                             >
                               {drop}
                             </Link>
-                          ))}
+                          ))} */}
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -268,8 +316,6 @@ export default function Header() {
             </button>
           </nav>
         </div>
-
-        {/* Mobile Menu - UPDATED */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -306,7 +352,8 @@ export default function Header() {
                 {navItems.map((item) => (
                   <div key={item.label}>
                     <Link
-                      href={createLocalizedUrl(item.url)}
+                      // href={createLocalizedUrl(item.url)}
+                      href={item.url}
                       className="block px-4 py-3 text-[#1a1a1a]/85 hover:text-[color:var(--brand)] hover:bg-[color:var(--cream)] rounded-lg transition-all duration-200 font-light"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >

@@ -655,8 +655,6 @@ export default function HeroSlider({ hero }: HeroSliderProps) {
                   >
                     <span className="text-xs xs:text-sm sm:text-sm md:text-sm text-white font-medium tracking-widest uppercase bg-gradient-to-r from-[#d0845b]/30 to-[#c9a882]/30 backdrop-blur-lg px-3 py-1.5 xs:px-4 xs:py-2 rounded-full border border-white/30 whitespace-nowrap">
                         { t('searchproperty') }
-                      {/* Search Property */}
-
                     </span>
                   </motion.div>
                   

@@ -1,7 +1,7 @@
 import { BASE_URL } from "./config";
-export async function getProjects(page: number = 1) {
+export async function getProjects(page: number = 1, locale: string) {
   try {
-    const res = await fetch(`${BASE_URL}/projects/all_projects?page=${page}`, {
+    const res = await fetch(`${BASE_URL}/projects/all_projects?page=${page}&lang=${locale}`, {
       cache: "no-store",
     });
 

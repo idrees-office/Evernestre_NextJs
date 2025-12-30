@@ -37,13 +37,12 @@ export default function AllProjectsPage() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const t = useTranslations(); 
-
   const locale = useLocale();
-
+  useEffect(() => { setPage(1);  }, [locale]);
   useEffect(() => {
     async function load() {
       setLoading(true);
-      const res = await getProjects(page);
+      const res = await getProjects(page,locale);
 
       if (res.projects && Array.isArray(res.projects.data)) {
         setProjects(res.projects.data);
@@ -61,7 +60,7 @@ export default function AllProjectsPage() {
       setLoading(false);
     }
     load();
-  }, [page]);
+  }, [page, locale]);
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
@@ -145,8 +144,7 @@ export default function AllProjectsPage() {
             <div className="absolute inset-0 flex items-end">
               <div className="w-full flex items-center justify-between p-6">
                 <h2 className="text-white drop-shadow-sm text-2xl md:text-3xl font-normal tracking-tight">
-                  {" "}
-                  Latest Off-Plan Projects{" "}
+                  {" "} { t('latestOffPlanTitle') } {" "}
                 </h2>
                 <div
                   role="button"
@@ -315,7 +313,7 @@ export default function AllProjectsPage() {
                   const showEllipsis =
                     index < array.length - 1 && array[index + 1] - pageNum > 1;
                   return (
-                    <React.Fragment key={pageNum}>
+                    <React.Fragment key={locale}>
                       <button
                         onClick={() => handlePageChange(pageNum)}
                         className={`flex items-center justify-center w-10 h-10 rounded-full border text-sm transition-all duration-300 cursor-pointer ${
