@@ -299,8 +299,7 @@ export default function AllProjectsPage() {
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
-
-              {/* Page Numbers */}
+              
               {Array.from({ length: meta.last }, (_, i) => i + 1)
                 .filter((pageNum) => {
                   // Show first 2 pages, last 2 pages, and pages around current page
@@ -313,7 +312,7 @@ export default function AllProjectsPage() {
                   const showEllipsis =
                     index < array.length - 1 && array[index + 1] - pageNum > 1;
                   return (
-                    <React.Fragment key={locale}>
+                    <React.Fragment key={pageNum}>
                       <button
                         onClick={() => handlePageChange(pageNum)}
                         className={`flex items-center justify-center w-10 h-10 rounded-full border text-sm transition-all duration-300 cursor-pointer ${

@@ -176,10 +176,7 @@ export default function Header() {
                   onMouseEnter={() => setActiveDropdown(item.label)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                <Link
-                    // href={createLocalizedUrl(item.url)}
-                     href={item.url}
-                    
+                <Link href={createLocalizedUrl(item.url)}
                     className={`relative px-4 py-1 text-[15px] font-light tracking-wide transition-all duration-300
                     flex items-center
                     text-[color:var(--charcoal)]/85 hover:text-[color:var(--brand)]
@@ -214,18 +211,6 @@ export default function Header() {
                               {dropItem.label}
                             </Link>
                           ))}
-
-                          {/* {item.dropdown.map((drop, index) => (
-                            <Link
-                              key={index}
-                              href={createLocalizedUrl(createPageUrl(item.dropdown?.[index] || ''))}
-                              className="block px-3 py-2 text-sm text-[#1a1a1a]/75 hover:text-[color:var(--brand)]
-                              hover:bg-[color:var(--cream)] transition-all duration-200 border-b border-black/5 last:border-0 font-light"
-                              onClick={() => setActiveDropdown(null)}
-                            >
-                              {drop}
-                            </Link>
-                          ))} */}
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -351,9 +336,7 @@ export default function Header() {
                 
                 {navItems.map((item) => (
                   <div key={item.label}>
-                    <Link
-                      // href={createLocalizedUrl(item.url)}
-                      href={item.url}
+                    <Link href={createLocalizedUrl(item.url)}
                       className="block px-4 py-3 text-[#1a1a1a]/85 hover:text-[color:var(--brand)] hover:bg-[color:var(--cream)] rounded-lg transition-all duration-200 font-light"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >

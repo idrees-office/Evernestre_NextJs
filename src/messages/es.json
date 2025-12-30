@@ -8,7 +8,7 @@
   "bookNow": "Reservar Ahora",
   "contactUs": "Contáctenos",
   "language": "Idioma",
-  "searchProperty": "Buscar Propiedad",
+  "searchproperty": "Buscar Propiedad",
   "allProjects": "Todos los Proyectos",
   "areaGuide": "Guía de Zonas",
   "allDeveloper": "Todos los Desarrolladores",
@@ -161,5 +161,8 @@
   "form_consent_text": "Al enviar este formulario, usted acepta nuestra",
   "privacy_policy": "Política de Privacidad",
   "startingPrice" : "Precio de Inicio",
-  "swipe_or_tap": "Desliza o toca las flechas para navegar"
+  "swipe_or_tap": "Desliza o toca las flechas para navegar",
+  "viewDetails": "Ver Detalles",
+  "searchProperties": "Buscar Propiedades"
+  
 }
