@@ -174,19 +174,14 @@ export default function Footer() {
             </div>
             <div>
               <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
-                <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
-                  { t('contact') }
-                
+                <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "} { t('contact') }
               </h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center gap-3">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
                     <Phone className="h-4 w-4 text-[#8b5d3b]" />
                   </div>
-                  <a
-                    href="tel:+971527469500"
-                    className="select-all hover:text-[#8b5d3b]"
-                  >
+                  <a href="tel:+971527469500" className="select-all hover:text-[#8b5d3b]">
                     +971 52 746 9500
                   </a>
                 </div>
