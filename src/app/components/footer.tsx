@@ -206,9 +206,8 @@ export default function Footer() {
                   <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
                     <MapPin className="h-4 w-4 text-[#8b5d3b]" />
                   </div>
-                  <address className="not-italic">
-                    Business Bay, Dubai
-                    <br /> United Arab Emirates
+                  <address className="not-italic">  { t('business_bay') }  { t('dubai') }
+                    <br />  { t('united_arab_emirates') }
                   </address>
                 </div>
               </div>
@@ -216,11 +215,9 @@ export default function Footer() {
             <div>
               <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
                 <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
-                Newsletter
+                { t('newsletter') }
               </h3>
-              <p className="mb-3 text-sm text-[#3c2f26]/80">
-                Subscribe to get updates on new properties and exclusive offers.
-              </p>
+              <p className="mb-3 text-sm text-[#3c2f26]/80"> { t('newsletter_description') } </p>
               <form
                 onSubmit={(e) => e.preventDefault()}
                 className="flex flex-col gap-3"
@@ -236,17 +233,17 @@ export default function Footer() {
                   whileTap={{ scale: 0.98 }}
                   className="inline-flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-[#8b5d3b] via-[#b06c48] to-[#d4a373] px-2 py-2 font-normal text-white shadow-[0_10px_25px rgba(139,93,59,0.25)] transition hover:brightness-105"
                 >
-                  Subscribe <ArrowRight className="h-4 w-4" />
+                  { t('subscribe') }
+                   <ArrowRight className="h-4 w-4" />
                 </motion.button>
               </form>
             </div>
           </div>
         </div>
-
         <div className="relative z-10 bg-[#123456]">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 md:flex-row">
             <p className="text-center text-sm text-white/90">
-              © {year || "2024"} Evernest Real Estate. All rights reserved.
+              © {year || "2024"}  { t('all_rights_reserved') }
             </p>
             <div className="flex gap-5 text-sm">
               <Link
@@ -254,14 +251,15 @@ export default function Footer() {
                 href={`/privacy-policy`}
                 className="text-white/80 transition-colors hover:text-white"
               >
-                Privacy Policy
+                { t('privacy_policy') }
+             
               </Link>
               <Link
                 key="term-condition"
                 href={`/term-condition`}
                 className="text-white/80 transition-colors hover:text-white"
               >
-                Term Condition
+                { t('term_condition') }
               </Link>
             </div>
           </div>

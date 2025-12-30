@@ -163,5 +163,12 @@
   "startingPrice" : "Начальная цена",
   "swipe_or_tap": "Проведите или нажмите на стрелки для навигации",
   "viewDetails": "Просмотреть детали",
-  "searchProperties": "Искать недвижимость"
+  "searchProperties": "Искать недвижимость",
+  "term_condition": "Условия и положения",
+  "all_rights_reserved": " Evernest Real Estate. Все права защищены",
+  "subscribe": "Подписаться",
+  "newsletter": "Новостная рассылка",
+  "newsletter_description": "Будьте в курсе последних обновлений о новых объектах недвижимости и эксклюзивных предложениях.",
+  "business_bay": "Бизнес-Бэй,",
+  "united_arab_emirates": "Объединенные Арабские Эмираты"
 }

@@ -58,14 +58,14 @@ export default function DeveloperPage() {
     setPage(newPage);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
+  
   return (
     <>
       {/* Banner */}
       <section className="bg-[#f6ecdf] py-12 border-b border-[#f0e4d9]">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-medium text-[#3c2f26] mb-2">
-            Popular Developers in Dubai
+            { t('popular_developers_title') }
           </h2>
           <div className="mx-auto h-[3px] w-20 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>
         </div>

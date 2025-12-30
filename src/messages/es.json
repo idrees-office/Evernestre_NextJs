@@ -163,6 +163,13 @@
   "startingPrice" : "Precio de Inicio",
   "swipe_or_tap": "Desliza o toca las flechas para navegar",
   "viewDetails": "Ver Detalles",
-  "searchProperties": "Buscar Propiedades"
+  "searchProperties": "Buscar Propiedades",
+  "term_condition": "Términos y Condiciones",
+  "all_rights_reserved": " Evernest Real Estate. Todos los derechos reservados",
+  "subscribe": "Suscribirse",
+  "newsletter": "Boletín Informativo",
+  "newsletter_description": "Manténgase informado con las últimas actualizaciones sobre nuevas propiedades y ofertas exclusivas.",
+  "business_bay": "Business Bay,",
+  "united_arab_emirates": "Emiratos Árabes Unidos"
   
 }

@@ -154,12 +154,11 @@ export default function AreaGuidePage() {
       <section className="bg-[#f6ecdf] py-12 relative border-b border-[#f0e4d9] w-full">
         <div className="container mx-auto px-6 text-center relative z-10 w-full">
           <h2 className="text-3xl md:text-4xl font-medium text-[#3c2f26] mb-2">
-            Popular Areas in Dubai
+            { t('popular_areas_title')}
           </h2>
           <div className="mx-auto h-[3px] w-20 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>
         </div>
       </section>
-
       <section className="relative bg-white py-10 sm:py-12 md:py-16 w-full">
         <div className="absolute inset-0 bg-gradient-to-br from-[#f8f5f0] to-[#f6ecdf] opacity-30"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
