@@ -302,7 +302,7 @@ export default function AllProjectsPage() {
               
               {Array.from({ length: meta.last }, (_, i) => i + 1)
                 .filter((pageNum) => {
-                  // Show first 2 pages, last 2 pages, and pages around current page
+                  
                   if (pageNum === 1 || pageNum === meta.last) return true;
                   if (Math.abs(pageNum - meta.current) <= 1) return true;
                   return false;
