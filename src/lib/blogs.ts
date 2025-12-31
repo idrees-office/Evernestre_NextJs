@@ -1,8 +1,8 @@
 import { BASE_URL } from "./config";
 
-export async function getAllBlogs(page: number = 1) {
+export async function getAllBlogs(page: number = 1, lang: string) {
   try {
-    const res = await fetch(`${BASE_URL}/allblogs?page=${page}`, {
+    const res = await fetch(`${BASE_URL}/allblogs?page=${page}&lang=${lang}`, {
       cache: "no-store",
     });
 

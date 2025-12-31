@@ -1,9 +1,9 @@
 import { BASE_URL } from "./config";
 
-export async function getDevelopers(page: number = 1) {
+export async function getDevelopers(page: number = 1, lang: string) {
   try {
     const res = await fetch(
-      `${BASE_URL}/developers/all_developers?page=${page}`,
+      `${BASE_URL}/developers/all_developers?page=${page}&lang=${lang}`,
       { cache: "no-store" }
     );
 

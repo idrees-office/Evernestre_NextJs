@@ -93,7 +93,7 @@ export default function NewsContactPage() {
     if (hasFetched.current && page === 1) return;
     setLoading(true);
     try {
-      const data: ApiResponse = await getAllNews(page);
+      const data: ApiResponse = await getAllNews(page, locale);
       if (data.news) {
         setNews(data.news.data);
         setCurrentPage(data.news.current_page);

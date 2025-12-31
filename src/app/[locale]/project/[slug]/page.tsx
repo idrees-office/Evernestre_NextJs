@@ -274,7 +274,7 @@ const parseHTMLContent = (html: string) => {
   const fetchProject = async () => {
     try {
       setLoading(true);
-      const data = await getProjectBySlug(cleanSlug);
+      const data = await getProjectBySlug(cleanSlug, locale);
       
       if (data.error) {
         throw new Error('Project not found');

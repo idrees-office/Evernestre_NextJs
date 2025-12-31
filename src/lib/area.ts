@@ -1,8 +1,8 @@
 import { BASE_URL } from "./config";
 
-export async function getAllAreas(page: number = 1) {
+export async function getAllAreas(page: number = 1, lang: string) {
   try {
-    const res = await fetch(`${BASE_URL}/allareas?page=${page}`, {
+    const res = await fetch(`${BASE_URL}/allareas?lang=${lang}&page=${page}`, {
       cache: "no-store",
     });
 

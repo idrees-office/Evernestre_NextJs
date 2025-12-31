@@ -46,7 +46,7 @@ export default function AreaGuidePage() {
   const fetchAreas = async (page: number = 1) => {
     try {
       setLoading(true);
-      const data = await getAllAreas(page);
+      const data = await getAllAreas(page, locale);
       if (data.areas && data.areas.data) {
         const transformedAreas = data.areas.data.map((area: ApiArea) => ({
           id: area.id,
