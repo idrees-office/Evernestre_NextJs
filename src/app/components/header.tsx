@@ -160,7 +160,7 @@ export default function Header() {
             {/* UPDATE: Add locale to home link */}
             <Link href={createLocalizedUrl(createPageUrl("Home"))} className="flex items-center gap-2 group">
               <Image
-                src="../assets/EN-logo.png"
+                src="../../assets/EN-logo.png"
                 alt="Evernest Logo"
                 width={120}
                 height={32}
