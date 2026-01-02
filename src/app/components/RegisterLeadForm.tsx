@@ -12,12 +12,12 @@ import "react-phone-number-input/style.css";
 import { useTranslations } from "next-intl";
 
 interface Props {
-  fullName: string; // Changed from firstName
-  email: string; // Changed from lastName
+  fullName: string; 
+  email: string; 
   phone?: string;
   errors: {
-    fullName?: string; // Changed from first
-    email?: string; // Changed from last
+    fullName?: string;
+    email?: string; 
     phone?: string;
     ok?: string;
   };
@@ -171,8 +171,6 @@ export default function RegisterLeadForm({
             {errors.ok}
           </motion.p>
         )}
-
-        {/* Privacy Policy */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -181,9 +179,7 @@ export default function RegisterLeadForm({
         >
 
           {t('form_consent_text')}{" "}
-          <Link
-            href="/privacy-policy"
-            className="underline hover:text-[#c97a52]"
+          <Link href="/privacy-policy" className="underline hover:text-[#c97a52]"
           >
             {t('privacy_policy')}
           </Link>

@@ -8,6 +8,7 @@ import { createPageUrl } from "../utils/url";
 import Image from "next/image";
 import { useLocale, useTranslations } from 'next-intl'; 
 import "flag-icons/css/flag-icons.min.css";
+import ContactModal from "./ContactModal";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -355,7 +356,7 @@ export default function Header() {
           )}
         </AnimatePresence>
       </motion.header>
-      {/* <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)}/> */}
+      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)}/>
     </>
   );
 }

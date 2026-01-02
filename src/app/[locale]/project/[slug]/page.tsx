@@ -1420,8 +1420,7 @@ const handleShare = async () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
             <div className="lg:col-span-2 space-y-3">
               <p className="text-sm text-gray-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: singleProject?.developer?.description || '' }}></p>
-              {/* <div className="grid grid-cols-4 gap-2"> */}
-                <div className="grid grid-cols-2 xs:grid-cols-4 gap-2">
+                {/* <div className="grid grid-cols-2 xs:grid-cols-4 gap-2">
 
                 {[
                   { label: "Experience", value: "15+ yrs" },
@@ -1434,7 +1433,7 @@ const handleShare = async () => {
                     <p className="text-[9px] text-gray-400 uppercase">{stat.label}</p>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
             <div className="bg-gradient-to-br from-[#f0ebe4] to-[#e8dfd4] rounded-sm p-5 text-center">
               <div className="w-14 h-14 mx-auto mb-2 bg-white rounded-full flex items-center justify-center shadow">
