@@ -7,6 +7,7 @@ import Image from "next/image";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { submitLeadForm } from "@/lib/form";
+import { useTranslations } from "next-intl";
 
 
 interface Props {
@@ -22,6 +23,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
   const [message, setMessage] = React.useState("");
   const [errors, setErrors] = React.useState<{ [key: string]: string }>({});
   const [loading, setLoading] = React.useState(false);
+  const t = useTranslations();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -110,7 +112,9 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent lg:bg-gradient-to-r lg:from-black/70 lg:via-black/30 lg:to-transparent" />
 
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-xl font-light mb-3">Get In Touch</h3>
+                  <h3 className="text-xl font-light mb-3">
+                    {t("get_in_touch")}
+                  </h3>
                   <div className="space-y-2">
                     <div className="flex items-center gap-3">
                       <Phone className="w-4 h-4 text-[#d0845b]" />
@@ -124,23 +128,16 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                         info@evernestre.ae
                       </span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <MapPin className="w-4 h-4 text-[#d0845b]" />
-                      <span className="text-xs font-light">
-                        Downtown Dubai, UAE
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>
               <div className="lg:col-span-2 p-8 md:p-10">
                 <div className="max-w-2xl">
-                  <h2 className="text-2xl font-normal text-[#1a1a1a] mb-2 tracking-tight">
-                    Book Your <span className="text-[#d0845b]">Dream Home</span>
+                  <h2 className="text-2xl font-normal text-[#1a1a1a] mb-2 tracking-tight">{t("book_your")}
+                    <span className="text-[#d0845b]">{t("dream_home")}</span>
                   </h2>
                   <p className="text-[#1a1a1a]/60 mb-6 font-light text-sm">
-                    Let&apos;s find your perfect property in Dubai. Our experts
-                    are here to help.
+                    {t("lets_find_your_perfect_property")}
                   </p>
 
                   <form className="space-y-5" onSubmit={handleSubmit}>
@@ -192,11 +189,11 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                       <div className="input-group">
                         <select value={interest} onChange={(e) => setInterest(e.target.value)} className="cursor-pointer w-full px-3 py-2 border border-[#1a1a1a]/15 rounded-md"
                         >
-                          <option value="">I&apos;m interested in</option>
-                          <option value="buy">Buying</option>
-                          <option value="rent">Renting</option>
-                          <option value="investment">Investment</option>
-                          <option value="consultation">Consultation</option>
+                          <option value=""> {t("i_am_interested_in")} </option>
+                          <option value="buy"> {t("buying")} </option>
+                          <option value="rent"> {t("renting")} </option>
+                          <option value="investment"> {t("investment")} </option>
+                          <option value="consultation"> {t("consultation")} </option>
                         </select>
                       </div>
                     </div>
@@ -228,8 +225,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
 
                   </form>
                   <p className="text-[10px] text-[#1a1a1a]/40 mt-4 text-center font-light">
-                    By submitting this form, you agree to our privacy policy and
-                    terms of service.
+                    {t("by_submitting_this_form_you_agree_to_our_privacy_policy_and_terms_of_service")}
                   </p>
                 </div>
               </div>

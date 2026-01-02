@@ -172,8 +172,18 @@
   "contact": "Kontakt",
   "quick_links": "Rychlé odkazy",
   "footer_description": "Objevte nejprestižnější projekty v Dubaji – ručně vybrané pro luxus, inovace a světový design. Váš klíč k výjimečné nemovitosti začíná zde.",
-  "careers": "Kariéra"
-
+  "careers": "Kariéra",
+  "get_in_touch": "Spojte se s námi",
+  "book_your": "Rezervujte si své ",
+  "dream_home": "vysněný domov",
+  "lets_find_your_perfect_property": "Pojďme najít vaši dokonalou nemovitost v Dubaji. Naši odborníci jsou tu, aby vám pomohli.",
+  "by_submitting_this_form_you_agree_to_our_privacy_policy_and_terms_of_service": "Odesláním tohoto formuláře souhlasíte s našimi zásadami ochrany osobních údajů a obchodními ,podmínkami.",
+  "buying": "Nákup",
+  "renting": "Pronájem",
+  "investment": "Investice",
+  "consultation": "Konzultace",
+  "i_am_interested_in": "Mám zájem o"
+  
   
 
 }
