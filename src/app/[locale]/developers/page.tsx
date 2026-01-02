@@ -33,7 +33,7 @@ export default function DeveloperPage() {
     const fetchDevelopers = async () => {
       try {
         setLoading(true);
-        const data = await getDevelopers(page);
+        const data = await getDevelopers(page, locale);
         setDevelopers(data.developers.data || []);
         setMeta({
           current: data.developers.current_page,

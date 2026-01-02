@@ -107,7 +107,7 @@ export default function BlogContactPage() {
 
     setLoading(true);
     try {
-      const data: ApiResponse = await getAllBlogs(page);
+      const data: ApiResponse = await getAllBlogs(page, locale);
 
       if (data.blogs) {
         setBlogs(data.blogs.data);

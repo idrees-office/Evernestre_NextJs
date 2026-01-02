@@ -16,9 +16,9 @@ export async function getProjects(page: number = 1, locale: string) {
 
 
 
-export async function getProjectBySlug(slug: string) {
+export async function getProjectBySlug(slug: string, locale: string) {
   try {
-    const res = await fetch(`${BASE_URL}/project/${slug}`, {
+    const res = await fetch(`${BASE_URL}/project/${slug}?lang=${locale}`, {
       cache: "no-store",
     });
 
