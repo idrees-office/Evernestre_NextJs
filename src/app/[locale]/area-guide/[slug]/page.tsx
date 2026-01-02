@@ -7,9 +7,10 @@ import RegisterCtaSection from "@/app/components/RegisterCtaSection";
 import { getAreaBySlug } from "@/lib/area";
 import LuxuryLoader from "@/app/components/LuxuryLoader";
 import Image from "next/image";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function AreaDetail({ params }: { params: Promise<{ slug: string }> }) {
-  
+  const locale = useLocale();
   const { slug } = usePromise(params);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [area1, setArea1] = useState<any>(null);
@@ -23,7 +24,7 @@ export default function AreaDetail({ params }: { params: Promise<{ slug: string 
     const fetchArea = async () => {
       try {
         setLoading(true);
-        const data = await getAreaBySlug(slug);
+        const data = await getAreaBySlug(slug, locale);
         setArea1(data.area ?? data);
 
       } catch (err) {

@@ -14,9 +14,10 @@ export async function getAllAreas(page: number = 1, lang: string) {
     return { areas: [], error: true };
   }
 }
-export async function getAreaBySlug(slug: string) {
+
+export async function getAreaBySlug(slug: string, lang: string) {
   try {
-    const res = await fetch(`${BASE_URL}/area/${slug}`, {
+    const res = await fetch(`${BASE_URL}/area/${slug}?lang=${lang}`, {
       cache: "no-store",
     });
 
