@@ -10,13 +10,13 @@ const nextConfig: NextConfig = {
   
   images: {
     remotePatterns: [
-
       {
         protocol: "https",
-        hostname: "www.evernestre.ae",
+        hostname: "evernest.ae",
         port: "",
         pathname: "/**",
       },
+
 
       {
         protocol: "https",
