@@ -157,7 +157,6 @@ export default function Header() {
       >
         <div className="container mx-auto px-6 md:px-12">
           <nav className="flex items-center justify-between h-24">
-            {/* UPDATE: Add locale to home link */}
             <Link href={createLocalizedUrl(createPageUrl("Home"))} className="flex items-center gap-2 group">
               <Image
                 src="/assets/EN-logo.png"
