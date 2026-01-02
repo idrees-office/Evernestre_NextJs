@@ -15,9 +15,9 @@ export async function getAllNews(page: number = 1, lang: string) {
   }
 }
 
-export async function getNewsBySlug(slug: string) {
+export async function getNewsBySlug(slug: string, locale: string) {
   try {
-    const res = await fetch(`${BASE_URL}/news/${slug}`, {
+    const res = await fetch(`${BASE_URL}/news/${slug}?lang=${locale}`, {
       cache: "no-store",
     });
 

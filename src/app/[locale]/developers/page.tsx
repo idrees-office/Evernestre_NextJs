@@ -24,11 +24,8 @@ export default function DeveloperPage() {
   const [page, setPage] = useState(1);
   const locale = useLocale();
   const t = useTranslations();
-
-  const [meta, setMeta] = useState<{ current: number; last: number } | null>(
-    null
-  );
-
+  const [meta, setMeta] = useState<{ current: number; last: number } | null>( null);
+  
   useEffect(() => {
     const fetchDevelopers = async () => {
       try {

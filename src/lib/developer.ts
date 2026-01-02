@@ -26,9 +26,9 @@ export async function getDevelopers(page: number = 1, lang: string) {
 
 
 
-export async function getDevelopersBySlug(slug: string) {
+export async function getDevelopersBySlug(slug: string, locale: string) {
   try {
-    const res = await fetch(`${BASE_URL}/developers/${slug}`, {
+    const res = await fetch(`${BASE_URL}/developers/${slug}?lang=${locale}`, {
       cache: "no-store",
     });
 

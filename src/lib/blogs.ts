@@ -15,9 +15,9 @@ export async function getAllBlogs(page: number = 1, lang: string) {
   }
 }
 
-export async function getBlogsBySlug(slug: string) {
+export async function getBlogsBySlug(slug: string, locale: string) {
   try {
-    const res = await fetch(`${BASE_URL}/blogs/${slug}`, {
+    const res = await fetch(`${BASE_URL}/blogs/${slug}?lang=${locale}`, {
       cache: "no-store",
     });
 

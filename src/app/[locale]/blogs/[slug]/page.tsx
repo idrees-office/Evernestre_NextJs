@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowLeft, ChevronRight, Calendar } from "lucide-react";
 import NewsSideSection from "@/app/components/NewsSideSection";
 import { getBlogsBySlug } from "@/lib/blogs";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 
 const categories = [
@@ -31,6 +31,7 @@ export default function BlogDetail({ params }: { params: Promise<{ slug: string 
   const [blog, setBlog] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const t = useTranslations();
+  const locale = useLocale();
 
 
   const [formData, setFormData] = useState({
@@ -66,12 +67,11 @@ export default function BlogDetail({ params }: { params: Promise<{ slug: string 
   useEffect(() => {
     if (slug) {
       setLoading(true);
-      getBlogsBySlug(slug)       // <-- Only this line is different
+      getBlogsBySlug(slug, locale)
         .then(setBlog)
         .finally(() => setLoading(false));
     }
-  }, [slug]);
-
+  }, [slug, locale]);
   if (loading) {
     return (
       <>

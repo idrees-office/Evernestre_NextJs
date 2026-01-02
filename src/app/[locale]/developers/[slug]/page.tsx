@@ -8,6 +8,8 @@ import {  ArrowLeft, Share2, Heart, MapPin, Building2, Calendar, Award,  Trophy,
 import RegisterCtaSection from "@/app/components/RegisterCtaSection";
 import OffPlanProjects from "@/app/components/OffPlanProjects";
 import { getDevelopersBySlug } from "@/lib/developer";
+import { useLocale } from "next-intl";
+
 
 export default function DeveloperDetail({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = usePromise(params);
@@ -15,6 +17,7 @@ export default function DeveloperDetail({ params }: { params: Promise<{ slug: st
     const [developers, setDevelopers] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const locale = useLocale();
 
     // STATIC STATS YOU WANTED TO KEEP
     const staticStats = {
@@ -28,7 +31,7 @@ export default function DeveloperDetail({ params }: { params: Promise<{ slug: st
         const fetchArea = async () => {
             try {
                 setLoading(true);
-                const data = await getDevelopersBySlug(slug);
+                const data = await getDevelopersBySlug(slug, locale);
                 setDevelopers(data.developers ?? data);
             } catch (err) {
                 console.error(err);

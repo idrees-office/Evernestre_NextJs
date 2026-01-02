@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ChevronRight, Calendar } from "lucide-react";
 import NewsSideSection from "@/app/components/NewsSideSection";
+import { useLocale } from "next-intl";
 
 const categories = [
   { name: "Modern Villa", count: 3 },
@@ -28,6 +29,7 @@ export default function NewsDetail({ params }: { params: Promise<{ slug: string 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [news, setNews] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const locale = useLocale();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -59,12 +61,11 @@ export default function NewsDetail({ params }: { params: Promise<{ slug: string 
   useEffect(() => {
     if (slug) {
       setLoading(true);
-      getNewsBySlug(slug)
+      getNewsBySlug(slug, locale)
         .then(setNews)
         .finally(() => setLoading(false));
     }
-  }, [slug]);
-
+  }, [slug, locale]);
   if (loading) {
     return (
       <>
