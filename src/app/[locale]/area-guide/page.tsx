@@ -43,10 +43,12 @@ export default function AreaGuidePage() {
   const t = useTranslations();
   const locale = useLocale();
 
-  const fetchAreas = async (page: number = 1) => {
+  useEffect(() => {
+  const fetchAreas = async () => {
     try {
       setLoading(true);
-      const data = await getAllAreas(page, locale);
+      const data = await getAllAreas(currentPage, locale);
+
       if (data.areas && data.areas.data) {
         const transformedAreas = data.areas.data.map((area: ApiArea) => ({
           id: area.id,
@@ -58,18 +60,14 @@ export default function AreaGuidePage() {
 
         setAreas(transformedAreas);
 
-        if (data.areas) {
-          setPagination({
-            current_page: data.areas.current_page || 1,
-            last_page: data.areas.last_page || 1,
-            per_page: data.areas.per_page || 12,
-            total: data.areas.total || 0,
-            from: data.areas.from || 1,
-            to: data.areas.to || transformedAreas.length,
-          });
-        }
-
-        setCurrentPage(page);
+        setPagination({
+          current_page: data.areas.current_page || 1,
+          last_page: data.areas.last_page || 1,
+          per_page: data.areas.per_page || 12,
+          total: data.areas.total || 0,
+          from: data.areas.from || 1,
+          to: data.areas.to || transformedAreas.length,
+        });
       } else {
         setAreas([]);
       }
@@ -81,13 +79,15 @@ export default function AreaGuidePage() {
     }
   };
 
-  useEffect(() => {
-    fetchAreas(1);
-  }, []);
+  fetchAreas();
+}, [locale, currentPage]);
+
+
+
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= (pagination?.last_page || 1)) {
-      fetchAreas(page);
+      setCurrentPage(page);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -139,7 +139,7 @@ export default function AreaGuidePage() {
                
               <h3 className="text-lg font-medium text-red-800 mb-2">  {t('error_loading_areas')} </h3>
               <p className="text-red-600">{error}</p>
-              <button onClick={() => fetchAreas(1)} className="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
+              <button onClick={() => setCurrentPage(1)} className="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
                 {t('try_again')}
               </button>
             </div>

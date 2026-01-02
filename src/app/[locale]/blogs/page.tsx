@@ -102,33 +102,34 @@ export default function BlogContactPage() {
     return `${readTime} min read`;
   };
 
-  const fetchNews = async (page: number = 1) => {
-    if (hasFetched.current && page === 1) return;
-
-    setLoading(true);
-    try {
-      const data: ApiResponse = await getAllBlogs(page, locale);
-
-      if (data.blogs) {
-        setBlogs(data.blogs.data);
-        setCurrentPage(data.blogs.current_page);
-        setLastPage(data.blogs.last_page);
-        setTotal(data.blogs.total);
-        if (page === 1) {
-          hasFetched.current = true;
-        }
-      }
-    } catch (error) {
-      console.error("Error fetching news:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchNews = async (page: number = 1) => {
+      if (hasFetched.current && page === 1) return;
+
+      setLoading(true);
+      try {
+        const data: ApiResponse = await getAllBlogs(page, locale);
+
+        if (data.blogs) {
+          setBlogs(data.blogs.data);
+          setCurrentPage(data.blogs.current_page);
+          setLastPage(data.blogs.last_page);
+          setTotal(data.blogs.total);
+
+          if (page === 1) {
+            hasFetched.current = true;
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchNews();
   }, [locale]);
-
+  
   const handleInputChange = (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -553,4 +554,8 @@ export default function BlogContactPage() {
       <RegisterCtaSection />
     </>
   );
+}
+
+function fetchNews(page: number) {
+  throw new Error("Function not implemented.");
 }

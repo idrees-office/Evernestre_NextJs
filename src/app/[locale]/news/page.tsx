@@ -89,27 +89,32 @@ export default function NewsContactPage() {
     return `${Math.max(1, Math.ceil(wordCount / 200))} min`;
   };
 
-  const fetchNews = async (page: number = 1) => {
-    if (hasFetched.current && page === 1) return;
-    setLoading(true);
-    try {
-      const data: ApiResponse = await getAllNews(page, locale);
-      if (data.news) {
-        setNews(data.news.data);
-        setCurrentPage(data.news.current_page);
-        setLastPage(data.news.last_page);
-        if (page === 1) hasFetched.current = true;
-      }
-    } catch (error) {
-      console.error("Error fetching news:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+   useEffect(() => {
+    const fetchNews = async () => {
+      if (hasFetched.current && currentPage === 1) return;
 
-  useEffect(() => {
+      setLoading(true);
+      try {
+        const data: ApiResponse = await getAllNews(currentPage, locale);
+
+        if (data.news) {
+          setNews(data.news.data);
+          setLastPage(data.news.last_page);
+
+          if (currentPage === 1) {
+            hasFetched.current = true;
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchNews();
-  }, [locale]);
+  }, [locale, currentPage]);
+
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -129,7 +134,7 @@ export default function NewsContactPage() {
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= lastPage && page !== currentPage) {
-      fetchNews(page);
+      setCurrentPage(page);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };

@@ -127,77 +127,6 @@ interface ProjectData {
     brochure: brochureRef,
   };
 
-//   const parseHTMLContent = (html: string) => {
-//   if (!html) return [];
-  
-//   const contentItems: ContentItem[] = [];
-//   const tempDiv = document.createElement('div');
-  
-//   // Remove span tags and their styles
-//   const cleanedHtml = html
-//     .replace(/<span[^>]*>/g, '')
-//     .replace(/<\/span>/g, '')
-//     .replace(/style="[^"]*"/g, '');
-  
-//   tempDiv.innerHTML = cleanedHtml;
-  
-//   const elements = Array.from(tempDiv.childNodes);
-  
-//   for (let i = 0; i < elements.length; i++) {
-//     const element = elements[i];
-    
-//     if (element.nodeType === Node.ELEMENT_NODE) {
-//       const el = element as Element;
-      
-//       if (el.tagName === 'H2') {
-//         contentItems.push({
-//           type: 'heading',
-//           content: el.textContent?.trim() || ''
-//         });
-//       } else if (el.tagName === 'P') {
-//         const text = el.textContent?.trim();
-//         if (text) {
-//           contentItems.push({
-//             type: 'text',
-//             content: text
-//           });
-//         }
-//       } else if (el.tagName === 'UL') {
-//         const items = el.querySelectorAll('li');
-//         items.forEach(item => {
-//           const text = item.textContent?.trim();
-//           if (text) {
-//             contentItems.push({
-//               type: 'text',
-//               content: `• ${text}`
-//             });
-//           }
-//         });
-//       } else if (el.tagName === 'DIV' || el.tagName === 'SPAN') {
-//         // Handle nested content
-//         const text = el.textContent?.trim();
-//         if (text) {
-//           contentItems.push({
-//             type: 'text',
-//             content: text
-//           });
-//         }
-//       }
-//     } else if (element.nodeType === Node.TEXT_NODE) {
-//       const text = element.textContent?.trim();
-//       if (text) {
-//         contentItems.push({
-//           type: 'text',
-//           content: text
-//         });
-//       }
-//     }
-//   }
-  
-//   return contentItems;
-// };
-
-
 const parseHTMLContent = (html: string) => {
   if (!html) return [];
 
@@ -296,7 +225,7 @@ const parseHTMLContent = (html: string) => {
   };
 
   fetchProject();
-}, [cleanSlug]);
+}, [cleanSlug, locale]);
 
 
   const handleTabClick = (tabId: keyof typeof sectionRefs) => {
