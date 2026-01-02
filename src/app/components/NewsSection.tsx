@@ -21,17 +21,18 @@ export default function NewsSection({
 }: {
   news?: NewsPost[];
   subtitle?: string;
-  locale?: string;
+  locales?: string;
   timeZone?: string;
 }) {
 
   const t = useTranslations();
+   const locale = useLocale();
   if (!news || news.length === 0) return null;
 
   const posts = news;
   const featured = posts[0];
   const sidePosts = posts.slice(1, 5);
-  const  locale = useLocale(); 
+ 
 
 
   

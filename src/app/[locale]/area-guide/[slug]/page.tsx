@@ -35,7 +35,7 @@ export default function AreaDetail({ params }: { params: Promise<{ slug: string 
       }
     };
     fetchArea();
-  }, [slug]);
+  }, [slug, locale]);
 
   if (loading) return <LuxuryLoader />;
   if (error || !area1) return <div className="p-10 text-center text-red-600">{error}</div>;

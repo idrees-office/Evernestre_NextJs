@@ -44,7 +44,7 @@ export default function DeveloperPage() {
     };
 
     fetchDevelopers();
-  }, [page]);
+  }, [page, locale]);
 
   const filteredDevelopers = developers.filter((dev) =>
     dev.name.toLowerCase().includes(query.toLowerCase())

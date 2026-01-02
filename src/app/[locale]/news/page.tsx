@@ -109,7 +109,7 @@ export default function NewsContactPage() {
 
   useEffect(() => {
     fetchNews();
-  }, []);
+  }, [locale]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -134,7 +134,7 @@ export default function NewsContactPage() {
     }
   };
 
-  const featuredNews = news.length > 0 ? news[0] : null;
+  const featuredNews = news.length > 0 ? news[0] : null;  
   const regularNews = news.length > 1 ? news.slice(1) : [];
 
   if (loading && !hasFetched.current) {

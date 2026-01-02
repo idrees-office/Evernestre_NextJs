@@ -41,7 +41,7 @@ export default function DeveloperDetail({ params }: { params: Promise<{ slug: st
             }
         };
         fetchArea();
-    }, [slug]);
+    }, [slug, locale]);
 
     if (loading) return <div className="p-10 text-center">Loading...</div>;
     if (error) return <div className="p-10 text-center text-red-500">{error}</div>;

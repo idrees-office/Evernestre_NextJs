@@ -127,7 +127,7 @@ export default function BlogContactPage() {
 
   useEffect(() => {
     fetchNews();
-  }, []);
+  }, [locale]);
 
   const handleInputChange = (
     e:
