@@ -168,7 +168,6 @@ export default function Header() {
                 priority
               />
             </Link>
-
             <div className="hidden lg:flex items-center">
               {navItems.map((item) => (
                 <div
