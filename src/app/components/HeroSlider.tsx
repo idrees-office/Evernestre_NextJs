@@ -20,7 +20,11 @@ interface Property {
   banner: string;
   title: string;
   bedrooms: string | null;
-  location_name: string;
+  // location_name: string;
+   locations: {
+    id: number;
+    name: string;
+  };
   starting_price: string;
   payment_plan: string;
   features: string[];
@@ -146,11 +150,13 @@ export default function HeroSlider({ hero }: HeroSliderProps) {
 
   useEffect(() => {
     setIsMounted(true);
-
+    
     const formatted = hero?.slice(0, 5).map((p: Property) => ({
       image: p.banner,
       title: p.title ? p.title.slice(0, 35) : "",
-      subtitle: cleanBedrooms(p.bedrooms) || p.location_name || "Business Bay, Dubai",
+      subtitle:  p.locations?.name || "Business Bay, Dubai",
+      // subtitle: cleanBedrooms(p.bedrooms) || p.location_name || "Business Bay, Dubai",
+      // subtitle: cleanBedrooms(p.bedrooms) || p.location_name || "Business Bay, Dubai",
       price: p.starting_price,
       plan: p.payment_plan?.replace(/<[^>]*>/g, "") || "Flexible Payment Plan",
       features: p.features || ["Luxury Living", "Premium Location"],
