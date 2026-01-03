@@ -153,7 +153,7 @@ export default function HeroSlider({ hero }: HeroSliderProps) {
     
     const formatted = hero?.slice(0, 5).map((p: Property) => ({
       image: p.banner,
-      title: p.title ? p.title.slice(0, 35) : "",
+      title: p.title ? p.title.slice(0, 55) : "",
       subtitle:  p.locations?.name || " ",
       // subtitle: cleanBedrooms(p.bedrooms) || p.location_name || "Business Bay, Dubai",
       // subtitle: cleanBedrooms(p.bedrooms) || p.location_name || "Business Bay, Dubai",
