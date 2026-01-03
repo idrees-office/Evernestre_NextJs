@@ -37,36 +37,23 @@
 import { getRequestConfig } from 'next-intl/server';
 
 export default getRequestConfig(async ({ requestLocale }) => {
-  let locale = await requestLocale;
-  
-  if (!locale) {
-    locale = 'en';
-  }
-  
+  const locale = (await requestLocale) ?? 'en';
   const normalizedLocale = locale.split('-')[0];
-  
+
   let messages;
-  
-  try {
-    // Use a switch statement instead of dynamic template literals
-    switch (normalizedLocale) {
-      case 'cz':
-        messages = (await import('../messages/cz.json')).default;
-        break;
-      case 'ru':
-        messages = (await import('../messages/ru.json')).default;
-        break;
-      case 'es':
-        messages = (await import('../messages/es.json')).default;
-        break;
-      default:
-        messages = (await import('../messages/en.json')).default;
-        break;
-    }
-  } catch (error) {
-    console.error('Error loading messages:', error);
-    messages = (await import('../messages/en.json')).default;
-    locale = 'en';
+
+  switch (normalizedLocale) {
+    case 'cz':
+      messages = (await import('../messages/cz.json')).default;
+      break;
+    case 'ru':
+      messages = (await import('../messages/ru.json')).default;
+      break;
+    case 'es':
+      messages = (await import('../messages/es.json')).default;
+      break;
+    default:
+      messages = (await import('../messages/en.json')).default;
   }
 
   return {
@@ -74,6 +61,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     messages
   };
 });
+
 
 
 
