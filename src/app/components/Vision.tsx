@@ -21,7 +21,6 @@ export default function Vision() {
           transition={{ duration: 0.7 }}
         >
           <span className="text-[#d5a86e] text-xs uppercase tracking-[0.2em]">{ t('our_purpose') }</span>
-
           <h2 className="text-2xl md:text-3xl font-light text-gray-900 mt-2 mb-4">
              { t('vision_title') }
           </h2>
