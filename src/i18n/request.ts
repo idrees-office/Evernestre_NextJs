@@ -41,6 +41,7 @@ import cz from '../messages/cz.json';
 import ru from '../messages/ru.json';
 import es from '../messages/es.json';
 
+ // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const messagesMap: Record<string, any> = {
   en,
   cz,
