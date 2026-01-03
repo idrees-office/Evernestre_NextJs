@@ -33,7 +33,6 @@
 
 
 
-
 import { getRequestConfig } from 'next-intl/server';
 
 import en from '../messages/en.json';
@@ -41,7 +40,6 @@ import cz from '../messages/cz.json';
 import ru from '../messages/ru.json';
 import es from '../messages/es.json';
 
- // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const messagesMap: Record<string, any> = {
   en,
   cz,
@@ -50,13 +48,23 @@ const messagesMap: Record<string, any> = {
 };
 
 export default getRequestConfig(async ({ requestLocale }) => {
-  const locale = (await requestLocale)?.split('-')[0] || 'en';
+  let locale = 'en';
+
+  try {
+    const resolved = await requestLocale;
+    if (typeof resolved === 'string') {
+      locale = resolved.split('-')[0];
+    }
+  } catch {
+    locale = 'en';
+  }
 
   return {
     locale,
-    messages: messagesMap[locale] || messagesMap.en
+    messages: messagesMap[locale] ?? messagesMap.en
   };
 });
+
 
 
 
