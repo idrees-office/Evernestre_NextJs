@@ -37,41 +37,42 @@
 import { getRequestConfig } from 'next-intl/server';
 
 export default getRequestConfig(async ({ requestLocale }) => {
-  // First, await the promise to get the locale
   let locale = await requestLocale;
   
-  // Fallback to 'en' if no locale is provided
   if (!locale) {
     locale = 'en';
   }
   
-  // Normalize the locale (remove region code)
   const normalizedLocale = locale.split('-')[0];
-
+  
+  let messages;
+  
   try {
-    let messages;
-
-    if (normalizedLocale === 'cz') {
-      messages = (await import('../messages/cz.json')).default;
-    } else if (normalizedLocale === 'ru') {
-      messages = (await import('../messages/ru.json')).default;
-    } else if (normalizedLocale === 'es') {
-      messages = (await import('../messages/es.json')).default;
-    } else {
-      messages = (await import('../messages/en.json')).default;
+    // Use a switch statement instead of dynamic template literals
+    switch (normalizedLocale) {
+      case 'cz':
+        messages = (await import('../messages/cz.json')).default;
+        break;
+      case 'ru':
+        messages = (await import('../messages/ru.json')).default;
+        break;
+      case 'es':
+        messages = (await import('../messages/es.json')).default;
+        break;
+      default:
+        messages = (await import('../messages/en.json')).default;
+        break;
     }
-
-    return {
-      locale: normalizedLocale,
-      messages
-    };
   } catch (error) {
-    // Fallback to English if any error occurs
-    return {
-      locale: 'en',
-      messages: (await import('../messages/en.json')).default
-    };
+    console.error('Error loading messages:', error);
+    messages = (await import('../messages/en.json')).default;
+    locale = 'en';
   }
+
+  return {
+    locale: normalizedLocale,
+    messages
+  };
 });
 
 
