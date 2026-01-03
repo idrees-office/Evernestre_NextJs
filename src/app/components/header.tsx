@@ -94,7 +94,7 @@ export default function Header() {
         }
       ],
     },
-  ], [t]); 
+  ], [t, locale]); 
 
   const headerClass = "bg-white/90 backdrop-blur-2xl border-b border-[color:var(--brand)]/10 shadow-[0_6px_30px_-12px_rgba(0,0,0,0.25)]";
 
