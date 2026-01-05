@@ -97,7 +97,7 @@ export default function Header() {
   ], [t]); 
 
   const headerClass = "bg-white/90 backdrop-blur-2xl border-b border-[color:var(--brand)]/10 shadow-[0_6px_30px_-12px_rgba(0,0,0,0.25)]";
-
+  
   const languages = [
     { code: "en", label: "EN", flagClass: "fi fi-gb", name: "English" },
     { code: "cz", label: "CZ", flagClass: "fi fi-cz", name: "Čeština" },
