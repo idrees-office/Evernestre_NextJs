@@ -177,17 +177,32 @@ export default function Header() {
                   onMouseEnter={() => setActiveDropdown(item.label)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                <Link href={createLocalizedUrl(item.url)}
+                {/* <Link href={createLocalizedUrl(item.url)}
+                    className={`relative px-4 py-1 text-[15px] font-light tracking-wide transition-all duration-300
+  flex items-center
+  text-[#1a1a1a] hover:text-[color:var(--brand)]  // Changed from text-[color:var(--charcoal)]/85
+  after:absolute after:left-1/2 after:bottom-0 after:h-[0.5px] after:w-0 
+  after:bg-[color:var(--brand)] after:transition-all after:duration-300 
+  after:-translate-x-1/2 hover:after:w-4/5
+                    ${
+                      pathname.includes(item.url) ? "text-[color:var(--brand)] after:w-3/5" : ""
+                    }
+                  `}
+                  >
+                    {item.label}
+                  </Link> */}
+
+                  <Link href={createLocalizedUrl(item.url)}
                     className={`relative px-4 py-1 text-[15px] font-light tracking-wide transition-all duration-300
                     flex items-center
-                    text-[color:var(--charcoal)]/85 hover:text-[color:var(--brand)]
+                    text-black hover:text-[color:var(--brand)]
                     after:absolute after:left-1/2 after:bottom-0 after:h-[0.5px] after:w-0 
                     after:bg-[color:var(--brand)] after:transition-all after:duration-300 
                     after:-translate-x-1/2 hover:after:w-4/5
                     ${
                       pathname.includes(item.url) ? "text-[color:var(--brand)] after:w-3/5" : ""
                     }
-                  `}
+                    `}
                   >
                     {item.label}
                   </Link>
