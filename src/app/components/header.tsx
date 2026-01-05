@@ -177,21 +177,6 @@ export default function Header() {
                   onMouseEnter={() => setActiveDropdown(item.label)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                {/* <Link href={createLocalizedUrl(item.url)}
-                    className={`relative px-4 py-1 text-[15px] font-light tracking-wide transition-all duration-300
-  flex items-center
-  text-[#1a1a1a] hover:text-[color:var(--brand)]  // Changed from text-[color:var(--charcoal)]/85
-  after:absolute after:left-1/2 after:bottom-0 after:h-[0.5px] after:w-0 
-  after:bg-[color:var(--brand)] after:transition-all after:duration-300 
-  after:-translate-x-1/2 hover:after:w-4/5
-                    ${
-                      pathname.includes(item.url) ? "text-[color:var(--brand)] after:w-3/5" : ""
-                    }
-                  `}
-                  >
-                    {item.label}
-                  </Link> */}
-
                   <Link href={createLocalizedUrl(item.url)}
                     className={`relative px-4 py-1 text-[15px] font-light tracking-wide transition-all duration-300
                     flex items-center
@@ -238,7 +223,7 @@ export default function Header() {
               <div className="relative" onMouseEnter={() => setLangOpen(true)} onMouseLeave={() => setLangOpen(false)}>
                 <button
                   aria-label="Select language"
-                  className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium tracking-wide text-[color:var(--charcoal)]/85 border border-black/10 rounded-sm bg-white hover:border-[color:var(--brand)] transition-all cursor-pointer">
+                  className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium tracking-wide text-black border border-black/10 rounded-sm bg-white hover:border-[color:var(--brand)] transition-all cursor-pointer">
                   <span className={`text-base ${languages.find(l => l.code === currentLang)?.flagClass}`}></span>
                   <span>{currentLang.toUpperCase()}</span>
                   <svg className={`w-3 h-3 transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`} fill="none"  stroke="currentColor"  viewBox="0 0 24 24">
@@ -269,8 +254,8 @@ export default function Header() {
                           className="w-full flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-[color:var(--cream)] transition-all duration-200 cursor-pointer border-b border-black/5 last:border-0"
                         >
                           <span className={`text-base ${lang.flagClass}`}></span>
-                          <span className="flex-1 text-left">{lang.name}</span>
-                          <span className="text-xs text-[color:var(--charcoal)]/60">{lang.label}</span>
+                          <span className="flex-1 text-left text-black/60">{lang.name}</span>
+                          <span className="text-xs text-black/60">{lang.label}</span>
                         </button>
                       ))}
                     </motion.div>
