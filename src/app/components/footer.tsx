@@ -17,7 +17,7 @@ import {
 
 export default function Footer() {
   const [year, setYear] = useState<number | null>(null);
-  const t = useTranslations('common');
+  const t = useTranslations();
   const locale = useLocale();
 
   useEffect(() => {

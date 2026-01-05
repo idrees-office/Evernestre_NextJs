@@ -18,7 +18,7 @@ export default function Header() {
   const pathname = usePathname();
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const t = useTranslations('common');
+  const t = useTranslations();
   // const t = useTranslations('Header');
   const locale = useLocale(); 
 

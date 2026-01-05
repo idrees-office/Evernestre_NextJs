@@ -1,5 +1,4 @@
 {
-  "common": {
   "home": "Inicio",
   "offPlan": "Proyectos en Planos",
   "areas": "Zonas",
@@ -186,6 +185,6 @@
   "investment": "Inversión",
   "consultation": "Consulta",
   "i_am_interested_in": "Estoy interesado en"
-  }
+
   
 }
