@@ -27,7 +27,7 @@ export default async function LocaleLayout({
 }>) {
   const { locale } = await params;
 
-  if (!['en', 'cs', 'ru', 'es'].includes(locale)) { 
+  if (!['en', 'cz', 'ru', 'es'].includes(locale)) { 
     notFound(); 
   }
 

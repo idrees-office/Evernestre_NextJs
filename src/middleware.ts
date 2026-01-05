@@ -14,7 +14,7 @@
 import createMiddleware from 'next-intl/middleware';
 
 export default createMiddleware({
-  locales: ['en', 'cs', 'ru', 'es'],
+  locales: ['en', 'cz', 'ru', 'es'],
   defaultLocale: 'en'
 });
 
@@ -22,7 +22,7 @@ export const config = {
 
    matcher: [
     '/',
-    '/(en|cs|ru|es)/:path*',
+    '/(en|cz|ru|es)/:path*',
     '/((?!api|_next|_next/image|_vercel|assets|favicon.ico|robots.txt|sw.js|sitemap.xml|manifest.json).*)'
   ]
 

@@ -138,12 +138,12 @@ export function getLocaleFromPath(pathname: string): string | null {
  * Returns pathname without locale prefix
  */
 export function removeLocaleFromPath(pathname: string): string {
-  return pathname.replace(/^\/(en|cs)/, '') || '/';
+  return pathname.replace(/^\/(en|cz)/, '') || '/';
 }
 
 /**
  * Check if a pathname has a locale prefix
  */
 export function hasLocalePrefix(pathname: string): boolean {
-  return /^\/(en|cs)(\/|$)/.test(pathname);
+  return /^\/(en|cz)(\/|$)/.test(pathname);
 }
