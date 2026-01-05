@@ -1,38 +1,30 @@
 // import createMiddleware from 'next-intl/middleware';
 
 // export default createMiddleware({
-//   locales: ['en', 'cz', 'ru', 'es'],
+//   locales: ['en', 'cs', 'ru', 'es'],
 //   defaultLocale: 'en'
 // });
 
 // export const config = {
+
+  
 //   matcher: ['/((?!api|_next|_vercel|assets|favicon.ico|robots.txt).*)']
 // };
-
 
 import createMiddleware from 'next-intl/middleware';
 
 export default createMiddleware({
-  // A list of all locales that are supported
-  locales: ['en', 'cz', 'ru', 'es'],
-  
-  // Used when no locale matches
-  defaultLocale: 'en',
-  
-  // Optional: locale detection settings
-  localeDetection: true,
-  
-  // Optional: locale prefix
-  localePrefix: 'always', // Always use a locale prefix (e.g., /en/about)
+  locales: ['en', 'cs', 'ru', 'es'],
+  defaultLocale: 'en'
 });
 
 export const config = {
-  matcher: [
-    // Match all pathnames except for
-    // - api routes
-    // - static files
-    // - favicon
-    // - images
-    '/((?!api|_next|_vercel|.*\\..*).*)'
+
+   matcher: [
+    '/',
+    '/(en|cs|ru|es)/:path*',
+    '/((?!api|_next|_next/image|_vercel|assets|favicon.ico|robots.txt|sw.js|sitemap.xml|manifest.json).*)'
   ]
+
+  // matcher: ['/((?!api|_next|_vercel|assets|favicon.ico|robots.txt).*)']
 };

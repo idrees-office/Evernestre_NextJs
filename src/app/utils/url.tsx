@@ -129,7 +129,7 @@ export function createLocalizedUrl(
  * Returns the locale if found, otherwise null
  */
 export function getLocaleFromPath(pathname: string): string | null {
-  const match = pathname.match(/^\/(en|cz)(\/|$)/);
+  const match = pathname.match(/^\/(en|cs)(\/|$)/);
   return match ? match[1] : null;
 }
 
@@ -138,12 +138,12 @@ export function getLocaleFromPath(pathname: string): string | null {
  * Returns pathname without locale prefix
  */
 export function removeLocaleFromPath(pathname: string): string {
-  return pathname.replace(/^\/(en|cz)/, '') || '/';
+  return pathname.replace(/^\/(en|cs)/, '') || '/';
 }
 
 /**
  * Check if a pathname has a locale prefix
  */
 export function hasLocalePrefix(pathname: string): boolean {
-  return /^\/(en|cz)(\/|$)/.test(pathname);
+  return /^\/(en|cs)(\/|$)/.test(pathname);
 }

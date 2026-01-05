@@ -37,12 +37,12 @@ export default function Header() {
    const navItems = useMemo(() => [
     { 
       label: t('home'), 
-      url: createPageUrl("Home"), 
+      url: createPageUrl("home"), 
       dropdown: null 
     },
     {
       label: t('offPlan'),
-      url: createPageUrl("Projects"),
+      url: createPageUrl("projects"),
       dropdown: [
         { 
           label: t('allProjects'), 
@@ -100,7 +100,7 @@ export default function Header() {
   
   const languages = [
     { code: "en", label: "EN", flagClass: "fi fi-gb", name: "English" },
-    { code: "cz", label: "CZ", flagClass: "fi fi-cz", name: "Čeština" },
+    { code: "cs", label: "CS", flagClass: "fi fi-cz", name: "Čeština" },
     { code: "es", label: "ES", flagClass: "fi fi-es", name: "Español" },
     { code: "ru", label: "RU", flagClass: "fi fi-ru", name: "Русский" }
 
@@ -114,7 +114,7 @@ export default function Header() {
     const currentLocale = pathSegments[0];
     
     // Check if the first segment is a valid locale
-    const validLocales = ['en', 'cz', 'ru', 'es'];
+    const validLocales = ['en', 'cs', 'ru', 'es'];
     const isLocaleInPath = validLocales.includes(currentLocale);
     
     let newPath;
@@ -142,7 +142,7 @@ export default function Header() {
   
   // Don't add locale if it's already in the URL from createPageUrl
   const segments = cleanUrl.split('/').filter(Boolean);
-  if (segments.length > 0 && ['en', 'cz', 'ru', 'es'].includes(segments[0])) {
+  if (segments.length > 0 && ['en', 'cs', 'ru', 'es'].includes(segments[0])) {
     return cleanUrl;
   }
   
