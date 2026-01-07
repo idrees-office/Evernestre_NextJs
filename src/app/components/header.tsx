@@ -37,12 +37,12 @@ export default function Header() {
    const navItems = useMemo(() => [
     { 
       label: t('home'), 
-      url: createPageUrl("home"), 
+      url: createPageUrl("Home"), 
       dropdown: null 
     },
     {
       label: t('offPlan'),
-      url: createPageUrl("projects"),
+      url: createPageUrl("Projects"),
       dropdown: [
         { 
           label: t('allProjects'), 
