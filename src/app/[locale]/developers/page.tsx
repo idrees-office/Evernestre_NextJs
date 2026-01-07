@@ -30,7 +30,7 @@ export default function DeveloperPage() {
     const fetchDevelopers = async () => {
       try {
         setLoading(true);
-        const data = await getDevelopers(page, locale);
+        const data = await getDevelopers(page, locale, query);
         setDevelopers(data.developers.data || []);
         setMeta({
           current: data.developers.current_page,
@@ -44,11 +44,19 @@ export default function DeveloperPage() {
     };
 
     fetchDevelopers();
-  }, [page, locale]);
+  }, [page, locale, query]);
 
-  const filteredDevelopers = developers.filter((dev) =>
-    dev.name.toLowerCase().includes(query.toLowerCase())
-  );
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setPage(1); // reset to page 1 when searching
+    }, 500);
+
+    return () => clearTimeout(handler);
+  }, [query]);
+
+  // const filteredDevelopers = developers.filter((dev) =>
+  //   dev.name.toLowerCase().includes(query.toLowerCase())
+  // );
 
   // Handle page change with scroll to top
   const handlePageChange = (newPage: number) => {
@@ -109,7 +117,7 @@ export default function DeveloperPage() {
                 }}
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
               >
-                {filteredDevelopers.map((developer) => (
+                {developers.map((developer) => (
                   <motion.div
                     key={`${developer.id}-${page}`} 
                     variants={{
