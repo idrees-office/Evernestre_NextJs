@@ -41,7 +41,7 @@ export default function Header() {
       dropdown: null 
     },
     {
-      label: t('offPlan'), 
+      label: t('offPlan'),
       url: createPageUrl("Projects"),
       dropdown: [
         { 
@@ -289,17 +289,22 @@ export default function Header() {
               </button>
             </div>
 
-            <button
-              className="lg:hidden p-2"
-              onClick={() => setIsMobileMenuOpen((v) => !v)}
-              aria-label="Toggle menu"
-            >
-              <div className="space-y-1.5">
-                <span className={`block w-6 h-0.5 bg-[color:var(--charcoal)] transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
-                <span className={`block w-6 h-0.5 bg-[color:var(--charcoal)] transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`} />
-                <span className={`block w-6 h-0.5 bg-[color:var(--charcoal)] transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-              </div>
-            </button>
+                   <button
+  className="lg:hidden p-3 relative z-50"
+  onClick={() => setIsMobileMenuOpen((v) => !v)}
+  aria-label="Toggle menu"
+>
+  <div className="relative w-6 h-5">
+    {/* Top line */}
+    <span className={`absolute top-0 left-0 w-6 h-0.5 bg-black transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 top-2" : ""}`} />
+    
+    {/* Middle line */}
+    <span className={`absolute top-2 left-0 w-6 h-0.5 bg-black transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`} />
+    
+    {/* Bottom line */}
+    <span className={`absolute top-4 left-0 w-6 h-0.5 bg-black transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 top-2" : ""}`} />
+  </div>
+</button>
           </nav>
         </div>
         <AnimatePresence>
