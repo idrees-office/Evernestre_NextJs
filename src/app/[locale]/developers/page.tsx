@@ -86,10 +86,7 @@ export default function DeveloperPage() {
                 onChange={(e) => setQuery(e.target.value)}
                 className="flex-1 px-5 h-11 text-[15px] bg-transparent text-[#3c2f26] placeholder-[#8b5d3b]/60 focus:outline-none"
               />
-              <button
-                type="submit"
-                className="h-11 w-12 flex items-center justify-center bg-[#c97a52] text-white rounded-r-full"
-              >
+              <button type="submit" className="h-11 w-12 flex items-center justify-center bg-[#c97a52] text-white rounded-r-full">
                 <ArrowRight className="w-5 h-5" />
               </button>
             </motion.form>
