@@ -204,10 +204,8 @@
   "competitive_packages_desc": "Salarios atractivos y un paquete completo de beneficios",
   "innovation_first": "Innovación ante todo",
   "innovation_first_desc": "Adoptamos nuevas ideas y tecnologías para mantenernos a la vanguardia del sector inmobiliario.",
-
   "collaborative_spirit": "Espíritu colaborativo",
   "collaborative_spirit_desc": "El trabajo en equipo y la comunicación abierta son la base de todo lo que hacemos.",
-
   "client_focused": "Enfoque en el cliente",
   "client_focused_desc": "Nuestro éxito se mide por la satisfacción y el éxito de nuestros clientes.",
   "all": "Todos",
@@ -227,5 +225,7 @@
   "ready_to": "¿Listo para",
   "join_us": "unirte a nosotros?",
   "send_application": "Enviar solicitud",
-  "contact_hr": "Contactar al equipo de RR. HH."
+  "contact_hr": "Contactar al equipo de RR. HH.",
+  "our_story" : "Nuestra historia",
+  "since_2010" : "Desde 2010"
 }

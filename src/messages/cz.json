@@ -194,21 +194,16 @@
   "the_perfect_role": "Nemůžete najít ideální roli? Zašlete nám svůj životopis pro budoucí příležitosti",
   "career_growth": "Kariérní růst",
   "career_growth_desc": "Jasně definované kariérní postupy a možnosti povýšení",
-
   "learning_development": "Vzdělávání a rozvoj",
   "learning_development_desc": "Rozpočet na školení a podpora certifikací",
-
   "great_culture": "Skvělá firemní kultura",
   "great_culture_desc": "Spolupracující prostředí s týmovými aktivitami",
-
   "competitive_packages": "Konkurenční benefity",
   "competitive_packages_desc": "Atraktivní mzdy a komplexní balíček benefitů",
   "innovation_first": "Inovace na prvním místě",
   "innovation_first_desc": "Přijímáme nové nápady a technologie, abychom si udrželi náskok v realitním odvětví.",
-
   "collaborative_spirit": "Duch spolupráce",
   "collaborative_spirit_desc": "Týmová práce a otevřená komunikace jsou základem všeho, co děláme.",
-
   "client_focused": "Zaměření na klienta",
   "client_focused_desc": "Náš úspěch měříme spokojeností a úspěchem našich klientů.",
   "all": "Vše",
@@ -228,5 +223,7 @@
   "ready_to": "Jste připraveni",
   "join_us": "připojit se k nám?",
   "send_application": "Odeslat žádost",
-  "contact_hr": "Kontaktovat HR tým"
+  "contact_hr": "Kontaktovat HR tým",
+  "our_story" : "Náš příběh",
+  "since_2010" : "Od roku 2010"
 }

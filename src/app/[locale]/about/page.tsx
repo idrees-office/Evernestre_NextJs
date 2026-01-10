@@ -61,7 +61,6 @@ export default function AboutUs() {
            </h1>
            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
             {t('real_estate_expertise_description')}
-             
            </p>
          </div>
       </section>
@@ -77,12 +76,8 @@ export default function AboutUs() {
             >
               <div className="absolute -top-3 -left-3 w-20 h-20 border-l-2 border-t-2 border-[#d5a86e]/40" />
               <div className="absolute -bottom-3 -right-3 w-20 h-20 border-r-2 border-b-2 border-[#d5a86e]/40" />
-              <Image
-                src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                width={800}
-                height={600}
-                alt="Our office and team"
-                className="rounded shadow-xl"
+              <Image src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1200" width={800} height={600}
+                alt="Our office and team" className="rounded shadow-xl"
               />
             </motion.div>
             <motion.div
@@ -91,24 +86,15 @@ export default function AboutUs() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <span className="text-[#d5a86e] text-xs uppercase tracking-[0.2em]">Since 2010</span>
+              <span className="text-[#d5a86e] text-xs uppercase tracking-[0.2em]">{ t('since_2010') }</span>
               <h2 className="text-2xl md:text-3xl font-light text-gray-900 mt-2 mb-5">
-                Our Story
+                 { t('our_story') }
               </h2>
               <div className="w-12 h-px bg-[#d5a86e] mb-5" />
               <div className="space-y-4 text-gray-600 text-[14px] leading-[1.8]">
-                <p>
-                   {t('our_story_p1')}
-                 
-                </p>
-                <p>
-                   {t('our_story_p2')}
-                  
-                </p>
-                <p>
-                   {t('our_story_p3')}
-                  
-                </p>
+                <p> {t('our_story_p1')}</p>
+                <p> {t('our_story_p2')}</p>
+                <p> {t('our_story_p3')}</p>
               </div>
             </motion.div>
           </div>
