@@ -185,39 +185,19 @@ export default function BlogContactPage() {
 
               <ul className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[14px] text-[#0e0e0e]/80 max-w-xl mx-auto">
                 <li className="flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white/60 backdrop-blur px-3 py-2 shadow-sm">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    className="shrink-0"
-                  >
+                  <svg width="16" height="16" viewBox="0 0 24 24" className="shrink-0">
                     <path fill="currentColor" d="M20 6L9 17l-5-5" />
                   </svg>
-                    {t('market_intelligence')}
-                  
+                  {t('market_intelligence')}
                 </li>
-
                 <li className="flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white/60 backdrop-blur px-3 py-2 shadow-sm">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    className="shrink-0"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M12 2a10 10 0 100 20 10 10 0 000-20zM11 6h2v6h-2V6zm0 8h2v2h-2v-2z"
-                    />
+                  <svg width="16" height="16" viewBox="0 0 24 24" className="shrink-0">
+                    <path fill="currentColor" d="M12 2a10 10 0 100 20 10 10 0 000-20zM11 6h2v6h-2V6zm0 8h2v2h-2v-2z"/>
                   </svg>
                   {t('expert_analysis')}
                 </li>
                 <li className="flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white/60 backdrop-blur px-3 py-2 shadow-sm">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    className="shrink-0"
-                  >
+                  <svg width="16" height="16" viewBox="0 0 24 24" className="shrink-0">
                     <path fill="currentColor" d="M3 12l5 5L21 4" />
                   </svg>
                   {t('investment_guides')}
@@ -235,8 +215,7 @@ export default function BlogContactPage() {
                 <h3 className="text-[15px] font-medium text-[#8b5d3b] border-l-2 border-[#c17a44] pl-3 mb-3"> {t('categories')} </h3>
                 <div className="space-y-2">
                   {categories.map((cat) => (
-                    <button
-                      key={cat.name}
+                    <button key={cat.name}
                       className="w-full flex items-center justify-between text-[13px] bg-white rounded-sm border border-gray-100 px-3 py-2 hover:border-[#8b5d3b]/70 hover:bg-[#fff7f1] transition-all"
                       type="button"
                     >
@@ -266,14 +245,10 @@ export default function BlogContactPage() {
                 </div>
               </div>
               <div className="bg-[#f9fafb] rounded-md border border-gray-100 px-4 py-4">
-                <h3 className="text-[15px] font-medium text-gray-900 border-l-2 border-[#c17a44] pl-3 mb-3">
-                 
-                   { t('speak_with_advisor') }
-                </h3>
+                <h3 className="text-[15px] font-medium text-gray-900 border-l-2 border-[#c17a44] pl-3 mb-3">{ t('speak_with_advisor') }</h3>
                 <ShortModalForm />
               </div>
             </div>
-
             <div className="lg:col-span-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -374,8 +349,6 @@ export default function BlogContactPage() {
                     </motion.div>
                   </Link>
                 )}
-
-                {/* Blog Grid */}
                 {regularNews.length > 0 && (
                   <div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -532,16 +505,8 @@ export default function BlogContactPage() {
                     <div className="w-28 h-28 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-5 shadow-inner">
                       <BookOpen className="w-10 h-10 text-gray-400" />
                     </div>
-                    <h3 className="text-2xl font-light text-gray-900 mb-3"> {t('no_blog_available')}</h3>
-                    <p className="text-gray-600 max-w-md mx-auto leading-relaxed text-sm">
-
-
-                    { t('new_market_insights') }
-
-                      We&apos;re currently preparing new market insights and
-                      analysis. Check back soon for the latest updates from
-                      Dubai&apos;s luxury real estate sector.
-                    </p>
+                    <h3 className="text-2xl font-light text-gray-900 mb-3">{t('no_blog_available')}</h3>
+                    <p className="text-gray-600 max-w-md mx-auto leading-relaxed text-sm"> {t('new_market_insights')}</p>
                   </motion.div>
                 )}
               </motion.div>
