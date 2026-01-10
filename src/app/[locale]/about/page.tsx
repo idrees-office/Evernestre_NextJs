@@ -24,7 +24,7 @@ const coreValues = [
   }
 ];
 
-const values = [
+const pointvalues = [
   {
     num: "01",
     title: "professionalism_title",
@@ -140,7 +140,7 @@ export default function AboutUs() {
               </p>
             </motion.div>
 
-            {/* Values */}
+            
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -148,12 +148,10 @@ export default function AboutUs() {
               transition={{ duration: 0.7, delay: 0.2 }}
             >
               <span className="text-[#d5a86e] text-xs uppercase tracking-[0.2em]"> {t('values_label')}</span>
-              <h2 className="text-2xl md:text-3xl font-light text-white mt-2 mb-4">
-                 {t('values_title')}
-              </h2>
+              <h2 className="text-2xl md:text-3xl font-light text-white mt-2 mb-4"> {t('values_title')} </h2>
               <div className="w-12 h-px bg-[#d5a86e] mb-5" />
               <div className="space-y-5">
-                {values.map((value, index) => (
+                {pointvalues.map((value, index) => (
                   <motion.div 
                     key={value.num} 
                     className="flex gap-4 group"
@@ -161,13 +159,13 @@ export default function AboutUs() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                  >
+                   >
                     <span className="text-3xl font-extralight text-[#d5a86e]/50 group-hover:text-[#d5a86e] transition-colors">
                       {value.num}
                     </span>
                     <div>
-                      <h3 className="font-medium text-white text-[14px] mb-1">{value.title}</h3>
-                      <p className="text-gray-500 text-[12px] leading-relaxed">{value.description}</p>
+                      <h3 className="font-medium text-white text-[14px] mb-1"> { t(``+value.title+``) } </h3>
+                      <p className="text-gray-500 text-[12px] leading-relaxed"> { t(``+value.description+``) }</p>
                     </div>
                   </motion.div>
                 ))}
