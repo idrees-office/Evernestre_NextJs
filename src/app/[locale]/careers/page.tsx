@@ -339,7 +339,6 @@ export default function CareersPage() {
           </div>
         </div>
       </section>
-
       {/* CTA */}
       <section className="bg-white py-14 border-t border-[#f0ebe4]">
         <div className="container mx-auto px-6 text-center">
@@ -362,7 +361,6 @@ export default function CareersPage() {
           </div>
         </div>
       </section>
-
       <SocialLinksSection />
       <RegisterCtaSection />
     </>
