@@ -18,110 +18,79 @@ import SocialLinksSection from "@/app/components/SocialLinksSection";
 import RegisterCtaSection from "@/app/components/RegisterCtaSection";
 import { useTranslations } from "next-intl";
 
+
 type Job = {
   id: string;
   title: string;
-  department: "Technology" | "Creative" | "Sales" | "Operations" | "Marketing";
+ department: "technology" | "creative" | "sales" | "operations" | "marketing";
   location: string;
-  type: "Full-time" | "Part-time" | "Remote";
+  type: "full_time" | "part_time" | "remote";
   experience: string;
   description: string;
   requirements: string[];
   benefits: string[];
 };
 
-const jobs: Job[] = [
-  {
-    id: "1",
-    title: "Senior Frontend Developer",
-    department: "Technology",
-    location: "Dubai, UAE",
-    type: "Full-time",
-    experience: "5+ Years",
-    description: "Join our technology team to build cutting-edge real estate platforms and proptech solutions.",
-    requirements: ["React/Next.js expertise", "TypeScript proficiency", "Modern CSS frameworks", "API integration experience"],
-    benefits: ["Flexible hours", "Learning budget", "Health insurance", "Remote options"],
-  },
-  {
-    id: "2",
-    title: "Luxury Property Photographer",
-    department: "Creative",
-    location: "Dubai, UAE",
-    type: "Full-time",
-    experience: "3+ Years",
-    description: "Capture stunning visuals of luxury properties and create compelling marketing content.",
-    requirements: ["Professional photography portfolio", "Drone operation license", "Video editing skills", "Luxury brand experience"],
-    benefits: ["Equipment allowance", "Creative freedom", "Travel opportunities", "Performance bonuses"],
-  },
-  {
-    id: "3",
-    title: "Real Estate Consultant",
-    department: "Sales",
-    location: "Dubai, UAE",
-    type: "Full-time",
-    experience: "2+ Years",
-    description: "Help clients find their dream properties and provide expert market guidance.",
-    requirements: ["Real estate license", "Sales experience", "Market knowledge", "Client relationship skills"],
-    benefits: ["Commission based", "Car allowance", "Laptop provided", "Career growth"],
-  },
-  {
-    id: "4",
-    title: "UI/UX Designer",
-    department: "Creative",
-    location: "Remote",
-    type: "Full-time",
-    experience: "4+ Years",
-    description: "Design intuitive and beautiful interfaces for our digital real estate platforms.",
-    requirements: ["Figma/Adobe Creative Suite", "User research experience", "Prototyping skills", "Mobile-first design"],
-    benefits: ["Remote work", "Design budget", "Conference tickets", "Flexible schedule"],
-  },
-  {
-    id: "5",
-    title: "Digital Marketing Specialist",
-    department: "Marketing",
-    location: "Dubai, UAE",
-    type: "Full-time",
-    experience: "3+ Years",
-    description: "Drive our digital presence and create impactful marketing campaigns.",
-    requirements: ["Social media management", "Content strategy", "Analytics tools", "SEO/SEM knowledge"],
-    benefits: ["Campaign budget", "Performance bonuses", "Training programs", "Creative control"],
-  },
-  {
-    id: "6",
-    title: "Operations Coordinator",
-    department: "Operations",
-    location: "Dubai, UAE",
-    type: "Full-time",
-    experience: "2+ Years",
-    description: "Ensure smooth operations and support our growing team across departments.",
-    requirements: ["Project management", "Communication skills", "Problem solving", "Multitasking ability"],
-    benefits: ["Stable hours", "Health insurance", "Team events", "Career development"],
-  },
+const jobs: Job[] = [];
+const departments = [
+  "all",
+  "technology",
+  "creative",
+  "sales",
+  "marketing",
+  "operations",
 ];
 
-const departments = ["All", "Technology", "Creative", "Sales", "Marketing", "Operations"];
+
 
 const benefits = [
-  { icon: Award, title: "Career Growth", description: "Clear progression paths and promotion opportunities" },
-  { icon: GraduationCap, title: "Learning & Development", description: "Training budget and certification support" },
-  { icon: Users, title: "Great Culture", description: "Collaborative environment with team activities" },
-  { icon: TrendingUp, title: "Competitive Packages", description: "Attractive salaries and comprehensive benefits" },
+  {
+    icon: Award,
+    title: 'career_growth',
+    description: 'career_growth_desc'
+  },
+  {
+    icon: GraduationCap,
+    title: 'learning_development',
+    description: 'learning_development_desc'
+  },
+  {
+    icon: Users,
+    title: 'great_culture',
+    description: 'great_culture_desc'
+  },
+  {
+    icon: TrendingUp,
+    title: 'competitive_packages',
+    description:'competitive_packages_desc'
+  },
 ];
 
+
 const cultureValues = [
-  { title: "Innovation First", description: "We embrace new ideas and technologies to stay ahead in the real estate industry." },
-  { title: "Collaborative Spirit", description: "Teamwork and open communication are at the heart of everything we do." },
-  { title: "Client Focused", description: "Our success is measured by the satisfaction and success of our clients." },
+  {
+    title: "innovation_first",
+    description: "innovation_first_desc",
+  },
+  {
+    title: "collaborative_spirit",
+    description: "collaborative_spirit_desc",
+  },
+  {
+    title: "client_focused",
+    description: "client_focused_desc",
+  },
 ];
 
 export default function CareersPage() {
   const [activeDepartment, setActiveDepartment] = useState("All");
+  const t = useTranslations()
 
   const filteredJobs = activeDepartment === "All"
     ? jobs
     : jobs.filter((job) => job.department === activeDepartment);
 
-    const t = useTranslations();
+   
 
   return (
     <>
@@ -131,18 +100,7 @@ export default function CareersPage() {
         <div className="absolute top-1/2 left-0 w-full h-px " />
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="container relative z-10 mx-auto px-6 text-center py-14"
-        >
-          {/* <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="inline-flex items-center gap-2 mb-4"
-          >
-            <span className="w-8 h-px bg-[#d5a86e]"></span>
-            <span className="text-[#d5a86e] text-xs uppercase tracking-[0.3em] font-medium">Careers</span>
-            <span className="w-8 h-px bg-[#d5a86e]"></span>
-          </motion.div> */}
-          
+        >         
           <h1 className="text-3xl md:text-4xl font-light text-black leading-tight tracking-wide mb-4">
              { t('build_in_your_career')} {" "}
             <span className="font-normal"> { t('evernest') }</span>
@@ -151,10 +109,7 @@ export default function CareersPage() {
             
             { t('join_our_dynamic_team') }
           </p>
-          {/* <div className="inline-flex items-center gap-2 bg-white border border-[#e8e0d8] rounded-full px-4 py-2 shadow-sm">
-            <span className="w-2 h-2 bg-[#d5a86e] rounded-full animate-pulse"></span>
-            <span className="text-[#1a1a1a] text-xs font-medium">{jobs.length} Open Positions</span>
-          </div> */}
+          
         </motion.div>
       </section>
 
@@ -182,8 +137,8 @@ export default function CareersPage() {
                 <div className="w-12 h-12 mx-auto mb-4 bg-[#d5a86e]/10 rounded-full flex items-center justify-center group-hover:bg-[#d5a86e]/20 transition-colors">
                   <benefit.icon className="w-5 h-5 text-[#d5a86e]" />
                 </div>
-                <h3 className="text-sm font-medium text-[#1a1a1a] mb-2">{benefit.title}</h3>
-                <p className="text-gray-500 text-xs leading-relaxed">{benefit.description}</p>
+                <h3 className="text-sm font-medium text-[#1a1a1a] mb-2"> {t(benefit.title)}</h3>
+                <p className="text-gray-500 text-xs leading-relaxed">{t(benefit.description)}</p>
               </motion.div>
             ))}
           </div>
@@ -204,7 +159,7 @@ export default function CareersPage() {
                     : "bg-white text-[#1a1a1a] border border-[#e8e0d8] hover:border-[#d5a86e] hover:text-[#d5a86e]"
                 }`}
               >
-                {department}
+                 {t(department)}
               </button>
             ))}
           </div>
@@ -217,7 +172,7 @@ export default function CareersPage() {
           <div className="text-center mb-10">
             <span className="text-[#d5a86e] text-xs uppercase tracking-[0.2em]"> { t('opportunities')}</span>
             <h2 className="text-2xl md:text-[28px] font-light text-[#1a1a1a] mt-2">
-              Open <span className="text-[#d5a86e]">Positions</span>
+              { t('open') } <span className="text-[#d5a86e]">{ t('positions') }</span>
             </h2>
             <div className="w-12 h-px bg-[#d5a86e] mx-auto mt-3" />
           </div>
@@ -302,8 +257,12 @@ export default function CareersPage() {
               <div className="w-16 h-16 bg-[#faf8f5] rounded-full flex items-center justify-center mx-auto mb-4">
                 <Briefcase className="w-6 h-6 text-gray-400" />
               </div>
-              <h3 className="text-base font-medium text-[#1a1a1a] mb-2">No Open Positions</h3>
-              <p className="text-gray-500 text-sm">Check back later or explore other departments.</p>
+              <h3 className="text-base font-medium text-[#1a1a1a] mb-2">
+                {t("no_open_positions")}
+              </h3>
+              <p className="text-gray-500 text-sm">
+                {t("check_back_later")}
+              </p>
             </div>
           )}
         </div>
@@ -314,9 +273,9 @@ export default function CareersPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
-              <span className="text-[#d5a86e] text-xs uppercase tracking-[0.2em]">Our Foundation</span>
+              <span className="text-[#d5a86e] text-xs uppercase tracking-[0.2em]"> {t("our_foundation")}</span>
               <h2 className="text-2xl md:text-[28px] font-light text-[#1a1a1a] mt-2">
-                Culture & <span className="text-[#d5a86e]">Values</span>
+                {t("culture")} & <span className="text-[#d5a86e]">{t("values")}</span>
               </h2>
               <div className="w-12 h-px bg-[#d5a86e] mx-auto mt-3" />
             </div>
@@ -331,8 +290,8 @@ export default function CareersPage() {
                   className="group bg-white/80 backdrop-blur-sm border border-[#e8ddd1] p-6 rounded hover:border-[#d5a86e]/40 hover:shadow-md transition-all duration-300 relative overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 w-1 h-full bg-[#d5a86e]/0 group-hover:bg-[#d5a86e] transition-colors" />
-                  <h3 className="text-sm font-medium text-[#1a1a1a] mb-2 group-hover:text-[#d5a86e] transition-colors">{value.title}</h3>
-                  <p className="text-gray-600 text-xs leading-relaxed">{value.description}</p>
+                  <h3 className="text-sm font-medium text-[#1a1a1a] mb-2 group-hover:text-[#d5a86e] transition-colors">{t(value.title)}</h3>
+                  <p className="text-gray-600 text-xs leading-relaxed">{t(value.description)}</p>
                 </motion.div>
               ))}
             </div>
@@ -342,9 +301,9 @@ export default function CareersPage() {
       {/* CTA */}
       <section className="bg-white py-14 border-t border-[#f0ebe4]">
         <div className="container mx-auto px-6 text-center">
-          <span className="text-[#d5a86e] text-xs uppercase tracking-[0.2em]">Get Started</span>
+         <span className="text-[#d5a86e] text-xs uppercase tracking-[0.2em]"> {t("get_started")}</span>
           <h2 className="text-2xl md:text-[28px] font-light text-[#1a1a1a] mt-2 mb-3">
-            Ready to <span className="text-[#d5a86e]">Join Us?</span>
+            {t("ready_to")} <span className="text-[#d5a86e]">{t("join_us")}</span>
           </h2>
           <div className="w-12 h-px bg-[#d5a86e] mx-auto mb-5" />
           <p className="text-gray-500 text-sm max-w-md mx-auto mb-6">
@@ -352,11 +311,12 @@ export default function CareersPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button className="bg-[#d5a86e] text-white px-7 py-3 rounded text-sm font-medium hover:bg-[#c99a5e] transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#d5a86e]/20">
-              Send Application
+              {t("send_application")}
               <ArrowRight className="w-4 h-4" />
             </button>
+
             <button className="border border-[#d5a86e] text-[#d5a86e] px-7 py-3 rounded text-sm font-medium hover:bg-[#d5a86e] hover:text-white transition-all">
-              Contact HR Team
+              {t("contact_hr")}
             </button>
           </div>
         </div>
