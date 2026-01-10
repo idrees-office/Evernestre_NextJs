@@ -522,8 +522,6 @@ export default function BlogContactPage() {
                     </button>
                   </motion.div>
                 )}
-
-                {/* Empty State */}
                 {!loading && blogs.length === 0 && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -534,10 +532,12 @@ export default function BlogContactPage() {
                     <div className="w-28 h-28 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-5 shadow-inner">
                       <BookOpen className="w-10 h-10 text-gray-400" />
                     </div>
-                    <h3 className="text-2xl font-light text-gray-900 mb-3">
-                      No Blogs Available
-                    </h3>
+                    <h3 className="text-2xl font-light text-gray-900 mb-3"> {t('no_blog_available')}</h3>
                     <p className="text-gray-600 max-w-md mx-auto leading-relaxed text-sm">
+
+
+                    { t('new_market_insights') }
+
                       We&apos;re currently preparing new market insights and
                       analysis. Check back soon for the latest updates from
                       Dubai&apos;s luxury real estate sector.
