@@ -145,7 +145,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                       <div className="input-group">
                         <input
                           type="text"
-                          placeholder="Full Name"
+                          placeholder={t('full_name')}
                           value={fullName}
                           onChange={(e) => {
                             setFullName(e.target.value);
@@ -159,7 +159,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                       <div className="input-group">
                         <input
                           type="email"
-                          placeholder="Email Address"
+                          placeholder={t('email_address')}
                           value={email}
                           onChange={(e) => {
                             setEmail(e.target.value);
@@ -199,7 +199,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                     </div>
                     <div className="input-group">
                       <textarea
-                        placeholder="Tell us about your requirements..."
+                        placeholder={t('tell_us_what')}
                         rows={3}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}

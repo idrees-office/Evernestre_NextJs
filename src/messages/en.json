@@ -226,6 +226,29 @@
   "join_us": "Join Us?",
   "send_application": "Send Application",
   "contact_hr": "Contact HR Team",
-  "our_story" : "Our Story",
-  "since_2010" : "Since 2010"
+  "our_story": "Our Story",
+  "since_2010": "Since 2010",
+  "offplan_project": "Off Plan Projects",
+  "share": "Share",
+  "enquire_now": "Enquire Now",
+  "starting_price": "Starting Price",
+  "price_per_sqft": "Price per Sq.ft",
+  "starting_size": "Starting Size",
+  "location": "Location",
+  "developer": "Developer",
+  "payment_plan": "Payment Plan",
+  "project_location": "Project Location",
+  "coordinates_not_available": "Coordinates not available",
+
+  "details": "Details",
+  "gallery": "Gallery",
+  "floorplan": "Floor Plan",
+  "amenities": "Amenities",
+  "payment": "Payment Plan",
+  "brochure": "Brochure",
+   "submitting": "Submitting...",
+  "request_callback": "Request Call Back"
+  
+
+
 }

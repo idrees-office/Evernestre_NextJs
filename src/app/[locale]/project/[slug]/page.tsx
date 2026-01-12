@@ -346,13 +346,13 @@ const parseHTMLContent = (html: string) => {
 
 
   const tabs: { id: keyof typeof sectionRefs; label: string }[] = [
-    { id: "details", label: "Details" },
-    { id: "gallery", label: "Gallery" },
-    { id: "floorplan", label: "Floor Plan" },
-    { id: "amenities", label: "Amenities" },
-    { id: "location", label: "Location" },
-    { id: "payment", label: "Payment Plan" },
-    { id: "brochure", label: "Brochure" },
+    { id: "details",    label: t('details') },
+    { id: "gallery",    label: t('gallery') },
+    { id: "floorplan",  label: t('floorplan') },
+    { id: "amenities",  label: t('amenities') },
+    { id: "location",   label: t('location') },
+    { id: "payment",    label: t('payment') },
+    { id: "brochure",   label: t('brochure') },
   ];
 
 
@@ -564,21 +564,19 @@ const handleShare = async () => {
       <div className="bg-[#f9f5f0] border-b border-[#e8dfd4] py-2">
         <div className="container mx-auto px-4 py-2">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-
             <nav className="text-xs text-gray-500 flex items-center flex-wrap gap-1">
-              <span className="hover:text-[#c97a52] cursor-pointer transition-colors">Off Plan Projects</span>
+              <span className="hover:text-[#c97a52] cursor-pointer transition-colors"> {t('offplan_project') } </span>
               <span className="text-gray-300">›</span>
               <span className="text-gray-700">
                 {typeof singleProject?.name === 'string' ? singleProject?.name : 'Project'}
               </span>
             </nav>
-
             <div className="flex items-center gap-2">
               <button  onClick={handleShare} className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 hover:text-gray-900 bg-white border border-gray-200 rounded-sm hover:border-gray-300 transition-all cursor-pointer">
-                <Share2 className="w-3.5 h-3.5" /> Share
+                <Share2 className="w-3.5 h-3.5" /> {t('share')}
               </button>
               <button onClick={() => setIsFormOpen(true)} className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-medium text-white bg-[#c97a52] rounded-sm hover:bg-[#b56a42] transition-all">
-                Enquire Now
+                 {t('enquire_now')}
               </button>
             </div>
           </div>
@@ -595,11 +593,8 @@ const handleShare = async () => {
                     <div className="w-20 h-20 border-2 border-gray-300 border-t-[#c97a52] rounded-full animate-spin"></div>
                   </div>
                 )}
-                <Image
-                  src={singleProject?.main_image || "/placeholder.jpg"} 
-                  alt={singleProject?.name || "Project Image"} 
-                  fill 
-                  className={`object-cover transition-opacity duration-700 ${singleProject?.main_image_loaded ? "opacity-100" : "opacity-0"}`}
+                <Image src={singleProject?.main_image || "/placeholder.jpg"} alt={singleProject?.name || "Project Image"} 
+                  fill className={`object-cover transition-opacity duration-700 ${singleProject?.main_image_loaded ? "opacity-100" : "opacity-0"}`}
                   onLoadingComplete={() =>
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     setSingleProject((prev: any) => ({ ...prev, main_image_loaded: true }))
@@ -682,8 +677,6 @@ const handleShare = async () => {
                                 {singleProject?.location?.name || 'Dubai, UAE'}
                               </p>
                             </div>
-                            
-                            {/* View Details Button */}
                             <button 
                               onClick={() => handleTabClick('details')}
                               className="w-full text-xs text-[#c97a52] font-medium hover:text-[#a85f3b] transition-colors flex items-center justify-center gap-1 mt-2 pt-2 border-t border-gray-100"
@@ -692,8 +685,6 @@ const handleShare = async () => {
                               <ArrowRight className="w-3 h-3" />
                             </button>
                           </div>
-                          
-                          {/* Close Button */}
                           <button 
                             onClick={() => setShowMapCard(false)}
                             className="absolute top-1 right-1 w-5 h-5 bg-black/60 text-white rounded-full flex items-center justify-center text-[10px] hover:bg-black/80 transition-colors"
@@ -703,8 +694,6 @@ const handleShare = async () => {
                         </motion.div>
                       )}
                     </AnimatePresence>
-                    
-                    {/* Map Pin Marker - Always Visible */}
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                       <motion.div 
                         animate={{ scale: showMapCard ? 1.2 : 1 }}
@@ -715,15 +704,11 @@ const handleShare = async () => {
                         <MapPin className="w-3 h-3 text-white" />
                       </motion.div>
                     </div>
-                    
-                    {/* Coordinates Badge */}
                     <div className="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] px-2 py-1 rounded-sm backdrop-blur-sm">
                       <span className="font-mono">
                         {parseFloat(singleProject.location.geo_lat).toFixed(4)}, {parseFloat(singleProject.location.geo_long).toFixed(4)}
                       </span>
                     </div>
-                    
-                    {/* Show Card Hint - Only when card is hidden */}
                     {!showMapCard && (
                       <motion.div
                         initial={{ opacity: 0 }}
@@ -753,8 +738,8 @@ const handleShare = async () => {
                         <div className="w-10 h-10 bg-gradient-to-br from-[#c97a52]/10 to-[#a85f3b]/10 rounded-full flex items-center justify-center mb-2">
                           <MapPin className="w-5 h-5 text-[#c97a52]" />
                         </div>
-                        <h4 className="text-xs font-medium text-gray-900">Project Location</h4>
-                        <p className="text-[10px] text-gray-600 mt-1">Coordinates not available</p>
+                          <h4 className="text-xs font-medium text-gray-900"> {t('project_location')}</h4>
+                          <p className="text-[10px] text-gray-600 mt-1"> {t('coordinates_not_available')}</p>
                       </div>
                     </div>
                   </>
@@ -766,18 +751,17 @@ const handleShare = async () => {
             </div>
           </div>
         </section>
-
        <section className="bg-[#faf8f5] py-2.5 border-b border-gray-100 mt-3">
         <div className="container mx-auto px-4">
           {/* <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3"> */}
             <div className="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3">
             {[
-              { icon: CreditCard, label: "Starting Price", value: singleProject?.starting_price },
-              { icon: Ruler, label: "Price Per/Sq.ft", value: singleProject?.pricepersqft },
-              { icon: Ruler, label: "Starting Size", value: singleProject?.starting_size },
+              { icon: CreditCard, label: t('starting_price'), value: singleProject?.starting_price },
+              { icon: Ruler,  label: t('price_per_sqft'), value: singleProject?.pricepersqft },
+              { icon: Ruler,   label: t('starting_size'), value: singleProject?.starting_size },
               {
                 icon: MapPin,
-                label: "Location",
+                 label: t('location'),
                 value:
                   typeof singleProject?.location === "object"
                     ? singleProject?.location?.name
@@ -785,14 +769,14 @@ const handleShare = async () => {
               },
               {
                 icon: Building,
-                label: "Developer",
+                label: t('developer'),
                 value:
                   typeof singleProject?.developer === "object"
                     ? singleProject?.developer?.name
                     : singleProject?.developer || "N/A"
               },
 
-              { icon: Calendar, label: "Payment Plan", value: singleProject?.payment_plan },
+              { icon: Calendar,  label: t('payment_plan'), value: singleProject?.payment_plan },
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-2">
                 <div className="p-1.5 rounded-sm bg-[#c97a52]/10 flex-shrink-0">
@@ -810,7 +794,6 @@ const handleShare = async () => {
       <section className="bg-white border-y border-gray-100 sticky top-0 z-40 shadow-sm">
         <div className="container mx-auto px-3 sm:px-4 py-2">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
-            {/* Tabs Section - Mobile scrollable, Desktop normal */}
             <div className="flex flex-nowrap overflow-x-auto whitespace-nowrap hide-scrollbar py-2 sm:py-0 gap-1 flex-1">
               {tabs.map((tab) => (
                 <button
@@ -826,8 +809,6 @@ const handleShare = async () => {
                 </button>
               ))}
             </div>
-
-            {/* Bedroom Badge - Mobile on separate row, Desktop inline */}
             <div className="flex items-center justify-center sm:justify-end py-2 sm:py-0 pr-0 sm:pr-2 md:pr-4 lg:pr-6">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -836,10 +817,7 @@ const handleShare = async () => {
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0px 8px 20px rgba(201, 122, 82, 0.25)",
-                }}
-                className="relative"
-              >
-                {/* Animated gradient background */}
+                }} className="relative">
                 <motion.span
                   animate={{ 
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] 
@@ -851,28 +829,14 @@ const handleShare = async () => {
                   }}
                   className="absolute inset-0 rounded-sm bg-gradient-to-r from-[#c97a52]/20 via-[#e6c1a3]/30 to-[#c97a52]/20 blur-sm"
                   style={{ backgroundSize: "200% 100%" }}
-                />
-
-                {/* Badge content */}
-                <div className="relative z-10 flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-800 bg-[#faf8f5] border border-[#f0ebe4] px-3 sm:px-3 py-1.5 sm:py-1.5 rounded-sm whitespace-nowrap">
-                  <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="hidden xs:block"
-                  >
+                 />
+                 <div className="relative z-10 flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-800 bg-[#faf8f5] border border-[#f0ebe4] px-3 sm:px-3 py-1.5 sm:py-1.5 rounded-sm whitespace-nowrap">
+                  <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="hidden xs:block">
                     <Home className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#c97a52]" />
                   </motion.div>
-                  
-                  {/* Animated numbers with pulse */}
-                  <motion.div
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="text-[#c97a52] font-normal flex items-center gap-1"
-                  >
+                  <motion.div animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 1.5, repeat: Infinity }} className="text-[#c97a52] font-normal flex items-center gap-1">
                     <Home className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#c97a52] block xs:hidden mr-1" />
                     {singleProject?.bedrooms}
-                    {/* <span className="hidden sm:inline ml-1 text-gray-600 font-medium"> Bedrooms </span> */}
-                    {/* <span className="sm:hidden text-gray-600 font-medium ml-1"> Beds </span> */}
                   </motion.div>
                 </div>
               </motion.div>
@@ -880,73 +844,6 @@ const handleShare = async () => {
           </div>
         </div>
       </section>
-      {/* <section className="bg-white border-y border-gray-100 sticky top-0 z-40 shadow-sm">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex flex-nowrap overflow-x-auto whitespace-nowrap hide-scrollbar py-2 gap-1 flex-1">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => handleTabClick(tab.id)}
-                  className={`px-4 py-2.5 text-xs sm:text-sm font-medium whitespace-nowrap shrink-0 transition-all border-b-2 cursor-pointer ${
-                    activeTab === tab.id
-                      ? "text-[#c97a52] border-[#c97a52]"
-                      : "text-gray-500 border-transparent hover:text-gray-800"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-            <div className="hidden sm:flex items-center pr-2 sm:pr-4 lg:pr-6">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0px 8px 20px rgba(201, 122, 82, 0.25)",
-                }}
-                className="relative"
-              >
-              
-                <motion.span
-                  animate={{ 
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] 
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity, 
-                    ease: "linear" 
-                  }}
-                  className="absolute inset-0 rounded-sm bg-gradient-to-r from-[#c97a52]/20 via-[#e6c1a3]/30 to-[#c97a52]/20 blur-sm"
-                  style={{ backgroundSize: "200% 100%" }}
-                />
-
-              
-                <div className="relative z-10 flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-800 bg-[#faf8f5] border border-[#f0ebe4] px-3 py-1.5 rounded-sm whitespace-nowrap">
-                  <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  >
-                    <Home className="w-4 h-4 text-[#c97a52]" />
-                  </motion.div>
-                  
-                  
-                  <motion.div
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="text-[#c97a52] font-normal"
-                  >
-                    {singleProject?.bedrooms }
-                  </motion.div>
-                  
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section> */}
       <section ref={detailsRef} className="py-6 sm:py-8 bg-white">
       <div className="container mx-auto px-4">
         {/* <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6"> */}
@@ -983,18 +880,13 @@ const handleShare = async () => {
             </div>
           </div>
             <div className="lg:col-span-4 lg:sticky lg:top-16 lg:self-start space-y-4">
-              {/* Contact Form Card */}
               <div className="bg-[#f9fafb] rounded-md border border-gray-100 p-4 sm:p-5">
                 <h3 className="text-sm sm:text-[15px] font-medium text-gray-900 border-l-2 border-[#c17a44] pl-3 mb-3 sm:mb-4">
                   {t('speak_with_advisor')}
                 </h3>
                 <ShortModalForm />
               </div>
-
-              {/* Divider - Hide on mobile, show on desktop */}
               <hr className="hidden lg:block border-gray-200" />
-
-              {/* Call/WhatsApp Buttons */}
               <div className="bg-white rounded-md border border-gray-100 p-4 sm:p-5">
                 <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   <a
@@ -1002,7 +894,7 @@ const handleShare = async () => {
                     className="flex items-center justify-center gap-1.5 py-2.5 sm:py-3 border border-gray-200 rounded-sm text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors active:scale-95"
                   >
                     <Phone className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
-                    <span className="hidden xs:inline">Call Us</span>
+                    <span className="hidden xs:inline"> Call Us</span>
                     <span className="xs:hidden">Call</span>
                   </a>
                   

@@ -225,5 +225,25 @@
   "send_application": "Odeslat žádost",
   "contact_hr": "Kontaktovat HR tým",
   "our_story" : "Náš příběh",
-  "since_2010" : "Od roku 2010"
+  "since_2010" : "Od roku 2010",
+  "offplan_project": "Projekty ve fázi výstavby",
+  "share" : "Podíl",
+  "enquire_now" : "Zeptejte se nyní",
+  "starting_price": "Počáteční cena",
+  "price_per_sqft": "Cena za m²",
+  "starting_size": "Počáteční velikost",
+  "location": "Lokalita",
+  "developer": "Developer",
+  "payment_plan": "Platební plán",
+  "project_location": "Poloha projektu",
+  "coordinates_not_available": "Souřadnice nejsou k dispozici",
+  "details": "Detaily",
+  "gallery": "Galerie",
+  "floorplan": "Půdorys",
+  "amenities": "Vybavení",
+  "payment": "Platební plán",
+  "brochure": "Brožura",
+  "submitting": "Odesílání...",
+  "request_callback": "Požádat o zpětné volání"
+
 }

@@ -233,6 +233,25 @@
   "send_application": "Отправить заявку",
   "contact_hr": "Связаться с HR командой",
   "our_story" : "Наша история",
-  "since_2010" : "С 2010 года" 
+  "since_2010" : "С 2010 года" ,
+  "offplan_project": "Проекты на стадии строительства",
+  "share" : "Делиться",
+  "enquire_now" : "Запросить сейчас",
+  "starting_price": "Начальная цена",
+   "price_per_sqft": "Цена за кв. фут",
+  "starting_size": "Начальная площадь",
+  "location": "Расположение",
+  "developer": "Застройщик",
+  "payment_plan": "Платёжный план",
+  "project_location": "Расположение проекта",
+  "coordinates_not_available": "Координаты недоступны",
+  "details": "Детали",
+  "gallery": "Галерея",
+  "floorplan": "Планировка",
+  "amenities": "Удобства",
+  "payment": "Платёжный план",
+  "brochure": "Брошюра",
+  "submitting": "Отправка...",
+  "request_callback": "Заказать обратный звонок"
 
 }

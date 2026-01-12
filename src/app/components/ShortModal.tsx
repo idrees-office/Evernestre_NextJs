@@ -6,6 +6,7 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { submitLeadForm } from "@/lib/form";
+import { useTranslations } from "next-intl";
 
 export default function ShortModalForm() {
   const [name, setName] = useState("");
@@ -14,6 +15,7 @@ export default function ShortModalForm() {
   const [interest, setInterest] = useState("general");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const t = useTranslations();
 
   const [errors, setErrors] = useState<{
     name?: string;
@@ -78,7 +80,7 @@ export default function ShortModalForm() {
         <User className="w-6 h-6 text-gray-400" />
         <input
           type="text"
-          placeholder="Full Name"
+          placeholder={t('full_name')}
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="w-full bg-transparent focus:outline-none text-gray-800"
@@ -91,7 +93,7 @@ export default function ShortModalForm() {
         <Mail className="w-6 h-6 text-gray-400" />
         <input
           type="email"
-          placeholder="Email Address"
+          placeholder={t('email_address')}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="w-full bg-transparent focus:outline-none text-gray-800"
@@ -125,7 +127,7 @@ export default function ShortModalForm() {
       <textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder="Tell us what you're looking for..."
+        placeholder={t('tell_us_what')}
         rows={3}
         className="w-full border border-gray-200 rounded-sm px-3 py-1.5 bg-white resize-none text-gray-800"
       />
@@ -136,7 +138,8 @@ export default function ShortModalForm() {
         disabled={loading}
         className="w-full flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-[#8b5d3b] to-[#d4a373] text-white text-[13px] font-medium py-2 mt-1 hover:brightness-110 transition-all cursor-pointer"
       >
-        {loading ? "Submitting..." : "Request Call Back"}
+        {/* {loading ? "Submitting..." : "Request Call Back"} */}
+        {loading ? t('submitting') : t('request_callback')}
         {!loading && <ArrowRight className="w-3 h-3" />}
       </button>
 
