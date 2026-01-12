@@ -116,10 +116,15 @@ export default function ShortModalForm() {
           onChange={(e) => setInterest(e.target.value)}
           className="w-full bg-transparent focus:outline-none text-gray-800"
         >
-          <option value="general">General Inquiry</option>
-          <option value="buying">Buying in Dubai</option>
-          <option value="selling">Selling Property</option>
-          <option value="offplan">Off-Plan Projects</option>
+          <option value="general">{t('general_inquiry')}</option>
+          <option value="buying">{t('buying_in_dubai')}</option>
+          <option value="selling">{t('selling_property')}</option>
+          <option value="offplan">{t('offplan_projects')}</option>
+
+          {/* <option value="general">General Inquiry</option> */}
+          {/* <option value="buying">Buying in Dubai</option> */}
+          {/* <option value="selling">Selling Property</option> */}
+          {/* <option value="offplan">Off-Plan Projects</option> */}
         </select>
       </div>
 

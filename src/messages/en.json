@@ -262,5 +262,13 @@
   "get_complete_brochure": "Get the Complete Project Brochure",
   "brochure_description": "Download detailed floor plans, pricing, and specifications",
   "download_now": "Download Now",
-  "about_developer": "About Developer"
+  "about_developer": "About Developer",
+  "award_winning_developer": "Award-Winning Developer",
+   "project_gallery": "Project Gallery",
+    "whatsapp": "WhatsApp",
+  "whatsapp_short": "WA",
+  "general_inquiry": "General Inquiry",
+  "buying_in_dubai": "Buying in Dubai",
+  "selling_property": "Selling Property",
+  "offplan_projects": "Off-Plan Projects"
 }

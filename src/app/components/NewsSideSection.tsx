@@ -7,7 +7,7 @@ import ShortModalForm from "./ShortModal";
 import { useTranslations } from "next-intl";
 
 type SidebarProps = {
-  categories: { name: string; count: number }[];
+  categories: { key: string; count: number, }[];
   popularTags: string[];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formData: any;
@@ -35,7 +35,7 @@ export default function NewsSideSection({categories, popularTags, formData, hand
         <div className="space-y-2">
           {categories.map((cat, index) => (
             <motion.button
-              key={cat.name}
+              key={cat.key}
               initial={{ opacity: 0, x: 10 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
@@ -43,7 +43,7 @@ export default function NewsSideSection({categories, popularTags, formData, hand
               className="w-full flex items-center justify-between text-[13px] bg-white rounded-sm border border-gray-100 px-4 py-3 hover:border-[#8b5d3b]/50 hover:bg-[#fff9f5] hover:shadow-sm transition-all duration-300 group"
             >
               <span className="text-gray-700 group-hover:text-[#8b5d3b] transition-colors">
-                  { t(``+cat.name+``) }
+                  {t(cat.key)}
               </span>
               <span className="bg-[#8b5d3b]/10 text-[#8b5d3b] text-xs font-bold px-2 py-0.5 rounded-full">
                 {String(cat.count).padStart(2, "0")}

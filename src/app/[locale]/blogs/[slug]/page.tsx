@@ -10,19 +10,19 @@ import { useTranslations, useLocale } from "next-intl";
 
 
 const categories = [
-  { name: "Modern Villa", count: 3 },
-  { name: "Houses", count: 5 },
-  { name: "Apartments", count: 4 },
-  { name: "Office", count: 6 },
+  { count: 3, key : 'modern_villa' },
+  { count: 5, key : 'houses' },
+  { count: 4, key : 'apartments' },
+  { count: 6, key : 'office' },
 ];
 
 const popularTags = [
-  "Golfing Communities",
-  "Invest in Dubai",
-  "Off-Plan Property",
-  "Seller Guide",
-  "Property in Dubai",
-  "Dubai Trip",
+  "golfing_communities",
+  "invest_in_dubai",
+  "off_plan_property",
+  "seller_guide",
+  "property_in_dubai",
+  "dubai_trip",
 ];
 
 export default function BlogDetail({ params }: { params: Promise<{ slug: string }> }) {
