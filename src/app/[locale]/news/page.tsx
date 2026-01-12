@@ -34,10 +34,10 @@ type ApiResponse = {
 const categories = [
 
 
-  { name: "modern_villa", count: 3 },
-  { name: "houses", count: 5 },
-  { name: "apartments", count: 4 },
-  { name: "office", count: 6 }
+  { key: "modern_villa", count: 3 },
+  { key: "houses", count: 5 },
+  { key: "apartments", count: 4 },
+  { key: "office", count: 6 }
 
 ];
 
