@@ -18,10 +18,10 @@ export const CITIES: City[] = [
   { id: 2, name: "DUBAI", slug: "dubai", image: "/assets/home/Dubai.webp", translationKey: "dubai" },
   { id: 1, name: "ABU DHABI", slug: "abu-dhabi", image: "/assets/home/Abu-Dhabi.webp",  translationKey: "abuDhabi" },
   { id: 3, name: "SHARJAH", slug: "sharjah", image: "/assets/home/Sharjah.webp", translationKey: "sharjah" },
-  { id: 6, name: "RAS AL KHAIMAH", slug: "ras-al-khaimah", image: "/assets/home/Rak.webp", translationKey: "sharjah" },
-  { id: 4, name: "AJMAN", slug: "ajman", image: "/assets/home/Ajman.webp", translationKey: "sharjah" },
-  { id: 5, name: "UMM AL QUWAIN", slug: "umm-al-quwain", image: "/assets/home/Umm-Al-Quwain.webp", translationKey: "sharjah" },
-  { id: 7, name: "FUJAIRAH", slug: "fujairah", image: "/assets/home/Fujairah.webp", translationKey: "sharjah" },
+  { id: 6, name: "RAS AL KHAIMAH", slug: "ras-al-khaimah", image: "/assets/home/Rak.webp", translationKey: "rasAlKhaimah" },
+  { id: 4, name: "AJMAN", slug: "ajman", image: "/assets/home/Ajman.webp", translationKey: "ajman" },
+  { id: 5, name: "UMM AL QUWAIN", slug: "umm-al-quwain", image: "/assets/home/Umm-Al-Quwain.webp", translationKey: "ummAlQuwain" },
+  { id: 7, name: "FUJAIRAH", slug: "fujairah", image: "/assets/home/Fujairah.webp", translationKey: "fujairah" },
 ];
 
 type CitiesGridProps = {
