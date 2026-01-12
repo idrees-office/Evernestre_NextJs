@@ -239,16 +239,28 @@
   "payment_plan": "Payment Plan",
   "project_location": "Project Location",
   "coordinates_not_available": "Coordinates not available",
-
   "details": "Details",
   "gallery": "Gallery",
   "floorplan": "Floor Plan",
   "amenities": "Amenities",
   "payment": "Payment Plan",
   "brochure": "Brochure",
-   "submitting": "Submitting...",
-  "request_callback": "Request Call Back"
-  
-
-
+  "submitting": "Submitting...",
+  "request_callback": "Request Call Back",
+  "floor_plan": "Floor Plans",
+  "no_floorplans_found": "No floor plans found. Please add from admin panel.",
+  "view_all": "View All",
+  "download": "Download",
+  "no_amenities_found": "No amenities found.",
+  "highlights": "Highlights",
+  "about_location": "About Location",
+  "flexible_payment_options": "Flexible payment options",
+  "on_booking": "On Booking",
+  "on_construction": "During Construction",
+  "on_handover": "On Handover",
+  "download_brochure": "Download Brochure",
+  "get_complete_brochure": "Get the Complete Project Brochure",
+  "brochure_description": "Download detailed floor plans, pricing, and specifications",
+  "download_now": "Download Now",
+  "about_developer": "About Developer"
 }
