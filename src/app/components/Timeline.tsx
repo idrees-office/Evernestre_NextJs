@@ -43,7 +43,7 @@ export default function Timeline({ items, startYear = 2014, endYear = 2024 }: Ti
   };
 
   return (
-    <section className="bg-white py-16">
+    <section className="bg-[#faf8f5] py-16">
       <div className="max-w-7xl mx-auto px-6">
         {/* Top Section - Year Navigation */}
         <div className="mb-12">
@@ -60,8 +60,8 @@ export default function Timeline({ items, startYear = 2014, endYear = 2024 }: Ti
                     isActive
                       ? "bg-[#d5a86e] text-white shadow-lg shadow-[#d5a86e]/50"
                       : hasItem
-                      ? "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                      : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                      ? "bg-[#e8e0d8] text-gray-700 hover:bg-[#d5a86e]/20"
+                      : "bg-[#e8e0d8]/50 text-gray-400 cursor-not-allowed"
                   }`}
                   disabled={!hasItem}
                 >
@@ -80,7 +80,7 @@ export default function Timeline({ items, startYear = 2014, endYear = 2024 }: Ti
           </div>
           
           {/* Progress Line */}
-          <div className="relative h-0.5 bg-gray-200 max-w-4xl mx-auto">
+          <div className="relative h-0.5 bg-[#e8e0d8] max-w-4xl mx-auto">
             <motion.div
               className="absolute top-0 left-0 h-full bg-[#d5a86e]"
               initial={{ width: 0 }}
@@ -101,10 +101,10 @@ export default function Timeline({ items, startYear = 2014, endYear = 2024 }: Ti
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className="relative bg-white rounded-lg"
+              className="relative bg-[#faf8f5] rounded-lg"
             >
               {/* Background Year */}
-              <div className="absolute left-0 top-0 text-[200px] md:text-[300px] font-extrabold text-gray-200 leading-none select-none">
+              <div className="absolute left-0 top-0 text-[200px] md:text-[300px] font-extrabold text-[#e8e0d8] leading-none select-none">
                 {activeItem.year}
               </div>
 
@@ -168,7 +168,7 @@ export default function Timeline({ items, startYear = 2014, endYear = 2024 }: Ti
           {/* Previous Button */}
           <button
             onClick={handlePrevious}
-            className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 flex items-center justify-center transition-colors"
+            className="w-10 h-10 rounded-full bg-[#e8e0d8] hover:bg-[#d5a86e]/30 text-gray-700 flex items-center justify-center transition-colors"
             aria-label="Previous"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -183,7 +183,7 @@ export default function Timeline({ items, startYear = 2014, endYear = 2024 }: Ti
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   index === activeIndex
                     ? "bg-[#d5a86e] w-8"
-                    : "bg-gray-300 hover:bg-gray-400"
+                    : "bg-[#e8e0d8] hover:bg-[#d5a86e]/40"
                 }`}
                 aria-label={`Go to item ${index + 1}`}
               />
@@ -193,7 +193,7 @@ export default function Timeline({ items, startYear = 2014, endYear = 2024 }: Ti
           {/* Next Button */}
           <button
             onClick={handleNext}
-            className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 flex items-center justify-center transition-colors"
+            className="w-10 h-10 rounded-full bg-[#e8e0d8] hover:bg-[#d5a86e]/30 text-gray-700 flex items-center justify-center transition-colors"
             aria-label="Next"
           >
             <ChevronRight className="w-5 h-5" />
