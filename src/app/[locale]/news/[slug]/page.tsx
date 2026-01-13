@@ -8,22 +8,87 @@ import { ArrowLeft, ChevronRight, Calendar } from "lucide-react";
 import NewsSideSection from "@/app/components/NewsSideSection";
 import { useLocale } from "next-intl";
 
-const categories = [
-  { key: "modern_villa", name: "Modern Villa", count: 3 },
-  { key: "houses", name: "Houses", count: 5 },
-  { key: "apartments", name: "Apartments", count: 4 },
-  { key: "office", name: "Office", count: 6 },
-];
+  type ContentItem = {
+    type: "heading" | "text";
+    content: string;
+  };
 
-const popularTags = [
-  "golfing_communities",
-  "invest_in_dubai",
-  "off_plan_property",
-  "seller_guide",
-  "property_in_dubai",
-  "dubai_trip",
-];
+  const categories = [
+    { key: "modern_villa", name: "Modern Villa", count: 3 },
+    { key: "houses", name: "Houses", count: 5 },
+    { key: "apartments", name: "Apartments", count: 4 },
+    { key: "office", name: "Office", count: 6 },
+  ];
 
+  const popularTags = [
+    "golfing_communities",
+    "invest_in_dubai",
+    "off_plan_property",
+    "seller_guide",
+    "property_in_dubai",
+    "dubai_trip",
+  ];
+
+  const parseHTMLContent = (html: string) => {
+    if (!html) return [];
+    const contentItems: ContentItem[] = [];
+    const tempDiv = document.createElement('div');
+    // Remove span tags and their styles
+    const cleanedHtml = html.replace(/<span[^>]*>/g, '').replace(/<\/span>/g, '').replace(/style="[^"]*"/g, '');
+    tempDiv.innerHTML = cleanedHtml;
+    const elements = Array.from(tempDiv.childNodes);
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+      if (element.nodeType === Node.ELEMENT_NODE) {
+        const el = element as Element;
+        
+        if (el.tagName === 'H2') {
+          const text = el.textContent?.trim() || '';
+          contentItems.push({
+            type: 'heading',
+            content: text
+          });
+        } else if (el.tagName === 'P') {
+          const text = el.textContent?.trim() || '';
+          if (text) {
+            contentItems.push({
+              type: 'text',
+              content: text
+            });
+          }
+        } else if (el.tagName === 'UL') {
+          const items = el.querySelectorAll('li');
+          items.forEach(item => {
+            const text = item.textContent?.trim() || '';
+            if (text) {
+              contentItems.push({
+                type: 'text',
+                content: `• ${text}`
+              });
+            }
+          });
+        } else if (el.tagName === 'DIV' || el.tagName === 'SPAN') {
+          // Handle nested content
+          const text = el.textContent?.trim() || '';
+          if (text) {
+            contentItems.push({
+              type: 'text',
+              content: text
+            });
+          }
+        }
+      } else if (element.nodeType === Node.TEXT_NODE) {
+        const text = element.textContent?.trim() || '';
+        if (text) {
+          contentItems.push({
+            type: 'text',
+            content: text
+          });
+        }
+      }
+    }
+    return contentItems;
+  };
 
 export default function NewsDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = usePromise(params);
@@ -115,9 +180,6 @@ export default function NewsDetail({ params }: { params: Promise<{ slug: string 
                     fill
                     className="object-cover"
                     priority
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = "/assets/img/property/project1.jpg";
-                    }}
                   />
                 </div>
                 <div className="p-5 md:p-6">
@@ -133,6 +195,31 @@ export default function NewsDetail({ params }: { params: Promise<{ slug: string 
                   <h1 className="text-lg md:text-xl font-medium text-gray-900 leading-snug mb-5">
                     {news.title}
                   </h1>
+                  
+                  <article className="mt-4 space-y-3">
+                    {(news.description ? parseHTMLContent(news.description) : []).map((item, index) => {
+                      if (item.type === "heading") {
+                        return (
+                          <h2
+                            key={index}
+                            className="text-sm font-medium text-gray-800 mt-4"
+                          >
+                            {item.content}
+                          </h2>
+                        );
+                      }
+
+                      return (
+                        <p
+                          key={index}
+                          className="text-[13px] text-gray-600 leading-relaxed"
+                        >
+                          {item.content}
+                        </p>
+                      );
+                    })}
+                  </article>
+
                   <article
                     className="prose prose-sm max-w-none
                       prose-headings:font-medium prose-headings:text-gray-800
@@ -151,10 +238,7 @@ export default function NewsDetail({ params }: { params: Promise<{ slug: string 
                   {news.tags && news.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mt-5 pt-4 border-t border-gray-100">
                       {news.tags.map((tag: string, idx: number) => (
-                        <span
-                          key={idx}
-                          className="bg-gray-50 text-gray-500 px-2.5 py-1 rounded text-[11px]"
-                        >
+                        <span key={idx} className="bg-gray-50 text-gray-500 px-2.5 py-1 rounded text-[11px]">
                           {tag}
                         </span>
                       ))}
@@ -190,9 +274,6 @@ export default function NewsDetail({ params }: { params: Promise<{ slug: string 
                             alt={item.title}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-300"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).src = "/assets/img/property/project1.jpg";
-                            }}
                           />
                         </div>
                         <div className="p-3">

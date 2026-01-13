@@ -271,10 +271,6 @@ export default function BlogContactPage() {
                               alt={featuredNews.title}
                               fill
                               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.src = "/assets/img/property/project1.jpg";
-                              }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-10" />
                             {/* Date badge top left (similar to your design) */}
@@ -366,11 +362,6 @@ export default function BlogContactPage() {
                                 alt={blogItem.title}
                                 fill
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                onError={(e) => {
-                                  const target = e.target as HTMLImageElement;
-                                  target.src =
-                                    "/assets/img/property/project1.jpg";
-                                }}
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                               <div className="absolute top-4 left-4">

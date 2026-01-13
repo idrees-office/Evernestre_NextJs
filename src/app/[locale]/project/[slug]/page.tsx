@@ -102,20 +102,17 @@ interface ProjectData {
   const t = useTranslations();
   const locale = useLocale();
 
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [singleProject, setSingleProject] = useState<any>(null);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const detailsRef = useRef<HTMLDivElement>(null);
-  const galleryRef = useRef<HTMLDivElement>(null);
+  const detailsRef   = useRef<HTMLDivElement>(null);
+  const galleryRef   = useRef<HTMLDivElement>(null);
   const floorplanRef = useRef<HTMLDivElement>(null);
   const amenitiesRef = useRef<HTMLDivElement>(null);
-  const locationRef = useRef<HTMLDivElement>(null);
-  const paymentRef = useRef<HTMLDivElement>(null);
-  const brochureRef = useRef<HTMLDivElement>(null);
+  const locationRef  = useRef<HTMLDivElement>(null);
+  const paymentRef   = useRef<HTMLDivElement>(null);
+  const brochureRef  = useRef<HTMLDivElement>(null);
 
   const sectionRefs = {
     details: detailsRef,
@@ -127,56 +124,56 @@ interface ProjectData {
     brochure: brochureRef,
   };
 
-const parseHTMLContent = (html: string) => {
-  if (!html) return [];
-
-  const contentItems: ContentItem[] = [];
-  const tempDiv = document.createElement('div');
-
-  // Remove span tags and their styles
-  const cleanedHtml = html
-    .replace(/<span[^>]*>/g, '')
-    .replace(/<\/span>/g, '')
-    .replace(/style="[^"]*"/g, '');
-
-  tempDiv.innerHTML = cleanedHtml;
-
-  const elements = Array.from(tempDiv.childNodes);
-
-  for (let i = 0; i < elements.length; i++) {
-    const element = elements[i];
-
-    if (element.nodeType === Node.ELEMENT_NODE) {
-      const el = element as Element;
-      
-      if (el.tagName === 'H2') {
-        const text = el.textContent?.trim() || '';
-        contentItems.push({
-          type: 'heading',
-          content: text
-        });
-      } else if (el.tagName === 'P') {
-        const text = el.textContent?.trim() || '';
-        if (text) {
+  const parseHTMLContent = (html: string) => {
+    if (!html) return [];
+    const contentItems: ContentItem[] = [];
+    const tempDiv = document.createElement('div');
+    // Remove span tags and their styles
+    const cleanedHtml = html.replace(/<span[^>]*>/g, '').replace(/<\/span>/g, '').replace(/style="[^"]*"/g, '');
+    tempDiv.innerHTML = cleanedHtml;
+    const elements = Array.from(tempDiv.childNodes);
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+      if (element.nodeType === Node.ELEMENT_NODE) {
+        const el = element as Element;
+        
+        if (el.tagName === 'H2') {
+          const text = el.textContent?.trim() || '';
           contentItems.push({
-            type: 'text',
+            type: 'heading',
             content: text
           });
-        }
-      } else if (el.tagName === 'UL') {
-        const items = el.querySelectorAll('li');
-        items.forEach(item => {
-          const text = item.textContent?.trim() || '';
+        } else if (el.tagName === 'P') {
+          const text = el.textContent?.trim() || '';
           if (text) {
             contentItems.push({
               type: 'text',
-              content: `• ${text}`
+              content: text
             });
           }
-        });
-      } else if (el.tagName === 'DIV' || el.tagName === 'SPAN') {
-        // Handle nested content
-        const text = el.textContent?.trim() || '';
+        } else if (el.tagName === 'UL') {
+          const items = el.querySelectorAll('li');
+          items.forEach(item => {
+            const text = item.textContent?.trim() || '';
+            if (text) {
+              contentItems.push({
+                type: 'text',
+                content: `• ${text}`
+              });
+            }
+          });
+        } else if (el.tagName === 'DIV' || el.tagName === 'SPAN') {
+          // Handle nested content
+          const text = el.textContent?.trim() || '';
+          if (text) {
+            contentItems.push({
+              type: 'text',
+              content: text
+            });
+          }
+        }
+      } else if (element.nodeType === Node.TEXT_NODE) {
+        const text = element.textContent?.trim() || '';
         if (text) {
           contentItems.push({
             type: 'text',
@@ -184,19 +181,9 @@ const parseHTMLContent = (html: string) => {
           });
         }
       }
-    } else if (element.nodeType === Node.TEXT_NODE) {
-      const text = element.textContent?.trim() || '';
-      if (text) {
-        contentItems.push({
-          type: 'text',
-          content: text
-        });
-      }
     }
-  }
-
-  return contentItems;
-};
+    return contentItems;
+  };
 
 
   useEffect(() => {
@@ -208,10 +195,8 @@ const parseHTMLContent = (html: string) => {
       if (data.error) {
         throw new Error('Project not found');
       }
-
       // Parse the HTML description string into ContentItem array
       const parsedDescription = parseHTMLContent(data.description || '');
-      
       setSingleProject({
         ...data,
         parsedDescription // Add the parsed description

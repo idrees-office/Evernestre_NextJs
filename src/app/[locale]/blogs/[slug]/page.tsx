@@ -122,9 +122,6 @@ export default function BlogDetail({ params }: { params: Promise<{ slug: string 
                     fill
                     className="object-cover"
                     priority
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = "/assets/img/property/project1.jpg";
-                    }}
                   />
                 </div>
 

@@ -33,14 +33,12 @@ type ApiResponse = {
 
 const categories = [
 
-
   { key: "modern_villa", count: 3 },
   { key: "houses", count: 5 },
   { key: "apartments", count: 4 },
   { key: "office", count: 6 }
 
 ];
-
 
 const popularTags = [
   "golfing_communities",
@@ -200,9 +198,6 @@ export default function NewsContactPage() {
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                             sizes="(max-width: 1280px) 100vw, 50vw"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).src = "/assets/img/property/project1.jpg";
-                            }}
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                           
@@ -275,9 +270,6 @@ export default function NewsContactPage() {
                               fill
                               className="object-cover transition-transform duration-700 group-hover:scale-110"
                               sizes="(max-width: 768px) 100vw, 50vw"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).src = "/assets/img/property/project1.jpg";
-                              }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <span className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-[#8b5d3b] px-3 py-1 rounded-full text-[10px] font-medium uppercase tracking-wide">
