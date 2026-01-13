@@ -159,7 +159,7 @@ export default function Header() {
           <nav className="flex items-center justify-between h-24">
             <Link href={createLocalizedUrl(createPageUrl("Home"))} className="flex items-center gap-2 group">
               <Image
-                src="/assets/EN-logo.png"
+                src="/assets/logo.svg"
                 alt="Evernest Logo"
                 width={120}
                 height={32}
@@ -176,7 +176,7 @@ export default function Header() {
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <Link href={createLocalizedUrl(item.url)}
-                    className={`relative px-4 py-1 text-[17px] font-light tracking-wide transition-all duration-300
+                    className={`relative px-4 py-1 text-[20px] font-light tracking-wide transition-all duration-300
                     flex items-center
                     text-black hover:text-[color:var(--brand)]
                     after:absolute after:left-1/2 after:bottom-0 after:h-[0.5px] after:w-0 
