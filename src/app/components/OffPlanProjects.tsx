@@ -54,7 +54,6 @@ function formatMoney(amount: string, currency: Currency) {
 
 export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
   const [currency, setCurrency] = useState<Currency>("AED");
-
   const pricedProjects = useMemo(() => {
     return projects?.map((p) => ({
       ...p,
