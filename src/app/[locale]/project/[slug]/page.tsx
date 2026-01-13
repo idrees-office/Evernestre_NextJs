@@ -243,7 +243,7 @@ const parseHTMLContent = (html: string) => {
 
 
   const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
     const [phone, setPhone] = useState<string>();
   
   
@@ -257,12 +257,12 @@ const parseHTMLContent = (html: string) => {
     const isFormValid = useMemo(() => {
       return (
         firstName.trim() !== "" &&
-        lastName.trim() !== "" &&
+        email.trim() !== "" &&
         phone !== undefined &&
         phone !== "" &&
         isValidPhoneNumber(phone)
       );
-    }, [firstName, lastName, phone]);
+    }, [firstName, email, phone]);
   
     const validatePhoneNumber = (phoneNumber: string | undefined): boolean => {
       if (!phoneNumber) return false;
@@ -274,7 +274,7 @@ const parseHTMLContent = (html: string) => {
       if (!isFormValid) return;
       const nextErrors: typeof errors = {};
       if (!firstName.trim()) nextErrors.first = "Please enter your first name.";
-      if (!lastName.trim()) nextErrors.last = "Please enter your last name.";
+      if (!email.trim()) nextErrors.last = "Please enter your last name.";
       if (!phone) {
         nextErrors.phone = "Please enter your phone number.";
       } else if (!validatePhoneNumber(phone)) {
@@ -289,14 +289,14 @@ const parseHTMLContent = (html: string) => {
         setLoading(true);
   
         const formData = {
-          first_name: firstName.trim(),
-          last_name: lastName.trim(),
+          name: firstName.trim(),
+          email: email.trim(),
           phone: phone,
           source: "Website",
           timestamp: new Date().toISOString(),
         };
   
-        const response = await fetch(`${BASE_URL}/get_website_lead`, {
+        const response = await fetch(`${BASE_URL}/save_website_form`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -313,8 +313,18 @@ const parseHTMLContent = (html: string) => {
   
         setErrors({ ok: "✅ Thank you! We'll reach out soon." });
         setFirstName("");
-        setLastName("");
+        setEmail("");
         setPhone("");
+
+        setTimeout(() => {
+        if (singleProject?.brochure) {
+             window.open(singleProject.brochure, '_blank', 'noopener,noreferrer');
+        }
+        setIsFormOpen(false);
+        setErrors({});
+      }, 1500);
+
+
       } catch (error) {
         setErrors({
           phone:
@@ -433,16 +443,16 @@ const handleShare = async () => {
                     {/* First + Last Name */}
                     {[
                       {
-                        label: "First Name *",
+                        label: "Name",
                         value: firstName,
                         setter: setFirstName,
                         field: "first",
                         err: errors.first,
                       },
                       {
-                        label: "Last Name *",
-                        value: lastName,
-                        setter: setLastName,
+                        label: "Email",
+                        value: email,
+                        setter: setEmail,
                         field: "last",
                         err: errors.last,
                       },
@@ -897,7 +907,6 @@ const handleShare = async () => {
                     <span className="hidden xs:inline"> Call Us</span>
                     <span className="xs:hidden">Call</span>
                   </a>
-                  
                   <a
                     href="https://wa.me/971527469500"
                     target="_blank"
@@ -1178,7 +1187,8 @@ const handleShare = async () => {
               ))}
             </div>
           </div>
-       </section>   
+       </section>  
+
        <section ref={brochureRef} className="py-6 sm:py-8 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
@@ -1198,7 +1208,6 @@ const handleShare = async () => {
           </div>
         </div>
       </section> 
-      
       <section className="py-6 sm:py-8 bg-[#faf8f5]">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
