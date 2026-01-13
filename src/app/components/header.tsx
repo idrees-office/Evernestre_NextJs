@@ -19,9 +19,7 @@ export default function Header() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const t = useTranslations();
-  // const t = useTranslations('Header');
   const locale = useLocale(); 
-
   const router = useRouter();
   const [currentLang, setCurrentLang] = useState(locale);
   
@@ -178,7 +176,7 @@ export default function Header() {
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <Link href={createLocalizedUrl(item.url)}
-                    className={`relative px-4 py-1 text-[15px] font-light tracking-wide transition-all duration-300
+                    className={`relative px-4 py-1 text-[17px] font-light tracking-wide transition-all duration-300
                     flex items-center
                     text-black hover:text-[color:var(--brand)]
                     after:absolute after:left-1/2 after:bottom-0 after:h-[0.5px] after:w-0 

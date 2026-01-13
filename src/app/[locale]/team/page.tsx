@@ -78,7 +78,7 @@ export default function TeamPage() {
     // Always include these categories
     categoriesSet.add("CEO");
     categoriesSet.add("Sales");
-    categoriesSet.add("Creative");
+    categoriesSet.add("Marketing Team");
     categoriesSet.add("Admins");
 
     return Array.from(categoriesSet);
@@ -132,7 +132,7 @@ export default function TeamPage() {
       designationLower.includes("editor") ||
       designationLower.includes("performance")
     ) {
-      return "Creative";
+      return "Marketing Team";
     }
 
     return "Admins";

@@ -184,8 +184,7 @@ interface ProjectData {
     }
     return contentItems;
   };
-
-
+  
   useEffect(() => {
   const fetchProject = async () => {
     try {

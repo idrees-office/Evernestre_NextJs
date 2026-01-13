@@ -208,7 +208,7 @@ export default function NewsDetail({ params }: { params: Promise<{ slug: string 
                           </h2>
                         );
                       }
-
+                      
                       return (
                         <p
                           key={index}
@@ -219,22 +219,6 @@ export default function NewsDetail({ params }: { params: Promise<{ slug: string 
                       );
                     })}
                   </article>
-
-                  <article
-                    className="prose prose-sm max-w-none
-                      prose-headings:font-medium prose-headings:text-gray-800
-                      prose-h2:text-base prose-h2:mt-5 prose-h2:mb-2
-                      prose-h3:text-sm prose-h3:mt-4 prose-h3:mb-2
-                      prose-p:text-gray-600 prose-p:text-[13px] prose-p:leading-relaxed prose-p:mb-3
-                      prose-a:text-[#8b5d3b] prose-a:no-underline hover:prose-a:underline
-                      prose-strong:font-medium prose-strong:text-gray-700
-                      prose-ul:text-[13px] prose-ul:text-gray-600
-                      prose-ol:text-[13px] prose-ol:text-gray-600
-                      prose-li:mb-1
-                      prose-blockquote:border-l-2 prose-blockquote:border-[#8b5d3b] prose-blockquote:pl-3 prose-blockquote:text-[13px] prose-blockquote:not-italic prose-blockquote:text-gray-600
-                      prose-img:rounded"
-                    dangerouslySetInnerHTML={{ __html: news.description }}
-                  />
                   {news.tags && news.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mt-5 pt-4 border-t border-gray-100">
                       {news.tags.map((tag: string, idx: number) => (

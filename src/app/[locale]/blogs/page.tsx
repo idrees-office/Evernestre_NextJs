@@ -105,7 +105,6 @@ export default function BlogContactPage() {
   useEffect(() => {
     const fetchNews = async (page: number = 1) => {
       if (hasFetched.current && page === 1) return;
-
       setLoading(true);
       try {
         const data: ApiResponse = await getAllBlogs(page, locale);

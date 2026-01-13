@@ -9,6 +9,11 @@ import { getBlogsBySlug } from "@/lib/blogs";
 import { useTranslations, useLocale } from "next-intl";
 
 
+  type ContentItem = {
+    type: "heading" | "text";
+    content: string;
+  };
+
 const categories = [
   { count: 3, key : 'modern_villa' },
   { count: 5, key : 'houses' },
@@ -58,6 +63,69 @@ export default function BlogDetail({ params }: { params: Promise<{ slug: string 
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+
+   const parseHTMLContent = (html: string) => {
+    if (!html) return [];
+    const contentItems: ContentItem[] = [];
+    const tempDiv = document.createElement('div');
+    // Remove span tags and their styles
+    const cleanedHtml = html.replace(/<span[^>]*>/g, '').replace(/<\/span>/g, '').replace(/style="[^"]*"/g, '');
+    tempDiv.innerHTML = cleanedHtml;
+    const elements = Array.from(tempDiv.childNodes);
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+      if (element.nodeType === Node.ELEMENT_NODE) {
+        const el = element as Element;
+        
+        if (el.tagName === 'H2') {
+          const text = el.textContent?.trim() || '';
+          contentItems.push({
+            type: 'heading',
+            content: text
+          });
+        } else if (el.tagName === 'P') {
+          const text = el.textContent?.trim() || '';
+          if (text) {
+            contentItems.push({
+              type: 'text',
+              content: text
+            });
+          }
+        } else if (el.tagName === 'UL') {
+          const items = el.querySelectorAll('li');
+          items.forEach(item => {
+            const text = item.textContent?.trim() || '';
+            if (text) {
+              contentItems.push({
+                type: 'text',
+                content: `• ${text}`
+              });
+            }
+          });
+        } else if (el.tagName === 'DIV' || el.tagName === 'SPAN') {
+          // Handle nested content
+          const text = el.textContent?.trim() || '';
+          if (text) {
+            contentItems.push({
+              type: 'text',
+              content: text
+            });
+          }
+        }
+      } else if (element.nodeType === Node.TEXT_NODE) {
+        const text = element.textContent?.trim() || '';
+        if (text) {
+          contentItems.push({
+            type: 'text',
+            content: text
+          });
+        }
+      }
+    }
+    return contentItems;
+  };
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -139,12 +207,36 @@ export default function BlogDetail({ params }: { params: Promise<{ slug: string 
                     {blog.title}
                   </h1>
 
-                  <article
+                  <article className="mt-4 space-y-3">
+                    {(blog.description ? parseHTMLContent(blog.description) : []).map((item, index) => {
+                      if (item.type === "heading") {
+                        return (
+                          <h2
+                            key={index}
+                            className="text-sm font-medium text-gray-800 mt-4"
+                          >
+                            {item.content}
+                          </h2>
+                        );
+                      }
+                      return (
+                        <p
+                          key={index}
+                          className="text-[13px] text-gray-600 leading-relaxed"
+                        >
+                          {item.content}
+                        </p>
+                      );
+                    })}
+                  </article>
+
+
+                  {/* <article
                     className="prose prose-sm max-w-none
                     prose-headings:font-medium prose-headings:text-gray-800
                     prose-p:text-gray-600 prose-p:text-[13px] leading-relaxed"
                     dangerouslySetInnerHTML={{ __html: blog.description }}
-                  />
+                  /> */}
 
                   <div className="mt-5 pt-4 border-t border-gray-100">
                     <Link

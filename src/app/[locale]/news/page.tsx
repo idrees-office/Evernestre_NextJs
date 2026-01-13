@@ -264,9 +264,7 @@ export default function NewsContactPage() {
                           className="bg-white rounded-sm overflow-hidden shadow-lg group hover:shadow-2xl transition-all duration-500 h-full"
                         >
                           <div className="h-52 relative overflow-hidden">
-                            <Image
-                              src={newsItem.image}
-                              alt={newsItem.title}
+                            <Image src={newsItem.image} alt={newsItem.title}
                               fill
                               className="object-cover transition-transform duration-700 group-hover:scale-110"
                               sizes="(max-width: 768px) 100vw, 50vw"
