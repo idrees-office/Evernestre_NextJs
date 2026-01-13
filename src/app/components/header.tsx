@@ -204,7 +204,7 @@ export default function Header() {
                             <Link
                               key={index}
                               href={createPageUrl(dropItem.routeKey, { locale })}
-                              className="block px-3 py-2 text-sm text-[#1a1a1a]/75 hover:text-[color:var(--brand)] hover:bg-[color:var(--cream)] transition-all duration-200 border-b border-black/5 last:border-0 font-light"
+                              className="block px-3 py-2 text-[19px] text-[#1a1a1a]/75 hover:text-[color:var(--brand)] hover:bg-[color:var(--cream)] transition-all duration-200 border-b border-black/5 last:border-0 font-light"
                               onClick={() => setActiveDropdown(null)}
                             >
                               {dropItem.label}
