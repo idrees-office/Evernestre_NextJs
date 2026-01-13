@@ -3,7 +3,9 @@ import { motion } from "framer-motion";
 import React from "react";
 import Image from "next/image";
 import Vision from "@/app/components/Vision";
+import Timeline from "@/app/components/Timeline";
 import { useTranslations } from "next-intl";
+import { Rocket, Building2, TrendingUp, Award, Users, Globe } from "lucide-react";
 
 const coreValues = [
   {
@@ -44,6 +46,45 @@ const pointvalues = [
     num: "04",
     title: "commitment_title",
     description: "commitment_description"
+  }
+];
+
+const timelineItems = [
+  {
+    year: 2010,
+    title: "Company Founded",
+    description: "Evernest was established with a vision to revolutionize the real estate industry, bringing innovation and excellence to property services.",
+    icon: <Building2 className="w-10 h-10 md:w-12 md:h-12" />
+  },
+  {
+    year: 2015,
+    title: "Startup Growth",
+    description: "Evernest rapidly grew, and by 2015, we achieved one of our first major milestones. On short notice, our team worked tirelessly to resolve an emergency issue for CBC, a popular Egyptian TV channel, after several large companies had let them down. This success led to further opportunities, including a deal to develop a website for CBC and, shortly after, creating a Facebook app for the global brand Techno Mobile.",
+    icon: <Rocket className="w-10 h-10 md:w-12 md:h-12" />
+  },
+  {
+    year: 2018,
+    title: "Market Expansion",
+    description: "We expanded our services across multiple regions, establishing ourselves as a trusted partner in real estate development and investment.",
+    icon: <TrendingUp className="w-10 h-10 md:w-12 md:h-12" />
+  },
+  {
+    year: 2020,
+    title: "Industry Recognition",
+    description: "Evernest received prestigious awards for excellence in real estate services and innovation, solidifying our position as an industry leader.",
+    icon: <Award className="w-10 h-10 md:w-12 md:h-12" />
+  },
+  {
+    year: 2022,
+    title: "Team Growth",
+    description: "Our team expanded significantly, bringing together talented professionals dedicated to delivering exceptional service and results for our clients.",
+    icon: <Users className="w-10 h-10 md:w-12 md:h-12" />
+  },
+  {
+    year: 2024,
+    title: "Global Reach",
+    description: "Today, Evernest continues to grow, serving clients worldwide with innovative solutions and maintaining our commitment to excellence in every project.",
+    icon: <Globe className="w-10 h-10 md:w-12 md:h-12" />
   }
 ];
 
@@ -100,6 +141,10 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+      
+      {/* Timeline Section */}
+      <Timeline items={timelineItems} startYear={2010} endYear={2024} />
+      
       <Vision />     
       <section className="bg-[#1a1a1a] py-16">
         <div className="max-w-6xl mx-auto px-6">
