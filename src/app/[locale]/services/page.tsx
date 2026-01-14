@@ -27,6 +27,8 @@ import {
   MapPin,
 } from "lucide-react";
 
+import Image from "next/image";
+
 
 const services = [
   {
@@ -312,8 +314,8 @@ export default function Services() {
               </h2>
               
               <p className="text-[#1a1a1a]/70 leading-relaxed mb-6">
-                With over 15 years of excellence in Dubai's real estate market, 
-                we've built our reputation on trust, transparency, and delivering 
+                With over 15 years of excellence in Dubai real estate market, 
+                we have built our reputation on trust, transparency, and delivering 
                 exceptional results for our clients.
               </p>
               
@@ -352,7 +354,7 @@ export default function Services() {
               className="relative"
             >
               <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
                   alt="Luxury Property"
                   className="w-full h-full object-cover"
