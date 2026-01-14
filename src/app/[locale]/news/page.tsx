@@ -184,7 +184,8 @@ export default function NewsContactPage() {
         <div className="container mx-auto px-4 max-w-8xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-8">
-              {featuredNews && (
+
+              {/* {featuredNews && (
                   <Link href={`/${locale}/news/${featuredNews.slug}`} className="block mb-12">
                     <motion.article initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} whileHover={{ y: -5 }}
                       className="group bg-white rounded-sm overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500"
@@ -244,7 +245,78 @@ export default function NewsContactPage() {
                       </div>
                     </motion.article>
                   </Link>
-                )}
+              )} */}
+
+
+              {featuredNews && (
+                <Link href={`/${locale}/news/${featuredNews.slug}`} className="block mb-12">
+                  <motion.article 
+                    initial={{ opacity: 0, y: 30 }} 
+                    whileInView={{ opacity: 1, y: 0 }} 
+                    transition={{ duration: 0.6 }} 
+                    whileHover={{ y: -5 }}
+                    className="group bg-white rounded-sm overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500"
+                  >
+                    <div className="h-px bg-gradient-to-r from-[#8b5d3b] via-[#c97a52] to-[#8b5d3b]" /> 
+                    <div className="grid grid-cols-1 xl:grid-cols-2">
+                      {/* FIXED: Added aspect ratio with responsive height */}
+                      <div className="relative aspect-[4/3] xl:aspect-auto xl:h-[400px] overflow-hidden">
+                        <Image
+                          src={featuredNews.image}
+                          alt={featuredNews.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          sizes="(max-width: 1280px) 100vw, 50vw"
+                          priority
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                        
+                        <div className="absolute top-5 right-5 z-10">
+                          <span className="flex items-center gap-1.5 bg-white/95 backdrop-blur-sm text-[#8b5d3b] px-3 py-1.5 rounded-full text-xs font-medium">
+                            <Sparkles className="w-3 h-3" />
+                            Featured
+                          </span>
+                        </div>
+                        
+                        <div className="absolute bottom-6 left-6 z-10 flex flex-wrap items-center gap-3">
+                          <span className="flex items-center gap-2 bg-white/20 backdrop-blur-md text-white/90 px-3 py-1.5 rounded-full text-xs">
+                            <Calendar className="w-3.5 h-3.5" />
+                            {formatDate(featuredNews.date)}
+                          </span>
+                          <span className="flex items-center gap-2 bg-white/20 backdrop-blur-md text-white/90 px-3 py-1.5 rounded-full text-xs">
+                            <Clock className="w-3.5 h-3.5" />
+                            {generateReadTime(featuredNews.title)}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="p-8 flex flex-col justify-between h-full xl:min-h-[400px]">
+                        <div>
+                          <span className="inline-block text-[10px] uppercase tracking-widest text-[#8b5d3b] font-normal mb-4">
+                            Exclusive Insight
+                          </span>
+                          <h3 className="text-xl xl:text-2xl font-normal text-gray-900 group-hover:text-[#8b5d3b] transition-colors duration-300 leading-snug line-clamp-3">
+                            {featuredNews.title}
+                          </h3>
+                        </div>
+                        <div className="flex items-center justify-between pt-6 border-t border-gray-100/50 mt-auto">
+                          <div className="flex items-center gap-3">
+                            <div className="w-9 h-9 bg-gradient-to-br from-[#8b5d3b] to-[#d4a373] rounded-full flex items-center justify-center">
+                              <span className="text-white font-medium text-xs">ER</span>
+                            </div>
+                            <span className="text-sm text-gray-600">Evernest Real Estate</span>
+                          </div>
+                          <span className="flex items-center gap-2 text-[#8b5d3b] font-medium text-sm">
+                            Read More
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.article>
+                </Link>
+              )}
+
               {regularNews.length > 0 && (
                 <div>
                   <div className="flex items-center gap-3 mb-6">

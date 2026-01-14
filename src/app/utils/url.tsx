@@ -1,5 +1,6 @@
 export const ROUTES = {
   Home: "/",
+
   AreaGuide: "/area-guide",
   Developers: "/developers",
   Services: "/services",
@@ -10,7 +11,6 @@ export const ROUTES = {
   News: "/news",
   Privacy: "/privacy-policy",
   TermCondition: "/term-condition",
-
   Projects: "/project.html",
   "All Projects": "/project.html",
 

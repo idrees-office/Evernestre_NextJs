@@ -434,20 +434,20 @@ export default function Header() {
         ],
       },
 
-      // {
-      //   label: t("news"),
-      //   url: createPageUrl("News"),
-      //   dropdown: [
-      //     {
-      //       label: t("news"),
-      //       routeKey: "News",
-      //     },
-      //     {
-      //       label: t("blogs"),
-      //       routeKey: "Blogs",
-      //     },
-      //   ],
-      // },
+      {
+        label: t("news"),
+        url: createPageUrl("News"),
+        dropdown: [
+          {
+            label: t("news"),
+            routeKey: "News",
+          },
+          {
+            label: t("blogs"),
+            routeKey: "Blogs",
+          },
+        ],
+      },
 
       {
         label: t("about"),
@@ -459,6 +459,12 @@ export default function Header() {
           },
         ],
       },
+      {
+        label: t("Services"),
+        url: createPageUrl("Services"),
+        dropdown: null,
+      },
+
     ],
     [t]
   );
