@@ -75,8 +75,8 @@ export default function Footer() {
                   left-0 right-0
                   w-full
                   px-4 py-3
-                  sm:w-auto sm:rounded-full sm:bottom-5 sm:left-6 sm:right-auto
-                  md:rounded-full md:bottom-5 md:left-6 md:right-auto"
+                  sm:w-auto sm:rounded-full sm:bottom-5 sm:right-6 sm:left-auto
+                  md:rounded-full md:bottom-5 md:right-6 md:left-auto"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@ export default function Footer() {
         >
           <path d="M16.001 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.589 4.46 1.708 6.41L3.2 28.8l6.58-1.689A12.74 12.74 0 0 0 16 28.8h.001c7.06 0 12.799-5.74 12.799-12.8S23.06 3.2 16.001 3.2zm7.52 18.323c-.314.879-1.838 1.676-2.525 1.784-.647.1-1.46.143-2.35-.147-.543-.173-1.24-.403-2.137-.786-3.763-1.63-6.218-5.424-6.408-5.676-.19-.252-1.53-2.037-1.53-3.885 0-1.848.97-2.757 1.314-3.14.343-.383.744-.478.99-.478.246 0 .495.003.71.013.228.01.533-.086.835.637.314.755 1.066 2.614 1.16 2.803.094.189.157.414.03.666-.126.252-.19.414-.378.636-.19.222-.4.497-.57.668-.19.19-.387.397-.166.78.222.383.987 1.623 2.122 2.627 1.46 1.274 2.682 1.67 3.066 1.86.383.19.603.158.825-.095.222-.252.95-1.11 1.202-1.492.252-.383.504-.316.835-.19.343.126 2.17 1.024 2.547 1.214.377.189.628.283.72.44.094.157.094.91-.22 1.788z"/>
         </svg>
-        <span className="text-sm font-medium">WhatsApp</span>
+        <span className="text-sm font-normal">WhatsApp</span>
         <motion.div
           className="hidden sm:block absolute -inset-1 rounded-full border border-[#25D366]"
           animate={{ 

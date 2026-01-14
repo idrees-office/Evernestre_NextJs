@@ -33,20 +33,50 @@ const FX: Record<Currency, number> = {
 
 const CURRENCIES = ["AED", "USD", "EUR"] as const;
 
+// function formatMoney(amount: string, currency: Currency) {
+//   if (!amount) return "Price on Request";
+
+//   // Extract numbers including decimals
+//   const numeric = parseFloat(amount.replace(/[^\d.]/g, ""));
+//   if (isNaN(numeric)) return "Price on Request";
+
+//   const converted = numeric * FX[currency];
+//   const symbol = currency === "AED" ? "AED " : currency === "USD" ? "USD " : "EUR ";
+
+//   // Format to show up to 2 decimal places only if needed
+//   const formatted = converted.toLocaleString('en-US', {
+//     minimumFractionDigits: 0,
+//     maximumFractionDigits: 2
+//   });
+
+//   return `${symbol}${formatted}`;
+// }
+
+
 function formatMoney(amount: string, currency: Currency) {
   if (!amount) return "Price on Request";
 
-  // Extract numbers including decimals
-  const numeric = parseFloat(amount.replace(/[^\d.]/g, ""));
+  const clean = amount.toString().trim();
+
+  // ✅ if backend sends sqft format by mistake
+  if (/sq\.?ft/i.test(clean)) return "Price on Request";
+
+  // ✅ if backend sends N/A or request
+  if (/n\/a|request/i.test(clean)) return "Price on Request";
+
+  // ✅ extract first number (works with commas)
+  const match = clean.match(/[\d,.]+/);
+  if (!match) return "Price on Request";
+
+  const numeric = parseFloat(match[0].replace(/,/g, ""));
   if (isNaN(numeric)) return "Price on Request";
 
   const converted = numeric * FX[currency];
-  const symbol = currency === "AED" ? "AED " : currency === "USD" ? "USD " : "EUR ";
 
-  // Format to show up to 2 decimal places only if needed
-  const formatted = converted.toLocaleString('en-US', {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2
+  const symbol = currency === "AED" ? "AED " : currency === "USD" ? "$" : "€";
+
+  const formatted = converted.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
   });
 
   return `${symbol}${formatted}`;
