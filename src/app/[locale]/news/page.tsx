@@ -184,132 +184,79 @@ export default function NewsContactPage() {
         <div className="container mx-auto px-4 max-w-8xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-8">
-
-              {/* {featuredNews && (
-                  <Link href={`/${locale}/news/${featuredNews.slug}`} className="block mb-12">
-                    <motion.article initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} whileHover={{ y: -5 }}
-                      className="group bg-white rounded-sm overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500"
-                    >
-                      <div className="h-px bg-gradient-to-r from-[#8b5d3b] via-[#c97a52] to-[#8b5d3b]" /> 
-                      <div className="grid grid-cols-1 xl:grid-cols-2">
-                        <div className="h-80 xl:h-[400px] relative overflow-hidden">
+              
+              {featuredNews && (
+                <Link href={`/${locale}/news/${featuredNews.slug}`} className="block mb-8">
+                  <motion.article
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    whileHover={{ y: -3 }}
+                    className="group bg-white rounded-sm overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
+                  >
+                    <div className="grid grid-cols-1 xl:grid-cols-2">
+                      {/* Image */}
+                      <div className="relative overflow-hidden">
+                        <div className="aspect-[4/3] md:aspect-video xl:aspect-[4/3] relative">
                           <Image
                             src={featuredNews.image}
                             alt={featuredNews.title}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            className="object-cover transition-opacity duration-500"
                             sizes="(max-width: 1280px) 100vw, 50vw"
+                            priority
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                          
-                          <div className="absolute top-5 right-5 z-10">
-                            <span className="flex items-center gap-1.5 bg-white/95 backdrop-blur-sm text-[#8b5d3b] px-3 py-1.5 rounded-full text-xs font-medium">
-                              <Sparkles className="w-3 h-3" />
-                              Featured
-                            </span>
-                          </div>
-                          
-                          <div className="absolute bottom-6 left-6 z-10 flex items-center gap-3">
-                            <span className="flex items-center gap-2 bg-white/20 backdrop-blur-md text-white/90 px-3 py-1.5 rounded-full text-xs">
-                              <Calendar className="w-3.5 h-3.5" />
-                              {formatDate(featuredNews.date)}
-                            </span>
-                            <span className="flex items-center gap-2 bg-white/20 backdrop-blur-md text-white/90 px-3 py-1.5 rounded-full text-xs">
-                              <Clock className="w-3.5 h-3.5" />
-                              {generateReadTime(featuredNews.title)}
-                            </span>
-                          </div>
                         </div>
-                        <div className="p-8 flex flex-col justify-between h-full xl:h-[400px]">
-                          <div>
-                            <span className="inline-block text-[10px] uppercase tracking-widest text-[#8b5d3b] font-normal mb-4">
-                              Exclusive Insight
-                            </span>
-                            <h3 className="text-xl xl:text-1xl font-normal text-gray-900 group-hover:text-[#8b5d3b] transition-colors duration-300 leading-snug line-clamp-3">
-                              {featuredNews.title}
-                            </h3>
-                          </div>
-                          <div className="flex items-center justify-between pt-6 border-t border-gray-100/50 mt-auto">
-                            <div className="flex items-center gap-3">
-                              <div className="w-9 h-9 bg-gradient-to-br from-[#8b5d3b] to-[#d4a373] rounded-full flex items-center justify-center">
-                                <span className="text-white font-medium text-xs">ER</span>
-                              </div>
-                              <span className="text-sm text-gray-600">Evernest Real Estate</span>
-                            </div>
-                            <span className="flex items-center gap-2 text-[#8b5d3b] font-medium text-sm">
-                              Read More
-                              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.article>
-                  </Link>
-              )} */}
 
-
-              {featuredNews && (
-                <Link href={`/${locale}/news/${featuredNews.slug}`} className="block mb-12">
-                  <motion.article 
-                    initial={{ opacity: 0, y: 30 }} 
-                    whileInView={{ opacity: 1, y: 0 }} 
-                    transition={{ duration: 0.6 }} 
-                    whileHover={{ y: -5 }}
-                    className="group bg-white rounded-sm overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500"
-                  >
-                    <div className="h-px bg-gradient-to-r from-[#8b5d3b] via-[#c97a52] to-[#8b5d3b]" /> 
-                    <div className="grid grid-cols-1 xl:grid-cols-2">
-                      {/* FIXED: Added aspect ratio with responsive height */}
-                      <div className="relative aspect-[4/3] xl:aspect-auto xl:h-[400px] overflow-hidden">
-                        <Image
-                          src={featuredNews.image}
-                          alt={featuredNews.title}
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                          sizes="(max-width: 1280px) 100vw, 50vw"
-                          priority
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                        
-                        <div className="absolute top-5 right-5 z-10">
-                          <span className="flex items-center gap-1.5 bg-white/95 backdrop-blur-sm text-[#8b5d3b] px-3 py-1.5 rounded-full text-xs font-medium">
-                            <Sparkles className="w-3 h-3" />
-                            Featured
-                          </span>
-                        </div>
-                        
-                        <div className="absolute bottom-6 left-6 z-10 flex flex-wrap items-center gap-3">
-                          <span className="flex items-center gap-2 bg-white/20 backdrop-blur-md text-white/90 px-3 py-1.5 rounded-full text-xs">
-                            <Calendar className="w-3.5 h-3.5" />
+                        {/* Date & Read Time */}
+                        <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2">
+                          <span className="flex items-center gap-2 bg-white/90 backdrop-blur-sm text-gray-700 px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
+                            <Calendar className="w-3.5 h-3.5 text-[#8b5d3b]" />
                             {formatDate(featuredNews.date)}
                           </span>
-                          <span className="flex items-center gap-2 bg-white/20 backdrop-blur-md text-white/90 px-3 py-1.5 rounded-full text-xs">
-                            <Clock className="w-3.5 h-3.5" />
+                          {/* <span className="flex items-center gap-2 bg-white/90 backdrop-blur-sm text-gray-700 px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
+                            <Clock className="w-3.5 h-3.5 text-[#8b5d3b]" />
                             {generateReadTime(featuredNews.title)}
-                          </span>
+                          </span> */}
                         </div>
                       </div>
-                      
-                      <div className="p-8 flex flex-col justify-between h-full xl:min-h-[400px]">
+
+                      {/* Content */}
+                      <div className="p-6 flex flex-col justify-between min-h-[320px] bg-gradient-to-br from-white to-gray-50/60">
                         <div>
-                          <span className="inline-block text-[10px] uppercase tracking-widest text-[#8b5d3b] font-normal mb-4">
-                            Exclusive Insight
-                          </span>
-                          <h3 className="text-xl xl:text-2xl font-normal text-gray-900 group-hover:text-[#8b5d3b] transition-colors duration-300 leading-snug line-clamp-3">
+                          {/* Badge */}
+                          <div className="inline-flex items-center gap-2 mb-3">
+                            <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#8b5d3b] to-[#c97a52]" />
+                            <span className="text-xs uppercase tracking-widest text-[#8b5d3b] font-medium">
+                              Featured Insight
+                            </span>
+                          </div>
+                          <h3 className="text-2xl xl:text-2xl font-normal text-gray-900 group-hover:text-[#8b5d3b] transition-colors duration-300 leading-tight mb-3">
                             {featuredNews.title}
                           </h3>
-                        </div>
-                        <div className="flex items-center justify-between pt-6 border-t border-gray-100/50 mt-auto">
-                          <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 bg-gradient-to-br from-[#8b5d3b] to-[#d4a373] rounded-full flex items-center justify-center">
-                              <span className="text-white font-medium text-xs">ER</span>
-                            </div>
-                            <span className="text-sm text-gray-600">Evernest Real Estate</span>
+                          <div className="flex items-center gap-2 text-sm text-gray-500">
+                            <div className="w-4 h-[1px] bg-gradient-to-r from-[#8b5d3b]/30 to-[#c97a52]/30" />
+                            <span>Exclusive market analysis</span>
                           </div>
-                          <span className="flex items-center gap-2 text-[#8b5d3b] font-medium text-sm">
-                            Read More
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </span>
+                        </div>
+                        <div className="space-y-3 pt-4 border-t border-gray-100">
+                          <div className="flex items-center gap-3">
+                            <div>
+                              <p className="text-sm font-medium text-gray-900">
+                                Evernest Real Estate
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-gray-500">
+                              5 min read • Expert Analysis
+                            </span>
+                            <span className="inline-flex items-center gap-2 text-[#8b5d3b] font-medium text-sm">
+                              Read Full Article
+                              <ArrowRight className="w-4 h-4" />
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -319,35 +266,44 @@ export default function NewsContactPage() {
 
               {regularNews.length > 0 && (
                 <div>
+                  {/* Section Header */}
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-1 h-6 bg-gradient-to-b from-[#8b5d3b] to-[#c97a52] rounded-full" />
-                    <h2 className="text-lg font-medium text-gray-900">Latest Articles</h2>
+                    <h2 className="text-lg font-medium text-gray-900">
+                      Latest Articles
+                    </h2>
                     <div className="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent" />
                   </div>
-                  
+
+                  {/* Articles Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {regularNews.map((newsItem, index) => (
-                      <Link key={newsItem.id} href={`/${locale}/news/${newsItem.slug}`} className="block">
+                      <Link
+                        key={newsItem.id}
+                        href={`/${locale}/news/${newsItem.slug}`}
+                        className="block"
+                      >
                         <motion.article
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.4, delay: index * 0.08 }}
-                          whileHover={{ y: -8 }}
-                          className="bg-white rounded-sm overflow-hidden shadow-lg group hover:shadow-2xl transition-all duration-500 h-full"
+                          whileHover={{ y: -6 }}
+                          className="bg-white rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
                         >
-                          <div className="h-52 relative overflow-hidden">
-                            <Image src={newsItem.image} alt={newsItem.title}
-                              fill
-                              className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          {/* IMAGE (correct Next.js pattern) */}
+                          <div className="w-full">
+                            <Image
+                              src={newsItem.image}
+                              alt={newsItem.title}
+                              width={800}
+                              height={450}
+                              className="w-full h-auto object-cover rounded-sm"
                               sizes="(max-width: 768px) 100vw, 50vw"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            <span className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-[#8b5d3b] px-3 py-1 rounded-full text-[10px] font-medium uppercase tracking-wide">
-                              Market Update
-                            </span>
                           </div>
-
+                          {/* CONTENT */}
                           <div className="p-5">
+                            {/* Meta */}
                             <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
                               <span className="flex items-center gap-1.5">
                                 <Calendar className="w-3.5 h-3.5 text-[#8b5d3b]" />
@@ -356,19 +312,28 @@ export default function NewsContactPage() {
                               <span>·</span>
                               <span>{generateReadTime(newsItem.title)}</span>
                             </div>
-                            <h4 className="font-medium text-gray-900 mb-4 group-hover:text-[#8b5d3b] transition-colors line-clamp-2 leading-snug">
+
+                            {/* Title */}
+                            <h4 className="font-medium text-gray-900 mb-4 leading-snug line-clamp-2 hover:text-[#8b5d3b] transition-colors">
                               {newsItem.title}
                             </h4>
-                            <div className="flex items-center justify-between pt-4 border-t border-gray-50">
+
+                            {/* Footer */}
+                            <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                               <div className="flex items-center gap-2">
                                 <div className="w-6 h-6 bg-gradient-to-br from-[#8b5d3b]/20 to-[#c97a52]/20 rounded-full flex items-center justify-center">
-                                  <span className="text-[#8b5d3b] text-[9px] font-semibold">ER</span>
+                                  <span className="text-[#8b5d3b] text-[9px] font-semibold">
+                                    ER
+                                  </span>
                                 </div>
-                                <span className="text-xs text-gray-500">Evernest</span>
+                                <span className="text-xs text-gray-500">
+                                  Evernest
+                                </span>
                               </div>
+
                               <span className="flex items-center gap-1.5 text-[#8b5d3b] font-medium text-xs">
                                 Read
-                                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                                <ArrowRight className="w-3.5 h-3.5" />
                               </span>
                             </div>
                           </div>
@@ -378,6 +343,12 @@ export default function NewsContactPage() {
                   </div>
                 </div>
               )}
+
+
+              
+
+
+              
               {lastPage > 1 && (
                 <div className="flex justify-center items-center gap-3 mt-12">
                   <button
