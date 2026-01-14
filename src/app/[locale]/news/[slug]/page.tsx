@@ -174,7 +174,13 @@ export default function NewsDetail({ params }: { params: Promise<{ slug: string 
             <div className="lg:col-span-8">
               <div className="bg-white rounded-sm shadow-sm overflow-hidden">
                 <div className="relative aspect-[16/9]">
-                  <Image src={news.image} alt={news.title} fill className="object-cover" priority />
+                  <Image
+                    src={news.image}
+                    alt={news.title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
                 <div className="p-5 md:p-6">
                   
