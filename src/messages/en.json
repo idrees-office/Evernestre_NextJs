@@ -271,5 +271,59 @@
   "buying_in_dubai": "Buying in Dubai",
   "selling_property": "Selling Property",
   "offplan_projects": "Off-Plan Projects",
-  "Services" : "Services"
+  "Services" : "Services",
+
+   "Hero_Badge": "Premium Real Estate Services",
+    "Hero_Title_1": "Elevating Your",
+    "Hero_Title_2": "Real Estate Experience",
+    "Hero_Description": "From finding your dream home to maximizing your investment returns, our services are designed to exceed expectations.",
+
+    "Our_Services_Title": "Our Services",
+    "Learn_More": "Learn More",
+
+    "Property_Buying": "Property Buying",
+    "Property_Buying_Desc": "Find your dream home with our curated selection of premium properties.",
+    "Property_Buying_Feature_1": "Personalized property matching",
+    "Property_Buying_Feature_2": "Virtual & in-person viewings",
+    "Property_Buying_Feature_3": "Negotiation support",
+    "Property_Buying_Feature_4": "Legal documentation",
+
+    "Offplan_Investment": "Off-Plan Investment",
+    "Offplan_Investment_Desc": "Secure access to Dubai’s most promising off-plan developments.",
+    "Offplan_Investment_Feature_1": "Early bird pricing",
+    "Offplan_Investment_Feature_2": "Developer partnerships",
+    "Offplan_Investment_Feature_3": "ROI analysis",
+    "Offplan_Investment_Feature_4": "Payment plan guidance",
+
+    "Property_Selling": "Property Selling",
+    "Property_Selling_Desc": "Maximize your property's value with expert marketing.",
+    "Property_Selling_Feature_1": "Market valuation",
+    "Property_Selling_Feature_2": "Professional photography",
+    "Property_Selling_Feature_3": "Global marketing",
+    "Property_Selling_Feature_4": "Qualified buyer matching",
+
+    "Property_Management": "Property Management",
+    "Property_Management_Desc": "Hassle-free management of your real estate investment.",
+    "Property_Management_Feature_1": "Tenant screening",
+    "Property_Management_Feature_2": "Rent collection",
+    "Property_Management_Feature_3": "Maintenance coordination",
+    "Property_Management_Feature_4": "Regular inspections",
+
+    "Mortgage_Advisory": "Mortgage Advisory",
+    "Mortgage_Advisory_Desc": "Expert guidance on financing and mortgage options.",
+    "Mortgage_Advisory_Feature_1": "Rate comparison",
+    "Mortgage_Advisory_Feature_2": "Pre-approval assistance",
+    "Mortgage_Advisory_Feature_3": "Documentation support",
+    "Mortgage_Advisory_Feature_4": "Bank liaisons",
+
+    "Investment_Consultation": "Investment Consultation",
+    "Investment_Consultation_Desc": "Personalized strategies backed by market insights.",
+    "Investment_Consultation_Feature_1": "Portfolio planning",
+    "Investment_Consultation_Feature_2": "Market insights",
+    "Investment_Consultation_Feature_3": "Risk assessment",
+    "Investment_Consultation_Feature_4": "Growth projections",
+
+    "Why_Choose_Evernest": "Why Choose Evernest",
+    "Why_Choose_Desc": "Over 15 years of trusted excellence in Dubai’s real estate market.",
+    "Luxury_Property": "Luxury Property"
 }

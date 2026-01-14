@@ -271,6 +271,59 @@
   "buying_in_dubai": "Compra en Dubái",
   "selling_property": "Venta de propiedad",
   "offplan_projects": "Proyectos sobre plano",
-   "Services" : "Servicios"
+   "Services" : "Servicios",
+   "Hero_Badge": "Servicios inmobiliarios premium",
+  "Hero_Title_1": "Elevando tu",
+  "Hero_Title_2": "experiencia inmobiliaria",
+  "Hero_Description": "Desde encontrar la casa de tus sueños hasta maximizar el retorno de tu inversión, nuestros servicios están diseñados para superar expectativas.",
+
+  "Our_Services_Title": "Nuestros servicios",
+  "Learn_More": "Saber más",
+
+  "Property_Buying": "Compra de propiedades",
+  "Property_Buying_Desc": "Encuentra la casa de tus sueños con nuestra selección de propiedades premium.",
+  "Property_Buying_Feature_1": "Selección personalizada de propiedades",
+  "Property_Buying_Feature_2": "Visitas virtuales y presenciales",
+  "Property_Buying_Feature_3": "Apoyo en negociaciones",
+  "Property_Buying_Feature_4": "Documentación legal",
+
+  "Offplan_Investment": "Inversión sobre plano",
+  "Offplan_Investment_Desc": "Accede a los desarrollos sobre plano más prometedores de Dubái.",
+  "Offplan_Investment_Feature_1": "Precios anticipados",
+  "Offplan_Investment_Feature_2": "Alianzas con desarrolladores",
+  "Offplan_Investment_Feature_3": "Análisis de ROI",
+  "Offplan_Investment_Feature_4": "Asesoramiento en planes de pago",
+
+  "Property_Selling": "Venta de propiedades",
+  "Property_Selling_Desc": "Maximiza el valor de tu propiedad con marketing experto.",
+  "Property_Selling_Feature_1": "Valoración de mercado",
+  "Property_Selling_Feature_2": "Fotografía profesional",
+  "Property_Selling_Feature_3": "Marketing global",
+  "Property_Selling_Feature_4": "Compradores calificados",
+
+  "Property_Management": "Gestión de propiedades",
+  "Property_Management_Desc": "Gestión sin complicaciones de tu inversión inmobiliaria.",
+  "Property_Management_Feature_1": "Selección de inquilinos",
+  "Property_Management_Feature_2": "Cobro de alquileres",
+  "Property_Management_Feature_3": "Coordinación de mantenimiento",
+  "Property_Management_Feature_4": "Inspecciones periódicas",
+
+  "Mortgage_Advisory": "Asesoría hipotecaria",
+  "Mortgage_Advisory_Desc": "Orientación experta en financiación y opciones hipotecarias.",
+  "Mortgage_Advisory_Feature_1": "Comparación de tasas",
+  "Mortgage_Advisory_Feature_2": "Asistencia para preaprobación",
+  "Mortgage_Advisory_Feature_3": "Soporte documental",
+  "Mortgage_Advisory_Feature_4": "Gestión con bancos",
+
+  "Investment_Consultation": "Consultoría de inversión",
+  "Investment_Consultation_Desc": "Estrategias personalizadas respaldadas por análisis de mercado.",
+  "Investment_Consultation_Feature_1": "Planificación de portafolio",
+  "Investment_Consultation_Feature_2": "Información de mercado",
+  "Investment_Consultation_Feature_3": "Evaluación de riesgos",
+  "Investment_Consultation_Feature_4": "Proyecciones de crecimiento",
+
+  "Why_Choose_Evernest": "Por qué elegir Evernest",
+  "Why_Choose_Desc": "Más de 15 años de excelencia comprobada en el mercado inmobiliario de Dubái.",
+  "Luxury_Property": "Propiedad de lujo"
   
 }

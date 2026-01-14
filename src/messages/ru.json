@@ -277,5 +277,58 @@
   "buying_in_dubai": "Покупка в Дубае",
   "selling_property": "Продажа недвижимости",
   "offplan_projects": "Проекты на стадии строительства",
-   "Services" : "Услуги"
+   "Services" : "Услуги",
+    "Hero_Badge": "Премиальные услуги в сфере недвижимости",
+  "Hero_Title_1": "Повышаем ваш",
+  "Hero_Title_2": "опыт в недвижимости",
+  "Hero_Description": "От поиска дома вашей мечты до максимизации доходности инвестиций — наши услуги превосходят ожидания.",
+
+  "Our_Services_Title": "Наши услуги",
+  "Learn_More": "Узнать больше",
+
+  "Property_Buying": "Покупка недвижимости",
+  "Property_Buying_Desc": "Найдите дом мечты с нашей подборкой премиальной недвижимости.",
+  "Property_Buying_Feature_1": "Индивидуальный подбор объектов",
+  "Property_Buying_Feature_2": "Виртуальные и личные просмотры",
+  "Property_Buying_Feature_3": "Поддержка в переговорах",
+  "Property_Buying_Feature_4": "Юридическое сопровождение",
+
+  "Offplan_Investment": "Инвестиции на этапе строительства",
+  "Offplan_Investment_Desc": "Получите доступ к самым перспективным проектам Дубая.",
+  "Offplan_Investment_Feature_1": "Ранние цены",
+  "Offplan_Investment_Feature_2": "Партнёрства с застройщиками",
+  "Offplan_Investment_Feature_3": "Анализ доходности",
+  "Offplan_Investment_Feature_4": "Консультации по платежным планам",
+
+  "Property_Selling": "Продажа недвижимости",
+  "Property_Selling_Desc": "Максимизируйте стоимость вашей недвижимости с помощью профессионального маркетинга.",
+  "Property_Selling_Feature_1": "Рыночная оценка",
+  "Property_Selling_Feature_2": "Профессиональная фотосъёмка",
+  "Property_Selling_Feature_3": "Глобальный маркетинг",
+  "Property_Selling_Feature_4": "Подбор квалифицированных покупателей",
+
+  "Property_Management": "Управление недвижимостью",
+  "Property_Management_Desc": "Беспроблемное управление вашей инвестицией.",
+  "Property_Management_Feature_1": "Отбор арендаторов",
+  "Property_Management_Feature_2": "Сбор арендной платы",
+  "Property_Management_Feature_3": "Координация обслуживания",
+  "Property_Management_Feature_4": "Регулярные проверки",
+
+  "Mortgage_Advisory": "Ипотечное консультирование",
+  "Mortgage_Advisory_Desc": "Экспертная помощь в финансировании и ипотеке.",
+  "Mortgage_Advisory_Feature_1": "Сравнение процентных ставок",
+  "Mortgage_Advisory_Feature_2": "Помощь с предварительным одобрением",
+  "Mortgage_Advisory_Feature_3": "Поддержка с документами",
+  "Mortgage_Advisory_Feature_4": "Взаимодействие с банками",
+
+  "Investment_Consultation": "Инвестиционные консультации",
+  "Investment_Consultation_Desc": "Персональные стратегии на основе рыночной аналитики.",
+  "Investment_Consultation_Feature_1": "Планирование портфеля",
+  "Investment_Consultation_Feature_2": "Рыночная аналитика",
+  "Investment_Consultation_Feature_3": "Оценка рисков",
+  "Investment_Consultation_Feature_4": "Прогнозы роста",
+
+  "Why_Choose_Evernest": "Почему выбирают Evernest",
+  "Why_Choose_Desc": "Более 15 лет проверенного опыта на рынке недвижимости Дубая.",
+  "Luxury_Property": "Элитная недвижимость"
 }

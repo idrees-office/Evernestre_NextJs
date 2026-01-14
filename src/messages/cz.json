@@ -269,5 +269,58 @@
   "buying_in_dubai": "Nákup v Dubaji",
   "selling_property": "Prodej nemovitosti",
   "offplan_projects": "Projekty ve fázi výstavby",
-   "Services" : "Služby"
+   "Services" : "Služby",
+   "Hero_Badge": "Prémiové realitní služby",
+  "Hero_Title_1": "Pozvedáme vaši",
+  "Hero_Title_2": "realitní zkušenost",
+  "Hero_Description": "Od nalezení vašeho vysněného domova až po maximalizaci výnosů z investic – naše služby jsou navrženy tak, aby překonaly očekávání.",
+
+  "Our_Services_Title": "Naše služby",
+  "Learn_More": "Zjistit více",
+
+  "Property_Buying": "Nákup nemovitosti",
+  "Property_Buying_Desc": "Najděte svůj vysněný domov díky pečlivě vybraným prémiovým nemovitostem.",
+  "Property_Buying_Feature_1": "Individuální výběr nemovitostí",
+  "Property_Buying_Feature_2": "Virtuální i osobní prohlídky",
+  "Property_Buying_Feature_3": "Podpora při vyjednávání",
+  "Property_Buying_Feature_4": "Právní dokumentace",
+
+  "Offplan_Investment": "Investice do projektů ve výstavbě",
+  "Offplan_Investment_Desc": "Získejte přístup k nejslibnějším developerským projektům v Dubaji.",
+  "Offplan_Investment_Feature_1": "Zvýhodněné ceny v předprodeji",
+  "Offplan_Investment_Feature_2": "Partnerství s developery",
+  "Offplan_Investment_Feature_3": "Analýza návratnosti investic",
+  "Offplan_Investment_Feature_4": "Poradenství k platebním plánům",
+
+  "Property_Selling": "Prodej nemovitosti",
+  "Property_Selling_Desc": "Maximalizujte hodnotu své nemovitosti díky odbornému marketingu.",
+  "Property_Selling_Feature_1": "Ocenění nemovitosti",
+  "Property_Selling_Feature_2": "Profesionální fotografie",
+  "Property_Selling_Feature_3": "Globální marketing",
+  "Property_Selling_Feature_4": "Propojení s prověřenými kupci",
+
+  "Property_Management": "Správa nemovitostí",
+  "Property_Management_Desc": "Bezstarostná správa vaší realitní investice.",
+  "Property_Management_Feature_1": "Prověřování nájemníků",
+  "Property_Management_Feature_2": "Výběr nájemného",
+  "Property_Management_Feature_3": "Koordinace údržby",
+  "Property_Management_Feature_4": "Pravidelné kontroly",
+
+  "Mortgage_Advisory": "Hypoteční poradenství",
+  "Mortgage_Advisory_Desc": "Odborné poradenství v oblasti financování a hypoték.",
+  "Mortgage_Advisory_Feature_1": "Porovnání úrokových sazeb",
+  "Mortgage_Advisory_Feature_2": "Pomoc s předběžným schválením",
+  "Mortgage_Advisory_Feature_3": "Podpora s dokumentací",
+  "Mortgage_Advisory_Feature_4": "Jednání s bankami",
+
+  "Investment_Consultation": "Investiční konzultace",
+  "Investment_Consultation_Desc": "Personalizované strategie podložené tržními daty.",
+  "Investment_Consultation_Feature_1": "Plánování portfolia",
+  "Investment_Consultation_Feature_2": "Tržní analýzy",
+  "Investment_Consultation_Feature_3": "Hodnocení rizik",
+  "Investment_Consultation_Feature_4": "Růstové projekce",
+
+  "Why_Choose_Evernest": "Proč si vybrat Evernest",
+  "Why_Choose_Desc": "Více než 15 let ověřené excelence na realitním trhu v Dubaji.",
+  "Luxury_Property": "Luxusní nemovitost"
 }
