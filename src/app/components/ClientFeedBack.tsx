@@ -682,7 +682,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       transition={{ duration: 0.3 }}
     >
       {/* Card */}
-      <div className="relative rounded-2xl bg-white p-6 h-full flex flex-col border border-[#8b5d3b]/20 transition-all duration-300">
+      <div className="relative rounded-md bg-white p-6 h-full flex flex-col border border-[#8b5d3b]/20 transition-all duration-300">
         {/* Header: Avatar, Name, Google icon */}
         <div className="flex items-start gap-3 mb-3">
           {/* Avatar */}
@@ -849,7 +849,7 @@ export default function TestimonialsPage() {
     return (
       <section className="bg-[#f6ecdf] py-12 px-4 sm:px-6 lg:px-10">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
+          <div className="mb-10">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#8b5d3b]">
               {t("ClientFeedback")}
             </h2>
@@ -870,7 +870,7 @@ export default function TestimonialsPage() {
   return (
     <section className="bg-[#f6ecdf] py-12 px-4 sm:px-6 lg:px-10">
       <div className="container mx-auto max-w-8xl px-6 md:px-10">
-        <motion.div className="text-center mb-10" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <motion.div className="mb-10" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#8b5d3b]">
             {t("ClientFeedback")}
           </h2>
@@ -884,7 +884,7 @@ export default function TestimonialsPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative h-full rounded-3xl bg-[#8b5d3b] p-7 flex flex-col justify-between border border-[#c2754e]/20">
+            <div className="relative h-full rounded-md bg-[#8b5d3b] p-7 flex flex-col justify-between border border-[#c2754e]/20">
               <div>
                 <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white/50 mx-auto mb-6 bg-gradient-to-br from-[#c2754e] to-[#8b5d3b] flex items-center justify-center">
                   <span className="text-3xl font-semibold text-white">E</span>
