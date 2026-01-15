@@ -413,16 +413,17 @@ export default function Header() {
           },
         ],
       },
-      {
-        label: t("areas"),
-        url: createPageUrl("AreaGuide"),
-        dropdown: [
-          {
-            label: t("areaGuide"),
-            routeKey: "AreaGuide",
-          },
-        ],
-      },
+      // {
+      //   label: t("areas"),
+      //   url: createPageUrl("AreaGuide"),
+      //   dropdown: [
+      //     {
+      //       label: t("areaGuide"),
+      //       routeKey: "AreaGuide",
+      //     },
+      //   ],
+      // },
+
       {
         label: t("developers"),
         url: createPageUrl("developers"),

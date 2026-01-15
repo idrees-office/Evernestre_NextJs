@@ -15,6 +15,8 @@ type DEVELOPER = {
   name: string;
   slug: string;
   image: string;
+  projects_count : number;
+  projects?: any[];
 };
 
 export default function DeveloperPage() {
@@ -24,8 +26,10 @@ export default function DeveloperPage() {
   const [page, setPage] = useState(1);
   const locale = useLocale();
   const t = useTranslations();
-  const [meta, setMeta] = useState<{ current: number; last: number } | null>( null);
-  
+  const [meta, setMeta] = useState<{ current: number; last: number } | null>(
+    null
+  );
+
   useEffect(() => {
     const fetchDevelopers = async () => {
       try {
@@ -54,30 +58,26 @@ export default function DeveloperPage() {
     return () => clearTimeout(handler);
   }, [query]);
 
-  // const filteredDevelopers = developers.filter((dev) =>
-  //   dev.name.toLowerCase().includes(query.toLowerCase())
-  // );
-
   // Handle page change with scroll to top
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
+
   return (
     <>
       {/* Banner */}
       <section className="bg-[#f6ecdf] py-12 border-b border-[#f0e4d9]">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-normal text-[#3c2f26] mb-2">
-            { t('popular_developers_title') }
+            {t("popular_developers_title")}
           </h2>
           <div className="mx-auto h-[3px] w-20 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>
         </div>
       </section>
 
       {/* Search + Developers Grid */}
-      <section className="bg-white py-10">
+      <section className="bg-[#f8f6f3] py-10">
         <div className="container mx-auto px-6 md:px-10">
           {/* Search */}
           <div className="flex justify-center mb-10">
@@ -94,7 +94,10 @@ export default function DeveloperPage() {
                 onChange={(e) => setQuery(e.target.value)}
                 className="flex-1 px-5 h-11 text-[15px] bg-transparent text-[#3c2f26] placeholder-[#8b5d3b]/60 focus:outline-none"
               />
-              <button type="submit" className="h-11 w-12 flex items-center justify-center bg-[#c97a52] text-white rounded-r-full">
+              <button
+                type="submit"
+                className="h-11 w-12 flex items-center justify-center bg-[#c97a52] text-white rounded-r-full"
+              >
                 <ArrowRight className="w-5 h-5" />
               </button>
             </motion.form>
@@ -105,7 +108,7 @@ export default function DeveloperPage() {
             // <p className="text-center text-[#8b5d3b]">Loading developers...</p>
             <>
               <motion.div
-                key={`page-${page}`} 
+                key={`page-${page}`}
                 initial="hidden"
                 animate="show"
                 variants={{
@@ -114,29 +117,40 @@ export default function DeveloperPage() {
                     opacity: 1,
                     transition: { staggerChildren: 0.1 },
                   },
-                }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+                }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
               >
                 {developers.map((developer) => (
                   <motion.div
-                    key={`${developer.id}-${page}`} 
-                    variants={{
-                      hidden: { opacity: 0, y: 40 },
-                      show: { opacity: 1, y: 0 },
-                    }} className="bg-white border border-[#f0e4d9] rounded-xl p-5 shadow-sm cursor-pointer hover:shadow-md transition-all">
-                    <Link href={`/${locale}/developers/${developer.slug}`}>
-                      <div className="h-[150px] flex items-center justify-center bg-[#fffaf5] relative">
-                        <Image
+                    key={`${developer.id}-${page}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="group relative bg-white rounded-lg p-8 cursor-pointer transition-all duration-300 hover:shadow-[0_4px_20px_rgba(139,93,59,0.08)]"
+                  >
+                    {/* Project Count Badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#c97a52] text-white">
+                        {/* {developer?.projects} Projects */}
+                        {developer?.projects_count || 0} Projects
+                      </span>
+                    </div>
+                    {/* Logo Container */}
+                      <Link href={`/${locale}/developers/${developer.slug}`}> 
+                    <div className="flex items-center justify-center h-32 mt-6">
+                      {developer.image ? (
+                        <img
                           src={developer.image}
                           alt={developer.name}
-                          fill
-                          className="object-contain p-4"
-                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                          className="max-h-25 max-w-[75%] object-contain grayscale-[30%] group-hover:grayscale-0 transition-all duration-300"
                         />
+                      ) : null}
+                      <div className="hidden w-full h-full items-center justify-center">
+                        <span className="text-2xl font-semibold text-[#3c2f26] tracking-wide"> {developer.name}
+                        </span>
                       </div>
-                      <p className="mt-3 text-[18px] font-normal text-[#3c2f26] text-center">
-                        {developer.name}
-                      </p>
-                    </Link>
+                    </div>
+                    </Link> 
                   </motion.div>
                 ))}
               </motion.div>
@@ -154,7 +168,6 @@ export default function DeveloperPage() {
                     <ArrowRight className="w-4 h-4 rotate-180" />
                   </button>
 
-                  
                   <div className="flex gap-2">
                     {Array.from({ length: Math.min(5, meta.last) }, (_, i) => {
                       let pageNum;
