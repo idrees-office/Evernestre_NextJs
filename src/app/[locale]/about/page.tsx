@@ -5,7 +5,7 @@ import Image from "next/image";
 import Vision from "@/app/components/Vision";
 import Timeline from "@/app/components/Timeline";
 import { useTranslations } from "next-intl";
-import { Rocket, Building2, TrendingUp, Award, Users, Globe } from "lucide-react";
+import { Rocket, Building2, TrendingUp, Award, Users, Globe, Target, Star, Briefcase, Zap } from "lucide-react";
 
 const coreValues = [
   {
@@ -51,39 +51,75 @@ const pointvalues = [
 
 const timelineItems = [
   {
-    year: 2010,
-    title: "Company Founded",
-    description: "Evernest was established with a vision to revolutionize the real estate industry, bringing innovation and excellence to property services.",
+    year: 2013,
+    title: "The Journey Begins",
+    description: "Mr. Farhan Ali embarked on his real estate career, joining Desert Oasis Real Estate Broker LLC as a Senior Property Consultant. This marked the beginning of his mission to reshape the real estate landscape of Dubai since 2012.",
     icon: <Building2 className="w-10 h-10 md:w-12 md:h-12" />
   },
   {
+    year: 2014,
+    title: "Building Expertise",
+    description: "During his tenure at Desert Oasis, Farhan honed his analytical and strategic thinking skills, specializing in Finance while developing a deep passion for Dubai's real estate market. His dedication to learning and excellence began to show in his growing portfolio of successful transactions.",
+    icon: <Target className="w-10 h-10 md:w-12 md:h-12" />
+  },
+  {
     year: 2015,
-    title: "Startup Growth",
-    description: "Evernest rapidly grew, and by 2015, we achieved one of our first major milestones. On short notice, our team worked tirelessly to resolve an emergency issue for CBC, a popular Egyptian TV channel, after several large companies had let them down. This success led to further opportunities, including a deal to develop a website for CBC and, shortly after, creating a Facebook app for the global brand Techno Mobile.",
+    title: "Establishing Reputation",
+    description: "Farhan's commitment to excellence and client satisfaction at Desert Oasis Real Estate earned him recognition as a trusted property consultant. His ability to navigate complex financial puzzles and deliver results for high-net-worth clients set the foundation for his future success.",
+    icon: <Star className="w-10 h-10 md:w-12 md:h-12" />
+  },
+  {
+    year: 2016,
+    title: "Rising Through the Ranks",
+    description: "Farhan's dedication and expertise led him to Vintage Real Estate, LLC, where he served as Sales Manager. His commitment to excellence and exceptional performance began to set him apart in Dubai's competitive real estate market, managing larger portfolios and leading sales teams.",
     icon: <Rocket className="w-10 h-10 md:w-12 md:h-12" />
   },
   {
-    year: 2018,
-    title: "Market Expansion",
-    description: "We expanded our services across multiple regions, establishing ourselves as a trusted partner in real estate development and investment.",
+    year: 2017,
+    title: "Expanding Market Presence",
+    description: "As Sales Manager at Vintage Real Estate, Farhan expanded his expertise across key Dubai areas including Business Bay, Jumeirah Village Circle, DAMAC Hills, and Dubai Design District. His track record of successful deals continued to grow, building relationships with developers and investors.",
     icon: <TrendingUp className="w-10 h-10 md:w-12 md:h-12" />
   },
   {
+    year: 2018,
+    title: "Leadership Excellence",
+    description: "Farhan's leadership skills flourished at Vintage Real Estate, where he successfully managed sales operations and mentored property consultants. His formidable personality and motivational presence inspired his team, while his focus on serving elite clientele from GCC, MENA, and Africa regions became his signature approach.",
+    icon: <Briefcase className="w-10 h-10 md:w-12 md:h-12" />
+  },
+  {
+    year: 2019,
+    title: "Evernest Real Estate Established",
+    description: "Evernest Real Estate was established, offering tailored real estate solutions in Dubai and beyond. Farhan joined Indus Real Estate as Sales Director, further expanding his expertise. With a reputation for integrity, performance, and professionalism, the foundation for future success was being built.",
+    icon: <Building2 className="w-10 h-10 md:w-12 md:h-12" />
+  },
+  {
     year: 2020,
-    title: "Industry Recognition",
-    description: "Evernest received prestigious awards for excellence in real estate services and innovation, solidifying our position as an industry leader.",
+    title: "EverNest Real Estate LLC Founded",
+    description: "Mr. Farhan Ali founded EverNest Real Estate LLC in June, driven by a compelling vision to establish dominance in the competitive Dubai market. As Founder & CEO, he brought his extensive experience and unwavering commitment to excellence to lead the company forward, focusing on hotel apartments, apartments, and premium properties.",
     icon: <Award className="w-10 h-10 md:w-12 md:h-12" />
   },
   {
+    year: 2021,
+    title: "Rapid Growth & Expansion",
+    description: "EverNest Real Estate experienced rapid growth under Farhan's leadership. The company expanded its service areas to Business Bay, JVC, DAMAC Hills, Arjan, Dubai Design District, and JLT. The international team began to take shape, ensuring seamless experiences across buying, selling, and managing real estate assets.",
+    icon: <Zap className="w-10 h-10 md:w-12 md:h-12" />
+  },
+  {
     year: 2022,
-    title: "Team Growth",
-    description: "Our team expanded significantly, bringing together talented professionals dedicated to delivering exceptional service and results for our clients.",
+    title: "Top 1% Achievement",
+    description: "Mr. Farhan's commitment to excellence earned him a prestigious place among the top 1% of Dubai's Realtors. The company's impressive portfolio continued to grow, serving elite clientele from the GCC, MENA, and Africa regions. EverNest became known for its vibrant, dedicated, and dynamic team of real estate professionals.",
     icon: <Users className="w-10 h-10 md:w-12 md:h-12" />
   },
   {
+    year: 2023,
+    title: "Market Leadership",
+    description: "EverNest Real Estate solidified its position as a trusted leader in Dubai's real estate market. The company's portfolio grew significantly, with properties for sale and rent across prime locations. Farhan's vision of being a better real estate solution for clients became a reality, with the team's genuine passion for real estate driving exceptional results.",
+    icon: <TrendingUp className="w-10 h-10 md:w-12 md:h-12" />
+  },
+  {
     year: 2024,
-    title: "Global Reach",
-    description: "Today, Evernest continues to grow, serving clients worldwide with innovative solutions and maintaining our commitment to excellence in every project.",
+    title: "Excellence You Trust, Awards to Prove It",
+    description: "Today, EverNest Real Estate stands as a testament to dedication and excellence. With over 1500+ transactions worth around 7.5 billion in sales completed, the company operates from Opus Tower A in Business Bay, Dubai. The team continues to serve ultra-high-net-worth individuals with integrity, professionalism, and a commitment to peak experience and peak results.",
     icon: <Globe className="w-10 h-10 md:w-12 md:h-12" />
   }
 ];
@@ -127,7 +163,7 @@ export default function AboutUs() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <span className="text-[#d5a86e] text-xs uppercase tracking-[0.2em]">{ t('since_2010') }</span>
+              <span className="text-[#d5a86e] text-xs uppercase tracking-[0.2em]">{ t('since_2019') }</span>
               <h2 className="text-2xl md:text-3xl font-light text-gray-900 mt-2 mb-5">
                  { t('our_story') }
               </h2>
@@ -143,7 +179,7 @@ export default function AboutUs() {
       </section>
       
       {/* Timeline Section */}
-      <Timeline items={timelineItems} startYear={2010} endYear={2024} />
+      <Timeline items={timelineItems} startYear={2013} endYear={2024} />
       
       <Vision />     
       <section className="bg-[#1a1a1a] py-16">
