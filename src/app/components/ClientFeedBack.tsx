@@ -640,6 +640,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight, Star, Quote, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getGoogleReviews, transformReviews } from "@/lib/reviews";
@@ -687,20 +688,25 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           {/* Avatar */}
           <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#f5e0c5] to-[#c9a882] flex items-center justify-center flex-shrink-0 ring-2 ring-[#f5e0c5]">
             {testimonial.avatar ? (
-              <div className="w-full h-full rounded-full overflow-hidden">
-                <img
+              <div className="w-full h-full rounded-full overflow-hidden relative">
+                <Image
                   src={testimonial.avatar}
                   alt={testimonial.name}
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const parent = e.currentTarget.parentElement;
-                    if (parent) {
-                      const fallback = document.createElement('span');
-                      fallback.className = "text-base font-semibold text-[#8b5d3b]";
-                      fallback.textContent = testimonial.name.charAt(0);
-                      parent.appendChild(fallback);
-                    }
+                  fill
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  onError={(e: any) => {
+                    // hide broken image; fallback UI handled by surrounding markup
+                    try {
+                      e.currentTarget.style.display = 'none';
+                      const parent = e.currentTarget.parentElement;
+                      if (parent) {
+                        const fallback = document.createElement('span');
+                        fallback.className = "text-base font-semibold text-[#8b5d3b]";
+                        fallback.textContent = testimonial.name.charAt(0);
+                        parent.appendChild(fallback);
+                      }
+                    } catch {}
                   }}
                 />
               </div>
@@ -744,7 +750,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         {/* Quote */}
         <div className="flex-1">
           <p className="text-[13px] leading-relaxed text-[#8b5d3b]/80">
-            "{displayText}"
+            {displayText}
           </p>
           {isLongText && (
             <button
@@ -842,7 +848,7 @@ export default function TestimonialsPage() {
   if (loading) {
     return (
       <section className="bg-[#f6ecdf] py-12 px-4 sm:px-6 lg:px-10">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#8b5d3b]">
               {t("ClientFeedback")}
@@ -863,7 +869,7 @@ export default function TestimonialsPage() {
 
   return (
     <section className="bg-[#f6ecdf] py-12 px-4 sm:px-6 lg:px-10">
-      <div className="max-w-6xl mx-auto">
+      <div className="container mx-auto max-w-8xl px-6 md:px-10">
         <motion.div className="text-center mb-10" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#8b5d3b]">
             {t("ClientFeedback")}
