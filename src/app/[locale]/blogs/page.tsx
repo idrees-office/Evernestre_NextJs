@@ -173,16 +173,13 @@ export default function BlogContactPage() {
           <div className="flex justify-center text-center">
             <div className="space-y-5">
               <h1 className="text-3xl md:text-4xl font-normal text-[#0e0e0e] leading-[1.15] tracking-tight">
-                
                 {t('blogs')} &amp; {t('insights')}{" "}
                 <span className="bg-gradient-to-r from-[color:var(--brand)] to-[#b96842] bg-clip-text text-transparent">
                      {t('dubai')}
                 </span>
               </h1>
-
               <p className="text-[#1a1a1a]/80 leading-relaxed text-[15px] font-light max-w-xl mx-auto"> {t('news_insights_description')}</p>
-
-              <ul className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[14px] text-[#0e0e0e]/80 max-w-xl mx-auto">
+              {/* <ul className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[14px] text-[#0e0e0e]/80 max-w-xl mx-auto">
                 <li className="flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white/60 backdrop-blur px-3 py-2 shadow-sm">
                   <svg width="16" height="16" viewBox="0 0 24 24" className="shrink-0">
                     <path fill="currentColor" d="M20 6L9 17l-5-5" />
@@ -201,7 +198,7 @@ export default function BlogContactPage() {
                   </svg>
                   {t('investment_guides')}
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>
@@ -269,10 +266,9 @@ export default function BlogContactPage() {
                               src={featuredNews.image}
                               alt={featuredNews.title}
                               fill
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                              className="w-full h-full"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-10" />
-                            {/* Date badge top left (similar to your design) */}
                             <div className="absolute top-5 left-5 z-20">
                               <div className="bg-[#8b5d3b] text-white rounded-md shadow-md text-center text-xs leading-tight px-2 py-2">
                                 <div className="font-semibold">
@@ -355,26 +351,20 @@ export default function BlogContactPage() {
                             transition={{ duration: 0.4, delay: index * 0.08 }}
                             className="bg-white rounded-sm overflow-hidden shadow-md border border-gray-100 group cursor-pointer hover:shadow-xl transition-all duration-500 hover:-translate-y-1.5"
                           >
-                            <div className="h-52 relative overflow-hidden">
+                            <div className="h-72 relative overflow-hidden">
                               <Image
                                 src={blogItem.image}
                                 alt={blogItem.title}
                                 fill
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                className="w-full h-full"
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                              <div className="absolute top-4 left-4">
-                                <span className="bg-white/95 backdrop-blur-sm text-gray-700 px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm">
-                                  Market Update
-                                </span>
-                              </div>
                               <div className="absolute bottom-3 left-4 flex items-center gap-2">
                                 <span className="bg-black/60 text-white px-2 py-1 rounded text-xs backdrop-blur-sm">
                                   {generateReadTime(blogItem.title)}
                                 </span>
                               </div>
                             </div>
-
                             <div className="p-5">
                               <div className="flex items-center gap-3 text-xs text-gray-500 mb-2">
                                 <div className="flex items-center gap-1">

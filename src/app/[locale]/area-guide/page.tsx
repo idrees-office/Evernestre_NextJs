@@ -83,8 +83,6 @@ export default function AreaGuidePage() {
 }, [locale, currentPage]);
 
 
-
-
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= (pagination?.last_page || 1)) {
       setCurrentPage(page);
@@ -97,7 +95,7 @@ export default function AreaGuidePage() {
       <div className="w-full overflow-x-hidden">
         <section className="bg-[#f6ecdf] py-12 relative border-b border-[#f0e4d9] w-full">
           <div className="container mx-auto px-6 text-center relative z-10 w-full">
-            <h2 className="text-3xl md:text-4xl font-medium text-[#3c2f26] mb-2"> 
+            <h2 className="text-2xl md:text-3xl font-normal text-[#3c2f26] mb-2"> 
                 { t('popular_areas_title')}
 
             </h2>
@@ -153,7 +151,7 @@ export default function AreaGuidePage() {
      
       <section className="bg-[#f6ecdf] py-12 relative border-b border-[#f0e4d9] w-full">
         <div className="container mx-auto px-6 text-center relative z-10 w-full">
-          <h2 className="text-3xl md:text-4xl font-medium text-[#3c2f26] mb-2">
+          <h2 className="text-3xl md:text-4xl font-normal text-[#3c2f26] mb-2">
             { t('popular_areas_title')}
           </h2>
           <div className="mx-auto h-[3px] w-20 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>

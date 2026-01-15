@@ -634,21 +634,13 @@ export default function Services() {
                       </li>
                     ))}
                   </ul>
-                  
-                  <div className="mt-4 pt-4 border-t border-[#d0845b]/10">
-                    <button className="flex items-center gap-2 text-[#8b5d3b] text-sm font-medium group-hover:gap-3 transition-all duration-300">
-                      {t("Learn_More")}
-                      <ChevronRight className="h-4 w-4" />
-                    </button>
-                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Process Section */}
+      
       <section className="bg-white py-12 md:py-16">
         <div className="container mx-auto max-w-7xl px-6 md:px-8">
           <motion.div

@@ -162,7 +162,7 @@ export default function NewsContactPage() {
                 </span>
               </h1>
               <p className="text-[#1a1a1a]/80 leading-relaxed text-[15px] font-light max-w-xl mx-auto"> {t('news_insights_description')}</p>
-              <ul className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[14px] text-[#0e0e0e]/80 max-w-xl mx-auto">
+              {/* <ul className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[14px] text-[#0e0e0e]/80 max-w-xl mx-auto">
                 {[
                   t("market_intelligence"),
                   t("expert_analysis"),
@@ -175,7 +175,7 @@ export default function NewsContactPage() {
                     {item}
                   </li>
                 ))}
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>
@@ -290,7 +290,6 @@ export default function NewsContactPage() {
                           whileHover={{ y: -6 }}
                           className="bg-white rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
                         >
-                          {/* IMAGE (correct Next.js pattern) */}
                           <div className="w-full">
                             <Image
                               src={newsItem.image}
@@ -301,9 +300,7 @@ export default function NewsContactPage() {
                               sizes="(max-width: 768px) 100vw, 50vw"
                             />
                           </div>
-                          {/* CONTENT */}
                           <div className="p-5">
-                            {/* Meta */}
                             <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
                               <span className="flex items-center gap-1.5">
                                 <Calendar className="w-3.5 h-3.5 text-[#8b5d3b]" />
@@ -312,13 +309,9 @@ export default function NewsContactPage() {
                               <span>·</span>
                               <span>{generateReadTime(newsItem.title)}</span>
                             </div>
-
-                            {/* Title */}
                             <h4 className="font-medium text-gray-900 mb-4 leading-snug line-clamp-2 hover:text-[#8b5d3b] transition-colors">
                               {newsItem.title}
                             </h4>
-
-                            {/* Footer */}
                             <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                               <div className="flex items-center gap-2">
                                 <div className="w-6 h-6 bg-gradient-to-br from-[#8b5d3b]/20 to-[#c97a52]/20 rounded-full flex items-center justify-center">
@@ -343,12 +336,6 @@ export default function NewsContactPage() {
                   </div>
                 </div>
               )}
-
-
-              
-
-
-              
               {lastPage > 1 && (
                 <div className="flex justify-center items-center gap-3 mt-12">
                   <button

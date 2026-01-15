@@ -69,7 +69,7 @@ export default function DeveloperPage() {
       {/* Banner */}
       <section className="bg-[#f6ecdf] py-12 border-b border-[#f0e4d9]">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-medium text-[#3c2f26] mb-2">
+          <h2 className="text-3xl md:text-4xl font-normal text-[#3c2f26] mb-2">
             { t('popular_developers_title') }
           </h2>
           <div className="mx-auto h-[3px] w-20 bg-gradient-to-r from-[#b06c48] to-[#d4a373] rounded-full"></div>
@@ -105,7 +105,7 @@ export default function DeveloperPage() {
             // <p className="text-center text-[#8b5d3b]">Loading developers...</p>
             <>
               <motion.div
-                key={`page-${page}`} // Force re-render on page change
+                key={`page-${page}`} 
                 initial="hidden"
                 animate="show"
                 variants={{
@@ -114,8 +114,7 @@ export default function DeveloperPage() {
                     opacity: 1,
                     transition: { staggerChildren: 0.1 },
                   },
-                }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+                }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
               >
                 {developers.map((developer) => (
                   <motion.div
@@ -123,9 +122,7 @@ export default function DeveloperPage() {
                     variants={{
                       hidden: { opacity: 0, y: 40 },
                       show: { opacity: 1, y: 0 },
-                    }}
-                    className="bg-white border border-[#f0e4d9] rounded-xl p-5 shadow-sm cursor-pointer hover:shadow-md transition-all"
-                  >
+                    }} className="bg-white border border-[#f0e4d9] rounded-xl p-5 shadow-sm cursor-pointer hover:shadow-md transition-all">
                     <Link href={`/${locale}/developers/${developer.slug}`}>
                       <div className="h-[150px] flex items-center justify-center bg-[#fffaf5] relative">
                         <Image

@@ -79,7 +79,7 @@ export default function TeamPage() {
     categoriesSet.add("CEO");
     categoriesSet.add("Sales");
     categoriesSet.add("Marketing Team");
-    categoriesSet.add("Admins");
+    categoriesSet.add("Operations");
 
     return Array.from(categoriesSet);
   };
@@ -101,7 +101,7 @@ export default function TeamPage() {
 
   // Get category for each member
   const getMemberCategory = (designation: string | null): string => {
-    if (!designation) return "Admins";
+    if (!designation) return "Operations";
 
     const designationLower = designation.toLowerCase();
 
@@ -135,7 +135,7 @@ export default function TeamPage() {
       return "Marketing Team";
     }
 
-    return "Admins";
+    return "Operations";
   };
 
   // Format phone number
@@ -250,20 +250,19 @@ export default function TeamPage() {
                 className="mx-auto max-w-3xl text-center"
               >
                 {/* badge */}
-                <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[#8b5d3b]/15 bg-white/70 px-4 py-2 shadow-sm backdrop-blur">
+                {/* <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[#8b5d3b]/15 bg-white/70 px-4 py-2 shadow-sm backdrop-blur">
                   <span className="h-2 w-2 rounded-full bg-[#8b5d3b]" />
                   <span className="text-sm font-medium text-[#3c2f26]/75 tracking-wide">
                     {allTeamMembers.length} {t("expert_professionals")}
                   </span>
-                </div>
+                </div> */}
 
-                <h1 className="mt-6 text-3xl md:text-4xl font-light tracking-tight leading-tight">
+                <h1 className="text-3xl md:text-4xl font-light tracking-tight leading-tight">
                   {t("excellence_meets")}{" "}
                   <span className="font-semibold bg-gradient-to-r from-[#8b5d3b] to-[#c89a67] bg-clip-text text-transparent">
                     {t("experience")}
                   </span>
                 </h1>
-
                 <p className="mt-4 text-base md:text-lg text-[#3c2f26]/65 leading-relaxed">
                   {t("real_estate_experience_description")}
                 </p>
