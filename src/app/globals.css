@@ -57,6 +57,15 @@ body{
   padding: 0;
 }
 
+/* Outlined text style for stats */
+.stats-outline-number {
+  -webkit-text-stroke: 3px #c9a882;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  letter-spacing: 0.02em;
+  font-weight: 900;
+}
+
 .phone-input-custom .PhoneInput:focus-within {
   border-color: #c97a52;
   box-shadow: 0 0 0 1px #c97a52;
@@ -111,6 +120,59 @@ body{
 .phone-input-custom.error .PhoneInput:focus-within {
   border-color: #f87171 !important;
   box-shadow: 0 0 0 1px #f87171;
+}
+
+/* ============================
+   Stats Strip Double Stroke
+   ============================ */
+
+.stats-outline-text {
+  -webkit-text-stroke: 4px #d0845b;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-shadow: 
+    0 0 0 #d0845b,
+    0 0 0 #d0845b,
+    0 0 0 #d0845b,
+    0 0 0 #d0845b,
+    1px 1px 0 #d0845b,
+    -1px -1px 0 #d0845b,
+    1px -1px 0 #d0845b,
+    -1px 1px 0 #d0845b,
+    2px 2px 0 #d0845b,
+    -2px -2px 0 #d0845b,
+    2px -2px 0 #d0845b,
+    -2px 2px 0 #d0845b,
+    3px 3px 0 #d0845b,
+    -3px -3px 0 #d0845b,
+    3px -3px 0 #d0845b,
+    -3px 3px 0 #d0845b;
+}
+
+/* Smooth scroll for 3D effects */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 3D Transform optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* GPU acceleration for 3D transforms */
+[style*="transform-style: preserve-3d"],
+[style*="perspective"] {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Outlined text style for stats */
+.stats-outline-number {
+  -webkit-text-stroke: 2px #c9a882;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  letter-spacing: 0.02em;
 }
 
 
