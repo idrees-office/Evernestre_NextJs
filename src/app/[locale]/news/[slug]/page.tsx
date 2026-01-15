@@ -178,7 +178,7 @@ export default function NewsDetail({ params }: { params: Promise<{ slug: string 
                     src={news.image}
                     alt={news.title}
                     fill
-                    className="object-cover"
+                    className=""
                     priority
                   />
                 </div>
@@ -195,18 +195,10 @@ export default function NewsDetail({ params }: { params: Promise<{ slug: string 
                   <h1 className="text-lg md:text-xl font-medium text-gray-900 leading-snug mb-5">
                     {news.title}
                   </h1>
-                  
                   <article className="mt-4 space-y-3">
                     {(news.description ? parseHTMLContent(news.description) : []).map((item, index) => {
                       if (item.type === "heading") {
-                        return (
-                          <h2
-                            key={index}
-                            className="text-sm font-medium text-gray-800 mt-4"
-                          >
-                            {item.content}
-                          </h2>
-                        );
+                        return ( <h2 key={index} className="text-sm font-medium text-gray-800 mt-4"> {item.content} </h2> );
                       }
                       
                       return (

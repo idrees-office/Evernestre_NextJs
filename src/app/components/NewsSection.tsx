@@ -81,7 +81,7 @@ export default function NewsSection({
                 src={featured.cover || "/images/news/placeholder.jpg"}
                 alt={featured.title}
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                className=""
                 priority
                 sizes="(min-width: 1024px) 66vw, 100vw"
               />
@@ -114,7 +114,7 @@ export default function NewsSection({
                         }
                         alt={p.title}
                         fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-[1.05]"
+                        className=""
                         sizes="160px"
                       />
 
