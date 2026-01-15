@@ -16,6 +16,7 @@ type DEVELOPER = {
   slug: string;
   image: string;
   projects_count : number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   projects?: any[];
 };
 
@@ -120,39 +121,52 @@ export default function DeveloperPage() {
                 }}
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
               >
-                {developers.map((developer) => (
-                  <motion.div
-                    key={`${developer.id}-${page}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="group relative bg-white rounded-lg p-8 cursor-pointer transition-all duration-300 hover:shadow-[0_4px_20px_rgba(139,93,59,0.08)]"
-                  >
-                    {/* Project Count Badge */}
-                    <div className="absolute top-4 left-4">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#c97a52] text-white">
-                        {/* {developer?.projects} Projects */}
-                        {developer?.projects_count || 0} Projects
-                      </span>
+               {developers.map((developer) => (
+                <motion.div
+                  key={`${developer.id}-${page}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="group relative bg-white rounded-lg p-6 cursor-pointer transition-all duration-300 hover:shadow-[0_4px_20px_rgba(139,93,59,0.08)]"
+                >
+                  {/* Project Count Badge */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#c97a52] text-white">
+                      {developer?.projects_count || 0} Projects
+                    </span>
+                  </div>
+
+                  <Link href={`/${locale}/developers/${developer.slug}`} className="block h-full">
+                    {/* Image Wrapper - Fixed centering */}
+                    <div className="relative h-20 mt-6 flex items-center justify-center">
+                      {developer?.image ? (
+                        <div className="relative w-full h-full flex items-center justify-center">
+                          <Image
+                            src={developer.image}
+                            alt={developer.name}
+                            width={120}
+                            height={80}
+                            className="object-contain max-w-[80%] max-h-[80%] grayscale-[30%] group-hover:grayscale-0 transition-all duration-300"
+                            style={{ 
+                              width: 'auto',
+                              height: 'auto',
+                              maxWidth: '100%',
+                              maxHeight: '100%'
+                            }}
+                          />
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-center w-full h-full">
+                          <span className="text-xl font-semibold text-[#3c2f26] text-center px-4">
+                            {developer?.name}
+                          </span>
+                        </div>
+                      )}
                     </div>
-                    {/* Logo Container */}
-                      <Link href={`/${locale}/developers/${developer.slug}`}> 
-                    <div className="flex items-center justify-center h-32 mt-6">
-                      {developer.image ? (
-                        <img
-                          src={developer.image}
-                          alt={developer.name}
-                          className="max-h-25 max-w-[75%] object-contain grayscale-[30%] group-hover:grayscale-0 transition-all duration-300"
-                        />
-                      ) : null}
-                      <div className="hidden w-full h-full items-center justify-center">
-                        <span className="text-2xl font-semibold text-[#3c2f26] tracking-wide"> {developer.name}
-                        </span>
-                      </div>
-                    </div>
-                    </Link> 
-                  </motion.div>
-                ))}
+                  </Link>
+                </motion.div>
+              ))}
+
               </motion.div>
               {meta && meta.last > 1 && (
                 <div className="flex justify-center items-center gap-4 mt-10">
