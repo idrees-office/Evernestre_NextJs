@@ -79,7 +79,7 @@ export default function DeveloperPage() {
 
       {/* Search + Developers Grid */}
       <section className="bg-[#f8f6f3] py-10">
-        <div className="container mx-auto px-6 md:px-10">
+        <div className="container mx-auto max-w-8xl px-4 sm:px-6 md:px-10">
           {/* Search */}
           <div className="flex justify-center mb-10">
             <motion.form
@@ -129,15 +129,12 @@ export default function DeveloperPage() {
                   transition={{ duration: 0.3 }}
                   className="group relative bg-white rounded-lg p-6 cursor-pointer transition-all duration-300 hover:shadow-[0_4px_20px_rgba(139,93,59,0.08)]"
                 >
-                  {/* Project Count Badge */}
                   <div className="absolute top-4 left-4 z-10">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#c97a52] text-white">
                       {developer?.projects_count || 0} Projects
                     </span>
                   </div>
-
                   <Link href={`/${locale}/developers/${developer.slug}`} className="block h-full">
-                    {/* Image Wrapper - Fixed centering */}
                     <div className="relative h-20 mt-6 flex items-center justify-center">
                       {developer?.image ? (
                         <div className="relative w-full h-full flex items-center justify-center">
