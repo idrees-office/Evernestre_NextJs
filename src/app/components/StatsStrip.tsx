@@ -104,8 +104,8 @@ export default function StatsStrip() {
         <div className="container mx-auto max-w-7xl px-6 md:px-8 py-12 md:py-16">
           <div className="grid grid-cols-1 gap-8 text-center text-white md:grid-cols-4 md:divide-x md:divide-white/20">
             {STATS.map((s, i) => (
-              <div key={`${s.label}-${i}`} className="px-2"> {/* Added index for uniqueness */}
-                <div className="text-[35px] md:text-[40px] lg:text-[45px] font-normal leading-none tracking-wide text-[#ddb19a]">
+              <div key={`${s.label}-${i}`} className="px-2">
+                <div className="text-[35px] md:text-[40px] lg:text-[45px] font-bold leading-none tracking-wide stats-outline-number">
                   <span className="tabular-nums">
                     <Counter value={s.value} abbrK={s.abbrK} start={inView} />
                   </span>
@@ -117,6 +117,7 @@ export default function StatsStrip() {
                   { t(``+s.label+``)}
                 </div>
               </div>
+
             ))}
           </div>
         </div>
