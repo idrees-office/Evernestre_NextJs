@@ -388,6 +388,7 @@ const parseHTMLContent = (html: string) => {
 
 export default function NewsDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = usePromise(params);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [news, setNews] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const locale = useLocale();
@@ -598,7 +599,9 @@ export default function NewsDetail({ params }: { params: Promise<{ slug: string 
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {news.related.slice(0, 4).map((item: any) => (
+                  
+                  { // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  news.related.slice(0, 4).map((item: any) => (
                     <Link
                       key={item.id}
                       href={`/news/${item.slug}`}
