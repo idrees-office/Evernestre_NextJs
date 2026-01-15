@@ -121,7 +121,7 @@ export default function DeveloperPage() {
                 }}
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
               >
-               {developers.map((developer) => (
+               {/* {developers.map((developer) => (
                 <motion.div
                   key={`${developer.id}-${page}`}
                   initial={{ opacity: 0, y: 20 }}
@@ -162,8 +162,48 @@ export default function DeveloperPage() {
                     </div>
                   </Link>
                 </motion.div>
-              ))}
+              ))} */}
 
+              {developers.map((developer) => (
+                  <motion.div
+                    key={`${developer.id}-${page}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="group relative bg-white rounded-lg p-4 cursor-pointer transition-all duration-300 hover:shadow-[0_4px_20px_rgba(139,93,59,0.08)] min-h-[180px]"
+                  >
+                    {/* Project Count Badge */}
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[#c97a52] text-white">
+                        {developer?.projects_count || 0} Projects
+                      </span>
+                    </div>
+
+                    <Link
+                      href={`/${locale}/developers/${developer.slug}`}
+                      className="block h-full"
+                    >
+                      {/* Logo Container */}
+                      <div className="relative h-full flex items-center justify-center px-4 pt-8 pb-4">
+                        {developer?.image ? (
+                          <div className="relative w-full h-full flex items-center justify-center">
+                            <Image
+                              src={developer.image}
+                              alt={developer.name}
+                              width={140}
+                              height={140}
+                              className="object-contain max-w-[85%] max-h-[85%] grayscale-[30%] group-hover:grayscale-0 transition-all duration-300"
+                            />
+                          </div>
+                        ) : (
+                          <span className="text-lg font-semibold text-[#3c2f26] text-center px-3">
+                            {developer?.name}
+                          </span>
+                        )}
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
               </motion.div>
               {meta && meta.last > 1 && (
                 <div className="flex justify-center items-center gap-4 mt-10">
