@@ -12,35 +12,40 @@ import {
 
 const socials = [
   {
-    name: "Facebook",
-    icon: <Facebook className="w-6 h-6" />,
-    href: "https://www.facebook.com/evernestrealestatellc",
-  },
-  {
-    name: "Twitter",
-    icon: <Twitter className="w-6 h-6" />,
-    href: "https://x.com/evernest_dxb/status/1384846882665648133",
-  },
-  {
     name: "Instagram",
     icon: <Instagram className="w-6 h-6" />,
     href: "https://www.instagram.com/evernest_dubairealestate/",
-  },
-  {
-    name: "YouTube",
-    icon: <Youtube className="w-6 h-6" />,
-    href: "https://www.youtube.com/@evernestrealestate3688/videos",
-  },
-  {
-    name: "WhatsApp",
-    icon: <MessageCircle className="w-6 h-6" />,
-    href: "https://wa.me/+971522406449?text=Hello%2C%20how%20may%20I%20help%20you%3F",
   },
   {
     name: "LinkedIn",
     icon: <Linkedin className="w-6 h-6" />,
     href: "https://www.linkedin.com/company/evernest-real-estate-llc/",
   },
+  {
+    name: "Facebook",
+    icon: <Facebook className="w-6 h-6" />,
+    href: "https://www.facebook.com/evernestrealestatellc",
+  },
+
+   {
+    name: "WhatsApp",
+    icon: <MessageCircle className="w-6 h-6" />,
+    href: "https://wa.me/+971522406449?text=Hello%2C%20how%20may%20I%20help%20you%3F",
+  },
+
+  {
+    name: "Twitter",
+    icon: <Twitter className="w-6 h-6" />,
+    href: "https://x.com/evernest_dxb/status/1384846882665648133",
+  },
+  
+  {
+    name: "YouTube",
+    icon: <Youtube className="w-6 h-6" />,
+    href: "https://www.youtube.com/@evernestrealestate3688/videos",
+  },
+ 
+  
 ];
 
 export default function SocialLinksSection() {

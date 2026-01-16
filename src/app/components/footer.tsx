@@ -29,9 +29,23 @@ export default function Footer() {
     { label: "Developers", href: `${locale}/developers` },
     { label: "News", href: `${locale}/news` },
     { label: "Careers", href: `${locale}/careers` },
+    { label: "Contact-Us", href: `${locale}/contact-us` },
+
   ];
 
   const socials = [
+     {
+      Icon: Instagram,
+      href: "https://www.instagram.com/evernest_dubairealestate/",
+      label: "Instagram",
+      color: "linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4)",
+    },
+     {
+      Icon: Linkedin,
+      href: "https://www.linkedin.com/company/evernest-real-estate-llc/",
+      label: "LinkedIn",
+      color: "#0A66C2",
+    },
     {
       Icon: Facebook,
       href: "https://www.facebook.com/evernestrealestatellc",
@@ -44,18 +58,8 @@ export default function Footer() {
       label: "Twitter",
       color: "#1DA1F2",
     },
-    {
-      Icon: Instagram,
-      href: "https://www.instagram.com/evernest_dubairealestate/",
-      label: "Instagram",
-      color: "linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4)",
-    },
-    {
-      Icon: Linkedin,
-      href: "https://www.linkedin.com/company/evernest-real-estate-llc/",
-      label: "LinkedIn",
-      color: "#0A66C2",
-    },
+   
+   
   ];
 
   const handleWhatsAppClick = () => {
