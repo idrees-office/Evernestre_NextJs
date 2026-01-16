@@ -22,6 +22,7 @@ interface Project {
 type OffPlanProjectsProps = {
   projects: Project[];
   latestOffPlanTitle   :string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   developerName?: any;
 };
 
@@ -55,7 +56,7 @@ function formatMoney(amount: string, currency: Currency) {
   return `${symbol}${formatted}`;
 }
 
-export default function OffPlanProjects({ projects, latestOffPlanTitle }: OffPlanProjectsProps) {
+export default function OffPlanProjects({ projects, latestOffPlanTitle, developerName }: OffPlanProjectsProps) {
   const [currency, setCurrency] = useState<Currency>("AED");
   const pricedProjects = useMemo(() => {
     return projects?.map((p) => ({
@@ -73,7 +74,7 @@ export default function OffPlanProjects({ projects, latestOffPlanTitle }: OffPla
         <div className="mb-6 flex justify-between items-center">
           <div className="text-center sm:text-left">
             <h2 className="text-[22px] sm:text-[26px] md:text-[32px] lg:text-[38px] font-normal text-[#8b5d3b] leading-tight">
-              {t(latestOffPlanTitle)}
+              {t(latestOffPlanTitle)} { developerName ??  developerName}
             </h2>
             <p className="text-xs sm:text-sm md:text-base text-[#1a1a1a]/70 mt-2 max-w-2xl">
               {t('latestOffPlanDesc')}

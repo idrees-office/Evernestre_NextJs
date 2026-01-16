@@ -187,9 +187,7 @@ export default function DeveloperPage() {
                       <div className="relative h-full flex items-center justify-center px-4 pt-8 pb-4">
                         {developer?.image ? (
                           <div className="relative w-full h-full flex items-center justify-center">
-                            <Image
-                              src={developer.image}
-                              alt={developer.name}
+                            <Image src={developer.image} alt={developer.name}
                               width={140}
                               height={140}
                               className="object-contain max-w-[85%] max-h-[85%] grayscale-[30%] group-hover:grayscale-0 transition-all duration-300"
