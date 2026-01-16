@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 interface Developer {
   id: number;
@@ -15,14 +16,19 @@ interface DevelopersSliderProps {
 
 function DeveloperCard({ developer }: { developer: Developer }) {
   return (
-    <div className="group flex-shrink-0 w-[200px] h-[120px] bg-white rounded-xl p-6 cursor-pointer transition-all duration-500 hover:shadow-[0_8px_30px_rgba(139,93,59,0.12)] hover:-translate-y-1 border border-[#f0e4d9]/50">
-      <div className="flex items-center justify-center h-full">
+    <div className="group relative flex-shrink-0 w-[200px] h-[120px] bg-white rounded-xl p-6 cursor-pointer transition-all duration-500 hover:shadow-[0_8px_30px_rgba(139,93,59,0.12)] hover:-translate-y-1 border border-[#f0e4d9]/50">
+      <div className="relative flex items-center justify-center w-full h-full">
         {developer.image ? (
-          <img
-            src={developer.image}
-            alt={developer.name}
-            className="max-h-14 max-w-full object-contain grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110"
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src={developer.image}
+              alt={developer.name}
+              fill
+              className="object-contain grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110"
+              sizes="(max-width: 768px) 150px, 200px"
+              quality={85}
+            />
+          </div>
         ) : (
           <span className="text-lg font-semibold text-[#3c2f26] tracking-wide opacity-50 group-hover:opacity-100 transition-opacity">
             {developer.name}
@@ -77,20 +83,20 @@ export default function DevelopersSlider({ developers }: DevelopersSliderProps) 
           <div className="relative">
             {/* Left Arrow */}
             <button 
-                    onClick={() => scroll("left")} 
-                    disabled={!canScrollLeft}
-                    className={`cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-3 z-10 
-                        w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 
-                        rounded-full bg-white shadow-lg flex items-center justify-center transition-all duration-300 
-                        border border-[#f0e4d9] ${
-                        canScrollLeft
-                            ? "text-[#c97a52] hover:bg-[#c97a52] hover:text-white hover:scale-105"
-                            : "text-[#8b5d3b]/20 cursor-not-allowed opacity-50"
-                        }`}
-                    aria-label="Scroll left"
-                    >
-                    <ChevronLeft className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
-                    </button>
+              onClick={() => scroll("left")} 
+              disabled={!canScrollLeft}
+              className={`cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-3 z-10 
+                w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 
+                rounded-full bg-white shadow-lg flex items-center justify-center transition-all duration-300 
+                border border-[#f0e4d9] ${
+                canScrollLeft
+                  ? "text-[#c97a52] hover:bg-[#c97a52] hover:text-white hover:scale-105"
+                  : "text-[#8b5d3b]/20 cursor-not-allowed opacity-50"
+              }`}
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+            </button>
 
             {/* Slider Container */}
             <div
@@ -116,27 +122,23 @@ export default function DevelopersSlider({ developers }: DevelopersSliderProps) 
 
             {/* Right Arrow */}
             <button
-                onClick={() => scroll("right")}
-                disabled={!canScrollRight}
-                className={`cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-3 z-10 
-                    w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 
-                    rounded-full bg-white shadow-lg flex items-center justify-center transition-all duration-300 
-                    border border-[#f0e4d9] ${
-                    canScrollRight
-                        ? "text-[#c97a52] hover:bg-[#c97a52] hover:text-white hover:scale-105"
-                        : "text-[#8b5d3b]/20 cursor-not-allowed opacity-50"
-                    }`}
-                aria-label="Scroll right"
-                >
-                <ChevronRight className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
-                </button>
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              className={`cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-3 z-10 
+                w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 
+                rounded-full bg-white shadow-lg flex items-center justify-center transition-all duration-300 
+                border border-[#f0e4d9] ${
+                canScrollRight
+                  ? "text-[#c97a52] hover:bg-[#c97a52] hover:text-white hover:scale-105"
+                  : "text-[#8b5d3b]/20 cursor-not-allowed opacity-50"
+              }`}
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+            </button>
           </div>
         </div>
       </section>
     </div>
   );
 }
-
-
-
-
