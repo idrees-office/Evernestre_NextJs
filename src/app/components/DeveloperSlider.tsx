@@ -28,7 +28,7 @@ function DeveloperCard({ developer }: { developer: Developer }) {
               sizes="(max-width: 768px) 150px, 200px"
               quality={85}
             />
-          </div>
+          </div> 
         ) : (
           <span className="text-lg font-semibold text-[#3c2f26] tracking-wide opacity-50 group-hover:opacity-100 transition-opacity">
             {developer.name}
