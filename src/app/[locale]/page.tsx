@@ -15,6 +15,7 @@ import RegisterCtaSection from "../components/RegisterCtaSection";
 import SocialLinksSection from "../components/SocialLinksSection";
 import Vision from "../components/Vision";
 import { useLocale } from "next-intl";
+import DevelopersSlider from "../components/DeveloperSlider";
 
 export default function App() {
   const locale = useLocale();
@@ -24,7 +25,6 @@ export default function App() {
 
   useEffect(() => {
     async function load() {
-      // const res = await getHomePage();
       const res = await getHomePage(locale);
       setData(res);
       setLoading(false);
@@ -39,14 +39,16 @@ export default function App() {
         <HeroSlider hero={data.hero} />
       </div>
        <CitiesGrid/>
-       <OffPlanProjects projects={data.projects} latestOffPlanTitle="latestOffPlanTitle"/>     
-      <HighlightedAreas areas={data.areas} />
-      <WhyEvernest />
-      <StatsStrip />
-      <NewsSection news={data.news} />
-      <TrustedRealEstateSection />
-      <Vision />
-      <RegisterCtaSection />
+       <OffPlanProjects projects={data.projects} latestOffPlanTitle="latestOffPlanTitle"/> 
+       <HighlightedAreas areas={data.areas} />
+       <WhyEvernest />
+       {/* <DevelopersSlider/> */}
+       <DevelopersSlider developers={data.developer} />
+       <StatsStrip />
+       <NewsSection news={data.news} />
+       <TrustedRealEstateSection />
+       <Vision />
+       <RegisterCtaSection /> 
       <SocialLinksSection />
     </div>
   );
