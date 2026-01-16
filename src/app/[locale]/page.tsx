@@ -38,7 +38,7 @@ export default function App() {
       <div className="relative">
         <HeroSlider hero={data.hero} /> 
       </div>
-       <CitiesGrid/>
+       {/* <CitiesGrid/> */}
        <OffPlanProjects projects={data.projects} latestOffPlanTitle="latestOffPlanTitle"/> 
        <HighlightedAreas areas={data.areas} />
        <WhyEvernest />
