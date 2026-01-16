@@ -14,6 +14,7 @@ import {
   Instagram,
   Linkedin,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   const [year, setYear] = useState<number | null>(null);
@@ -25,14 +26,14 @@ export default function Footer() {
   }, []);
   
   const quick = [
-    { label: "Off-Plan", href: `${locale}/project.html` },
-    { label: "Developers", href: `${locale}/developers` },
-    { label: "News", href: `${locale}/news` },
-    { label: "Careers", href: `${locale}/careers` },
-    { label: "Contact-Us", href: `${locale}/contact-us` },
+    { label: "Off-Plan", href:  `project.html` },
+    { label: "Developers", href:  `developers` },
+    { label: "News", href:  `news` },
+    { label: "Careers", href:   `careers` },
+    { label: "Contact-Us", href:  `contact-us` },
 
   ];
-
+  
   const socials = [
      {
       Icon: Instagram,
@@ -129,11 +130,9 @@ export default function Footer() {
         <div className="relative z-10">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-12 sm:grid-cols-2 lg:grid-cols-5">
             <div className="lg:col-span-2">
-              <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
-                <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
-                {t('evernest')}
-              </h3>
-              <p className="text-sm leading-relaxed text-[#3c2f26]/90">
+            <Image src="/assets/en-3.webp" alt="Evernest Logo" width={120} height={32} className="h-8 w-auto object-contain" priority />
+
+              <p className="text-sm leading-relaxed text-[#3c2f26]/90 mt-4">
                 {t('footer_description')}
               </p>
 
