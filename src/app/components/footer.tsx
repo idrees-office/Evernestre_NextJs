@@ -23,12 +23,12 @@ export default function Footer() {
   useEffect(() => {
     setYear(new Date().getFullYear());
   }, []);
-
+  
   const quick = [
-    { label: "careers", href: `${locale}/careers` },
-    { label: "FAQs", href: `${locale}/faqs` },
-    { label: "Blog", href: `${locale}/blogs` },
+    { label: "Off-Plan", href: `${locale}/project.html` },
     { label: "Developers", href: `${locale}/developers` },
+    { label: "News", href: `${locale}/news` },
+    { label: "Careers", href: `${locale}/careers` },
   ];
 
   const socials = [
@@ -189,10 +189,7 @@ export default function Footer() {
                   <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
                     <Mail className="h-4 w-4 text-[#8b5d3b]" />
                   </div>
-                  <a
-                    href="mailto:info@evernestre.ae"
-                    className="select-all hover:text-[#8b5d3b]"
-                  >
+                  <a href="mailto:info@evernestre.ae" className="select-all hover:text-[#8b5d3b]">
                     info@evernestre.ae
                   </a>
                 </div>
@@ -208,9 +205,7 @@ export default function Footer() {
             </div>
             <div>
               <h3 className="mb-3 flex items-center text-xl font-semibold text-[#8b5d3b]">
-                <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "}
-                { t('newsletter') }
-              </h3>
+                <span className="mr-2 h-2.5 w-2.5 rounded-full bg-[#d4a373]" />{" "} { t('newsletter') } </h3>
               <p className="mb-3 text-sm text-[#3c2f26]/80"> { t('newsletter_description') } </p>
               <form
                 onSubmit={(e) => e.preventDefault()}
@@ -248,9 +243,7 @@ export default function Footer() {
                 { t('privacy_policy') }
              
               </Link>
-              <Link
-                key="term-condition"
-                href={`/term-condition`}
+              <Link key="term-condition" href={`/term-condition`}
                 className="text-white/80 transition-colors hover:text-white"
               >
                 { t('term_condition') }
