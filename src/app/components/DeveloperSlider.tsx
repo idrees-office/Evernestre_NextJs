@@ -21,7 +21,7 @@ function DeveloperCard({ developer }: { developer: Developer }) {
         {developer.image ? (
           <div className="relative w-full h-full">
             <Image
-              src={developer.image}
+              src={developer.image} 
               alt={developer.name}
               fill
               className="object-contain grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110"

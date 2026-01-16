@@ -36,7 +36,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#faf8f6]">
       <div className="relative">
-        <HeroSlider hero={data.hero} />
+        <HeroSlider hero={data.hero} /> 
       </div>
        <CitiesGrid/>
        <OffPlanProjects projects={data.projects} latestOffPlanTitle="latestOffPlanTitle"/> 
