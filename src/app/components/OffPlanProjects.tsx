@@ -21,6 +21,8 @@ interface Project {
 
 type OffPlanProjectsProps = {
   projects: Project[];
+  latestOffPlanTitle   :string;
+  developerName?: any;
 };
 
 type Currency = "AED" | "USD" | "EUR";
@@ -32,49 +34,20 @@ const FX: Record<Currency, number> = {
 };
 
 const CURRENCIES = ["AED", "USD", "EUR"] as const;
-
-// function formatMoney(amount: string, currency: Currency) {
-//   if (!amount) return "Price on Request";
-
-//   // Extract numbers including decimals
-//   const numeric = parseFloat(amount.replace(/[^\d.]/g, ""));
-//   if (isNaN(numeric)) return "Price on Request";
-
-//   const converted = numeric * FX[currency];
-//   const symbol = currency === "AED" ? "AED " : currency === "USD" ? "USD " : "EUR ";
-
-//   // Format to show up to 2 decimal places only if needed
-//   const formatted = converted.toLocaleString('en-US', {
-//     minimumFractionDigits: 0,
-//     maximumFractionDigits: 2
-//   });
-
-//   return `${symbol}${formatted}`;
-// }
-
-
 function formatMoney(amount: string, currency: Currency) {
   if (!amount) return "Price on Request";
-
   const clean = amount.toString().trim();
-
   // ✅ if backend sends sqft format by mistake
   if (/sq\.?ft/i.test(clean)) return "Price on Request";
-
   // ✅ if backend sends N/A or request
   if (/n\/a|request/i.test(clean)) return "Price on Request";
-
   // ✅ extract first number (works with commas)
   const match = clean.match(/[\d,.]+/);
   if (!match) return "Price on Request";
-
   const numeric = parseFloat(match[0].replace(/,/g, ""));
   if (isNaN(numeric)) return "Price on Request";
-
   const converted = numeric * FX[currency];
-
   const symbol = currency === "AED" ? "AED " : currency === "USD" ? "$" : "€";
-
   const formatted = converted.toLocaleString("en-US", {
     maximumFractionDigits: 0,
   });
@@ -82,7 +55,7 @@ function formatMoney(amount: string, currency: Currency) {
   return `${symbol}${formatted}`;
 }
 
-export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
+export default function OffPlanProjects({ projects, latestOffPlanTitle }: OffPlanProjectsProps) {
   const [currency, setCurrency] = useState<Currency>("AED");
   const pricedProjects = useMemo(() => {
     return projects?.map((p) => ({
@@ -93,23 +66,14 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
 
   const t = useTranslations();
   const locale = useLocale(); 
-  
+
   return (
     <section className="bg-[#ffffff] py-10">
-      <div className="container mx-auto max-w-8xl px-6 md:px-10">
-        <div className="mb-8 flex justify-between items-start">
-         <div className="mt-5">
-            <h2 className="text-[32px] lg:text-[38px] text-[#8b5d3b] font-normal"> {t('offPlanByCityTitle')}</h2>
-            <p className="text-[#1a1a1a]/70 text-sm">{t('offPlanByCityDesc')}</p>
-          </div>
-        </div>
-        <CitiesGrid/>
-      </div> 
       <div className="container mx-auto max-w-8xl px-6 md:px-8 mt-14">
         <div className="mb-6 flex justify-between items-center">
           <div className="text-center sm:text-left">
             <h2 className="text-[22px] sm:text-[26px] md:text-[32px] lg:text-[38px] font-normal text-[#8b5d3b] leading-tight">
-              {t('latestOffPlanTitle')}
+              {t(latestOffPlanTitle)}
             </h2>
             <p className="text-xs sm:text-sm md:text-base text-[#1a1a1a]/70 mt-2 max-w-2xl">
               {t('latestOffPlanDesc')}
@@ -136,7 +100,6 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {pricedProjects?.map((p) => (
             <div key={p.slug} className="group relative overflow-hidden rounded-lg border border-[#d0845b]/20 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:-translate-y-1">
-              {/* <Link href={`/project/${p.slug}.html`}> */}
               <Link href={`/${locale}/project/${p.slug}.html`}>
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
@@ -189,7 +152,6 @@ export default function OffPlanProjects({ projects }: OffPlanProjectsProps) {
                         <MessageCircle className="h-3.5 w-3.5" />
                       </button>
                     </div>
-
                     <div className="flex items-center gap-2">
                       <button className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d0845d]/40 text-[#8b5d3b] hover:bg-[#d0845d]/10 transition-colors">
                         <Heart className="h-3.5 w-3.5" />

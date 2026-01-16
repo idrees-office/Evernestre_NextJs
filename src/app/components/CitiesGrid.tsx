@@ -34,9 +34,8 @@ export default function CitiesGrid({ cities = CITIES }: CitiesGridProps) {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
- const t = useTranslations();
+  const t = useTranslations();
   const locale = useLocale();
-
 
   useEffect(() => {
     const checkMobile = () => {
@@ -90,6 +89,14 @@ export default function CitiesGrid({ cities = CITIES }: CitiesGridProps) {
   // Desktop grid view
   if (!isMobile) {
     return (
+      <div className="container mx-auto max-w-8xl px-6 md:px-10 py-10">
+         <div className="mb-8 flex justify-between items-start">
+         <div className="mt-5">
+            <h2 className="text-[32px] lg:text-[38px] text-[#8b5d3b] font-normal"> {t('offPlanByCityTitle')}</h2>
+            <p className="text-[#1a1a1a]/70 text-sm">{t('offPlanByCityDesc')}</p>
+          </div>
+        </div>
+
       <div className="
         grid 
         grid-cols-2 
@@ -99,8 +106,8 @@ export default function CitiesGrid({ cities = CITIES }: CitiesGridProps) {
         lg:grid-cols-6 
         xl:grid-cols-7 
         gap-3 sm:gap-4 md:gap-5 lg:gap-6
-      "
-      >
+       "
+       >
         {cities.map((city) => (
           <Link
             key={city.id}
@@ -149,6 +156,7 @@ export default function CitiesGrid({ cities = CITIES }: CitiesGridProps) {
             </div>
           </Link>
         ))}
+      </div>
       </div>
     );
   }

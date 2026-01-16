@@ -17,7 +17,6 @@ import Vision from "../components/Vision";
 import { useLocale } from "next-intl";
 
 export default function App() {
- 
   const locale = useLocale();
    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any>(null);
@@ -39,7 +38,8 @@ export default function App() {
       <div className="relative">
         <HeroSlider hero={data.hero} />
       </div>
-      <OffPlanProjects projects={data.projects}/>
+       <CitiesGrid/>
+       <OffPlanProjects projects={data.projects} latestOffPlanTitle="latestOffPlanTitle"/>     
       <HighlightedAreas areas={data.areas} />
       <WhyEvernest />
       <StatsStrip />

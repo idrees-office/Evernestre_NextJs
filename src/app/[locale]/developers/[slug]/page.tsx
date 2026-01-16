@@ -42,8 +42,7 @@ export default function DeveloperDetail({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const locale = useLocale();
-
-  // STATIC STATS YOU WANTED TO KEEP
+  
   const staticStats = {
     projectsCount: "60+",
     yearEstablished: "1997",
@@ -77,53 +76,28 @@ export default function DeveloperDetail({
   return (
     <div className="min-h-screen bg-white">
       <section className="relative bg-gradient-to-b from-[#f6ecdf] to-[#fffaf5] overflow-hidden">
-        {/* Background accents */}
         <div className="absolute top-0 right-0 w-72 h-72 bg-[#d4a373]/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" />
         <div className="absolute bottom-0 left-0 w-52 h-52 bg-[#c97a52]/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" />
-
         <div className="container mx-auto px-6 py-12 md:py-16 relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            {/* Left Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+            <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
               <div className="flex items-center gap-2 mb-3">
                 <span className="h-px w-10 bg-[#c97a52]" />
                 <span className="text-[#8b5d3b] text-xs font-medium tracking-wider uppercase">
                   Premier Developer
                 </span>
               </div>
-
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-[#3c2f26] mb-4 leading-tight">
                 {developers?.name}
               </h1>
-
-              <p
-                className="text-[#5a4a3f] leading-relaxed max-w-xl"
-                dangerouslySetInnerHTML={{ __html: developers?.description }}
-              />
+              <p className="text-[#5a4a3f] leading-relaxed max-w-xl" dangerouslySetInnerHTML={{ __html: developers?.description }}/>
             </motion.div>
-
-            {/* Right Image */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="flex justify-center"
-            >
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.15 }} className="flex justify-center">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#c97a52]/15 to-[#d4a373]/15 rounded-2xl blur-xl scale-105" />
-
                 <div className="relative bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-[#f0e4d9]">
                   <div className="relative w-44 h-44 md:w-56 md:h-56 mx-auto">
-                    <Image
-                      src={developers?.image}
-                      alt={developers?.name}
-                      fill
-                      className="object-contain"
-                    />
+                    <Image src={developers?.image} alt={developers?.name} fill className="object-contain"/>
                   </div>
                 </div>
               </div>
@@ -131,7 +105,7 @@ export default function DeveloperDetail({
           </div>
         </div>
       </section>
-      <OffPlanProjects projects={developers?.projects?.data || []} />
+      <OffPlanProjects projects={developers?.projects?.data || []} latestOffPlanTitle="latestOffPlanTitle" developerName={developers?.name} />
       <RegisterCtaSection />
     </div>
   );
