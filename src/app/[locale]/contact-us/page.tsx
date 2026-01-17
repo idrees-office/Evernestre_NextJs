@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Building2 } from "lucide-react";
+import { Phone, Mail, Clock, Send, CheckCircle, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import SocialLinksSection from "@/app/components/SocialLinksSection";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -24,213 +26,278 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-[#faf9f7]">
       {/* Hero Section */}
-      <div className="relative bg-[#3c2f26] text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1600')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }} />
+      <section className="relative h-[45vh] sm:h-[50vh] min-h-[350px] sm:min-h-[400px] overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=2400&q=95&fit=crop&auto=format" 
+            alt="Contact" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#3c2f26]/40 via-[#3c2f26]/20 to-transparent" />
         </div>
-        
-        <div className="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
-          <div className="max-w-3xl">
-            <div className="inline-block mb-4">
-              <span className="text-[#d4a373] uppercase tracking-wider text-sm font-medium">Contact Us</span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Let's Discuss Your <br />
-              <span className="text-[#d4a373]">Dream Property</span>
+
+        <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="max-w-xl bg-[#3c2f26]/60 backdrop-blur-md p-6 sm:p-8"
+          >
+            <span className="inline-block text-[#d4a373] text-xs tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-2 sm:mb-3">
+              Get in Touch
+            </span>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-light text-white mb-3 sm:mb-4 leading-snug">
+              Let's Talk About Your Property
             </h1>
-            <p className="text-xl text-white/80 leading-relaxed">
-              Connect with Evernest Real Estate experts and discover exceptional properties across Dubai. We're here to turn your property dreams into reality.
+            <p className="text-white/90 text-sm sm:text-base leading-relaxed">
+              Our expert team is here to guide you every step of the way.
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-12 sm:py-16 md:py-20 bg-[#f6ecdf]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
+            
+            {/* Contact Info Cards */}
+            <div className="lg:col-span-1 space-y-4 sm:space-y-5">
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="bg-white p-5 sm:p-6 border border-[#e8e4de] hover:border-[#d4a373]/40 transition-colors duration-300"
+              >
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 bg-[#f6ecdf] flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-4 h-4 text-[#c97a52]" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[#8b5d3b]/70 text-xs uppercase tracking-wide mb-1">Call Us</p>
+                    <a href="tel:+97145843555" className="text-[#3c2f26] hover:text-[#c97a52] transition-colors text-sm sm:text-base break-all">
+                      +971 4 584 3555
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="bg-white p-5 sm:p-6 border border-[#e8e4de] hover:border-[#d4a373]/40 transition-colors duration-300"
+              >
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 bg-[#f6ecdf] flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-4 h-4 text-[#c97a52]" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[#8b5d3b]/70 text-xs uppercase tracking-wide mb-1">Email Us</p>
+                    <a href="mailto:info@evernestre.ae" className="text-[#3c2f26] hover:text-[#c97a52] transition-colors text-sm sm:text-base break-all">
+                      info@evernestre.ae
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className="bg-white p-5 sm:p-6 border border-[#e8e4de] hover:border-[#d4a373]/40 transition-colors duration-300"
+              >
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 bg-[#f6ecdf] flex items-center justify-center flex-shrink-0">
+                    <svg className="w-4 h-4 text-[#c97a52]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[#8b5d3b]/70 text-xs uppercase tracking-wide mb-1">Visit Us</p>
+                    <p className="text-[#3c2f26] text-sm leading-relaxed">
+                      Opus Tower A - Office 204<br />
+                      Business Bay, Dubai
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className="bg-[#3c2f26] p-5 sm:p-6"
+              >
+                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-4 h-4 text-[#d4a373]" />
+                  </div>
+                  <p className="text-white/90 text-sm">Office Hours</p>
+                </div>
+                <div className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
+                  <div className="flex justify-between text-white/80">
+                    <span>Monday - Friday</span>
+                    <span className="ml-2">10AM - 7PM</span>
+                  </div>
+                  <div className="flex justify-between text-white/80">
+                    <span>Saturday</span>
+                    <span className="ml-2">10AM - 3PM</span>
+                  </div>
+                  <div className="flex justify-between text-white/50">
+                    <span>Sunday</span>
+                    <span className="ml-2">Closed</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="lg:col-span-2"
+            >
+              <div className="bg-white p-6 sm:p-8 md:p-10 border border-[#e8e4de]">
+                <div className="mb-6 sm:mb-8">
+                  <p className="text-[#8b5d3b]/80 text-sm">
+                    Fill out the form below and our team will respond within 24 hours.
+                  </p>
+                </div>
+
+                <AnimatePresence mode="wait">
+                  {submitted ? (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      className="text-center py-12 sm:py-16"
+                    >
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#f0f8f0] mx-auto mb-4 sm:mb-5 flex items-center justify-center">
+                        <CheckCircle className="w-7 h-7 sm:w-8 sm:h-8 text-green-600" />
+                      </div>
+                      <h3 className="text-lg sm:text-xl text-[#3c2f26] mb-2">Thank You!</h3>
+                      <p className="text-[#8b5d3b]/80 text-sm px-4">
+                        Your message has been sent successfully. We'll get back to you soon.
+                      </p>
+                    </motion.div>
+                  ) : (
+                    <motion.form
+                      initial={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      onSubmit={handleSubmit}
+                      className="space-y-4 sm:space-y-5"
+                    >
+                      <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
+                        <div>
+                          <label className="block text-[#8b5d3b]/80 mb-2 text-xs uppercase tracking-wide">
+                            Full Name
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            autoComplete="off"
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            className="w-full px-4 py-3 bg-[#faf9f7] border border-[#e8e4de] focus:border-[#c97a52] focus:outline-none transition-colors text-[#3c2f26] text-sm"
+                            placeholder="John Doe"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[#8b5d3b]/80 mb-2 text-xs uppercase tracking-wide">
+                            Email Address
+                          </label>
+                          <input
+                            type="email"
+                            required
+                            autoComplete="off"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            className="w-full px-4 py-3 bg-[#faf9f7] border border-[#e8e4de] focus:border-[#c97a52] focus:outline-none transition-colors text-[#3c2f26] text-sm"
+                            placeholder="john@example.com"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[#8b5d3b]/80 mb-2 text-xs uppercase tracking-wide">
+                          Phone Number
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          autoComplete="off"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          className="w-full px-4 py-3 bg-[#faf9f7] border border-[#e8e4de] focus:border-[#c97a52] focus:outline-none transition-colors text-[#3c2f26] text-sm"
+                          placeholder="+971 50 123 4567"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[#8b5d3b]/80 mb-2 text-xs uppercase tracking-wide">
+                          Your Message
+                        </label>
+                        <textarea
+                          required
+                          autoComplete="off"
+                          value={formData.message}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                          rows={5}
+                          className="w-full px-4 py-3 bg-[#faf9f7] border border-[#e8e4de] focus:border-[#c97a52] focus:outline-none transition-colors resize-none text-[#3c2f26] text-sm"
+                          placeholder="Tell us about your property requirements..."
+                        />
+                      </div>
+
+                      <motion.button
+                        type="submit"
+                        whileHover={{ scale: 1.01 }}
+                        whileTap={{ scale: 0.99 }}
+                        className="w-full sm:w-auto bg-[#c97a52] hover:bg-[#b06c48] text-white py-3 px-8 transition-all duration-300 flex items-center justify-center gap-3 text-sm group"
+                      >
+                        <span>Send Message</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </motion.button>
+                    </motion.form>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
           </div>
         </div>
+      </section>
 
-        {/* Decorative bottom border */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#c97a52] via-[#d4a373] to-[#c97a52]" />
-      </div>
+      {/* Map Section */}
+      <section className="bg-white">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.561186543152!2d55.2689774!3d25.1884444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6b7a9f9b9b9b%3A0x9b9b9b9b9b9b9b9b!2sOpus%20Tower%20A%20-%20Office%20No%20204%2C%202nd%20Floor%20-%20Business%20Bay%20-%20Dubai!5e0!3m2!1sen!2sae!4v1641234567890!5m2!1sen!2sae"
+            width="100%"
+            height="350"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="EverNest RE Office Location"
+            className="sm:h-[400px] md:h-[450px]"
+          />
+        </motion.div>
+      </section>
 
-      {/* Contact Information Grid */}
-      <div className="bg-white border-b border-[#f0e4d9]">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-[#3c2f26] mx-auto mb-4 flex items-center justify-center group-hover:bg-[#c97a52] transition-colors duration-300">
-                <Phone className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-[#3c2f26] mb-2">Call Us</h3>
-              <a href="tel:+97145843555" className="text-[#c97a52] hover:text-[#b06c48] font-medium text-lg">
-                +971 4 584 3555
-              </a>
-              <p className="text-[#8b5d3b]/60 text-sm mt-1">Mon - Sat</p>
-            </div>
-
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-[#3c2f26] mx-auto mb-4 flex items-center justify-center group-hover:bg-[#c97a52] transition-colors duration-300">
-                <Mail className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-[#3c2f26] mb-2">Email Us</h3>
-              <a href="mailto:info@evernestre.ae" className="text-[#c97a52] hover:text-[#b06c48] font-medium">
-                info@evernestre.ae
-              </a>
-              <p className="text-[#8b5d3b]/60 text-sm mt-1">Quick Response</p>
-            </div>
-
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-[#3c2f26] mx-auto mb-4 flex items-center justify-center group-hover:bg-[#c97a52] transition-colors duration-300">
-                <Building2 className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-[#3c2f26] mb-2">Visit Office</h3>
-              <p className="text-[#8b5d3b] text-sm px-4">
-                Opus Tower A - Office 204<br />Business Bay, Dubai
-              </p>
-            </div>
-
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-[#3c2f26] mx-auto mb-4 flex items-center justify-center group-hover:bg-[#c97a52] transition-colors duration-300">
-                <Clock className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-[#3c2f26] mb-2">Business Hours</h3>
-              <p className="text-[#8b5d3b] text-sm">Mon - Fri: 10AM - 7PM</p>
-              <p className="text-[#8b5d3b] text-sm">Sat: 10AM - 3PM</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Form and Map Section */}
-      <div className="max-w-7xl mx-auto px-6 py-20">
-        <div className="grid lg:grid-cols-5 gap-12">
-          {/* Left Side - Form */}
-          <div className="lg:col-span-2">
-            <div className="mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#3c2f26] mb-4">
-                Get in Touch
-              </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-[#c97a52] to-[#d4a373] mb-4" />
-              <p className="text-[#8b5d3b] text-lg">
-                Fill out the form and our team will get back to you within 24 hours.
-              </p>
-            </div>
-
-            {submitted ? (
-              <div className="bg-[#f0f8f0] border-2 border-[#4ade80] p-8 text-center">
-                <CheckCircle className="w-16 h-16 text-[#22c55e] mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-[#3c2f26] mb-2">Thank You!</h3>
-                <p className="text-[#8b5d3b]">Your message has been sent successfully. We'll contact you soon.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-5 py-4 bg-white border-2 border-[#f0e4d9] text-[#3c2f26] placeholder:text-[#8b5d3b]/50 focus:outline-none focus:border-[#c97a52] transition-all"
-                    placeholder="Your Full Name"
-                  />
-                </div>
-
-                <div>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-5 py-4 bg-white border-2 border-[#f0e4d9] text-[#3c2f26] placeholder:text-[#8b5d3b]/50 focus:outline-none focus:border-[#c97a52] transition-all"
-                    placeholder="Your Email Address"
-                  />
-                </div>
-
-                <div>
-                  <input
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-5 py-4 bg-white border-2 border-[#f0e4d9] text-[#3c2f26] placeholder:text-[#8b5d3b]/50 focus:outline-none focus:border-[#c97a52] transition-all"
-                    placeholder="Your Phone Number"
-                  />
-                </div>
-
-                <div>
-                  <textarea
-                    required
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    rows={6}
-                    className="w-full px-5 py-4 bg-white border-2 border-[#f0e4d9] text-[#3c2f26] placeholder:text-[#8b5d3b]/50 focus:outline-none focus:border-[#c97a52] transition-all resize-none"
-                    placeholder="Tell us about your property requirements..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-[#3c2f26] hover:bg-[#c97a52] text-white font-bold py-5 px-8 transition-all duration-300 flex items-center justify-center gap-3 text-lg group"
-                >
-                  <span>Send Your Message</span>
-                  <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </form>
-            )}
-          </div>
-
-          {/* Right Side - Map */}
-          <div className="lg:col-span-3">
-            <div className="sticky top-6">
-              <div className="mb-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#3c2f26] mb-4">
-                  Find Us Here
-                </h2>
-                <div className="w-20 h-1 bg-gradient-to-r from-[#c97a52] to-[#d4a373] mb-4" />
-                <p className="text-[#8b5d3b] text-lg">
-                  Visit our office in the prestigious Business Bay district, easily accessible from all major areas of Dubai.
-                </p>
-              </div>
-
-              <div className="bg-white border-2 border-[#f0e4d9] overflow-hidden shadow-xl">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.561186543152!2d55.2689774!3d25.1884444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6b7a9f9b9b9b%3A0x9b9b9b9b9b9b9b9b!2sOpus%20Tower%20A%20-%20Office%20No%20204%2C%202nd%20Floor%20-%20Business%20Bay%20-%20Dubai!5e0!3m2!1sen!2sae!4v1641234567890!5m2!1sen!2sae"
-                  width="100%"
-                  height="600"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="EverNest RE Office Location"
-                />
-              </div>
-
-              {/* Quick Info Box */}
-              <div className="mt-6 bg-[#3c2f26] p-8 text-white">
-                <h3 className="text-xl font-bold mb-4 text-[#d4a373]">Why Choose Evernest Real Estate?</h3>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 bg-[#d4a373] mt-2 flex-shrink-0" />
-                    <p className="text-white/90">Over 10 years of experience in Dubai's property market</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 bg-[#d4a373] mt-2 flex-shrink-0" />
-                    <p className="text-white/90">Exclusive access to premium properties and off-plan developments</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 bg-[#d4a373] mt-2 flex-shrink-0" />
-                    <p className="text-white/90">Personalized consultation and end-to-end support</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 bg-[#d4a373] mt-2 flex-shrink-0" />
-                    <p className="text-white/90">Trusted by hundreds of satisfied clients across the UAE</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <SocialLinksSection/>
     </div>
   );
 }
