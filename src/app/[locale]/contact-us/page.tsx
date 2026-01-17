@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Phone, Mail, Clock, Send, CheckCircle, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import SocialLinksSection from "@/app/components/SocialLinksSection";
+import { submitLeadForm } from "@/lib/form";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,16 +13,39 @@ export default function Contact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      // source: "Website Contact Page",
+      source: "Website",
+      timestamp: new Date().toISOString(),
+      message : formData.message,
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
+    await submitLeadForm(payload);
+
     setSubmitted(true);
+
     setTimeout(() => {
       setSubmitted(false);
-      setFormData({ name: "", email: "", phone: "", message: "" });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
     }, 3000);
-  };
+  } catch (error) {
+    console.error("Form submit failed:", error);
+    alert("Something went wrong. Please try again.");
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-[#faf9f7]">

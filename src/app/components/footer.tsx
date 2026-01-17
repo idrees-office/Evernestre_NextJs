@@ -181,29 +181,31 @@ export default function Footer() {
               </h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
-                    <Phone className="h-4 w-4 text-[#8b5d3b]" />
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
+                    <Phone className="h-3 w-3 text-[#8b5d3b]" />
                   </div>
                   <a href="tel:+971527469500" className="select-all hover:text-[#8b5d3b]">
                     +971 52 746 9500
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
-                    <Mail className="h-4 w-4 text-[#8b5d3b]" />
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
+                    <Mail className="h-3 w-3 text-[#8b5d3b]" />
                   </div>
                   <a href="mailto:info@evernestre.ae" className="select-all hover:text-[#8b5d3b]">
                     info@evernestre.ae
                   </a>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
-                    <MapPin className="h-4 w-4 text-[#8b5d3b]" />
+                  <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#f0e4d9] bg-[#f6ecdf]">
+                    <MapPin className="h-3 w-3 text-[#8b5d3b]" />
                   </div>
-                  <address className="not-italic">  { t('business_bay') }  { t('dubai') }
-                    <br />  { t('united_arab_emirates') }
+                  <address className="not-italic leading-relaxed max-w-xs">
+                    Opus Tower A – Office No. 204<br />
+                    2nd Floor, Business Bay<br />
+                    Dubai, United Arab Emirates
                   </address>
-                </div>
+                </div> 
               </div>
             </div>
             <div>
