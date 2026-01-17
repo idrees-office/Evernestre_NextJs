@@ -4,6 +4,7 @@ import { Phone, Mail, Clock, Send, CheckCircle, ArrowRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion";
 import SocialLinksSection from "@/app/components/SocialLinksSection";
 import { submitLeadForm } from "@/lib/form";
+import Image from "next/image";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -13,7 +14,7 @@ export default function Contact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
-  
+
   const handleSubmit = async (e) => {
   e.preventDefault();
   try {
@@ -52,11 +53,19 @@ export default function Contact() {
       {/* Hero Section */}
       <section className="relative h-[45vh] sm:h-[50vh] min-h-[350px] sm:min-h-[400px] overflow-hidden">
         <div className="absolute inset-0">
-          <img 
+          <Image
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=2400&q=95&fit=crop&auto=format"
+            alt="Contact"
+            fill
+            priority
+            className="object-cover"
+          />
+
+          {/* <img 
             src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=2400&q=95&fit=crop&auto=format" 
             alt="Contact" 
             className="w-full h-full object-cover"
-          />
+          /> */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#3c2f26]/40 via-[#3c2f26]/20 to-transparent" />
         </div>
 
@@ -71,7 +80,7 @@ export default function Contact() {
               Get in Touch
             </span>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-light text-white mb-3 sm:mb-4 leading-snug">
-              Let's Talk About Your Property
+              Let&apos;s Talk About Your Property
             </h1>
             <p className="text-white/90 text-sm sm:text-base leading-relaxed">
               Our expert team is here to guide you every step of the way.
@@ -209,7 +218,7 @@ export default function Contact() {
                       </div>
                       <h3 className="text-lg sm:text-xl text-[#3c2f26] mb-2">Thank You!</h3>
                       <p className="text-[#8b5d3b]/80 text-sm px-4">
-                        Your message has been sent successfully. We'll get back to you soon.
+                        Your message has been sent successfully. We&apos;ll get back to you soon.
                       </p>
                     </motion.div>
                   ) : (

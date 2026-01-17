@@ -463,6 +463,11 @@ export default function Header() {
         url: createPageUrl("Services"),
         dropdown: null,
       },
+      {
+        label: t("contactUs"),
+        url: createPageUrl("contact-us"),
+        dropdown: null,
+      },
 
     ],
     [t]
