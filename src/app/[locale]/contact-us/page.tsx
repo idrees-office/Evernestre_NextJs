@@ -51,22 +51,16 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-[#faf9f7]">
       {/* Hero Section */}
-      <section className="relative h-[45vh] sm:h-[50vh] min-h-[350px] sm:min-h-[400px] overflow-hidden">
+      <section className="relative h-[60vh] sm:h-[65vh] min-h-[450px] sm:min-h-[500px] overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=2400&q=95&fit=crop&auto=format"
+            src="/assets/contact.jpeg"
             alt="Contact"
             fill
             priority
-            className="object-cover"
+            className="object-cover w-full h-full"
           />
-
-          {/* <img 
-            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=2400&q=95&fit=crop&auto=format" 
-            alt="Contact" 
-            className="w-full h-full object-cover"
-          /> */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#3c2f26]/40 via-[#3c2f26]/20 to-transparent" />
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#3c2f26]/40 via-[#3c2f26]/20 to-transparent" /> */}
         </div>
 
         <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
@@ -88,6 +82,7 @@ export default function Contact() {
           </motion.div>
         </div>
       </section>
+    
 
       {/* Contact Section */}
       <section className="py-12 sm:py-16 md:py-20 bg-[#f6ecdf]">

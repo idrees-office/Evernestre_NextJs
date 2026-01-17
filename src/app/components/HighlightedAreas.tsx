@@ -42,7 +42,7 @@ export default function HighlightedAreas({ areas }: { areas: Area[] }) {
           </div>
 
           <Link
-            href={`/${locale}/areas`}
+            href={`/${locale}/area-guide`}
             className="h-10 shrink-0 rounded-full px-5 text-sm text-white bg-gradient-to-r from-[#d0845b] to-[#c9a882] flex items-center"
           >
             

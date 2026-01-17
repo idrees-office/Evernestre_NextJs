@@ -24,7 +24,7 @@ function DeveloperCard({ developer }: { developer: Developer }) {
               src={developer.image} 
               alt={developer.name}
               fill
-              className="object-contain grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110"
+              className="object-contain group-hover:opacity-100 transition-all duration-500 group-hover:scale-110"
               sizes="(max-width: 768px) 150px, 200px"
               quality={85}
             />
